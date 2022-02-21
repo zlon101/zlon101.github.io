@@ -1,12 +1,12 @@
-import React from "react";
-import ErrorImg from "../../static/images/404.png";
+import React from 'react';
+import ErrorImg from '../../static/images/404.png';
 
 const NotFoundPage = () => (
   <div>
     <section className="hero is-fullheight is-dark">
       <div
         className="hero-body has-text-centered"
-        style={{ paddingTop: 0, alignItems: "flex-start" }}
+        style={{ paddingTop: 0, alignItems: 'flex-start' }}
       >
         <div className="container content">
           <h1 className="title" style={{ fontSize: 100, letterSpacing: 15 }}>

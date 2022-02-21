@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "gatsby";
+import { Link } from 'gatsby';
 import './index.less';
 
 const config = [
@@ -21,10 +21,14 @@ const config = [
   },
 ];
 
-function Header(){
-  return(
+function Header() {
+  return (
     <header className="c-header">
-      {config.map(item => <Link to={item.path} key={item.name}>{item.name}</Link>)}
+      {config.map(item => (
+        <Link to={item.path} key={item.name}>
+          {item.name}
+        </Link>
+      ))}
     </header>
   );
 }

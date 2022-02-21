@@ -6,16 +6,16 @@
 
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Blog",
+    title: 'Gatsby Blog',
   },
   plugins: [
     // "gatsby-plugin-react-helmet",
     // 添加以下两个插件，一个用于读取md文件，一个用于转换其为html
-    "gatsby-transformer-remark",
+    'gatsby-transformer-remark',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "markdown",
+        name: 'markdown',
         path: `${__dirname}/static`,
       },
     },
@@ -24,12 +24,12 @@ module.exports = {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
         alias: {
-          "@": "src",
-          "@style": "src/style",
-          "@cmp": "src/components"
+          '@': 'src',
+          '@style': 'src/style',
+          '@cmp': 'src/components',
         },
-        extensions: ["js", "tsx"]
-      }
+        extensions: ['js', 'tsx'],
+      },
     },
     {
       resolve: `gatsby-plugin-typescript`,
@@ -40,4 +40,4 @@ module.exports = {
       },
     },
   ],
-}
+};

@@ -1,6 +1,7 @@
-export * as DateUtil from "./date";
+export * as DateUtil from './date';
 
 export const isBrowser = () => typeof window !== 'undefined';
+
 /**
  * 生成带命名空间的 className 字符串
  * 支持对象类型和不限数量的 modifier，例如：

@@ -163,8 +163,14 @@ export function getDateRange({
   }
   if (isBefore) {
     const lastDay = new Date(dateNow.getTime() - intervalDays * dayTime);
-    return { start: dateToString(lastDay, format), end: dateToString(dateNow, format) };
+    return {
+      start: dateToString(lastDay, format),
+      end: dateToString(dateNow, format),
+    };
   }
   const nextDay = new Date(dateNow.getTime() + intervalDays * dayTime);
-  return { start: dateToString(dateNow, format), end: dateToString(nextDay, format) };
+  return {
+    start: dateToString(dateNow, format),
+    end: dateToString(nextDay, format),
+  };
 }

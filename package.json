@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rm -rf docs && gatsby build && mv public docs && rm -rf public",
     "dev": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format": "prettier --config .prettierrc --write 'src/**/*.{js,ts,jsx,tsx,json}'",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -31,9 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+    "url": "https://github.com/zlong1010/zlong1010.github.io"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "bin": {
+    "push": "scripts/push.js"
   }
 }

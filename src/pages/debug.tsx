@@ -5,7 +5,7 @@ function Debug() {
   const [cls, setCls] = useState('');
   const handle = () => {
     setCls(cls ? '' : 'active');
-  }
+  };
   return (
     <div className="p-debug">
       <div className={`${cls} animation`}></div>
