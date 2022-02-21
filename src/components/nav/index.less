@@ -1,0 +1,43 @@
+.c-nav {
+  outline: 1px solid blue;
+  min-height: calc(100vh - 48px);
+  padding: 16px;
+  overflow: auto;
+  .file-item {
+    display: block;
+    margin: 8px 0;
+    white-space: nowrap;
+    &.fold {
+      > .file-name::before {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-right: 8px;
+        border-style: solid;
+        border-width: 4px 0 4px 9px;
+        border-color: transparent transparent transparent blue;
+        transition: all ease-out .2s;
+      }
+      &.expand {
+        > .file-name::before {
+          transform: rotate(90deg);
+        }
+        > .child-list {
+          display: block;
+        }
+      }
+    }
+  }
+  .file-name {
+    color: blue;
+    cursor: pointer;
+    display: block;
+  }
+  .child-list {
+    padding-left: 16px;
+    margin: 0;
+    display: none;
+    transition: all ease-out .2s;
+  }
+}

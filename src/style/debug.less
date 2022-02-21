@@ -1,0 +1,30 @@
+@import './common.less';
+
+@keyframes silde {
+  0% {
+    background-color: green;
+  }
+  50% {
+    background-color: blue;
+  }
+  100% {
+    background-color: red;
+  }
+}
+
+.p-debug {
+  outline: 1px solid red;
+  width: 70vw;
+  padding: 16px;
+  margin: 40px auto 0;
+  overflow: auto;
+  position: relative;
+  .animation {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    &.active {
+      animation: silde 10s infinite;
+    }
+  }
+}
