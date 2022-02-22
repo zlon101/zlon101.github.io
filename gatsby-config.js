@@ -28,7 +28,7 @@ module.exports = {
           '@style': 'src/style',
           '@cmp': 'src/components',
         },
-        extensions: ['js', 'tsx'],
+        extensions: ['js', 'jsx', 'tsx'],
       },
     },
     {
