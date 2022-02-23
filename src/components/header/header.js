@@ -12,6 +12,10 @@ const config = [
     path: '/',
   },
   {
+    name: '仓库',
+    path: '/repos',
+  },
+  {
     name: 'Debug',
     path: '/debug',
   },

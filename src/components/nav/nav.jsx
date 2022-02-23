@@ -80,15 +80,11 @@ const NavItem = ({ node, urlPath }) => {
     isBrowser() && window.sessionStorage.setItem(node.id, expand ? '0' : '1');
   };
   if (node.type === NodeType.file) {
-    return (
-      <Link to={node.to} className="file-name">
-        {node.name}
-      </Link>
-    );
+    return <Link to={node.to} className="file-name">{node.name}</Link>;
   }
   return (
     <div className={`file-item fold ${expand ? 'expand' : ''}`}>
-      <div onClick={handleClick} className="file-name">
+      <div onClick={handleClick} className="file-name" role="button">
         {node.name}
       </div>
       {
@@ -103,10 +99,10 @@ const NavItem = ({ node, urlPath }) => {
 };
 
 const Nav = props => {
+  const data = useStaticQuery(queryDir);
   if (props.children) {
     return props.children;
   }
-  const data = useStaticQuery(queryDir);
   let dirList = [];
   const articleArr = data.allMarkdownRemark.nodes;
   articleArr.forEach(file => {
@@ -138,7 +134,7 @@ const Nav = props => {
   const childs = [...RootNode.child].sort(fileSort);
   const pathname = isBrowser() ? window?.location.pathname : '';
   let urlPath = decodeURIComponent(pathname).replace(/\//g, '-');
-  urlPath = urlPath.replace(/^\-|\-$/g, '');
+  urlPath = urlPath.replace(/^-|-$/g, '');
   return (
     <div className="c-nav">
       {childs.map(node => (
