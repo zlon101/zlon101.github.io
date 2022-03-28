@@ -1,0 +1,42 @@
+.article-wrap {
+  h1 {
+    font-size: 16px;
+  }
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 18px;
+    margin: 16px 0;
+    &::before {
+      content: '#';
+      color: blue;
+    }
+  }
+  div,
+  p {
+    margin: 8px 0;
+  }
+  a {
+    color: #0969da;
+  }
+  > :not(ul) {
+    margin-left: -14px;
+  }
+  li {
+    margin: 8px 0;
+    ul,ol {
+      margin-left: 12px;
+    }
+  }
+  ol {
+    margin-left: 12px;
+    li {
+      // list-style-position: inside;
+      > :first-child {
+        // display: inline-block;
+      }
+    }
+  }
+}

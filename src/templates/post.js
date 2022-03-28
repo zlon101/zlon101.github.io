@@ -1,9 +1,13 @@
 // MD文件模板
 import React from 'react';
 import { graphql } from 'gatsby';
+import { defineCustomElements } from "@deckdeckgo/highlight-code/dist/loader";
 import Layout from '@cmp/layout';
 import '@style/global.less';
+import './article.less';
 // import Helmet from "react-helmet";
+
+defineCustomElements();
 
 // In Gatsby, query variables can only be used inside of page queries. (You can’t use them with the useStaticQuery hook.)
 // $articlePath 的值来源于 createPage 中的 context
@@ -31,7 +35,7 @@ function Template({ data }) {
   const { markdownRemark: post } = data;
   return (
     <Layout className="page page-article-template">
-      <article dangerouslySetInnerHTML={{ __html: post.html }}></article>
+      <article className='article-wrap' dangerouslySetInnerHTML={{ __html: post.html }}></article>
     </Layout>
   );
 }

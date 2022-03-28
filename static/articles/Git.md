@@ -80,9 +80,11 @@ $ git stash pop
 
 1. 本地创建
 
-   ```
+   ```tex
    git init
    ```
+   
+2. xxxx
 
 #### 管理本地仓库
 

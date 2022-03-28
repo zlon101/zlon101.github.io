@@ -9,6 +9,7 @@ module.exports = {
     title: 'Gatsby Blog',
   },
   plugins: [
+    // 处理文章中的图像
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-transformer-remark',
@@ -18,6 +19,14 @@ module.exports = {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 800,
+            },
+          },
+          // 高亮代码块
+          {
+            resolve: 'gatsby-remark-highlight-code',
+            options: {
+              terminal: 'carbon',
+              theme: 'blackboard',
             },
           },
         ],
