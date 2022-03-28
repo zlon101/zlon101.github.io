@@ -9,9 +9,22 @@ module.exports = {
     title: 'Gatsby Blog',
   },
   plugins: [
+    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 800,
+            },
+          },
+        ],
+      },
+    },
     // "gatsby-plugin-react-helmet",
     // 添加以下两个插件，一个用于读取md文件，一个用于转换其为html
-    'gatsby-transformer-remark',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
