@@ -12,7 +12,7 @@ const config = [
     path: '/',
   },
   {
-    name: 'vue 组件指令',
+    name: 'vue组件指令',
     path: 'https://zlong1010.github.io/vue-components/#/',
   },
   {

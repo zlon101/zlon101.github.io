@@ -1,26 +1,27 @@
 .c-nav {
-  outline: 1px solid blue;
+  // outline: 1px solid blue;
   min-height: calc(100vh - 48px);
-  padding: 16px;
+  padding: 16px 16px 16px 0;
+  border-right: 1px solid #eaecef;
   overflow: auto;
   .file-item {
     display: block;
     margin: 8px 0;
     white-space: nowrap;
     &.fold {
-      > .file-name::before {
+      > .file-name::after {
         content: '';
         display: inline-block;
         width: 0;
         height: 0;
-        margin-right: 8px;
+        margin-left: 8px;
         border-style: solid;
-        border-width: 4px 0 4px 9px;
-        border-color: transparent transparent transparent blue;
-        transition: all ease-out .2s;
+        border-width: 6px 0 6px 9px;
+        border-color: transparent transparent transparent #ccc;
+        transition: all ease-out 0.2s;
       }
       &.expand {
-        > .file-name::before {
+        > .file-name::after {
           transform: rotate(90deg);
         }
         > .child-list {
@@ -30,14 +31,23 @@
     }
   }
   .file-name {
-    color: blue;
-    cursor: pointer;
+    margin-bottom: 12px;
+    padding-left: 16px;
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: 700;
     display: block;
+    position: relative;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    &.light {
+      border-left-color: #3eaf7c;
+    }
   }
   .child-list {
     padding-left: 16px;
     margin: 0;
     display: none;
-    transition: all ease-out .2s;
+    transition: all ease-out 0.2s;
   }
 }

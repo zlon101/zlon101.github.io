@@ -29,7 +29,7 @@ const HomePage = ({ data }) => {
             </span>
           </div>
           {/* dangerouslySetInnerHTML={{__html: node.excerpt}} */}
-          <div className={prefix('excerpt-text')}>{node.excerpt}</div>
+          <p className={prefix('excerpt-text')}>{node.excerpt}</p>
         </section>
       ))}
     </Layout>

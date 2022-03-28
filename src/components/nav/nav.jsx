@@ -79,11 +79,13 @@ const NavItem = ({ node, urlPath }) => {
     setExpand(!expand);
     isBrowser() && window.sessionStorage.setItem(node.id, expand ? '0' : '1');
   };
+  let fileName = urlPath.split('-');
+  fileName = `${fileName[fileName.length - 1]}.md`;
   if (node.type === NodeType.file) {
-    return <Link to={node.to} className="file-name">{node.name}</Link>;
+    return <Link to={node.to} className={`file-name ${node.name === fileName && 'light'}`}>{node.name.replace('.md', '')}</Link>;
   }
   return (
-    <div className={`file-item fold ${expand ? 'expand' : ''}`}>
+    <div className={`file-item fold ${expand && 'expand'}`}>
       <div onClick={handleClick} className="file-name" role="button">
         {node.name}
       </div>
