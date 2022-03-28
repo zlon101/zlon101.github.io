@@ -21,7 +21,7 @@ const config = [
   },
   {
     name: 'Github',
-    path: 'http://github.com',
+    path: 'https://github.com/zlong1010',
   },
 ];
 
