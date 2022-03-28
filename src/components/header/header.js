@@ -12,8 +12,8 @@ const config = [
     path: '/',
   },
   {
-    name: '仓库',
-    path: '/repos',
+    name: 'vue 组件指令',
+    path: 'https://zlong1010.github.io/vue-components/#/',
   },
   {
     name: 'Debug',
