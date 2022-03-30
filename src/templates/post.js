@@ -3,6 +3,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { defineCustomElements } from "@deckdeckgo/highlight-code/dist/loader";
 import Layout from '@cmp/layout';
+import { isBrowser } from '@/util';
 import '@style/global.less';
 import './article.less';
 // import Helmet from "react-helmet";
@@ -31,9 +32,10 @@ export const postQuery = graphql`
   }
 `;
 
-const tempDom = document.createElement('div');
+const tempDom = isBrowser() ? document.createElement('div') : {};
 
 const handleScroll = e => {
+  if (!isBrowser()) return;
   const article = document.querySelector('.article-wrap');
   const id = e.target.getAttribute('data-id');
   const title = article.querySelector(`#t-${id}`);
