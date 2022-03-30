@@ -15,8 +15,8 @@ const HomePage = ({ data }) => {
   );
   return (
     <Layout className={`page ${prefix('wrap')}`}>
-      <div>
-        <h2 style={{margin: '24px 0 16px 0'}}>最近修改</h2>
+      <div style={{padding: '16px 24px 0'}}>
+        <h2 style={{marginBottom:'24px'}}>最近修改</h2>
         {articles.map(node => (
           <section className={prefix('excerpt')} key={node.id}>
             <div className={prefix('excerpt-header')}>
