@@ -1,0 +1,632 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.73dc8d7998397b663840.css" id="gatsby-global-css">@-webkit-keyframes silde{0%{background-color:green}50%{background-color:#00f}to{background-color:red}}@keyframes silde{0%{background-color:green}50%{background-color:#00f}to{background-color:red}}.p-debug{outline:1px solid red;width:70vw;padding:16px;margin:40px auto 0;overflow:auto;position:relative}.p-debug .animation{width:200px;height:200px;background-color:red}.p-debug .animation.active{-webkit-animation:silde 10s infinite;animation:silde 10s infinite}.c-header{height:48px;width:100%;display:flex;padding:8px;position:fixed;align-items:center;left:0;top:0;border-bottom:1px solid #eaecef;background-color:#fff;z-index:1000}.c-header>*{margin-right:18px;cursor:pointer;font-weight:600;font-size:18px}.c-header>:last-child{margin-left:auto}.c-nav{min-height:calc(100vh - 48px);padding:16px 16px 16px 0;border-right:1px solid #eaecef;overflow:auto}.c-nav .file-item{display:block;margin:8px 0;white-space:nowrap}.c-nav .file-item.fold>.file-name:after{content:"";display:inline-block;width:0;height:0;margin-left:8px;border-color:transparent transparent transparent #ccc;border-style:solid;border-width:6px 0 6px 9px;transition:all .2s ease-out}.c-nav .file-item.fold.expand>.file-name:after{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.c-nav .file-item.fold.expand>.child-list{display:block}.c-nav .file-name{margin-bottom:12px;padding-left:16px;color:#2c3e50;font-size:18px;font-weight:700;display:block;position:relative;cursor:pointer;border-left:4px solid transparent}.c-nav .file-name.light{color:#3eaf7c;font-size:20px}.c-nav .child-list{padding-left:16px;margin:0;display:none;transition:all .2s ease-out}.c-layout-sidebar-content{position:relative}.c-layout-sidebar-content .c-nav{width:25%;max-width:300px;position:fixed;left:0;top:48px}.c-layout-content{margin-left:calc(25% + 32px)}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}*{margin:0;padding:0;outline:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body,html{font-family:Courier New Regular,Courier,monospace;font-size:16px}p{line-height:1.5}a{text-decoration:none;color:#2c3e50}a:hover{text-decoration:underline}.page{padding-top:48px}.page-home-wrap{-webkit-transform:scale(1);transform:scale(1)}.g-desc{color:#7f8fa4;font-size:14px}.icon-arrow{width:0;height:0;border-color:transparent transparent transparent #00f;border-style:solid;border-width:44.5px 0 44.5px 118px}.page-home-excerpt{margin-bottom:24px}.page-home-excerpt-header{margin-bottom:4px}.page-home-excerpt-header-title{font-size:16px;font-weight:700}.page-home-excerpt-header-desc{margin-left:8px;color:#7f8fa4;font-size:14px}.page-home-excerpt-text{font-size:14px}.article-wrap h1{font-size:16px}.article-wrap h2,.article-wrap h3,.article-wrap h4,.article-wrap h5,.article-wrap h6{font-size:18px;margin:16px 0}.article-wrap h2:before,.article-wrap h3:before,.article-wrap h4:before,.article-wrap h5:before,.article-wrap h6:before{content:"#";color:#00f}.article-wrap div,.article-wrap p{margin:8px 0}.article-wrap a{color:#0969da}.article-wrap>:not(ul){margin-left:-14px}.article-wrap li{margin:8px 0}.article-wrap li ol,.article-wrap li ul,.article-wrap ol{margin-left:12px}.article-wrap .gatsby-resp-image-wrapper{margin-left:0!important}</style><meta name="generator" content="Gatsby 2.32.13"/><link as="script" rel="preload" href="/webpack-runtime-e988aa03b87d6a40a154.js"/><link as="script" rel="preload" href="/framework-671e2a16129b80fb7370.js"/><link as="script" rel="preload" href="/app-f4e8fefb92197832af63.js"/><link as="script" rel="preload" href="/styles-407fe62976dc5310c43e.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-3f926cf5512e9406a054.js"/><link as="fetch" rel="preload" href="/page-data/articles/React/React技术栈/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/3957182205.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="c-layout-wrap  page page-article-template"><header class="c-header"><a href="/">首页</a><a href="/">博客</a><a href="https://zlong1010.github.io/vue-components/#/">vue组件指令</a><a href="/debug">Debug</a><a href="https://github.com/zlong1010">Github</a></header><div class="c-layout-sidebar-content "><div class="c-nav"><div class="file-item fold false"><div class="file-name" role="button">网络基础</div><ul class="child-list"><a class="file-name false" href="/articles/网络基础/HTTP/">HTTP</a><a class="file-name false" href="/articles/网络基础/服务端/">服务端</a><a class="file-name false" href="/articles/网络基础/代理-nginx/">代理-nginx</a><a class="file-name false" href="/articles/网络基础/网络基础/">网络基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">数据结构与算法</div><ul class="child-list"><a class="file-name false" href="/articles/数据结构与算法/数据结构基础/">数据结构基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端</div><ul class="child-list"><a class="file-name false" href="/articles/前端/前端调试/">前端调试</a><a class="file-name false" href="/articles/前端/前端资源整理/">前端资源整理</a><a class="file-name false" href="/articles/前端/练题/">练题</a><a class="file-name false" href="/articles/前端/webView/">webView</a><a class="file-name false" href="/articles/前端/总结/">总结</a><a class="file-name false" href="/articles/前端/规范/">规范</a><a class="file-name false" href="/articles/前端/浏览器/">浏览器</a><div class="file-item fold false"><div class="file-name" role="button">前端工程化</div><ul class="child-list"><a class="file-name false" href="/articles/前端/前端工程化/Babel/">Babel</a><a class="file-name false" href="/articles/前端/前端工程化/Gulp/">Gulp</a><a class="file-name false" href="/articles/前端/前端工程化/npm/">npm</a><a class="file-name false" href="/articles/前端/前端工程化/模块化/">模块化</a><a class="file-name false" href="/articles/前端/前端工程化/部署/">部署</a><a class="file-name false" href="/articles/前端/前端工程化/Webpack/">Webpack</a></ul></div><a class="file-name false" href="/articles/前端/设计模式/">设计模式</a><div class="file-item fold false"><div class="file-name" role="button">Node</div><ul class="child-list"><a class="file-name false" href="/articles/前端/Node/客户端-服务端/">客户端-服务端</a><a class="file-name false" href="/articles/前端/Node/服务端编程/">服务端编程</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">JS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/JS/Ajax请求/">Ajax请求</a><a class="file-name false" href="/articles/前端/JS/ES6/">ES6</a><a class="file-name false" href="/articles/前端/JS/总结/">总结</a><a class="file-name false" href="/articles/前端/JS/模块/">模块</a><a class="file-name false" href="/articles/前端/JS/JS基础/">JS基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">HTML-CSS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/HTML-CSS/CSS基础/">CSS基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/总结/">总结</a><a class="file-name false" href="/articles/前端/HTML-CSS/HTML基础/">HTML基础</a></ul></div></ul></div><div class="file-item fold false"><div class="file-name" role="button">Vue</div><ul class="child-list"><a class="file-name false" href="/articles/Vue/PWA/">PWA</a><a class="file-name false" href="/articles/Vue/Nuxt/">Nuxt</a><a class="file-name false" href="/articles/Vue/Vue原码解读/">Vue原码解读</a><a class="file-name false" href="/articles/Vue/Vue技术栈/">Vue技术栈</a><a class="file-name false" href="/articles/Vue/Vue视频资料/">Vue视频资料</a><a class="file-name false" href="/articles/Vue/vue基础概念/">vue基础概念</a><a class="file-name false" href="/articles/Vue/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">React</div><ul class="child-list"><a class="file-name false" href="/articles/React/React基础/">React基础</a><a class="file-name false" href="/articles/React/React总结/">React总结</a><a class="file-name false" href="/articles/React/React技术栈/">React技术栈</a><a class="file-name false" href="/articles/React/TODO/">TODO</a></ul></div><a class="file-name false" href="/articles/Git/">Git</a><a class="file-name false" href="/articles/Linux命令/">Linux命令</a><a class="file-name false" href="/articles/TS基础/">TS基础</a><a class="file-name false" href="/articles/Gatsby建站/">Gatsby建站</a><a class="file-name false" href="/articles/微前端/">微前端</a><a class="file-name false" href="/articles/图标/">图标</a></div><main class="c-layout-content "><article class="article-wrap"><h4>技术栈</h4>
+<blockquote>
+<ol>
+<li>React Router</li>
+<li>Redux</li>
+<li>Flux &#x26; Immutable （是什么?）</li>
+<li>React Native</li>
+<li>Middleware（中间件）</li>
+<li>reselect</li>
+<li>redux-thunk</li>
+<li>redux-sage</li>
+<li>styled-components</li>
+</ol>
+</blockquote>
+<p>react+redux+react-router+less+es6+webpack</p>
+<p><a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fredux-saga%2Fredux-saga">redux-saga</a> 用来处理异步请求，<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Freactjs%2Freselect">reselect</a> 缓存机制用来减少state改变带来的渲染压力,还有一些为了交互衍生出来的中间件 <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Freactjs%2Freact-redux">react-redux</a>、<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FReactTraining%2Freact-router%2Ftree%2Fmaster%2Fpackages%2Freact-router-redux">react-router-redux</a>、<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FReactTraining%2Freact-router%2Ftree%2Fmaster%2Fpackages%2Freact-router-dom">react-router-dom</a> ，预处理器<a href="https://link.juejin.im?target=https%3A%2F%2Fwww.w3cplus.com%2Fsassguide%2Fsyntax.html">Sass</a>或<a href="https://link.juejin.im?target=https%3A%2F%2Fwww.w3cschool.cn%2Fless%2F">Less</a> 尽量也掌握下。</p>
+<p>Antd＋React＋Redux 开发项目，Roadhog 或者 Webpack 构建项目，Nextjs 做服务端渲染。</p>
+<h4>react-native</h4>
+<p>react-native就是基于Virtual DOM渲染出原生控件。</p>
+<h4>browserify是什么？</h4>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// index.js
+const store = createStore(rootReducer)
+
+render(
+  &lt;Provider store={store}&gt;
+    &lt;App /&gt;
+  &lt;/Provider&gt;,
+  document.getElementById(&#39;root&#39;)
+)
+
+// App,js
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;AddTodo /&gt;
+    &lt;VisibleTodoList /&gt;
+    &lt;Footer /&gt;
+  &lt;/div&gt;
+)
+
+// AddTodo
+const AddTodo = ({ dispatch }) =&gt; {
+  let input
+  return (
+      &lt;form
+        onSubmit={e =&gt; {
+          dispatch(addTodo(input.value))// 派发action
+        }}
+      &gt;
+      &lt;/form&gt;
+  )
+}
+export default connect()(AddTodo) // 生成容器组件
+
+
+// VisibleTodoList
+const getVisibleTodos = (todos, filter) =&gt; {
+  switch (filter) {
+    case VisibilityFilters.SHOW_ALL:
+      return todos
+    case VisibilityFilters.SHOW_COMPLETED:
+      return todos.filter(t =&gt; t.completed)
+    case VisibilityFilters.SHOW_ACTIVE:
+      return todos.filter(t =&gt; !t.completed)
+    default:
+      throw new Error(&#39;Unknown filter: &#39; + filter)
+  }
+}
+const mapStateToProps = state =&gt; ({
+  todos: getVisibleTodos(state.todos, state.visibilityFilter)
+})
+const mapDispatchToProps = dispatch =&gt; ({
+  toggleTodo: id =&gt; dispatch(toggleTodo(id))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
+
+// TodoList.js
+const TodoList = ({ todos, toggleTodo }) =&gt; (
+  &lt;ul&gt;
+    {todos.map(todo =&gt; (
+      &lt;Todo key={todo.id} {...todo} onClick={() =&gt; toggleTodo(todo.id)} /&gt;
+    ))}
+  &lt;/ul&gt;
+)
+export default TodoList
+// Todo
+const Todo = ({ onClick, completed, text }) =&gt; (
+  &lt;li onClick={onClick}&gt; {text} &lt;/li&gt;
+)
+export default Todo
+
+//------------------------------------------------------------------
+// Footer.js
+const Footer = () =&gt; (
+  &lt;div&gt;
+    &lt;FilterLink filter={VisibilityFilters.SHOW_ALL}&gt;All&lt;/FilterLink&gt;
+  &lt;/div&gt;
+)
+export default Footer
+
+// FilterLink
+const mapStateToProps = (state, ownProps) =&gt; ({
+  active: ownProps.filter === state.visibilityFilter
+})
+const mapDispatchToProps = (dispatch, ownProps) =&gt; ({
+  onClick: () =&gt; dispatch(setVisibilityFilter(ownProps.filter))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Link)
+
+// Link
+const Link = ({ active, children, onClick }) =&gt; (
+  &lt;button
+    onClick={onClick}
+    disabled={active}
+  &gt;
+    {children}
+  &lt;/button&gt;
+)
+export default Link</code>
+        </deckgo-highlight-code>
+<h4>Redux</h4>
+<blockquote>
+<p>状态管理：组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化，从而触发重新渲染 UI 。</p>
+<p>应用中所有的 state 都以一个对象树的形式储存在一个单一的 store 中。 惟一改变 state 的办法是触发 action，一个描述发生什么的对象。 为了描述 action 如何改变 state 树，你需要编写 reducers。</p>
+<p>store作为数据源\数据集，state代表数据源的状态。数据集是会发生变化的，是什么触发了数据集的变化(更新)？是视图或服务器返回的数据。所以，当视图发生变化时派发一个action给reducer，reducer根据当前数据集的状态和action确定数据集的新的状态。改变state的唯一途径就是派发action。</p>
+<p>store：对象</p>
+<p>action：对象</p>
+<p>reducer：函数</p>
+</blockquote>
+<h5>API</h5>
+<ul>
+<li>组件派发（dispatch）action对象 store</li>
+<li>组件可以通过订阅store中的状态(state)来刷新自己的视图</li>
+</ul>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// reducers 是一个函数，根据action和当前state确定新的 state
+
+// 创建 Redux store 来存放应用的状态。
+// API 是 { subscribe, dispatch, getState }。
+let store = createStore(reducers)
+
+// 可以手动订阅更新，也可以事件绑定到视图层。
+store.subscribe(() =&gt; console.log(store.getState()))
+
+// 改变内部 state 惟一方法是 dispatch 一个 action。
+// action 可以被序列化，用日记记录和储存下来，后期还可以以回放的方式执行
+store.dispatch({ type: &#39;INCREMENT&#39; })
+
+store.getState();</code>
+        </deckgo-highlight-code>
+<h5>Action</h5>
+<blockquote>
+<p>action 本质就是对象，用于携带数据，<strong>Action</strong> 是把数据从应用（译者注：这里之所以不叫 view 是因为这些数据有可能是服务器响应，用户输入或其它非 view 的数据 ）传到 store 的有效载荷。它是 store 数据的<strong>唯一</strong>来源。一般来说你会通过 <a href="http://cn.redux.js.org//docs/api/Store.html#dispatch"><code>store.dispatch()</code></a> 将 action 传到 store。</p>
+</blockquote>
+<p><a href="http://cn.redux.js.org//docs/api/bindActionCreators.html"><code>bindActionCreators()</code></a> 可以自动把多个 action 创建函数 绑定到 <code>dispatch()</code> 方法上。</p>
+<h5>reducer</h5>
+<blockquote>
+<p>Reducers是函数，接收state和action并返回新的state；</p>
+</blockquote>
+<p>禁止在 reducer 里做以下操作：</p>
+<ol>
+<li>修改传入的参数</li>
+<li>执行有副作用的操作，如 API 请求和路由跳转；</li>
+<li>调用非纯函数，如 <code>Date.now()</code> 或 <code>Math.random()</code>。</li>
+</ol>
+<p>只要传入参数相同，返回计算得到的下一个 state 就一定相同。没有特殊情况、没有副作用，没有 API 请求、没有变量修改，单纯执行计算。</p>
+<ul>
+<li>
+<p>修改store.state中的指定数据项并且不修改原来的状态</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// state.todos是对象数组, 每个元素都是一个对象
+function (state, action){
+  return Object.assign({}, state, {
+      todos: state.todos.map((todo, index) =&gt; {
+          if (index === action.index) {
+              return Object.assign({}, todo, {
+                  completed: !todo.completed
+              })
+          };
+          return todo
+      })
+  })
+}	
+
+// 将reducers拆分成多个子reducers
+import { combineReducers, createStore } from &#39;redux&#39;;
+// visibilityFilter 和 todos 都是reducer
+let reducer = combineReducers({ 
+// 这个对象的结构就是state的结构，对象的key就是state的key
+visibilityFilter, 
+todos 
+});
+let store = createStore(reducer)</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<p><u><strong>拆分reducer并使用</strong></u> </p>
+<p>当state中有多个数据并且需要多个reducer分别处理时，可以分别编写多个子reducer函数，然后使用函数combineReducers(obj)将子reducer合并。并且传递给combineReducers的对象的key需要与state中数据的key相同。表示state的某个属性使用某个子reducer来处理。</p>
+<h5>异步数据</h5>
+<p>默认情况下，redux.createStore()所创建的 Redux store 没有使用 middleware，所以只支持 同步数据流。异步处理时与同步的不同之处在于action creator和dispatch不同。</p>
+<ul>
+<li>
+<p>Redux MiddleWare
+提供的是位于 action 被发起之后，到达 reducer 之前的扩展点。 你可以利用 Redux middleware 来进行日志记录(loggerMiddleware)、创建崩溃报告、调用异步接口或路由等等。</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">createStore(
+  rootReducer,
+  preloadedState,
+  // thunkMiddleware使dispatch函数可以接收函数作为参数
+  applyMiddleware(thunkMiddleware, loggerMiddleware)
+)</code>
+        </deckgo-highlight-code>
+</li>
+<li>
+<p>action creator：同步情况下，<code>action creator</code>返回对象，异步情况下<code>action creator</code>返回一个函数，该函数被Redux Tunk中间件调用(该函数的参数由中间件提供)，函数内可以执行dispatch 和异步请求。</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">/*
+	异步情况下的action creator返回函数， 这个函数Fn的返回值作为dispatch(Fn)的返回值？
+	异步情况重点在于action creator函数的编写
+*/
+dispatch(fetchPosts(subreddit));
+
+function fetchPosts(subreddit) {
+  // Thunk middleware 知道如何处理函数。
+  // 这里把 dispatch 方法通过参数的形式传给函数，以此来让它自己也能 dispatch action。
+  // 因为是由中间件调用该返回的函数, 因此dispatch 参数也由中间件提供(中间件包装了store的dispatch方法)
+  return dispatch =&gt; {
+      // 请求发起, 更新state
+      dispatch(requestPosts(subreddit));
+      return fetch(`https://www.reddit.com/r/${subreddit}.json`)
+          .then(response =&gt; response.json())
+      
+      	// 可以多次dispatch, 这里使用请求的响应结果更新state
+      	// 最后一个dispatch(action), action必须是对象, 就和同步情况下一样
+          .then(json =&gt; dispatch(receivePosts(subreddit, json)))
+  }
+}
+
+function requestPosts(subreddit) {
+  return {
+      type: REQUEST_POSTS,
+      subreddit
+  }
+}</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<h5>中间件</h5>
+<p>例如thunkMiddleware就是一个函数</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">function thunkMiddleware(store){
+    // next指dispatch
+    return function (next){
+        return function (action){
+            
+        }
+    }
+}</code>
+        </deckgo-highlight-code>
+<p>参考：<a href="https://cn.redux.js.org/docs/advanced/Middleware.html">Redux-异步数据-中间件</a></p>
+<p>大多数的应用都会使用 middleware 或 enhancer 来拓展 Redux store 的功能。<strong>（注：middleware 很常见，enhancer 不太常见）</strong> middleware 拓展了 Redux <code>dispatch</code> 函数的功能；enhancer 拓展了 Redux store 的功能。</p>
+<h5>参考</h5>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html">Redux 入门教程（一）：基本用法 - 阮一峰的网络日志</a> </li>
+<li></li>
+</ul>
+<h4>React-Redux</h4>
+<h5>容器组件</h5>
+<blockquote>
+<p>UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。</p>
+<p>参考：<a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html">React入门教程-阮一峰</a></p>
+</blockquote>
+<h4>styled-components</h4>
+<p>使用JS上编写CSS，<a href="https://github.com/styled-components/styled-components">styled components</a>就是其中一种解决方案。styled components是一个React第三方库，作用是可以将样式写成组件的形式，实现在JS上编写CSS。</p>
+<p>实际上styled components使用的还是CSS，因此完美<strong>支持CSS的所有特性</strong>；</p>
+<h4>redux-sage</h4>
+<blockquote>
+<p>redux-saga  是一个用于管理 Redux 应用异步操作的中间件（又称异步 action）。 redux-saga 通过创建 Sagas 将所有的异步操作逻辑收集在一个地方集中处理，可以用来代替 redux-thunk 中间件。</p>
+<p>这意味着应用的逻辑会存在两个地方：</p>
+<ul>
+<li>Reducers 负责处理 action 的 state 更新</li>
+<li>Sagas 负责协调那些复杂或异步的操作</li>
+</ul>
+</blockquote>
+<h4>Immer</h4>
+<p><code>produce(当前state, draft=>{...});</code>  返回新的state</p>
+<p><code>produce(函数，默认state);</code>  返回一个函数，此时produce是一个高阶函数，immer的柯里化。</p>
+<ul>
+<li>produce返回的那个函数 is ready to accept a state, and call your update function with the draft.</li>
+</ul>
+<p>使用immer代替useState Hook，<code>use-immer</code> </p>
+<h5>源码</h5>
+<blockquote>
+<p> Immer records all the changes that are performed on the draft object and generates an array of JSON objects indicating what has changed. These arrays are called Patches. Immer also produces inverse patches, which are patches that need to be applied if you want to go back to the previous state.</p>
+<p> When creating a draft, Immer will copy all <em>own</em> properties from the base to the draft.This includes non-enumerable and symbolic properties.</p>
+<p> The final instance will be constructed with the same mechanism as the draft was created.</p>
+</blockquote>
+<p><code>Immer = Copy-on-write + Proxy</code></p>
+<p>Immer记录了对draft对象作的修改，然后生成一个JSON对象。</p>
+<p>draftState 是个 Proxy，对它的读写操作会走到内部定义好的 getter/setter 里，简单来说就是当你获取 draftState 内部的对象时，它都会返回一个 Proxy，而当你进行赋值时，它都会对原对象的 copy 对象进行赋值。最后返回 copy 对象。</p>
+<p>Immer会将包装后的代理对象作为入参传入加工函数，<strong>值得注意的是加工函数内的this也指向该代理对象</strong>。如果第一个参数是加工函数。</p>
+<p>所有对draft的修改都会应用到 a __copy__ of the base state</p>
+<p>Only plain objects and arrays are made mutable. All other objects are considered uncopyable.</p>
+<p>结构共享</p>
+<p>深度更新</p>
+<p>根节点预先创建一个 Proxy，对象树上被访问到的所有中间节点（或新增子树的根节点）都要创建对应的 Proxy</p>
+<p>而每个 Proxy 都只在监听到写操作（直接赋值、原生数据操作 API 等）时才创建拷贝值（所谓Copy-on-write），并将之后的写操作全都代理到拷贝值上。</p>
+<h5><a href="https://techinscribed.com/implementing-undo-redo-functionality-in-redux-using-immer/">用immer实现undo-redo</a></h5>
+<h4>Immutable.js</h4>
+<p>对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象。Immutable 实现的原理是 <strong>Persistent Data Structure</strong>（持久化数据结构），也就是使用旧数据创建新数据时，要保证旧数据可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 <strong>Structural Sharing</strong>（结构共享），即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享。请看下面动画：</p>
+<p>fromJS toJS</p>
+<p>get  set</p>
+<p>updataIn  setIn</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">import { Map} from &#39;immutable&#39;;
+let a = Map({
+  select: &#39;users&#39;,
+  filter: Map({ name: &#39;Cam&#39; })
+})
+let b = a.set(&#39;select&#39;, &#39;people&#39;);
+a.get(&#39;filter&#39;) === b.get(&#39;filter&#39;); // true
+
+cursor = cursor.update(&#39;c&#39;, x =&gt; x + 1);
+
+getInitialState() {
+  return {
+    data: Map({ times: 0 })
+  }
+},
+  handleAdd() {
+    this.setState({ data: this.state.data.update(&#39;times&#39;, v =&gt; v + 1) });
+    // 这时的 times 并不会改变
+    console.log(this.state.data.get(&#39;times&#39;));
+  }
+
+
+//---------------------------------------------------------
+//获取List索引的元素
+ImmutableData.get(0);
+// 获取Map对应key的value
+ImmutableData.get(&#39;a&#39;);
+// 获取嵌套数组中的数据
+ImmutableData.getIn([1, 2]);
+// 获取嵌套map的数据
+ImmutableData.getIn([&#39;a&#39;, &#39;b&#39;]);
+
+const mapCopy = map; // Look, &quot;copies&quot; are free!
+
+
+//---------------------------------------------------------
+const MyDumbComponent = props =&gt; {
+   // ...
+   // props.objectProp is turned into a plain JavaScript object
+   // props.arrayProp is turn into a plain JavaScript array
+}
+ 
+MyDumbComponent.propTypes = {
+   objectProp: PropTypes.object,
+   arrayProp: PropTypes.array,
+}
+ 
+const mapStateToProps = state =&gt; ({
+   objectProp: mySelectorThatReturnsImmutableMap(state),
+   arrayProp: mySelectorThatReturnsImmutableList(state),
+})
+ 
+export default connect(mapStateToProps)(withImmutablePropsToJS(MyDumbComponent))</code>
+        </deckgo-highlight-code>
+<h5>Redux &#x26; Immutable 最佳实践</h5>
+<ol>
+<li>Never mix plain JavaScript objects with Immutable.JS</li>
+<li>
+<p>Make your entire Redux state tree an Immutable.JS object</p>
+<ul>
+<li>Create the tree using Immutable.JS’s <code>fromJS()</code> function.</li>
+<li>Use an Immutable.JS-aware version of the <code>combineReducers</code> function, such as the one in <a href="https://www.npmjs.com/package/redux-immutable">redux-immutable</a>, as Redux itself expects the state tree to be a plain JavaScript object.</li>
+<li>When adding JavaScript objects to an Immutable.JS Map or List using Immutable.JS’s <code>update</code>, <code>merge</code> or <code>set</code> methods, ensure that the object being added is first converted to an Immutable object using <code>fromJS()</code>.</li>
+<li>Example</li>
+</ul>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// avoid
+const newObj = { key: value }
+const newState = state.setIn([&#39;prop1&#39;], newObj)
+// newObj has been added as a plain JavaScript object, NOT as an Immutable.JS Map
+
+// recommended
+const newObj = { key: value }
+const newState = state.setIn([&#39;prop1&#39;], fromJS(newObj))
+// newObj is now an Immutable.JS Map</code>
+        </deckgo-highlight-code>
+</li>
+<li>Use Immutable.JS everywhere except your dumb components</li>
+<li>避免使用toJS</li>
+<li>Never use toJS() in mapStateToProps</li>
+<li>使用高阶组件(HOC)，Use a Higher Order Component to convert your Smart Component’s Immutable.JS props to your Dumb Component’s JavaScript props</li>
+</ol>
+<p><a href="https://redux.js.org/recipes/using-immutablejs-with-redux#is-using-immutablejs-worth-the-effort">最佳实践</a> </p>
+<ul>
+<li><code>import withImmutablePropsToJS from 'with-immutable-props-to-js';</code> </li>
+</ul>
+<h5>参考</h5>
+<ul>
+<li><a href="https://github.com/camsong/blog/issues/3">immutables详解及React中实践</a> </li>
+<li></li>
+</ul>
+<h4>React-Router</h4>
+<p>Router的实现原理无非就是实现当URL变化的时候渲染的组件跟着变化。 要实现这个功能，就需要监听URL的变化，有两种方式可以实现，一是通过onhashchange监听#的变化，一是用history的新的API，包括pushState(), replaceState(), popstate等。具体实现细节我们暂时不讲。</p>
+<p><code>Router</code>组件本身只是一个容器，真正的路由要通过<code>Route</code>组件定义</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">&lt;Router history={hashHistory}&gt;
+  &lt;Route path=&quot;/&quot; component={App}/&gt;
+  &lt;Route path=&quot;/repos&quot; component={Repos}/&gt;
+  &lt;Route path=&quot;/about&quot; component={About}/&gt;
+&lt;/Router&gt;</code>
+        </deckgo-highlight-code>
+<p>上面代码中，用户访问/repos（比如<a href="http://localhost:8080/#/repos%EF%BC%89%E6%97%B6%EF%BC%8C%E5%8A%A0%E8%BD%BDRepos%E7%BB%84%E4%BB%B6%EF%BC%9B%E8%AE%BF%E9%97%AE/about%EF%BC%88http://localhost:8080/#/about%EF%BC%89%E6%97%B6%EF%BC%8C%E5%8A%A0%E8%BD%BDAbout%E7%BB%84%E4%BB%B6%E3%80%82">http://localhost:8080/#/repos）时，加载Repos组件；访问/about（http://localhost:8080/#/about）时，加载About组件。</a></p>
+<blockquote>
+<ul>
+<li>
+<p>默认路由</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">&lt;IndexRoute component={Home}/&gt;</code>
+        </deckgo-highlight-code>
+</li>
+<li>
+<p>默认Link</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">&lt;IndexLink to=&quot;/&quot;&gt;Home&lt;/IndexLink&gt;</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+</blockquote>
+<h5>路径</h5>
+<p>如果一个路由使用了相对<code>路径</code>，那么完整的路径将由它的所有祖先节点的<code>路径</code>和自身指定的相对<code>路径</code>拼接而成。<a href="https://react-guide.github.io/react-router-cn/docs/guides/basics/RouteConfiguration.html#decoupling-the-ui-from-the-url">使用绝对<code>路径</code></a>可以使路由匹配行为忽略嵌套关系。</p>
+<ul>
+<li>
+<p>Link</p>
+<Link to={`/user/${user.id}`}>{user.name}</Link>
+</li>
+</ul>
+<h4>静态类型检查</h4>
+<ul>
+<li>Flow：Facebook</li>
+<li>Typescript：微软</li>
+</ul>
+<h4>SEO 优化</h4>
+<ul>
+<li>Next.js：用于React应用的极简的服务端渲染框架。</li>
+</ul>
+<h4>Next</h4>
+<h5>介绍</h5>
+<blockquote>
+<p>Next 创建的应用中只有初始页面采用服务端渲染，其他通过路由操作到达的页面均为客户端渲染。</p>
+</blockquote>
+<ul>
+<li>pages：./pages 是一个保留路径，在 /pages 路径下任何js文件中导出的默认 React 组件都被视作一个页面；pages中的文件结构自动映射为对应的路由结构；</li>
+<li>static：保留路径，存放静态资源；</li>
+<li>
+<p>package.json</p>
+<deckgo-highlight-code language="json" terminal="carbon" theme="blackboard"  >
+          <code slot="code">{
+&quot;scripts&quot;: {
+  &quot;dev&quot;: &quot;next&quot;,
+  &quot;build&quot;: &quot;next build&quot;,
+  &quot;start&quot;: &quot;next start&quot;
+}
+}</code>
+        </deckgo-highlight-code>
+</li>
+<li>
+<p>使用了 Next.js 作为服务端渲染工具，切记仅使用 next/link 中的 Link 组件。</p>
+<deckgo-highlight-code language="html" terminal="carbon" theme="blackboard"  >
+          <code slot="code">&lt;Link href=&quot;/about&quot;&gt;
+	&lt;a style={{fontSize: 20}}&gt;About Page&lt;/a&gt;
+&lt;/Link&gt;</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<h5>组件</h5>
+<h6>Head</h6>
+<deckgo-highlight-code language="html" terminal="carbon" theme="blackboard"  >
+          <code slot="code">&lt;Head&gt;
+	&lt;title&gt;My page title&lt;/title&gt;
+	&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, width=device-width&quot; /&gt;
+&lt;/Head&gt;</code>
+        </deckgo-highlight-code>
+<h6>link</h6>
+<h6>document</h6>
+<blockquote>
+<p>自定义自己的服务端渲染模板，创建 /_document.js </p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// pages/_document.js
+import Document, { Head, Main, NextScript } from &#39;next/document&#39;
+export default 
+class MyDocument extends Document {
+  static async getInitialProps (ctx) {
+    const props = await Document.getInitialProps(ctx)
+    return { ...props, customValue: &#39;hi there!&#39; }
+  }
+
+  render () {
+    return (
+     &lt;html&gt;
+       &lt;Head&gt;
+         &lt;style&gt;{`body { margin: 0 } /* custom! */`}&lt;/style&gt;
+       &lt;/Head&gt;
+       &lt;body className=&quot;custom_class&quot;&gt;
+         {this.props.customValue}
+         &lt;Main /&gt;
+         &lt;NextScript /&gt;
+       &lt;/body&gt;
+     &lt;/html&gt;
+    )
+  }
+}</code>
+        </deckgo-highlight-code>
+</blockquote>
+<h6>错误处理</h6>
+<p>Next中，有一个默认组件error.js，负责处理404或者500这种错误。当然，你也可以自定义一个_error.js组件覆盖默认的错误处理组件：</p>
+<h5>自定义服务器和路由</h5>
+<ul>
+<li>
+<p>项目根目录下创建 server.js 文件：</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// server.js
+
+const { createServer } = require(&#39;http&#39;)
+const { parse } = require(&#39;url&#39;)
+const next = require(&#39;next&#39;)
+
+const dev = process.env.NODE_ENV !== &#39;production&#39;
+const app = next({ dev })
+const handle = app.getRequestHandler()
+
+app.prepare().then(() =&gt; {
+createServer((req, res) =&gt; {
+  const parsedUrl = parse(req.url, true)
+  const { pathname, query } = parsedUrl
+
+  if (pathname === &#39;/a&#39;) {
+    app.render(req, res, &#39;/b&#39;, query)
+  } else if (pathname === &#39;/b&#39;) {
+    app.render(req, res, &#39;/a&#39;, query)
+  } else {
+    handle(req, res, parsedUrl)
+  }
+})
+.listen(3000, (err) =&gt; {
+  if (err) throw err
+  console.log(&#39;&gt; Ready on http://localhost:3000&#39;)
+})
+})</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<h5>CSS</h5>
+<p>NEXT组件中声明CSS，目前主要有两种方式：</p>
+<ol>
+<li>
+<p>内嵌CSS：组件级的独立作用域，利用 styled-jsx 库</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">export default () =&gt; (
+ &lt;div&gt;
+   Hello world
+   &lt;p&gt;scoped!&lt;/p&gt;
+   &lt;style jsx&gt;{`
+     p {
+       color: blue;
+     }
+     div {
+       background: red;
+     }
+     div:hover {
+       background: blue;
+     }
+     @media (max-width: 600px) {
+       div {
+         background: blue;
+       }
+     }
+   `}&lt;/style&gt;
+ &lt;/div&gt;
+)</code>
+        </deckgo-highlight-code>
+<p><code>scope CSS</code>的作用范围，如果添加了 <code>jsx</code>属性，则是不包括子组件的当前组件；如果添加了 <code>global</code> 和 <code>jsx</code>属性，则是包括了子组件在内的当前组件；如果没添加任何属性，则作用与 添加了 <code>global</code> 和 <code>jsx</code>的作用类似，只不过 <code>next</code>不会对其进行额外的提取与优化打包。</p>
+</li>
+<li>
+<p>CSS-in-JS 内联样式</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">export default () =&gt; (
+ &lt;div style={{color: red}}&gt;
+   Hello world
+ &lt;/div&gt;
+)</code>
+        </deckgo-highlight-code>
+</li>
+</ol>
+<h5>服务端框架</h5>
+<blockquote>
+<p> next.js自带服务器，但是它可以做的事情很有限，只能处理 ssr 渲染。 我们可以将next.js作为 koa 的一个中间件来使用，当然您也可以选择 express 和 egg.js，使用方式都很类似。</p>
+</blockquote>
+<h5>部署</h5>
+<p>生产模式下，需要先使用生产模式构建代码，再启动服务器。因此，需要两条命令：</p>
+<ol>
+<li>npm run build</li>
+<li>npm run start</li>
+</ol>
+<p>Next官方推荐使用now作为部署工具，只要在package.json文件中写入：</p>
+<deckgo-highlight-code language="json" terminal="carbon" theme="blackboard"  >
+          <code slot="code">{
+  &quot;name&quot;: &quot;my-app&quot;,
+  &quot;dependencies&quot;: {
+    &quot;next&quot;: &quot;latest&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;next&quot;,
+    &quot;build&quot;: &quot;next build&quot;,
+    &quot;start&quot;: &quot;next start&quot;
+  }
+}</code>
+        </deckgo-highlight-code>
+<p>接着运行now命令，就可以实现一键部署。</p>
+<h5>参考</h5>
+<ul>
+<li><a href="https://nextjs.org/learn/basics/navigate-between-pages">next 官网</a></li>
+<li><a href="https://juejin.im/post/5cbb362351882532525a1082">next.js+koa2+antd环境轻松搭建</a>
+<a href="https://juejin.im/post/5cbc0b3ae51d456e46603e31">看了就会的next.js路由</a></li>
+<li><a href="https://github.com/accforgit/DayLearnNote/blob/master/React/Next.js-README.md#%E8%B7%AF%E7%94%B1">中文</a></li>
+<li><a href="https://my.oschina.net/chkui/blog/2872965">入门教程</a> </li>
+</ul></article></main></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/articles/React/React技术栈/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-0672eb177be2180b9b97.js"],"app":["/app-f4e8fefb92197832af63.js"],"component---src-pages-404-js":["/component---src-pages-404-js-da26abf276b01cb65497.js"],"component---src-pages-debug-jsx":["/component---src-pages-debug-jsx-f5795fb4e41157ac863f.js"],"component---src-pages-index-jsx":["/component---src-pages-index-jsx-e46d7362f155a2a642b2.js"],"component---src-pages-other-js":["/component---src-pages-other-js-708266e2a7807cb5b20b.js"],"component---src-pages-repos-jsx":["/component---src-pages-repos-jsx-6b865c43c876bddcc6b6.js"],"component---src-templates-post-js":["/component---src-templates-post-js-3f926cf5512e9406a054.js"],"polyfills-dom":["/polyfills-dom-527287ec3415f87639b2.js"],"polyfills-core-js":["/polyfills-core-js-00812e0208c5c6bfb98e.js"]};/*]]>*/</script><script src="/polyfill-0672eb177be2180b9b97.js" nomodule=""></script><script src="/component---src-templates-post-js-3f926cf5512e9406a054.js" async=""></script><script src="/styles-407fe62976dc5310c43e.js" async=""></script><script src="/app-f4e8fefb92197832af63.js" async=""></script><script src="/framework-671e2a16129b80fb7370.js" async=""></script><script src="/webpack-runtime-e988aa03b87d6a40a154.js" async=""></script></body></html>

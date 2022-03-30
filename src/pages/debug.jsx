@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react'; // useEffect, useRef
 import '@style/debug.less';
 
 function Debug() {

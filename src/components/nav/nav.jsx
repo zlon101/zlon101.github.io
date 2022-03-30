@@ -10,7 +10,7 @@ const NodeType = {
 
 // const urlObj = new URL(window.location.href);
 
-function createNode(info, parentNode?) {
+function createNode(info, parentNode) {
   const node = {
     id: info.id,
     type: info.type, // 文件 | 目录
@@ -47,7 +47,9 @@ function traverse(root, targetId) {
 
 const queryDir = graphql`
   query AllDir {
-    allMarkdownRemark {
+    allMarkdownRemark(
+      filter: { frontmatter: { hide: { ne: true } } }
+    ) {
       nodes {
         id
         fields {

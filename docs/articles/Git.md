@@ -388,6 +388,25 @@ Tag 与commit 相关联，创建的Tag存储在本地，不会自动上传到远
   git push origin :refs/tags/v0.9 % 删除远程Tag
   ```
 
+#### Git Commit
+
+**一次commit只对应一件事。**需清晰明了，说明本次提交的目的。
+
+commit message格式为`$type: $description`。
+
+type用于说明commit的类型，只允许使用以下类型。
+
+```
+* feat：新功能（feature）
+* fix：修补bug
+* docs：文档（documentation）
+* style： 格式（不影响代码运行的变动）
+* refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+* test：增加测试
+* chore：构建过程或辅助工具的变动
+```
+
+比如：一个组件现在有2个bug，按照以前我们是把2个bug都改了，再commit。而现在需要，解决一个bug就提交一次，并在commit message中写上**fix: bug#1234**（bug号）。
 
 #### Commitizen
 

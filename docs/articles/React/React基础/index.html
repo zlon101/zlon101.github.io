@@ -1,0 +1,827 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.73dc8d7998397b663840.css" id="gatsby-global-css">@-webkit-keyframes silde{0%{background-color:green}50%{background-color:#00f}to{background-color:red}}@keyframes silde{0%{background-color:green}50%{background-color:#00f}to{background-color:red}}.p-debug{outline:1px solid red;width:70vw;padding:16px;margin:40px auto 0;overflow:auto;position:relative}.p-debug .animation{width:200px;height:200px;background-color:red}.p-debug .animation.active{-webkit-animation:silde 10s infinite;animation:silde 10s infinite}.c-header{height:48px;width:100%;display:flex;padding:8px;position:fixed;align-items:center;left:0;top:0;border-bottom:1px solid #eaecef;background-color:#fff;z-index:1000}.c-header>*{margin-right:18px;cursor:pointer;font-weight:600;font-size:18px}.c-header>:last-child{margin-left:auto}.c-nav{min-height:calc(100vh - 48px);padding:16px 16px 16px 0;border-right:1px solid #eaecef;overflow:auto}.c-nav .file-item{display:block;margin:8px 0;white-space:nowrap}.c-nav .file-item.fold>.file-name:after{content:"";display:inline-block;width:0;height:0;margin-left:8px;border-color:transparent transparent transparent #ccc;border-style:solid;border-width:6px 0 6px 9px;transition:all .2s ease-out}.c-nav .file-item.fold.expand>.file-name:after{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.c-nav .file-item.fold.expand>.child-list{display:block}.c-nav .file-name{margin-bottom:12px;padding-left:16px;color:#2c3e50;font-size:18px;font-weight:700;display:block;position:relative;cursor:pointer;border-left:4px solid transparent}.c-nav .file-name.light{color:#3eaf7c;font-size:20px}.c-nav .child-list{padding-left:16px;margin:0;display:none;transition:all .2s ease-out}.c-layout-sidebar-content{position:relative}.c-layout-sidebar-content .c-nav{width:25%;max-width:300px;position:fixed;left:0;top:48px}.c-layout-content{margin-left:calc(25% + 32px)}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}*{margin:0;padding:0;outline:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body,html{font-family:Courier New Regular,Courier,monospace;font-size:16px}p{line-height:1.5}a{text-decoration:none;color:#2c3e50}a:hover{text-decoration:underline}.page{padding-top:48px}.page-home-wrap{-webkit-transform:scale(1);transform:scale(1)}.g-desc{color:#7f8fa4;font-size:14px}.icon-arrow{width:0;height:0;border-color:transparent transparent transparent #00f;border-style:solid;border-width:44.5px 0 44.5px 118px}.page-home-excerpt{margin-bottom:24px}.page-home-excerpt-header{margin-bottom:4px}.page-home-excerpt-header-title{font-size:16px;font-weight:700}.page-home-excerpt-header-desc{margin-left:8px;color:#7f8fa4;font-size:14px}.page-home-excerpt-text{font-size:14px}.article-wrap h1{font-size:16px}.article-wrap h2,.article-wrap h3,.article-wrap h4,.article-wrap h5,.article-wrap h6{font-size:18px;margin:16px 0}.article-wrap h2:before,.article-wrap h3:before,.article-wrap h4:before,.article-wrap h5:before,.article-wrap h6:before{content:"#";color:#00f}.article-wrap div,.article-wrap p{margin:8px 0}.article-wrap a{color:#0969da}.article-wrap>:not(ul){margin-left:-14px}.article-wrap li{margin:8px 0}.article-wrap li ol,.article-wrap li ul,.article-wrap ol{margin-left:12px}.article-wrap .gatsby-resp-image-wrapper{margin-left:0!important}</style><meta name="generator" content="Gatsby 2.32.13"/><link as="script" rel="preload" href="/webpack-runtime-e988aa03b87d6a40a154.js"/><link as="script" rel="preload" href="/framework-671e2a16129b80fb7370.js"/><link as="script" rel="preload" href="/app-f4e8fefb92197832af63.js"/><link as="script" rel="preload" href="/styles-407fe62976dc5310c43e.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-3f926cf5512e9406a054.js"/><link as="fetch" rel="preload" href="/page-data/articles/React/React基础/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/3957182205.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="c-layout-wrap  page page-article-template"><header class="c-header"><a href="/">首页</a><a href="/">博客</a><a href="https://zlong1010.github.io/vue-components/#/">vue组件指令</a><a href="/debug">Debug</a><a href="https://github.com/zlong1010">Github</a></header><div class="c-layout-sidebar-content "><div class="c-nav"><div class="file-item fold false"><div class="file-name" role="button">网络基础</div><ul class="child-list"><a class="file-name false" href="/articles/网络基础/HTTP/">HTTP</a><a class="file-name false" href="/articles/网络基础/服务端/">服务端</a><a class="file-name false" href="/articles/网络基础/代理-nginx/">代理-nginx</a><a class="file-name false" href="/articles/网络基础/网络基础/">网络基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">数据结构与算法</div><ul class="child-list"><a class="file-name false" href="/articles/数据结构与算法/数据结构基础/">数据结构基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端</div><ul class="child-list"><a class="file-name false" href="/articles/前端/前端调试/">前端调试</a><a class="file-name false" href="/articles/前端/前端资源整理/">前端资源整理</a><a class="file-name false" href="/articles/前端/练题/">练题</a><a class="file-name false" href="/articles/前端/webView/">webView</a><a class="file-name false" href="/articles/前端/总结/">总结</a><a class="file-name false" href="/articles/前端/规范/">规范</a><a class="file-name false" href="/articles/前端/浏览器/">浏览器</a><div class="file-item fold false"><div class="file-name" role="button">前端工程化</div><ul class="child-list"><a class="file-name false" href="/articles/前端/前端工程化/Babel/">Babel</a><a class="file-name false" href="/articles/前端/前端工程化/Gulp/">Gulp</a><a class="file-name false" href="/articles/前端/前端工程化/npm/">npm</a><a class="file-name false" href="/articles/前端/前端工程化/模块化/">模块化</a><a class="file-name false" href="/articles/前端/前端工程化/部署/">部署</a><a class="file-name false" href="/articles/前端/前端工程化/Webpack/">Webpack</a></ul></div><a class="file-name false" href="/articles/前端/设计模式/">设计模式</a><div class="file-item fold false"><div class="file-name" role="button">Node</div><ul class="child-list"><a class="file-name false" href="/articles/前端/Node/客户端-服务端/">客户端-服务端</a><a class="file-name false" href="/articles/前端/Node/服务端编程/">服务端编程</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">JS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/JS/Ajax请求/">Ajax请求</a><a class="file-name false" href="/articles/前端/JS/ES6/">ES6</a><a class="file-name false" href="/articles/前端/JS/总结/">总结</a><a class="file-name false" href="/articles/前端/JS/模块/">模块</a><a class="file-name false" href="/articles/前端/JS/JS基础/">JS基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">HTML-CSS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/HTML-CSS/CSS基础/">CSS基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/总结/">总结</a><a class="file-name false" href="/articles/前端/HTML-CSS/HTML基础/">HTML基础</a></ul></div></ul></div><div class="file-item fold false"><div class="file-name" role="button">Vue</div><ul class="child-list"><a class="file-name false" href="/articles/Vue/PWA/">PWA</a><a class="file-name false" href="/articles/Vue/Nuxt/">Nuxt</a><a class="file-name false" href="/articles/Vue/Vue原码解读/">Vue原码解读</a><a class="file-name false" href="/articles/Vue/Vue技术栈/">Vue技术栈</a><a class="file-name false" href="/articles/Vue/Vue视频资料/">Vue视频资料</a><a class="file-name false" href="/articles/Vue/vue基础概念/">vue基础概念</a><a class="file-name false" href="/articles/Vue/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">React</div><ul class="child-list"><a class="file-name false" href="/articles/React/React基础/">React基础</a><a class="file-name false" href="/articles/React/React总结/">React总结</a><a class="file-name false" href="/articles/React/React技术栈/">React技术栈</a><a class="file-name false" href="/articles/React/TODO/">TODO</a></ul></div><a class="file-name false" href="/articles/Git/">Git</a><a class="file-name false" href="/articles/Linux命令/">Linux命令</a><a class="file-name false" href="/articles/TS基础/">TS基础</a><a class="file-name false" href="/articles/Gatsby建站/">Gatsby建站</a><a class="file-name false" href="/articles/微前端/">微前端</a><a class="file-name false" href="/articles/图标/">图标</a></div><main class="c-layout-content "><article class="article-wrap"><blockquote>
+<p>React 还可以使用 Node 进行服务器渲染，或使用 React Native 开发原生移动应用。
+虚拟DOM渲染成页面上的UI的几种场景：</p>
+<ol>
+<li>通过react-dom在浏览器上渲染，react-dom将虚拟dom节点转换为浏览器的dom节点。</li>
+<li>使用node在服务端渲染</li>
+<li>使用react native在手机上渲染</li>
+<li><code>&#x3C;Contacts /></code> 和 <code>&#x3C;Chat /></code> 之类的 React 元素本质就是对象（object），所以你可以把它们当作 props，像其他数据一样传递。这种方法可能使你想起别的库中“槽”（slot）的概念，但在 React 中没有“槽”这一概念的限制，你可以将任何东西作为 props 进行传递。</li>
+</ol>
+</blockquote>
+<h4>React元素和组件</h4>
+<p>React 元素就是 JS 对象(一个轻量、不可变的虚拟DOM)，用于描述 UI。创建 React 元素的方法有两种：</p>
+<ol>
+<li><code>React.createElement</code> </li>
+<li><code>JSX</code> (JSX 是 <code>createElement</code> 的语法糖，本质还是调用的 <code>createElement</code> )。<code>&#x3C;div/></code> 和 <code>&#x3C;MyCmp></code> 都是React Element，<code>&#x3C;div/></code> 被渲染为DOM Node，<code>&#x3C;MyCmp></code> 被渲染为自定义组件。</li>
+</ol>
+<p><strong>React 组件</strong>  </p>
+<p>创建组件有两种方法：</p>
+<ol>
+<li><code>class</code> :  render--> return，返回 React 元素</li>
+<li><code>function</code> : return ，返回 React 元素</li>
+</ol>
+<p><code>render</code> 不负责组件的实际渲染工作，实际的渲染由 React 负责。</p>
+<h4>概念思想</h4>
+<ul>
+<li>
+<p>思想：</p>
+<ol>
+<li>Web 应用是一个状态机，视图与状态是一一对应的。</li>
+<li>所有的状态，保存在一个对象里面。Redux 规定， 一个 State 对应一个 View。只要 State 相同，View 就相同。你知道 State，就知道 View 是什么样，反之亦然。</li>
+</ol>
+</li>
+<li>
+<p>从概念上讲，React 分<strong>两个阶段</strong>工作：</p>
+<ol>
+<li><strong>渲染</strong> 阶段会确定需要进行哪些更改，比如 DOM。在此阶段，React 调用 <code>render</code>，然后将结果与上次渲染的结果进行比较。</li>
+<li><strong>提交</strong> 阶段发生在当 React 应用变化时。（对于 React DOM 来说，会发生在 React 插入，更新及删除 DOM 节点的时候。）在此阶段，React 还会调用 <code>componentDidMount</code> 和 <code>componentDidUpdate</code> 之类的生命周期方法。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）转换为单个对象传递给组件（组件内部），这个对象被称之为 “props”。</li>
+<li>自定义组件名必须用大写字母开头，小写字母开头的被视为原生DOM标签</li>
+<li>组件无论是使用函数声明还是通过 class 声明，都决不能修改自身的 props。<strong>单向数据流</strong></li>
+<li>得益于 setState() 的调用，React 能够知道 state 已经改变了，然后会重新调用 render() 方法来更新页面</li>
+<li>
+<p><strong>state</strong></p>
+<ol>
+<li>不要直接修改state，这样不会重新渲染组件，应该使用 setState</li>
+<li>构造函数是唯一能给 state赋值的地方</li>
+<li>setState() 自动将部分 state 合并到当前 state,</li>
+<li>state 只能由拥有它们的组件进行更改</li>
+</ol>
+</li>
+<li>
+<p>通过问自己以下三个问题，你可以逐个检查相应数据是否应该属于 state：</p>
+<ol>
+<li>该数据是否是由父组件通过 props 传递而来的？如果是，那它应该不是 state</li>
+<li>该数据是否随时间的推移而保持不变？如果是，那它应该也不是 state。</li>
+<li>你能否根据其他 state 或 props 计算出该数据的值？如果是，那它也不是 state。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h4>ReactDom.render</h4>
+<ul>
+<li>
+<p>ReactDom.render</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">function Button() {
+return &lt;button id=&quot;btn&quot;&gt;Say Hello&lt;/button&gt;;
+}
+
+ReactDOM.render(
+&lt;Button /&gt;,
+document.getElementById(&#39;container&#39;),
+function() {
+  // jQuery
+  $(&#39;#btn&#39;).click(function() {
+    alert(&#39;Hello!&#39;);
+  });
+}
+);</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<h4>组件</h4>
+<p>从概念上讲，React 组件一直更像是函数。</p>
+<ol>
+<li>
+<p>函数组件(无状态组件)</p>
+<ul>
+<li>函数名必须大写开头，没有实例</li>
+<li>必须有返回值，可以返回 JSX对象或 null，当返回 JSX时，只能有一个根元素</li>
+</ul>
+</li>
+<li>class组件(有状态组件)
+组件可以维护其内部的状态数据（通过 <code>this.state</code> 访问）。当组件的状态数据改变时，组件会再次调用 <code>render()</code> 方法重新渲染对应的标记</li>
+</ol>
+<blockquote>
+<p>By default, React components (both the <code>function</code> type and the <code>class</code> type, if it extends <code>React.Component</code>) will re-render whenever their parent re-renders, or whenever you change their state with <code>setState</code>.</p>
+<p>An easy way to optimize a React component for performance is to make it a class, and make it extend <code>React.PureComponent</code> instead of <code>React.Component</code>. This way, the component will only re-render if its state is changed or if its <em>props have changed</em>. It will no longer mindlessly re-render every single time its parent re-renders; it will ONLY re-render if one of its props has changed since the last render.</p>
+<p>Here’s where immutability comes in: if you’re passing props into a <code>PureComponent</code>, you have to make sure that those props are updated in an immutable way. That means, if they’re objects or arrays, you’ve gotta replace the entire value with a new (modified) object or array. Just like with Bob – kill it off and replace it with a clone.</p>
+<p>If you modify the internals of an object or array – by changing a property, or pushing a new item, or even modifying an item <em>inside</em> an array – then the object or array is <em>referentially equal</em> to its old self, and a <code>PureComponent</code> will not notice that it has changed, and will not re-render. Weird rendering bugs will ensue.</p>
+<ul>
+<li>默认情况下，函数组件和继承自<code>React.Component</code> 的类组件在他们的父组件或 <code>state</code> 变化时会 re-render。</li>
+</ul>
+</blockquote>
+<h5>纯函数</h5>
+<ol>
+<li>纯函数相同的输入一定返回相同的输出</li>
+<li>纯函数没用副作用，</li>
+</ol>
+<p>What’s a “Side Effect”?</p>
+<p>“Side effects” is a broad term, but basically, it means modifying things outside the scope of that immediate function. Some examples of side effects…</p>
+<ul>
+<li>Mutating/modifying input parameters, like <code>giveAwesomePowers</code> does</li>
+<li>Modifying any other state outside the function, like global variables, or <code>document.(anything)</code> or <code>window.(anything)</code></li>
+<li>Making API calls</li>
+<li><code>console.log()</code> </li>
+<li><code>Math.random()</code> </li>
+</ul>
+<h4>JSX</h4>
+<ul>
+<li>
+<p>JSX 仅仅只是  React.createElement(component, props, ...children) 函数的语法糖，Reacr.createElement函数返回一个对象(这类对象称为<strong>React元素</strong>)</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">&lt;MyButton color=&quot;blue&quot; shadowSize={2}&gt;
+Click Me
+&lt;/MyButton&gt;
+// 函数组件
+function MyButton(props){
+  return &lt;button&gt;{ props.children }&lt;/button&gt;;
+}</code>
+        </deckgo-highlight-code>
+<p>标签MyButton被编译为变量（函数 MyButton）的直接引用，也可以使用对象属性的形式，<code>&#x3C;Mybutton.DatePicker></code></p>
+</li>
+<li>
+<p>JSX 的 <code>{}</code> 中可以插入任意的 JS 表达式，如字符串字面量</p>
+<deckgo-highlight-code language="html" terminal="carbon" theme="blackboard"  >
+          <code slot="code">&lt;MyComponent message=&quot;hello world&quot; /&gt;等价于
+&lt;MyComponent message={&#39;hello world&#39;} /&gt;
+
+&lt;MyComponent message=&quot;&amp;lt;3&quot; /&gt;等价于
+&lt;MyComponent message={&#39;&lt;3&#39;} /&gt;</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<h4>CSS</h4>
+<p>React 中不能直接使用 CSS 样式<code>&#x3C;div style="background-color:red"></code>；</p>
+<p>React 中用以下几种方式使用样式：</p>
+<ul>
+<li>
+<p>使用对象形式以 props.style 的形式，这种形式只作用于当前组件；</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">const Sider = () =&gt; {
+const style = {
+  display: &#39;block&#39;,
+  listStyleType: &#39;none&#39;
+}
+return (
+  &lt;a style={style}&gt;link to header.js&lt;/a&gt;
+);
+}</code>
+        </deckgo-highlight-code>
+</li>
+<li>
+<p>import 外部 CSS 文件，以类的形式应用样式表中的规则，等价于普通情况</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">import &quot;/css/index.css&quot;;
+const comp = () =&gt; {
+  return (
+      &lt;div className=&quot;xx&quot;&gt;&lt;/div&gt;
+  );
+}</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<p>参考：<a href="https://juejin.im/post/5b39e63ae51d4562aa017c81">CSS 解决方案</a></p>
+<h4>数据(状态)</h4>
+<ul>
+<li>
+<p>React中只有两种数据(props和state)，数据向下流动；</p>
+<ol>
+<li>props：read-only只读，单向数据流</li>
+<li>state：组件内更新数据用setState</li>
+</ol>
+</li>
+</ul>
+<h5>setState</h5>
+<p><a href="https://cloud.tencent.com/developer/article/1431167">参考</a></p>
+<h4>回调函数中的 this指向</h4>
+<p>class的方法默认不会绑定this，解决方法有三种：</p>
+<ol>
+<li>
+<p>class fields: create React App默认启用此语法，这种语法还处于试验性阶段！</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">class MyComp extends React.Component {
+   handleClick = ()=&gt;{
+       // 此处的this已经绑定
+   }
+}</code>
+        </deckgo-highlight-code>
+</li>
+<li>
+<p>回调中使用箭头函数</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">&lt;button onClick={ (e)=&gt; this.handleClick(e)} &gt;&lt;/button&gt;</code>
+        </deckgo-highlight-code>
+</li>
+<li>
+<p>bind</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">class WordAdder extends React.Component {
+   constructor(props) {
+       super(props);
+       this.state = {
+           words: [&#39;marklar&#39;]
+       };
+       this.handleClick = this.handleClick.bind(this);
+   }
+
+   handleClick() {
+       // 如果constructor中没有用bind绑定this, 此处无法访问this.state, 
+       // this指向undefined
+       let words = this.state.words;
+       console.log(&#39;call handleClick!&#39;);        
+   }
+
+   render() {
+       return (
+           &lt;div&gt;
+               &lt;button onClick={this.handleClick} &gt;按钮&lt;/button&gt;
+           &lt;/div&gt;
+       );
+   }
+}</code>
+        </deckgo-highlight-code>
+</li>
+</ol>
+<h4>向事件处理程序传递参数</h4>
+<ul>
+<li>
+<p>在循环中，通常我们会为事件处理函数传递额外的参数。例如，若 <code>id</code> 是你要删除那一行的 ID，以下两种方式都可以向事件处理函数传递参数：</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">&lt;button onClick={(e) =&gt; this.deleteRow(id, e)}&gt;Delete Row&lt;/button&gt;
+
+&lt;button onClick={this.deleteRow.bind(this, id)}&gt;Delete Row&lt;/button&gt;</code>
+        </deckgo-highlight-code>
+<p>在这两种情况下，React 的事件对象 <code>e</code> 会被作为第二个参数传递。如果通过箭头函数的方式，事件对象必须显式的进行传递，而通过 <code>bind</code> 的方式，事件对象以及更多的参数将会被隐式的进行传递。</p>
+</li>
+</ul>
+<h4>数组转换为元素列表</h4>
+<ul>
+<li>
+<p>使用 Javascript 中的<code>map()</code>方法来遍历 <code>numbers</code> 数组。将数组中的每个元素变成 <code>&#x3C;li></code> 标签，最后我们将得到的数组赋值给 <code>listItems</code></p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">function NumberList(props) {
+const numbers = props.numbers;
+const listItems = numbers.map((number) =&gt;
+  &lt;li key={number.toString()}&gt;{number}&lt;/li&gt;
+);
+return (
+  &lt;ul&gt;{listItems}&lt;/ul&gt;
+);
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+&lt;NumberList numbers={numbers} /&gt;,
+document.getElementById(&#39;root&#39;)
+);</code>
+        </deckgo-highlight-code>
+<ol>
+<li>如果没有指定显式的 key 值，那么 React 将默认使用索引用作为列表项目的 key 值。不建议使用索引作为key值</li>
+<li>一个好的经验法则是：在 <code>map()</code> 方法中的元素需要设置 key 属性。</li>
+</ol>
+</li>
+</ul>
+<h4>key</h4>
+<ul>
+<li>数组元素中使用的 key 在其兄弟节点之间应该是独一无二的。然而，它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的 key 值：</li>
+<li><a href="https://zh-hans.reactjs.org/docs/reconciliation.html#recursing-on-children">https://zh-hans.reactjs.org/docs/reconciliation.html#recursing-on-children</a></li>
+<li><a href="https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318">https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318</a></li>
+</ul>
+<h4>组合 &#x26; 插槽</h4>
+<ul>
+<li>建议使用组合而非继承</li>
+<li>
+<p>React中没有槽这个概念的限制，任何数据(包括React元素)都可以通过props传递，</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// 借助props.children 传递组件的内容
+function WelcomeDialog() {
+return (
+  &lt;FancyBorder color=&quot;blue&quot;&gt;
+    &lt;h1 className=&quot;Dialog-title&quot;&gt;
+    		Welcome
+    &lt;/h1&gt;
+    &lt;p className=&quot;Dialog-message&quot;&gt;
+    		Thank you for visiting our spacecraft!
+    &lt;/p&gt;
+  &lt;/FancyBorder&gt;
+);
+}
+
+function FancyBorder(props) {
+return (
+  &lt;div className={&#39;FancyBorder FancyBorder-&#39; + props.color}&gt;
+    {props.children}
+  &lt;/div&gt;
+);
+}
+
+// 传递多个组件的内容
+function SplitPane(props) {
+return (
+  &lt;div className=&quot;SplitPane&quot;&gt;
+    &lt;div className=&quot;SplitPane-left&quot;&gt;
+      {props.left}
+    &lt;/div&gt;
+
+    &lt;div className=&quot;SplitPane-right&quot;&gt;
+      {props.right}
+    &lt;/div&gt;
+  &lt;/div&gt;
+);
+}
+
+function App() {
+return (
+  &lt;SplitPane
+    left={ &lt;Contacts /&gt; }  
+    right={ &lt;Chat /&gt; }
+  /&gt;
+);
+}</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<h4>setState</h4>
+<p>setState(updater, [callback]]);  </p>
+<p>updater可以是对象或函数，</p>
+<p>callback是可选的，它将在 <code>setState</code> 完成合并并重新渲染组件后执行。通常，我们建议使用 <code>componentDidUpdate()</code> 来代替此方式。</p>
+<p>在事件处理函数内部的setState是异步，需要用函数作setState的参数更新state</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">setState((curState, props)=&gt;{
+  
+})</code>
+        </deckgo-highlight-code>
+<p>无论您在React事件处理程序中使用多少个setState（）调用了多少个组件，它们在事件结束时只会产生一次重新渲染。</p>
+<h5>Promise和定时器中执行setState</h5>
+<ul>
+<li>
+<p>Promise 和定时器中执行 setState 不是异步，也不是批处理</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">Promise.resolve().then(() =&gt; {
+// 不是异步, 不是批处理
+this.setState({ a: &#39;子1&#39; });
+	// 这里可以取到最新的 state
+
+// 每一个 setState 都会导致重渲染
+this.setState({ a: &#39;子2&#39; });
+});
+
+
+setTimeout(() =&gt; {
+this.setState({
+  a: &#39;子1&#39;,
+});
+	// 这里可以取到最新的值
+
+// 每次 setState 多会导致重渲染
+this.setState({
+  a: &#39;子2&#39;,
+});
+});</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<h5>设置非受控组件的state</h5>
+<p>对于<strong>不受控</strong>的组件，当你想在 prop 变化（通常是 ID ）时重置 state 的话，可以选择以下几种方式：</p>
+<ul>
+<li><strong>建议: 重置内部所有的初始 state，使用 <code>key</code> 属性</strong></li>
+<li>选项一：仅更改某些字段，观察特殊属性的变化（比如 <code>props.userID</code>）。<code>(getDriveStateFromProps)</code> </li>
+<li>选项二：使用 ref 调用实例方法。</li>
+</ul>
+<h4>Ref</h4>
+<p>组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 <a href="http://calendar.perfplanet.com/2013/diff/">DOM diff</a> ，它可以极大提高网页的性能表现。</p>
+<p>如果需要从组件获取真实 DOM 的节点，这时就要用到 <code>ref</code> 属性。</p>
+<ul>
+<li>
+<p>访问 DOM 节点或在 render 方法中创建的 React 元素</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">class MyComponent extends React.Component {
+constructor(props) {
+  super(props);
+  this.myRef = React.createRef();
+  this.clickHandle = this.clickHandle.bind(this);
+}
+render() {
+  return &lt;div id=&quot;my-div&quot; ref={this.myRef} /&gt;;
+}
+clickHandle()  {
+	// this.myRef.current指向 div#my-div
+}
+}</code>
+        </deckgo-highlight-code>
+<p>当 ref 属性作用于 HTML 元素时，this.myRef.current指向原生DOM元素；当作用于自定义的class 组件时，指向组件实例。ref <strong>不能作用于函数组件</strong>(可以在函数组件内使用)，因为函数组件没有实例。</p>
+<p>不能这样使用<code>&#x3C;函数组件 ref='myRef'></code> </p>
+</li>
+</ul>
+<h4>Context</h4>
+<blockquote>
+<p>Context 主要应用场景在于很多不同层级的组件需要访问同样一些的数据，应用于<strong><Provider store={store}></Provider></strong>。Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，</p>
+</blockquote>
+<p><strong>参考</strong>：<a href="https://zh-hans.reactjs.org/docs/context.html">https://zh-hans.reactjs.org/docs/context.html</a> </p>
+<h4><a href="https://zh-hans.reactjs.org/docs/higher-order-components.html">HOC(高阶组件)</a></h4>
+<blockquote>
+<p>HOC的作用是对现有的组件进行封装扩展，添加新的功能。</p>
+<p>组件是将 props 转换为UI，高阶组件是将组件转换为新组件的函数（创建组件的函数，相当于组件工厂），因此高阶组件的参数是组件，返回值也是组件。</p>
+<p>HOC 是<strong>纯函数</strong>，没有副作用。HOC 不会修改传入的组件，也不会使用继承来复制其行为。相反，HOC 通过将组件<strong>包装</strong>在容器组件中来组成新组件。</p>
+<p>高阶组件的实现方式本质上是装饰者设计模式。</p>
+</blockquote>
+<h4>Diff</h4>
+<ul>
+<li><a href="https://zh-hans.reactjs.org/docs/reconciliation.html">Diff官网</a></li>
+</ul>
+<h4>生命周期</h4>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 800px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/0454d5f5840466b3311206b4fddcaf48/2cffa/image-20201029100258129.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 61.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAACHklEQVQoz22Ti3LiMAxF+f+fW0oLtNDmAYRHEieOX4kD4ezY0O7uzHrmjpyMdSRZ8ux+v3O/E9dtmrjdJqZob1F9P2CtjRqGAdFItDZxP45jPPutcH52f9KC9X6gbQTb7ZahdzjnIjA41rVgs/2M/7z3MUDf9xhjWK3fEULEILNHhvdARFtPUVmSfU1+kshO0fcOozW9cyjVRaBWKioAA8QY+7Of8ddqlOej6HlLGpappGw0SlvqpkObnlpIlHFUQtLK7gfyqOQJtNZxPl+wRtPqkeRyJa9ubA6GxdcDvM4k73nHYluxTFt+bWrys2YcfQQFxg9Qac2hONK2ktH7WKJz9mGt5VD1vO8UnyfLKu84lJK2FZRliVLqn/v8KfnRmHCHA3XnKVuHUJ66G8gujnXa8DFPSJKaPK/YZScOxwqt/wMMrY4tv440aiC5jKQXT1aOUcnZkuSCYybY54IiE+yylnPzADxKfgCDZlJKiuIYxyKMx/V6jVG/Lf7CVafIakNzXiHLD+RlRXXcIpom+gRQOBs0C45hlrwfmUYD/YmbPYEv6bsdrknp24SrypnMDlwB/YGbq5im54u4/5mU2JSQYddpRq8xKkPJDGf2uK6ga3PaJqWTOUrmGL3HBpmKYfS40aGcwg4Gf31mGFKdbhOtkbwmS+abBctsjXaWSldkdR6/59sFi683lvmK5JBwEWfe0ldeNnNetnOOouA3CA6UM8LvJpIAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="image-20201029100258129"
+        title="image-20201029100258129"
+        src="/static/0454d5f5840466b3311206b4fddcaf48/5a190/image-20201029100258129.png"
+        srcset="/static/0454d5f5840466b3311206b4fddcaf48/772e8/image-20201029100258129.png 200w,
+/static/0454d5f5840466b3311206b4fddcaf48/e17e5/image-20201029100258129.png 400w,
+/static/0454d5f5840466b3311206b4fddcaf48/5a190/image-20201029100258129.png 800w,
+/static/0454d5f5840466b3311206b4fddcaf48/2cffa/image-20201029100258129.png 1092w"
+        sizes="(max-width: 800px) 100vw, 800px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span>    </p>
+<p>componentDidMount: 挂载-当组件添加到 DOM 树之后执行；</p>
+<p>React组件的生命周期分为三个阶段：1. 挂载  2. 更新 3. 卸载。</p>
+<p>​    当组件的props或state变化时，组件的render方法会重新执行并返回新的虚拟DOM对象。在组件重渲染的过程中依次调用componentWillReceiveProps及上述其他4个方法。componentShouldUpdate方法默认返回true，如果componentShouldUpdate返回false，componentShouldUpdate之后的方法就不会调用，也就不会生成新的虚拟DOM对象和使用Diff算法比较新旧虚拟DOM。实现性能优化。</p>
+<p><strong>getDerivedStateFromProps</strong>  : 在组件内部保存上一次的 <code>props</code> 来区分是<code>props</code> 还是 <code>state</code> 变化导致的重渲染。</p>
+<h4>HOOK</h4>
+<blockquote>
+<p>我们推荐启用 <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks#installation"><code>eslint-plugin-react-hooks</code></a> 中的 <a href="https://github.com/facebook/react/issues/14920"><code>exhaustive-deps</code></a> 规则。此规则会在添加错误依赖时发出警告并给出修复建议。</p>
+<deckgo-highlight-code  terminal="carbon" theme="blackboard"  >
+          <code slot="code">// 你的 ESLint 配置
+{
+  &quot;plugins&quot;: [
+    // ...
+    &quot;react-hooks&quot;
+  ],
+  &quot;rules&quot;: {
+    // ...
+    &quot;react-hooks/rules-of-hooks&quot;: &quot;error&quot;, // 检查 Hook 的规则
+    &quot;react-hooks/exhaustive-deps&quot;: &quot;warn&quot; // 检查 effect 的依赖
+  }
+}</code>
+        </deckgo-highlight-code>
+</blockquote>
+<p>Hook 就是 JavaScript <strong>函数</strong>。Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性，如生命周期函数。</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// 声明一个新的叫做 “count” 的 state 变量
+const [count, setCount] = useState(0);
+// 不像 class 中的 this.setState，更新 state 变量总是替换它而不是合并它。
+// 变量定义为const!</code>
+        </deckgo-highlight-code>
+<p>Hook 为已知的 React 概念提供了更直接的 API：props， state，context，refs 以及生命周期。</p>
+<p>Hook 就是 JavaScript 函数，但是使用它们会有两个额外的规则：</p>
+<ul>
+<li>只能在<strong>函数最外层</strong>调用 Hook，不要在循环、条件判断或者子函数中调用。</li>
+<li>只能在 <strong>React 的函数组件</strong>中调用 Hook。不要在其他 JavaScript 函数中调用。（还有一个地方可以调用 Hook —— 就是自定义的 Hook 中。）</li>
+</ul>
+<p><strong>在组件之间复用状态逻辑和共享状态的方法：</strong> </p>
+<ol>
+<li><a href="https://zh-hans.reactjs.org/docs/render-props.html">render props</a> 和<a href="https://zh-hans.reactjs.org/docs/higher-order-components.html">高阶组件</a> ：render props和高阶组件只渲染一个子节点。</li>
+<li><strong>自定义HOOK：</strong> 你可以使用 Hook 从组件中提取状态逻辑，使得这些逻辑可以单独测试并复用。<strong>Hook 使你在无需修改组件结构的情况下复用状态逻辑</strong>， 这使得在组件间或社区内共享 Hook 变得更便捷。</li>
+</ol>
+<h5>内置的HOOK</h5>
+<h6>state Hook</h6>
+<h6>Effect Hook</h6>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">useEffect(fnDoSomething(){
+  return fnCleanSomenthing(){}
+}, [dependA, dependB]);</code>
+        </deckgo-highlight-code>
+<ul>
+<li>告诉 React 组件需要在<strong>渲染后</strong>（包括首次渲染和组件更新后：componentDidMount、componentDidUpdate）执行某些操作。可以把 <code>useEffect</code> Hook 看做 <code>componentDidMount</code>，<code>componentDidUpdate</code> 和 <code>componentWillUnmount</code> 这三个函数的组合。</li>
+<li>
+<p>什么时候执行 useEffect：每次渲染时都会执行 Effect，React 会等待浏览器完成画面渲染之后才延迟调用 useEffect。当 useEffect 中有清除操作时，会先清除上一个Effect，然后执行当前 Effect。</p>
+<blockquote>
+<p>与 <code>componentDidMount</code>、<code>componentDidUpdate</code> 不同的是，在浏览器完成布局与绘制之后，传给 <code>useEffect</code> 的函数会延迟调用。这使得它适用于许多常见的副作用场景，比如设置订阅和事件处理等情况，因此不应在函数中执行阻塞浏览器更新屏幕的操作。</p>
+<p>使用 <a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#uselayouteffect">useLayoutEffect</a> 可以避免延迟执行。</p>
+</blockquote>
+</li>
+<li>
+<p>传递给 useEffect 的函数在每次渲染中都会有所不同（每次都创建一个新的函数），这是刻意为之的。事实上这正是我们可以在 effect 中获取最新的 count 的值，而不用担心其过期的原因。每次我们重新渲染，都会生成新的 effect，替换掉之前的。某种意义上讲，effect 更像是渲染结果的一部分 —— 每个 effect 属于一次特定的渲染。</p>
+<ul>
+<li>一旦 effect 的依赖发生变化，effect 就会被重新创建。</li>
+<li>Effect拿到的总是定义它的那次渲染中的props和state</li>
+</ul>
+</li>
+<li>Effect Hook通过返回一个函数，并在该函数中指定清除操作，每次渲染时都会执行Effect中的清除操作，而不是只在组件卸载时执行一次。
+组件首次渲染时不会执行 useEffect Hook 返回的函数，非首次渲染时，执行的顺序依次是:  render--> clean 函数-->useEffect </li>
+<li><code>an effect hook should return nothing or a clean up function.</code> </li>
+<li>一个组件中有多个 Effect Hook 时 React 将按照 effect 声明的顺序依次调用组件中的 effect。</li>
+</ul>
+<h5>useMemo &#x26; useCallback</h5>
+<p><strong>1.useMemo</strong> </p>
+<blockquote>
+<ul>
+<li>把“创建”函数和依赖项数组作为参数传入 <code>useMemo</code>，它仅会在某个依赖项改变时才重新计算 memoized 值。这种优化有助于避免在每次渲染时都进行高开销的计算。</li>
+<li>记住，传入 <code>useMemo</code> 的函数会在<strong>渲染期间</strong>执行。请不要在这个函数内部执行与渲染无关的操作，诸如副作用这类的操作属于 <code>useEffect</code> 的适用范畴，而不是 <code>useMemo</code>。</li>
+<li>如果没有提供依赖项数组，<code>useMemo</code> 在每次渲染时都会计算新的值。</li>
+<li>
+<p><strong>使用场景</strong>  </p>
+<ol>
+<li>缓存组件：父组件改变自身数据，不涉及子组件数据变化，不使用 useMemo 就会在父组件每次 render 时都渲染子组件。</li>
+<li>类组件中可以利用继承 React.PureComponent 或者 shouldComponentUpdate 生命周期函数避免组件重复渲染。(React.PureComponent 浅层对比了 props 和 state)</li>
+<li>函数式组件可以使用 useMemo 缓存组件可以避免组件重复渲染。或者使用 <a href="https://zh-hans.reactjs.org/docs/react-api.html#reactmemo">React.memo(高阶组件)</a>，React.memo 默认对 props 作浅比较。</li>
+<li>缓存 props (引用比较)</li>
+<li>高消耗计算(计算属性)</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<deckgo-highlight-code language="jsx" terminal="carbon" theme="blackboard"  >
+          <code slot="code">const main = useMemo(() =&gt; {
+  console.debug(&#39;执行useMemo中的函数!&#39;);
+  return (props.data || []).map((item, index) =&gt; {
+    return &lt;div key={index}&gt;{item}&lt;/div&gt;;
+  });
+}, [props.data]);
+
+// 父组件
+return (
+  &lt;div&gt;
+    &lt;p&gt;{count}&lt;/p&gt;
+    &lt;button onClick={handleCount}&gt;setCount&lt;/button&gt;
+    {main}
+  &lt;/div&gt;
+);</code>
+        </deckgo-highlight-code>
+<p><strong>分析</strong> </p>
+<ul>
+<li>当依赖<code>props.data</code>不变时，main的引用不变</li>
+<li>useMemo类似于计算属性，useMemo返回的是一个记忆后的<strong>值</strong>，这个值由其他数据计算得到并且与页面渲染有关(需要在页面上显示)。</li>
+<li>上述demo中如果没有使用useMemo，则点击事件导致count更新并触发页面渲染时<code>main</code>也要重新计算(每次点击都会输出console.debug中的内容)，虽然main没有改变。</li>
+<li><code>useMemo</code>是根据依赖(deps)缓存第一个入参(callback)执行后的值。</li>
+</ul>
+<p><strong>2.<a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#usecallback">useCallback</a></strong> </p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">const memoizedCallback = useCallback(
+  () =&gt; {
+    doSomething(a, b);
+  },
+  [a, b],
+);</code>
+        </deckgo-highlight-code>
+<ul>
+<li>当依赖a、b不变时，memoized Callback的引用不变</li>
+<li><code>useCallback</code>是根据依赖(deps)缓存第一个入参的(callback)。</li>
+</ul>
+<p><strong>3.总结</strong></p>
+<ul>
+<li><code>useMemo</code>缓存值，这个值(React元素)用于渲染页面或传递给子组件。</li>
+<li><code>useCallback</code>缓存函数，这个函数通常传递给子组件，避免组件重复渲染。</li>
+</ul>
+<p><strong>4.参考</strong> </p>
+<ul>
+<li><a href="https://github.com/monsterooo/blog/issues/37">useCallback、useMemo 分析 &#x26; 差别-github</a> </li>
+</ul>
+<h5><a href="https://www.robinwieruch.de/react-hooks-fetch-data">使用useEffect发送请求-fetch</a></h5>
+<ol>
+<li><a href="https://www.robinwieruch.de/react-hooks-fetch-data#error-handling-with-react-hooks">loadding &#x26; error处理</a> </li>
+<li><a href="https://www.robinwieruch.de/react-hooks-fetch-data#custom-data-fetching-hook">将fetch data封装为自定义hook</a> </li>
+<li><a href="https://www.robinwieruch.de/react-hooks-fetch-data#reducer-hook-for-data-fetching">使用useReducer进行fetch data</a> </li>
+<li><a href="https://www.robinwieruch.de/react-hooks-fetch-data#abort-data-fetching-in-effect-hook">abort-data-fetching-in-effect-hook</a>  </li>
+</ol>
+<deckgo-highlight-code language="jsx" terminal="carbon" theme="blackboard"  >
+          <code slot="code">import React, { Fragment, useState, useEffect } from &#39;react&#39;;
+import axios from &#39;axios&#39;;
+ 
+function App() {
+  const [data, setData] = useState({ hits: [] });
+  const [query, setQuery] = useState(&#39;redux&#39;);
+  const [url, setUrl] = useState(
+    &#39;https://hn.algolia.com/api/v1/search?query=redux&#39;,
+  );
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+ 
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      setIsError(false);
+      setIsLoading(true);
+ 
+      try {
+        const result = await axios(url);
+ 
+        setData(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+ 
+      setIsLoading(false);
+    };
+ 
+    fetchData();
+  }, [url]);
+ 
+  return (
+    &lt;Fragment&gt;
+      &lt;input
+        type=&quot;text&quot;
+        value={query}
+        onChange={event =&gt; setQuery(event.target.value)}
+      /&gt;
+      &lt;button
+        type=&quot;button&quot;
+        onClick={() =&gt;
+          setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`)
+        }
+      &gt;
+        Search
+      &lt;/button&gt;
+ 
+      {isError &amp;&amp; &lt;div&gt;Something went wrong ...&lt;/div&gt;}
+ 
+      {isLoading ? (
+        &lt;div&gt;Loading ...&lt;/div&gt;
+      ) : (
+        &lt;ul&gt;
+          {data.hits.map(item =&gt; (
+            &lt;li key={item.objectID}&gt;
+              &lt;a href={item.url}&gt;{item.title}&lt;/a&gt;
+            &lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+      )}
+    &lt;/Fragment&gt;
+  );
+}</code>
+        </deckgo-highlight-code>
+<ul>
+<li>
+<p>自定义HOOK</p>
+<deckgo-highlight-code language="jsx" terminal="carbon" theme="blackboard"  >
+          <code slot="code">const useHackerNewsApi = () =&gt; {
+const [data, setData] = useState({ hits: [] });
+const [url, setUrl] = useState(
+  &#39;https://hn.algolia.com/api/v1/search?query=redux&#39;,
+);
+const [isLoading, setIsLoading] = useState(false);
+const [isError, setIsError] = useState(false);
+
+useEffect(() =&gt; {
+  const fetchData = async () =&gt; {
+    setIsError(false);
+    setIsLoading(true);
+
+    try {
+      const result = await axios(url);
+
+      setData(result.data);
+    } catch (error) {
+      setIsError(true);
+    }
+
+    setIsLoading(false);
+  };
+
+  fetchData();
+}, [url]);
+
+return [{ data, isLoading, isError }, setUrl];
+}
+
+// 
+function App() {
+const [query, setQuery] = useState(&#39;redux&#39;);
+const [{ data, isLoading, isError }, doFetch] = useHackerNewsApi();
+
+return (
+  &lt;Fragment&gt;
+    &lt;form onSubmit={event =&gt; {
+      doFetch(`http://hn.algolia.com/api/v1/search?query=${query}`);
+
+      event.preventDefault();
+    }}&gt;
+      &lt;input
+        type=&quot;text&quot;
+        value={query}
+        onChange={event =&gt; setQuery(event.target.value)}
+      /&gt;
+      &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+    &lt;/form&gt;
+
+    ...
+  &lt;/Fragment&gt;
+);
+}</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<p><strong>问题</strong> </p>
+<ol>
+<li>
+<p>useEffect的第二个参数没有、为空数组、非空数组3种情况时的运行情况？</p>
+<ul>
+<li>依赖数组为空时，改hook只在组件挂载时运行一次，在组件挂载和组件销毁时执行，并非每次渲染时运行。并且当依赖数组为空时 effect 内部的 props 和 state 就会一直持有其初始值。</li>
+<li></li>
+</ul>
+</li>
+<li>函数应该作为useEffect的依赖吗？</li>
+</ol>
+<p><strong>参考</strong> </p>
+<ul>
+<li><a href="https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/">useEffect完整指南</a> <strong>重点</strong> </li>
+<li><strong>每一个组件内的函数（包括事件处理函数，effects，定时器或者API调用等等）会捕获某次渲染中定义的props和state</strong> --闭包</li>
+</ul>
+<h5>Context Hook &#x26; Reducer Hook &#x26; useRef</h5>
+<p><code>useReducer</code> 更适合用于管理包含多个子值的 state 对象。</p>
+<ul>
+<li>
+<p>demo</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">import React, { useReducer } from &#39;react&#39;;
+
+function reducer(state, action) {
+switch (action.type) {
+  case &#39;add&#39;:
+    return [...state, action.item];
+  case &#39;remove&#39;:
+    return [
+      ...state.slice(0, action.index),
+      ...state.slice(action.index + 1)
+    ];
+  default:
+    throw new Error();
+}
+}
+
+function FavoriteMovies() {
+// useReducer接收一个reducer函数和一个初始化对象作为 input 参数
+// uesReducer返回一个状态对象和一个改变状态对象的函数dispatch，dispatch函数接收action对象作参数
+const [state, dispatch] = useReducer(reducer, [{ name: &#39;Heat&#39; }]);
+
+return (
+  // Use dispatch({ type: &#39;add&#39;, item: movie })
+  // and dispatch({ type: &#39;remove&#39;, index })...
+);
+}</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<p><strong>useRef</strong> </p>
+<blockquote>
+<p>可变引用<code>useRef()</code>保存可变数据，这些数据在更改时不会触发重新渲染。当 ref 是一个对象时它并不会把当前 ref 的值的变化 通知到我们。</p>
+<p>场景：更新状态却不重新渲染组件</p>
+</blockquote>
+<ul>
+<li>
+<p>demo</p>
+<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
+          <code slot="code">import React, { useRef, useEffect } from &#39;react&#39;;
+
+function CountMyRenders() {
+const countRenderRef = useRef(1);
+
+useEffect(function afterRender() {
+  countRenderRef.current++;
+});
+
+return (
+  &lt;div&gt;I&#39;ve rendered {countRenderRef.current} times&lt;/div&gt;
+);
+}</code>
+        </deckgo-highlight-code>
+</li>
+</ul>
+<h5>自定义HOOK</h5>
+<blockquote>
+<p>自定义 Hook 更像是一种约定而不是功能。如果函数的名字以 <code>use</code> 开头并调用其他 Hook，我们就说这是一个自定义 Hook，自定义hook只是用自己写的函数包裹原生的hook， <code>useSomething</code> 的命名约定可以让我们的 linter 插件在使用 Hook 的代码中找到 bug。</p>
+<p><strong>在两个组件中使用相同的 Hook 会共享 state 吗？</strong>不会。自定义 Hook 是一种重用状态逻辑的机制(例如设置为订阅并存储当前值)，所以每次使用自定义 Hook 时，其中的所有 state 和副作用都是完全隔离的。</p>
+</blockquote>
+<h4>静态类型检查</h4>
+<p>组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。你可以使用 <a href="https://flow.org/">Flow</a> 或 <a href="https://www.typescriptlang.org/">TypeScript</a> 等 JavaScript 扩展来对整个应用程序做类型检查。但即使你不使用这些扩展，React 也内置了一些类型检查的功能。</p>
+<h5>PropTypes</h5>
+<p>要在组件的 props 上进行类型检查，你只需配置特定的 <a href="https://react.docschina.org/docs/typechecking-with-proptypes.html">propTypes</a>属性：</p>
+<h5>Flow &#x26; TypeScript</h5>
+<blockquote>
+<p>Flow 或 TypeScript 来代替  PropTypes</p>
+</blockquote>
+<ul>
+<li>Flow是针对JS代码的静态类型检测器，</li>
+<li>TypeScript 是一种由微软开发的编程语言。它是 JavaScript 的一个类型超集，包含独立的编译器。作为一种类型语言，TypeScript 可以在构建时发现 bug 和错误，这样程序运行时就可以避免此类错误。</li>
+</ul>
+<hr>
+<h4>临时记录</h4>
+<p>在极少数情况下，你可能希望能隐藏组件，即使它已经被其他组件渲染。若要完成此操作，你可以让 <code>render</code> 方法直接返回 <code>null</code>，而不进行任何渲染；</p>
+<p>在组件的 <code>render</code> 方法中返回 <code>null</code> 并不会影响组件的生命周期。例如，上面这个示例中，<code>componentDidUpdate</code> 依然会被调用；</p>
+<p><code>React.memo</code> 等效于 <code>PureComponent</code>，但它只比较 props。（你也可以通过第二个参数指定一个自定义的比较函数来比较新旧 props。如果函数返回 true，就会跳过更新。）</p></article></main></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/articles/React/React基础/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-0672eb177be2180b9b97.js"],"app":["/app-f4e8fefb92197832af63.js"],"component---src-pages-404-js":["/component---src-pages-404-js-da26abf276b01cb65497.js"],"component---src-pages-debug-jsx":["/component---src-pages-debug-jsx-f5795fb4e41157ac863f.js"],"component---src-pages-index-jsx":["/component---src-pages-index-jsx-e46d7362f155a2a642b2.js"],"component---src-pages-other-js":["/component---src-pages-other-js-708266e2a7807cb5b20b.js"],"component---src-pages-repos-jsx":["/component---src-pages-repos-jsx-6b865c43c876bddcc6b6.js"],"component---src-templates-post-js":["/component---src-templates-post-js-3f926cf5512e9406a054.js"],"polyfills-dom":["/polyfills-dom-527287ec3415f87639b2.js"],"polyfills-core-js":["/polyfills-core-js-00812e0208c5c6bfb98e.js"]};/*]]>*/</script><script src="/polyfill-0672eb177be2180b9b97.js" nomodule=""></script><script src="/component---src-templates-post-js-3f926cf5512e9406a054.js" async=""></script><script src="/styles-407fe62976dc5310c43e.js" async=""></script><script src="/app-f4e8fefb92197832af63.js" async=""></script><script src="/framework-671e2a16129b80fb7370.js" async=""></script><script src="/webpack-runtime-e988aa03b87d6a40a154.js" async=""></script></body></html>

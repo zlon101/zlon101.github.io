@@ -37,12 +37,13 @@ const HomePage = ({ data }) => {
 };
 /**
  * 使用graphql读取目录下的文件,传递给HomePage的data参数
+ * filter: { frontmatter: { hide: { eq: false } } }
  */
 export const pageQuery = graphql`
   query IndexQuery {
     allMarkdownRemark(
-      limit: 100
-      filter: { frontmatter: { draft: { eq: false } } }
+      limit: 20
+      filter: { frontmatter: { hide: { ne: true } } }
     ) {
       nodes {
         id
