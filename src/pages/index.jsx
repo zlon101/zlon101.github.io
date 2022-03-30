@@ -15,24 +15,26 @@ const HomePage = ({ data }) => {
   );
   return (
     <Layout className={`page ${prefix('wrap')}`}>
-      <h2 style={{margin: '24px 0 16px 0'}}>最近修改</h2>
-      {articles.map(node => (
-        <section className={prefix('excerpt')} key={node.id}>
-          <div className={prefix('excerpt-header')}>
-            <Link
-              className={prefix('excerpt-header-title')}
-              to={node.fields.articlePath}
-            >
-              {node.parent.name}
-            </Link>
-            <span className={prefix('excerpt-header-desc')}>
-              {DateUtil.dataToLocaleString(node.parent.mtime)}
-            </span>
-          </div>
-          {/* dangerouslySetInnerHTML={{__html: node.excerpt}} */}
-          <p className={prefix('excerpt-text')}>{node.excerpt}</p>
-        </section>
-      ))}
+      <div>
+        <h2 style={{margin: '24px 0 16px 0'}}>最近修改</h2>
+        {articles.map(node => (
+          <section className={prefix('excerpt')} key={node.id}>
+            <div className={prefix('excerpt-header')}>
+              <Link
+                className={prefix('excerpt-header-title')}
+                to={node.fields.articlePath}
+              >
+                {node.parent.name}
+              </Link>
+              <span className={prefix('excerpt-header-desc')}>
+                {DateUtil.dataToLocaleString(node.parent.mtime)}
+              </span>
+            </div>
+            {/* dangerouslySetInnerHTML={{__html: node.excerpt}} */}
+            <p className={prefix('excerpt-text')}>{node.excerpt}</p>
+          </section>
+        ))}
+      </div>
     </Layout>
   );
 };

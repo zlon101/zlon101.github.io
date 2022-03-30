@@ -31,11 +31,33 @@ export const postQuery = graphql`
   }
 `;
 
+const tempDom = document.createElement('div');
+
+const handleScroll = e => {
+  const article = document.querySelector('.article-wrap');
+  const id = e.target.getAttribute('data-id');
+  const title = article.querySelector(`#t-${id}`);
+  title && title.scrollIntoView({ block: 'center', behavior: 'smooth' });
+};
+
 function Template({ data }) {
   const { markdownRemark: post } = data;
+  let html = post.html;
+  const titlesHtml = [...html.matchAll(/<h\d>(.+)<\/h\d>/g)];
+  const titles = titlesHtml.map(item => {
+    tempDom.innerHTML = item[0];
+    return tempDom.textContent;
+  });
+  const N = titlesHtml.length;
+  [...titlesHtml].reverse().forEach((item, idx) => {
+    html = html.slice(0, item.index + 3) + ` id="t-${N - idx - 1}" ` + html.slice(item.index + 3);
+  });
   return (
     <Layout className="page page-article-template">
-      <article className='article-wrap' dangerouslySetInnerHTML={{ __html: post.html }}></article>
+      <article className='article-wrap' dangerouslySetInnerHTML={{ __html: html }}></article>
+      <ul onClick={handleScroll} className='article-title-list'>
+        {titles.map((item, idx2) => <li data-id={idx2} key={item}>{item}</li>)}
+      </ul>
     </Layout>
   );
 }

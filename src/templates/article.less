@@ -1,4 +1,23 @@
+.page-article-template {
+  .article-title-list {
+    padding: 16px;
+    border-left: 2px solid #eaecef;
+    min-width: 10%;
+    // flex: 0 1 auto;
+    li {
+      margin-bottom: 12px;
+      list-style: none;
+      color: rebeccapurple;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 .article-wrap {
+  padding-right: 32px;
   h1 {
     font-size: 16px;
   }
@@ -26,7 +45,8 @@
   }
   li {
     margin: 8px 0;
-    ul,ol {
+    ul,
+    ol {
       margin-left: 12px;
     }
   }

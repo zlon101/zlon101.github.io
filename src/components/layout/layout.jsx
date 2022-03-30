@@ -12,7 +12,8 @@ const Layout = props => {
       <Header />
       <div className={prefix('sidebar-content')}>
         <Nav>{props.nav}</Nav>
-        <main className={prefix('content')}>{props.children}</main>
+        {props.children}
+        {/* <main className={prefix('content')}>{props.children}</main> */}
       </div>
     </div>
   );
