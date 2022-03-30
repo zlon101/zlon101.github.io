@@ -59,7 +59,7 @@ function Template({ data }) {
       <article className='article-wrap' dangerouslySetInnerHTML={{ __html: html }}></article>
       <div className='article-title-wrap'>
         <ul onClick={handleScroll} className='article-title-list'>
-          {titles.map((item, idx2) => <li data-id={idx2} key={item}>{item}</li>)}
+          {titles.map((item, idx2) => <li data-id={idx2} key={idx2}>{item}</li>)}
         </ul>
       </div>
     </Layout>
