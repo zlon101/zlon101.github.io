@@ -29,7 +29,7 @@ function Header() {
   const list = config.map((item, idx) => {
     if (item.path.includes('://')) {
       return item.name === 'Github' ? (
-        <a key={idx} href={item.path} _blank="_blank" rel="noreferrer noopener">
+        <a key={idx} href={item.path} target="_blank" rel="noreferrer noopener">
           <svg
             className="icon-font"
             width="24px"
