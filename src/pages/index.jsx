@@ -5,6 +5,7 @@ import Layout from '@cmp/layout';
 import { DateUtil, createCls } from '@/util';
 import '@style/global.less';
 import '@style/home.less';
+import '@/util/iconfont';
 
 const prefix = createCls('page-home');
 
