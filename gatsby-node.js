@@ -13,7 +13,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   console.log(`\nrelativePath:`, fileNode.relativePath); */
   const articlePath = createFilePath({ node, getNode }); // basePath: 'pages'
   // static
-  console.log('\n文章:', articlePath);
+  // console.log('\n文章:', articlePath);
   actions.createNodeField({
     node,
     name: 'articlePath',

@@ -1,8 +1,10 @@
 import React from 'react';
 import Header from '@cmp/header';
 import Nav from '@cmp/nav';
-import { createCls } from '@/util';
+import { isBrowser, createCls, iconfont } from '@/util';
 import './index.less';
+
+isBrowser() && iconfont(window);
 
 const prefix = createCls('c-layout');
 

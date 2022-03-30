@@ -1,4 +1,5 @@
 export * as DateUtil from './date';
+export { default as iconfont } from './iconfont';
 
 export const isBrowser = () => typeof window !== 'undefined';
 
