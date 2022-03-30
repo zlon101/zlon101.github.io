@@ -17,7 +17,7 @@ const config = [
   },
   {
     name: 'Debug',
-    path: '/debug',
+    path: '/debug/',
   },
   {
     name: 'Github',
@@ -38,10 +38,10 @@ function Header() {
           </svg>
         </a>
       ) : (
-        <a key={idx} to={item.path}>{item.name}</a>
+        <a href={item.path} target="_blank" rel="noreferrer noopener" key={idx}>{item.name}</a>
       );
     }
-    return <Link key={idx} to={item.path}>{item.name}</Link>;
+    return <Link to={item.path} key={idx}>{item.name}</Link>;
   });
   return <header className="c-header">{list}</header>;
 }
