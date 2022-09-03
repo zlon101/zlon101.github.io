@@ -26,9 +26,9 @@ const HomePage = ({ data }) => {
               >
                 {node.parent.name}
               </Link>
-              <span className={prefix('excerpt-header-desc')}>
+              {/* <span className={prefix('excerpt-header-desc')}>
                 {DateUtil.dataToLocaleString(node.parent.mtime)}
-              </span>
+              </span> */}
             </div>
             {/* dangerouslySetInnerHTML={{__html: node.excerpt}} */}
             <p className={prefix('excerpt-text')}>{node.excerpt}</p>
