@@ -6,7 +6,7 @@
 >  3. 使用react native在手机上渲染
 >  4. `<Contacts />` 和 `<Chat />` 之类的 React 元素本质就是对象（object），所以你可以把它们当作 props，像其他数据一样传递。这种方法可能使你想起别的库中“槽”（slot）的概念，但在 React 中没有“槽”这一概念的限制，你可以将任何东西作为 props 进行传递。
 
-#### React元素和组件
+# React元素和组件
 
 React 元素就是 JS 对象(一个轻量、不可变的虚拟DOM)，用于描述 UI。创建 React 元素的方法有两种：
 
@@ -25,7 +25,7 @@ React 元素就是 JS 对象(一个轻量、不可变的虚拟DOM)，用于描�
 
 `render` 不负责组件的实际渲染工作，实际的渲染由 React 负责。
 
-#### 概念思想
+# 概念思想
 
 - 思想：
 
@@ -67,7 +67,7 @@ React 元素就是 JS 对象(一个轻量、不可变的虚拟DOM)，用于描�
 
 
 
-#### ReactDom.render 
+# ReactDom.render 
 
 - ReactDom.render
 
@@ -90,7 +90,7 @@ React 元素就是 JS 对象(一个轻量、不可变的虚拟DOM)，用于描�
 
 
 
-#### 组件
+# 组件
 
 从概念上讲，React 组件一直更像是函数。
 
@@ -112,7 +112,7 @@ React 元素就是 JS 对象(一个轻量、不可变的虚拟DOM)，用于描�
 >
 > - 默认情况下，函数组件和继承自`React.Component` 的类组件在他们的父组件或 `state` 变化时会 re-render。
 
-##### 纯函数
+## 纯函数
 
 1. 纯函数相同的输入一定返回相同的输出
 2. 纯函数没用副作用，
@@ -127,7 +127,7 @@ What’s a “Side Effect”?
 - `console.log()` 
 - `Math.random()` 
 
-#### JSX
+# JSX
 
 - JSX 仅仅只是  React.createElement(component, props, ...children) 函数的语法糖，Reacr.createElement函数返回一个对象(这类对象称为**React元素**)
 
@@ -156,7 +156,7 @@ What’s a “Side Effect”?
 
 
 
-#### CSS
+# CSS
 
 React 中不能直接使用 CSS 样式`<div style="background-color:red">`；
 
@@ -189,17 +189,17 @@ React 中用以下几种方式使用样式：
 
 参考：[CSS 解决方案](https://juejin.im/post/5b39e63ae51d4562aa017c81)
 
-#### 数据(状态)
+# 数据(状态)
 
 - React中只有两种数据(props和state)，数据向下流动；
   1. props：read-only只读，单向数据流
   2. state：组件内更新数据用setState
 
-##### setState
+## setState
 
 [参考](https://cloud.tencent.com/developer/article/1431167)
 
-#### 回调函数中的 this指向
+# 回调函数中的 this指向
 
 class的方法默认不会绑定this，解决方法有三种：
 
@@ -251,7 +251,7 @@ class的方法默认不会绑定this，解决方法有三种：
    
 
 
-#### 向事件处理程序传递参数
+# 向事件处理程序传递参数
 
 - 在循环中，通常我们会为事件处理函数传递额外的参数。例如，若 `id` 是你要删除那一行的 ID，以下两种方式都可以向事件处理函数传递参数：
 
@@ -264,7 +264,7 @@ class的方法默认不会绑定this，解决方法有三种：
   在这两种情况下，React 的事件对象 `e` 会被作为第二个参数传递。如果通过箭头函数的方式，事件对象必须显式的进行传递，而通过 `bind` 的方式，事件对象以及更多的参数将会被隐式的进行传递。
 
 
-#### 数组转换为元素列表
+# 数组转换为元素列表
 
 - 使用 Javascript 中的` map()`方法来遍历 `numbers` 数组。将数组中的每个元素变成 `<li>` 标签，最后我们将得到的数组赋值给 `listItems`
 
@@ -289,13 +289,13 @@ class的方法默认不会绑定this，解决方法有三种：
   1. 如果没有指定显式的 key 值，那么 React 将默认使用索引用作为列表项目的 key 值。不建议使用索引作为key值
   2. 一个好的经验法则是：在 `map()` 方法中的元素需要设置 key 属性。
 
-#### key
+# key
 
 - 数组元素中使用的 key 在其兄弟节点之间应该是独一无二的。然而，它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的 key 值：
 - https://zh-hans.reactjs.org/docs/reconciliation.html#recursing-on-children
 - https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
 
-#### 组合 & 插槽
+# 组合 & 插槽
 
 - 建议使用组合而非继承
 
@@ -349,7 +349,7 @@ class的方法默认不会绑定this，解决方法有三种：
   }
   ```
 
-#### setState
+# setState
 
 setState(updater, [callback]]);  
 
@@ -369,7 +369,7 @@ setState((curState, props)=>{
 
 
 
-##### Promise和定时器中执行setState
+## Promise和定时器中执行setState
 
 - Promise 和定时器中执行 setState 不是异步，也不是批处理
 
@@ -398,7 +398,7 @@ setState((curState, props)=>{
   ```
 
 
-##### 设置非受控组件的state
+## 设置非受控组件的state
 
 对于**不受控**的组件，当你想在 prop 变化（通常是 ID ）时重置 state 的话，可以选择以下几种方式：
 
@@ -406,7 +406,7 @@ setState((curState, props)=>{
 - 选项一：仅更改某些字段，观察特殊属性的变化（比如 `props.userID`）。`(getDriveStateFromProps)` 
 - 选项二：使用 ref 调用实例方法。
 
-#### Ref
+# Ref
 
 组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 [DOM diff](http://calendar.perfplanet.com/2013/diff/) ，它可以极大提高网页的性能表现。
 
@@ -436,13 +436,13 @@ setState((curState, props)=>{
 
 
 
-#### Context
+# Context
 
 > Context 主要应用场景在于很多不同层级的组件需要访问同样一些的数据，应用于**<Provider store={store}></Provider>**。Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，
 
 **参考**：https://zh-hans.reactjs.org/docs/context.html 
 
-#### [HOC(高阶组件)](https://zh-hans.reactjs.org/docs/higher-order-components.html) 
+# [HOC(高阶组件)](https://zh-hans.reactjs.org/docs/higher-order-components.html) 
 
 > HOC的作用是对现有的组件进行封装扩展，添加新的功能。
 >
@@ -454,13 +454,13 @@ setState((curState, props)=>{
 
 
 
-#### Diff
+# Diff
 
 - [Diff官网](https://zh-hans.reactjs.org/docs/reconciliation.html)
 
 
 
-#### 生命周期
+# 生命周期
 
 ![image-20201029100258129](assets/React基础/image-20201029100258129.png)    
 
@@ -475,7 +475,7 @@ React组件的生命周期分为三个阶段：1. 挂载  2. 更新 3. 卸载。
 
 
 
-#### HOOK
+# HOOK
 
 > 我们推荐启用 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) 中的 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) 规则。此规则会在添加错误依赖时发出警告并给出修复建议。
 >
@@ -520,11 +520,11 @@ Hook 就是 JavaScript 函数，但是使用它们会有两个额外的规则：
 
 
 
-##### 内置的HOOK
+## 内置的HOOK
 
-###### state Hook
+### state Hook
 
-###### Effect Hook
+### Effect Hook
 
 ```js
 useEffect(fnDoSomething(){
@@ -552,7 +552,7 @@ useEffect(fnDoSomething(){
 
 - 一个组件中有多个 Effect Hook 时 React 将按照 effect 声明的顺序依次调用组件中的 effect。
 
-##### useMemo & useCallback
+## useMemo & useCallback
 
 **1.useMemo** 
 
@@ -617,7 +617,7 @@ const memoizedCallback = useCallback(
 
 - [useCallback、useMemo 分析 & 差别-github](https://github.com/monsterooo/blog/issues/37) 
 
-##### [使用useEffect发送请求-fetch](https://www.robinwieruch.de/react-hooks-fetch-data) 
+## [使用useEffect发送请求-fetch](https://www.robinwieruch.de/react-hooks-fetch-data) 
 
 1. [loadding & error处理](https://www.robinwieruch.de/react-hooks-fetch-data#error-handling-with-react-hooks) 
 2. [将fetch data封装为自定义hook](https://www.robinwieruch.de/react-hooks-fetch-data#custom-data-fetching-hook) 
@@ -765,7 +765,7 @@ function App() {
 - [useEffect完整指南](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/) **重点** 
 - **每一个组件内的函数（包括事件处理函数，effects，定时器或者API调用等等）会捕获某次渲染中定义的props和state** --闭包
 
-##### Context Hook & Reducer Hook & useRef
+## Context Hook & Reducer Hook & useRef
 
 `useReducer` 更适合用于管理包含多个子值的 state 对象。
 
@@ -828,7 +828,7 @@ function App() {
 
 
 
-##### 自定义HOOK
+## 自定义HOOK
 
 > 自定义 Hook 更像是一种约定而不是功能。如果函数的名字以 `use` 开头并调用其他 Hook，我们就说这是一个自定义 Hook，自定义hook只是用自己写的函数包裹原生的hook， `useSomething` 的命名约定可以让我们的 linter 插件在使用 Hook 的代码中找到 bug。
 >
@@ -836,17 +836,17 @@ function App() {
 
 
 
-#### 静态类型检查
+# 静态类型检查
 
 组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。你可以使用 [Flow](https://flow.org/) 或 [TypeScript](https://www.typescriptlang.org/) 等 JavaScript 扩展来对整个应用程序做类型检查。但即使你不使用这些扩展，React 也内置了一些类型检查的功能。
 
-##### PropTypes
+## PropTypes
 
 要在组件的 props 上进行类型检查，你只需配置特定的 [propTypes](<https://react.docschina.org/docs/typechecking-with-proptypes.html>)属性：
 
 
 
-##### Flow & TypeScript
+## Flow & TypeScript
 
 > Flow 或 TypeScript 来代替  PropTypes
 
@@ -857,7 +857,7 @@ function App() {
 
 ---
 
-#### 临时记录
+# 临时记录
 
 在极少数情况下，你可能希望能隐藏组件，即使它已经被其他组件渲染。若要完成此操作，你可以让 `render` 方法直接返回 `null`，而不进行任何渲染；
 

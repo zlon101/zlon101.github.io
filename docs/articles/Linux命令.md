@@ -1,27 +1,20 @@
-##### 查找文件
+## 查找文件
 
 - find /xx -iname "brew*"
   https://www.jianshu.com/p/7a5851e1a900
-
+- which：查命令位置
+- whereis：查环境变量内文件位置
 - mdfind -name "name"
   mdfind命令就是Spotlight功能的终端界面
-- which
 
-##### 其他
-
-- 用nvm 安装 node
-
-  ```
-  # 按照最新稳定版本
-  nvm install stable
-  ```
+## 其他
 
 - 查看当前环境shell
 
   ```
   echo $SHELL
   ```
-  
+
 - 复制文件：cp test czl/Tmp
 
 - 复制目录：cp -r czl czl2
@@ -33,12 +26,18 @@
 
 - 新建文件：`touch file.xx`
 
-##### 查看端口占用
+## 查看端口占用
 
 lsof -i:8080
 
 ps -ef | grep nginx
 
-##### 参考
+## 查看进程号
+
+- ps -ef | grep nginx
+- kill -QUIT 进程号
+- kill -9 nginx: 强制停止
+
+## 参考
 
 [mac终端命令&快捷键](https://www.jianshu.com/p/aebb526c3a86)  

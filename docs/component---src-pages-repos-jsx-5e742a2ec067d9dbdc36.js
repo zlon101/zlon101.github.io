@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{yuKT:function(e,t,a){"use strict";a.r(t);var n=a("q1tI"),c=a.n(n),o=a("Wbzz"),r=a("I/Ru"),i=a("L1iK"),p=Object(i.b)("p-repos"),s=c.a.createElement(o.a,{to:"/"},"vue组件");t.default=function(){return c.a.createElement(r.a,{nav:s,className:"page "+p("wrap")},c.a.createElement("iframe",{src:"https://zlong1010.github.io/vue-components/#/",width:"100%",height:"900"}))}}}]);
+//# sourceMappingURL=component---src-pages-repos-jsx-5e742a2ec067d9dbdc36.js.map

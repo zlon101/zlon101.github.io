@@ -101,16 +101,11 @@ Warning: componentWillReceiveProps has been renamed, and is not recommended for 
 
 [组件卸载时取消axios请求](https://gist.github.com/bvaughn/982ab689a41097237f6e9860db7ca8d6)  
 
-
 > - HomeBrew npm yarn npx 创建项目，管理包  npx react-codemod
 > - immer 源码解读
 
 
-**chrome非安全模式**  
-
-- open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/mia/MyChromeDevUserData/
-
----
+-------------
 
 当调用一个对象的方法时，对象自身没有该方法，沿着原型链向上查找该方法时，在原型链上找到该方法时并调用该方法时，方法中的 this 指向？
 

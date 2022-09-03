@@ -1,4 +1,4 @@
-#### PWA （渐进式/Web/application）
+# PWA （渐进式/Web/application）
 
 * __只能在http://localhost或者https下运行__
 
@@ -14,13 +14,13 @@
 
 
 
-#### service worker
+# service worker
 
 * 本质就是浏览器开启的一个线程（类似webworker），该线程可以拦截请求，发请求（类似node服务器）
 
 
 
-#### SW生命周期
+# SW生命周期
 
 <img src="assets/PWA/sw-lifecycle.png" alt="sw-lifecycle" style="zoom:50%;" />  
 
@@ -30,7 +30,7 @@
 
 
 
-#### 数据存储
+# 数据存储
 
 * H5中的CacheAPI
 
@@ -52,11 +52,11 @@
 
 
 
-  #### DB比较
+  # DB比较
 
 ![1530352193027](assets/PWA/1530352193027.png)  
 
-#### 缓存precaching
+# 缓存precaching
 
 * workbox-sw 一个工具库
   * 预缓存静态资源```workbox.precaching.precacheAndRoute(['xxx'])```
@@ -68,7 +68,7 @@
     * 仅网络```networkOnly()```
     * Stale While Revalidate(缓存优先并更新缓存) ```staleWhileRevalidate()```
 
-#### 更新问题
+# 更新问题
 
 * 在service worker 中会缓存 service worker的具体行为
 
@@ -81,7 +81,7 @@ if(process.env.NODE_ENV === 'production'){
 ```
 
 
-#### 兴趣补充
+# 兴趣补充
 
 * 顶部通知 notification对象
 * 分享 navigator.share

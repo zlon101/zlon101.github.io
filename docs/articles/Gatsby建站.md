@@ -1,11 +1,11 @@
-#### 搭建博客
+# 搭建博客
 
 - Github + jekyll-now
 - Gatsby：面向内容的React静态网站框架
 - Next.js：使用Node构建服务端渲染的网站
 - SwiftUI-App引用程序的用户界面
 
-#### 静态站点生成器
+# 静态站点生成器
 
 静态站点生成器融合了服务端渲染（对于 SEO 来说非常重要，也会影响初始加载时间）和单页应用程序的能力。
 
@@ -25,11 +25,11 @@
 - Gatsby
 - Gridsome
 
-#### Gatsby 学习
+# Gatsby 学习
 
 > Gatsby是一个基于 React 架构的静态站点生成器，可以让你体验React的所有优点。Gatsby有一个预先配置好的Webpack，使用它入门React会省下很多麻烦，此外Gatsby会根据你的目录结构自动生成路由。所有的HTML都会在服务器端渲染，弥补了客户端渲染的不足。
 
-##### 参考
+## 参考
 
 - [Gatsby中文文档](https://www.gatsbyjs.cn/ )  
 - [搭建 Gatsby-博客](https://blog.crimx.com/archives)    [Gatsby博客源码](https://github.com/crimx/blog-2019) 
@@ -37,7 +37,7 @@
 - [使用 Gatsby.js 搭建静态博客黑暗模式](https://mp.weixin.qq.com/s/NavizDLQXav-N2cYda8Bhg) 
 - [Creating a Blog with Gatsby](https://www.gatsbyjs.com/blog/2017-07-19-creating-a-blog-with-gatsby/)  
 
-##### 环境搭建
+## 环境搭建
 
 - install Node and npm
 - global install gatsby-cli:  `npm install -g gatsby-cli` 
@@ -56,7 +56,7 @@
 
 ![1562139626154](assets/Gatsby建站/1562139626154.png)  
 
-##### 部署
+## 部署
 > Gatsby构建命令生成一个包含静态HTML和JavaScript文件的目录，您可以将其部署到静态站点托管服务中。
 
   - "gh-pages -d build"： Github 的 gh-pages 功能发布内容。
@@ -66,7 +66,7 @@
 
 [参考](https://www.gatsbyjs.com/docs/tutorial/part-one/#deploying-a-gatsby-site)  
 
-##### 布局组件
+## 布局组件
 
 > 布局包括：页眉、页脚、侧边栏、导航栏
 
@@ -138,7 +138,7 @@
   })
   ```
 
-##### 数据查询(GraphQL)
+## 数据查询(GraphQL)
 
 > Page queries live outside of the component definition — by convention at the end of a page component file — and are only available on page components.
 >
@@ -176,7 +176,7 @@ allMarkdownRemark {
 }
 ```
 
-##### 动态创建页面
+## 动态创建页面
 
 > Gatsby 可以使用 GraphQL 查询数据并将查询结果映射为页面
 >
@@ -187,7 +187,7 @@ allMarkdownRemark {
 
 当动态创建页面时，需要指定一个页面模板。
 
-##### API
+## API
 
 - [`onCreateNode`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#onCreateNode) 
 - [`createPages`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createPages) 

@@ -1,4 +1,4 @@
-#### 技术栈
+# 技术栈
 > 1. React Router
 > 2. Redux
 > 3. Flux & Immutable （是什么?）
@@ -17,13 +17,13 @@ react+redux+react-router+less+es6+webpack
 
 Antd＋React＋Redux 开发项目，Roadhog 或者 Webpack 构建项目，Nextjs 做服务端渲染。
 
-#### react-native
+# react-native
 
 react-native就是基于Virtual DOM渲染出原生控件。
 
 
 
-#### browserify是什么？
+# browserify是什么？
 
 ```js
 // index.js
@@ -130,7 +130,7 @@ export default Link
 
 
 
-#### Redux
+# Redux
 
 > 状态管理：组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化，从而触发重新渲染 UI 。
 >
@@ -144,7 +144,7 @@ export default Link
 >
 > reducer：函数
 
-##### API
+## API
 
 - 组件派发（dispatch）action对象 store
 - 组件可以通过订阅store中的状态(state)来刷新自己的视图
@@ -166,7 +166,7 @@ store.dispatch({ type: 'INCREMENT' })
 store.getState();
 ```
 
-##### Action
+## Action
 
 > action 本质就是对象，用于携带数据，**Action** 是把数据从应用（译者注：这里之所以不叫 view 是因为这些数据有可能是服务器响应，用户输入或其它非 view 的数据 ）传到 store 的有效载荷。它是 store 数据的**唯一**来源。一般来说你会通过 [`store.dispatch()`](http://cn.redux.js.org//docs/api/Store.html#dispatch) 将 action 传到 store。
 
@@ -174,7 +174,7 @@ store.getState();
 
 
 
-##### reducer
+## reducer
 
 > Reducers是函数，接收state和action并返回新的state；
 
@@ -220,7 +220,7 @@ store.getState();
 
 当state中有多个数据并且需要多个reducer分别处理时，可以分别编写多个子reducer函数，然后使用函数combineReducers(obj)将子reducer合并。并且传递给combineReducers的对象的key需要与state中数据的key相同。表示state的某个属性使用某个子reducer来处理。
 
-##### 异步数据
+## 异步数据
 
 默认情况下，redux.createStore()所创建的 Redux store 没有使用 middleware，所以只支持 同步数据流。异步处理时与同步的不同之处在于action creator和dispatch不同。
 
@@ -272,7 +272,7 @@ store.getState();
   }
   ```
 
-##### 中间件
+## 中间件
 
 例如thunkMiddleware就是一个函数
 
@@ -291,28 +291,28 @@ function thunkMiddleware(store){
 
 大多数的应用都会使用 middleware 或 enhancer 来拓展 Redux store 的功能。**（注：middleware 很常见，enhancer 不太常见）** middleware 拓展了 Redux `dispatch` 函数的功能；enhancer 拓展了 Redux store 的功能。
 
-##### 参考
+## 参考
 
 - [Redux 入门教程（一）：基本用法 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html) 
 - 
 
 
 
-#### React-Redux
+# React-Redux
 
-##### 容器组件
+## 容器组件
 
 > UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
 >
 > 参考：[React入门教程-阮一峰](<http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html>)
 
-#### styled-components
+# styled-components
 
 使用JS上编写CSS，[styled components](https://github.com/styled-components/styled-components)就是其中一种解决方案。styled components是一个React第三方库，作用是可以将样式写成组件的形式，实现在JS上编写CSS。
 
 实际上styled components使用的还是CSS，因此完美**支持CSS的所有特性**；
 
-#### redux-sage
+# redux-sage
 
 > redux-saga  是一个用于管理 Redux 应用异步操作的中间件（又称异步 action）。 redux-saga 通过创建 Sagas 将所有的异步操作逻辑收集在一个地方集中处理，可以用来代替 redux-thunk 中间件。
 >
@@ -321,7 +321,7 @@ function thunkMiddleware(store){
 > - Reducers 负责处理 action 的 state 更新
 > - Sagas 负责协调那些复杂或异步的操作
 
-#### Immer
+# Immer
 
 `produce(当前state, draft=>{...});`  返回新的state
 
@@ -335,7 +335,7 @@ function thunkMiddleware(store){
 
 
 
-##### 源码
+## 源码
 
 >  Immer records all the changes that are performed on the draft object and generates an array of JSON objects indicating what has changed. These arrays are called Patches. Immer also produces inverse patches, which are patches that need to be applied if you want to go back to the previous state.
 >
@@ -377,9 +377,9 @@ Only plain objects and arrays are made mutable. All other objects are considered
 
 而每个 Proxy 都只在监听到写操作（直接赋值、原生数据操作 API 等）时才创建拷贝值（所谓Copy-on-write），并将之后的写操作全都代理到拷贝值上。
 
-##### [用immer实现undo-redo](https://techinscribed.com/implementing-undo-redo-functionality-in-redux-using-immer/) 
+## [用immer实现undo-redo](https://techinscribed.com/implementing-undo-redo-functionality-in-redux-using-immer/) 
 
-#### Immutable.js
+# Immutable.js
 
 对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象。Immutable 实现的原理是 **Persistent Data Structure**（持久化数据结构），也就是使用旧数据创建新数据时，要保证旧数据可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 **Structural Sharing**（结构共享），即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享。请看下面动画：
 
@@ -445,7 +445,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(withImmutablePropsToJS(MyDumbComponent))
 ```
 
-##### Redux & Immutable 最佳实践
+## Redux & Immutable 最佳实践
 
 1. Never mix plain JavaScript objects with Immutable.JS
 
@@ -481,12 +481,12 @@ export default connect(mapStateToProps)(withImmutablePropsToJS(MyDumbComponent))
 
 - `import withImmutablePropsToJS from 'with-immutable-props-to-js';` 
 
-##### 参考
+## 参考
 
 - [immutables详解及React中实践](https://github.com/camsong/blog/issues/3) 
 - 
 
-#### React-Router
+# React-Router
 
 Router的实现原理无非就是实现当URL变化的时候渲染的组件跟着变化。 要实现这个功能，就需要监听URL的变化，有两种方式可以实现，一是通过onhashchange监听#的变化，一是用history的新的API，包括pushState(), replaceState(), popstate等。具体实现细节我们暂时不讲。
 
@@ -521,7 +521,7 @@ Router的实现原理无非就是实现当URL变化的时候渲染的组件跟�
 
 
 
-##### 路径
+## 路径
 
 如果一个路由使用了相对`路径`，那么完整的路径将由它的所有祖先节点的`路径`和自身指定的相对`路径`拼接而成。[使用绝对`路径`](https://react-guide.github.io/react-router-cn/docs/guides/basics/RouteConfiguration.html#decoupling-the-ui-from-the-url)可以使路由匹配行为忽略嵌套关系。
 
@@ -530,18 +530,18 @@ Router的实现原理无非就是实现当URL变化的时候渲染的组件跟�
 
 
 
-#### 静态类型检查
+# 静态类型检查
 
 - Flow：Facebook
 - Typescript：微软
 
-#### SEO 优化
+# SEO 优化
 
 - Next.js：用于React应用的极简的服务端渲染框架。
 
-#### Next
+# Next
 
-##### 介绍
+## 介绍
 
 > Next 创建的应用中只有初始页面采用服务端渲染，其他通过路由操作到达的页面均为客户端渲染。
 
@@ -568,9 +568,9 @@ Router的实现原理无非就是实现当URL变化的时候渲染的组件跟�
   </Link>
   ```
 
-##### 组件
+## 组件
 
-###### Head
+### Head
 
 ```html
 <Head>
@@ -579,9 +579,9 @@ Router的实现原理无非就是实现当URL变化的时候渲染的组件跟�
 </Head>
 ```
 
-###### link
+### link
 
-###### document
+### document
 
 > 自定义自己的服务端渲染模板，创建 /_document.js 
 >
@@ -615,11 +615,11 @@ Router的实现原理无非就是实现当URL变化的时候渲染的组件跟�
 
 
 
-###### 错误处理
+### 错误处理
 
 Next中，有一个默认组件error.js，负责处理404或者500这种错误。当然，你也可以自定义一个_error.js组件覆盖默认的错误处理组件：
 
-##### 自定义服务器和路由
+## 自定义服务器和路由
 
 - 项目根目录下创建 server.js 文件：
 
@@ -654,7 +654,7 @@ Next中，有一个默认组件error.js，负责处理404或者500这种错误�
   })
   ```
 
-##### CSS
+## CSS
 
 NEXT组件中声明CSS，目前主要有两种方式：
 
@@ -697,13 +697,13 @@ NEXT组件中声明CSS，目前主要有两种方式：
    )
    ```
 
-##### 服务端框架
+## 服务端框架
 
 >  next.js自带服务器，但是它可以做的事情很有限，只能处理 ssr 渲染。 我们可以将next.js作为 koa 的一个中间件来使用，当然您也可以选择 express 和 egg.js，使用方式都很类似。
 
 
 
-##### 部署
+## 部署
 
 生产模式下，需要先使用生产模式构建代码，再启动服务器。因此，需要两条命令：
 
@@ -728,7 +728,7 @@ Next官方推荐使用now作为部署工具，只要在package.json文件中写�
 
 接着运行now命令，就可以实现一键部署。
 
-##### 参考
+## 参考
 
 - [next 官网](https://nextjs.org/learn/basics/navigate-between-pages)
 - [next.js+koa2+antd环境轻松搭建](https://juejin.im/post/5cbb362351882532525a1082)

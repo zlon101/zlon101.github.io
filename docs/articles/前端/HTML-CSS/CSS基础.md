@@ -1,6 +1,6 @@
-#### 常用布局
+# 常用布局
 
-#### 移动端适配
+# 移动端适配
 
 布局的基础+基本的PC端布局+移动端适配
 
@@ -67,7 +67,7 @@ postcss-px-to-viewport
 
 - 如果需要某些元素不使用vw单位，可以设置配置文件中的selectorBlackList里面的类名，该属性可无限添加，随便自定义，不需要转换的单位需要写在该类名上才可生效；
 
-#### 媒体查询
+# 媒体查询
 
 - 媒体类型
   1. screen：彩色计算机
@@ -77,14 +77,14 @@ postcss-px-to-viewport
 
 - 在`<link>`链接外部样式表时可以指定媒体类型，`<link media>`
 
-#### `<a>` 伪类顺序
+# `<a>` 伪类顺序
 
 - link--visited--focus--hover--active
 - active必须在hover后面，hover必须在link和visited后面；
 
-#### CSS模块化
+# CSS模块化
 
-##### 模块化解决方案
+## 模块化解决方案
 
 1. 一类是彻底抛弃 CSS，使用 JS 或 JSON 来写样式。[Radium](https://github.com/FormidableLabs/radium)，[jsxstyle](https://github.com/petehunt/jsxstyle)，<u>react-style</u> 属于这一类。优点是能给 CSS 提供 JS 同样强大的模块化能力；缺点是不能利用成熟的 CSS 预处理器（或后处理器）。
 2. 另一类是依旧使用 CSS，但使用 JS 来管理样式依赖（需要构建工具支持），代表是 [CSS Modules](https://github.com/css-modules/css-modules)。CSS Modules 能最大化地结合现有 CSS 生态和 JS 模块化能力，发布时依旧编译出单独的 JS 和 CSS。它并不依赖于 React，只要你使用 Webpack，可以在 Vue/Angular/jQuery 中使用。
@@ -110,12 +110,12 @@ postcss-px-to-viewport
   </style>
   ```
 
-#### em, rem
+# em, rem
 
 - 2em：相对于当前元素的字体 大小，当前元素中小写字母M的宽度的2倍
 - rem：相对于根元素(html中的`<html>`，也可以用伪元素::root表示根元素 )
 
-#### 变量
+# 变量
 
 - css中的变量相当与宏，作用只是将一个值替换为另一个值
 
@@ -132,7 +132,7 @@ postcss-px-to-viewport
   }
   ```
 
-#### @import
+# @import
 
 - @import导入的样式表A相当于被导入的样式表中的额样式规则出现在@import的位置
 
@@ -145,13 +145,13 @@ postcss-px-to-viewport
 
 - 如果你想样式表并行载入，以使页面更快，请使用LINK 替代`@import`。
 
-#### 清除浮动
+# 清除浮动
 
 1. 浮动元素的后面一个元素设置 clear: both (也可以添加一个空元素用来添加该属性)；
 2. 给浮动元素的容器元素设置 overflow:hidden 或 auto；
 3. ::after 伪元素；
 
-#### 视觉上清除一个元素
+# 视觉上清除一个元素
 
 - `opacity:0;`  `visibility: hidden;` `display:none;` `index: 99`
 
@@ -169,7 +169,7 @@ postcss-px-to-viewport
 
 https://segmentfault.com/a/1190000015116392  
 
-#### 图像居中
+# 图像居中
 
 1. 父元素固定宽高，利用定位及设置子元素margin值为自身的一半；
 
@@ -181,14 +181,14 @@ https://segmentfault.com/a/1190000015116392
 
 5. 弹性布局display: flex。设置align-items: center; justify-content: center；
 
-#### 元素垂直居中 
+# 元素垂直居中 
 
 1. 父元素display:flex,align-items:center;
 2. 元素绝对定位，top:50%，margin-top：-（高度/2）
 3. 高度不确定用transform：translateY（-50%）
 4. 父元素table布局，子元素设置vertical-align:center;
 
-##### 水平对齐
+## 水平对齐
 
 - 对齐块级元素：`margin:0 auto;`  (宽度固定或者取百分比都可以)
 
@@ -206,7 +206,7 @@ https://segmentfault.com/a/1190000015116392
   }
   ```
 
-##### 垂直对齐
+## 垂直对齐
 
 - 作用于行内元素
 
@@ -224,7 +224,7 @@ https://segmentfault.com/a/1190000015116392
   ```
 
 
-##### 未知宽高的水平垂直居中
+## 未知宽高的水平垂直居中
 
 - demo
 
@@ -258,11 +258,11 @@ https://segmentfault.com/a/1190000015116392
   }
   ```
 
-##### 参考
+## 参考
 
 - [CSS 垂直居中](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215660&idx=1&sn=c1aeb94de8a3a4e23402068390cc811f&chksm=befe14cd89899ddbe29f3dd00212d6678af94606ee72ca0c54206d5e643cc0c684e64db44aa2&scene=0&key=f488c6fef5eafe9dddbfc3b904090949bf299ed3bba6ade392c7cdbda3053dfbb67d3c43bd13c69ff70503e95574b5574984ab793f52d9a8b00940664c531d3419d5a84018461bb07e019315e14adf33&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060720&lang=zh_CN&pass_ticket=Pn9cJyIWK2xt%2BmQltkMddf4S5oGoplFdiJ%2B16Yj6gD8L9Zd0WMlQ1u32%2FRJtZE1p) 
 
-#### Flex布局
+# Flex布局
 
 flex 布局分为三点：flex 容器、flex直系子元素的伸缩、flex子元素的对齐；
 
@@ -309,17 +309,17 @@ flex 布局分为三点：flex 容器、flex直系子元素的伸缩、flex子�
    ```
    
 
-#### [外边距塌陷（折叠）](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)  
+# [外边距塌陷（折叠）](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)  
 
 **上下相邻的两个块元素A,B，会合并共同的外边距**。A的**margin-botton**: 20px; B的**margin-top**: 10px; B的margin-top属性无效，较大的margin-botton才有效。两个垂直外边距接触到一起(没有边框的隔离)时会发生外边距折叠，即使一个元素嵌套另一个元素也不例外。
 
 浮动元素和绝对定位的元素不会发生边距折叠。
 
-#### img底像素空白
+# img底像素空白
 
 - [知乎](https://zhuanlan.zhihu.com/p/56815107) 
 
-#### 布局和包含块
+# 布局和包含块
 
 - [布局和包含块-MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block)  
 - 所有毗邻的两个或更多盒元素的margin将会合并为一个margin共享之。毗邻的定义为：同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。
@@ -333,29 +333,29 @@ flex 布局分为三点：flex 容器、flex直系子元素的伸缩、flex子�
   ```
 
 
-#### 视觉格式化模型
+# 视觉格式化模型
 
 - [视觉格式化模型](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Visual_formatting_model)  
 
-#### HTML5新特性
+# HTML5新特性
 
 [HTML5-MDN](https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5) 
 
-#### 文本对齐缩进
+# 文本对齐缩进
 
-##### text-indent
+## text-indent
 
 
 
-##### text-align
+## text-align
 
 - 应用于块级元素，不控制块元素自身的对齐，控制其元素内容(行内内容: 文本、图像等)的对齐
 
-##### line-height
+## line-height
 
 - 设置行内元素的height和width无效，通过设置`line-height`调整高度
 
-##### vertical-align
+## vertical-align
 
 - 指定行内元素（`display:inline`，如<img><span>）或表格单元格（table-cell）元素的垂直对齐方式。
 
@@ -363,10 +363,10 @@ flex 布局分为三点：flex 容器、flex直系子元素的伸缩、flex子�
 
   
 
-#### 行内框？
+# 行内框？
 
 <img src="assets/16a23a2f6db810d5" style="width: 70%; margin: 0; padding: 0;">  
 
 ---
 
-#### **块格式化上下文(BFC)？** 
+# **块格式化上下文(BFC)？** 

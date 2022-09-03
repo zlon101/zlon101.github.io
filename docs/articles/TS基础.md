@@ -1,4 +1,4 @@
-##### 如何定义一个类型，或得到一个类型？
+## 如何定义一个类型，或得到一个类型？
 
 - `keyof` 后面跟一个类型，获取该类型的所有 key，产生联合类型。
   `typeof` 后面跟一个变量，获取变量的类型。
@@ -59,13 +59,13 @@
 
 
 
-##### `ReactNode` 、 `ReactElement` 和 `JSX.Element` 的区别？
+## `ReactNode` 、 `ReactElement` 和 `JSX.Element` 的区别？
 
 -  `children?: React.ReactNode `  
 
 
 
-#### 概况
+# 概况
 
 <img src="assets/TS基础/image-20200820171028681.png" alt="image-20200820171028681" style="zoom:50%;" />  
 
@@ -81,7 +81,7 @@
 - 类型的检查，检查数据类型是否安全
 
 
-#### TS资源
+# TS资源
 
 - [官网](https://www.typescriptlang.org/docs/home.html)  [中文](https://www.tslang.cn/) 
 - [TS入门教程-阮一峰](https://ts.xcatliu.com/) 
@@ -90,7 +90,7 @@
 
 
 
-#### 泛型参数组件
+# 泛型参数组件
 
 - 类组件定义及使用
 
@@ -140,7 +140,7 @@
 
   
 
-#### 关键字
+# 关键字
 
 extends ：ts 中的 extends 理解为扩展更合适，用 `& ` 可以实现和 `extends` 类似的效果。
 
@@ -204,7 +204,7 @@ class Car implements Alarm {
 
 
 
-##### extends
+## extends
 
 使用 extends 给泛型添加约束
 
@@ -226,7 +226,7 @@ loggingIdentity({length: 10, value: 3});
 
 
 
-#### 参考 
+# 参考 
 
 - [原始数据类型](https://ts.xcatliu.com/basics/primitive-data-types.html)
 - [任意值](https://ts.xcatliu.com/basics/any.html)
@@ -239,7 +239,7 @@ loggingIdentity({length: 10, value: 3});
 - [声明文件](https://ts.xcatliu.com/basics/declaration-files.html)
 - [内置对象](https://ts.xcatliu.com/basics/built-in-objects.html)
 
-#### 数据类型
+# 数据类型
 
 > 类型是值的集合
 >
@@ -381,7 +381,7 @@ TS中描述类型的方法有：
 
    
 
-#### 接口
+# 接口
 
 > 使用接口（Interfaces）来定义对象的类型，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。除了可用于[对类的一部分行为进行抽象](https://ts.xcatliu.com/advanced/class-and-interfaces.html#类实现接口)以外，也常用于对「对象的形状（Shape）」进行描述。
 
@@ -426,7 +426,7 @@ TS中描述类型的方法有：
 
 
 
-##### 接口继承
+## 接口继承
 
 接口是一个类型，接口可以继承类和其他interface(包括自定义类)。
 接口继承类的时候，只会继承它的实例属性和实例方法。
@@ -439,7 +439,7 @@ interface ApiError extends Error {
 
 https://ts.xcatliu.com/advanced/class-and-interfaces.html  
 
-##### interface 和 type 的区别
+## interface 和 type 的区别
 
 ​    1)  interface 可以用于 extends 和 implements，type 不能；
 
@@ -449,7 +449,7 @@ https://ts.xcatliu.com/advanced/class-and-interfaces.html
 
 ​    4)  interface 存在声明合并的情况，可以用来重在函数，详解：https://www.tslang.cn/docs/handbook/declaration-merging.html
 
-#### 泛型
+# 泛型
 
 > 泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。
 
@@ -475,7 +475,7 @@ https://ts.xcatliu.com/advanced/class-and-interfaces.html
   let fibonacci: Array<number> = [1, 1, 2, 3, 5];
   ```
 
-#### 内置高级泛型
+# 内置高级泛型
 
 ```ts
 // extends 表示类型约束
@@ -573,7 +573,7 @@ type Extract<T, U> = T extends U ? T : never;
 
 [TS内置高级泛型](https://mp.weixin.qq.com/s?__biz=MzI2MjcxNTQ0Nw==&mid=2247484142&idx=1&sn=946ba90d10e2625513f09e60a462b3a7&scene=19#wechat_redirect)    
 
-#### 声明文件
+# 声明文件
 
 - demo.d.ts
 
@@ -617,9 +617,9 @@ type Extract<T, U> = T extends U ? T : never;
   }  
   ```
 
-#### TS & React
+# TS & React
 
-##### 内置类型
+## 内置类型
 
 React源码
 

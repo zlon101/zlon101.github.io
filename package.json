@@ -1,16 +1,16 @@
 {
-  "name": "blog-gatsby",
+  "name": "zlong-blog",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
-  "version": "0.1.0",
+  "description": "zlong blog",
+  "version": "1.1.0",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf docs && gatsby build && mv public docs && rm -rf public",
-    "dev": "gatsby develop",
+    "build": "rm -rf docs && npx gatsby build && mv public docs && rm -rf public",
+    "deploy": "node scripts/deploy.js",
+    "dev": "npx gatsby develop --host 127.0.0.1",
     "format": "prettier --config .prettierrc --write 'src/**/*.{js,ts,jsx,tsx,json}'",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "serve": "npx gatsby serve",
+    "clean": "npx gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
@@ -40,7 +40,5 @@
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
-  "bin": {
-    "push": "scripts/push.js"
-  }
+  "bin": {}
 }

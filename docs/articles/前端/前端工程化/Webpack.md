@@ -1,8 +1,6 @@
 [webpack文档](https://webpack.docschina.org/concepts/) 
 
-
-
-#### 目的
+# 目的
 
 > - 命名chunk: `output.chunkFilename: '[name].[hash:8].js'`
 > - webpack 提高编译速度: `rulesp[0].include = [paht.resolve(__dirname, 'src')]` 
@@ -21,7 +19,7 @@
 > - 开发环境需要打印 debug 信息
 > - 开发环境需要 live reload 或者 hot reload 的功能
 
-#### 概念
+# 概念
 
 webpack 的应用场景主要是 SPA (单页面富应用)，而 SPA 的核心是前端路由，那怎么算是SPA？在前后端分离的基础上加一层前端路由。通俗的讲，路由就是网址；专业的讲就是：每次GET、POST在服务器端有一个专门的正则配置列表，然后匹配到具体的路径后，分发到不同的Controller，进行各种操作，最后将HTML或数据返回给前端，这就完成了一次IO。
 
@@ -36,12 +34,12 @@ webpack 的应用场景主要是 SPA (单页面富应用)，而 SPA 的核心是
 > - npm命令根据package.json配置文件执行，在该文件中设置webpack使用的命令及哪个配置文件；
 > - `entry` 可以有多个，但`output` 只能有一个
 
-##### webpack结构
+## webpack结构
 
 <img src="assets/Webpack/webpack结构.jpeg" alt="webpack结构" style="zoom:55%;" />  
 
 
-##### 构建流程
+## 构建流程
 
 从启动webpack构建到输出结果经历了一系列过程，它们是：
 
@@ -53,44 +51,42 @@ webpack 的应用场景主要是 SPA (单页面富应用)，而 SPA 的核心是
 6. 输出所有 `chunk` 到文件系统。
 7. 需要注意的是，在构建生命周期中有一系列插件在合适的时机做了合适的事情，比如 `UglifyJsPlugin` 会在 loader 转换递归完后对结果再使用 `UglifyJs` 压缩覆盖之前的结果。
 
-#### loader
+# loader
 
 - webpack 只能理解 **JS** 和 **JSON** 文件，其他类型的文件需要用 loader 处理并被 loader 转换为有效的模块，然后添加到依赖图中。
 - loader 可以将文件从不同的语言（如 TypeScript）转换为 JavaScript 或将内联图像转换为 data URL。loader 甚至允许你直接在 JavaScript 模块中 `import` CSS 文件！
 - webpack 的其中一个强大的特性就是能通过 `import` 导入任何类型的模块（例如 `.css` 文件），
 - 所有的 loader 按照**前置 -> 行内 -> 普通 -> 后置**的顺序执行
 
-##### 常用loader
+## 常用loader
 
 - css文件处理：style-loader css-loader
-
 - 字体和静态图像:  file-loader
+```json
+{
+  test: /\.(png|svg|jpg|gif)$/,
+	use: [
+		'file-loader',
+	],
+},
+```
 
-  ```json
-  {
-    test: /\.(png|svg|jpg|gif)$/,
-  	use: [
-  		'file-loader',
-  	],
-  },
-  ```
-  
 - 压缩图像: [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader)、[url-loader](https://webpack.docschina.org/loaders/url-loader)（图像转为base64） 
 
-##### 自定义loader
+## 自定义loader
 
 [编写loader](https://webpack.js.org/contribute/writing-a-loader/)  
 
 
-
-##### loader 和 plugin的区别
+## loader 和 plugin的区别
 
 - webpakc中每个文件都视为一个模块，webpack 核心只能处理JS文件(模块)，所以需要loader对非JS文件进行转换，loader不影响构建流程；
 - 对于loader，它是一个转换器，将A文件进行编译形成B文件，这里操作的是文件，比如将A.scss转换为A.css，单纯的文件转换过程。【导出为函数的模块，对匹配的文件进行转换；】
 - plugin是一个扩展器，它丰富了webpack本身，针对是loader结束后。webpack打包的整个过程，它并不直接操作文件，而是基于事件机制工作，会监听webpack打包过程中的某些节点，执行广泛的任务，包括：打包优化，资源管理，注入环境变量。【带有apply方法的对象，apply方法被webpack的编译器调用；扩展webpack的功能，在构建过程中注入钩子函数实现；】
+- [webpack 中 loader 和 plugin 的区别是什么](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/308)
 
 
-#### 插件
+# 插件
 
 > 常用插件
 >
@@ -100,9 +96,16 @@ webpack 的应用场景主要是 SPA (单页面富应用)，而 SPA 的核心是
 > - 分离单独的css文件: extract-text-webpack-plugin
 > - 分离单独的css文件: [MiniCssExtractPlugin](https://webpack.docschina.org/plugins/mini-css-extract-plugin/#minimizing-for-production) 插件会将 CSS 提取到单独的文件中，为每个包含 CSS 的 JS 文件创建一个 CSS 文件，并且支持 CSS 和 SourceMaps 的按需加载
 
-##### 自定义插件
+## 自定义插件
 
 > webpack 插件是一个具有 apply 方法的 JavaScript 对象。apply 方法会被 webpack compiler 调用，并且在 整个 编译生命周期都可以访问 compiler 对象。
+
+> 如何自定义webpack插件
+- JavaScript 命名函数
+- 在插件函数prototype 上定义一个apply 方法
+- 定义一个绑定到webpack 自身的hook
+- 处理webpack内部特定数据
+- 功能完成后调用webpack 提供的回调
 
 ```js
 // ConsoleLogOnBuildWebpackPlugin.js
@@ -121,7 +124,7 @@ module.exports = ConsoleLogOnBuildWebpackPlugin;
 
 https://www.webpackjs.com/contribute/writing-a-plugin/ 
 
-#### webpack配置
+# webpack配置
 
 > [自定义配置UI](https://createapp.dev/webpack/vue--babel--typescript) 
 
@@ -181,26 +184,28 @@ https://www.webpackjs.com/contribute/writing-a-plugin/
 	}
 	```
 
-#### 自动加载组件|路由
+# 自动加载组件|路由
 
 > require.context
 
 ```js
 var requireComponent = require.context("./src", true, /^Base[A-Z]/)
 requireComponent.keys().forEach(function (fileName) {
-  var baseComponentConfig = requireComponent(fileName)
-  baseComponentConfig = baseComponentConfig.default || baseComponentConfig
-  var baseComponentName = baseComponentConfig.name || (
-    fileName
-      .replace(/^.+\//, '')
-      .replace(/\.\w+$/, '')
-  )
-  Vue.component(baseComponentName, baseComponentConfig)
+  var cfg = requireComponent(fileName)
+  cfg = cfg.default || cfg
+  var componentName = cfg.name || fileName.replace(/^.+\//, '').replace(/\.\w+$/, '');
+  Vue.component(componentName, cfg)
 })
 ```
 
+# svg处理
 
-#### 问题
+> 1. 读取 svg 文件
+> 2. 压缩svg
+>    svgo-loader
+> 3. 生成组件
+
+# 问题
 
 - 代码分离，路由懒加载，如果资源（组件）文件不在 `src` 目录下，使用动态 `import` 不会打包为多个 chunk
 - `entry.page`
@@ -209,7 +214,7 @@ requireComponent.keys().forEach(function (fileName) {
 - 现在，如果执行 `webpack`，你会发现创建了一个体积相当大的文件。如果你查看这个文件，会看到 lodash 也被打包到代码中。在这种场景中，我们更倾向于把 `lodash` 当作 `peerDependency`。也就是说，consumer(使用者) 应该已经安装过 `lodash` 。因此，你就可以放弃控制此外部 library ，而是将控制权让给使用 library 的 consumer
 - [创建library](https://webpack.docschina.org/guides/author-libraries/) 
 
-#### 参考
+# 参考
 
 [webpack定制前端开发环境](https://www.kancloud.cn/sllyli/webpack/1242347) 
 

@@ -1,11 +1,11 @@
-#### 基本概念
+# 基本概念
 
 > 1. JS 属于解释型语言，不用编译转换为其他语言(如C++需编译为汇编语言才能由计算机执行)。
 > 2. **单线程**：同一时间只能做一件事，只能有一段代码被 JavaScript 引擎执行；
 
 
 
-##### 数据类型
+## 数据类型
 
 参考: [你真的掌握变量和类型了吗](https://juejin.im/post/6844903854882947080)  数据存储、栈、堆
 
@@ -13,7 +13,7 @@
 2. 引用类型：Object、Array、Function 等值保存在**堆中**(对象、数组的大小是动态的)，变量存放的是数据的引用(地址)，按引用访问；
 3. 栈的速度快，但数据的大小和生命期是固定的；堆可以动态分配内存大小，速度慢；
 
-##### 赋值|深拷贝|浅拷贝
+## 赋值|深拷贝|浅拷贝
 
 - 对于基本类型，赋值、浅拷贝及深拷贝得到完全独立的新的变量；
 - 对于引用类型，赋值(参数传递 & 返回值)相当于复制指针(引用)，新变量的内部数据与原数据完全相同；
@@ -21,11 +21,11 @@
 
 > 数组的 slice、from、concat 及析构 ... 属于浅拷贝，Object.assign 也是浅拷贝；深度拷贝可以利用JSON.parse(JSON.stringify(obj)) 实现，但不能处理 undefine、函数、symbol 等在序列化时被忽略的值；
 
-##### 对象和数组字面量
+## 对象和数组字面量
 
 - 使用对象和数组字面量创建时不会调用各自的构造函数；
 
-#### 动态原型
+# 动态原型
 
 - JS中原型上的方法可以访问该原型的实例的上下文, 即访问实例的数据或方法；
 
@@ -49,7 +49,7 @@
   })
   ```
 
-#### 类型转换
+# 类型转换
 
 > 参考:  [类型和精度](https://juejin.im/post/6844903854882947080#heading-23) 
 
@@ -126,7 +126,7 @@
      console.log(true);  // true
   }
   ```
-#### 对象
+# 对象
 
 > 对象只能用 string 类型作为键，Map 的键可以是任何类型；
 >
@@ -152,25 +152,20 @@
   // 第一项有值，其余项没有值
   ```
 
-
 - 字符串 in obj;  遍历对象及其**原型链**上的**有值**的属性，包括**不可枚举**的属性；
 
   ```js
   'valueOf' in [];	// true
   'valueOf' in {};	// true
   ```
-  
-  
-  
+
+
 - for...in
-  无序  含继承属性  可枚举  有值(含undefined null)     可终止循环；
-  for-in 以原始插入顺序遍历对象的可枚举属性(key)；
   
-  因为遍历是无序的，所以不能在数组上使用；
-  
+  - 无序  含继承属性  可枚举  有值(含undefined null)     可终止循环；
+  - for-in 以原始插入顺序遍历对象的可枚举属性(key)；
+  - 因为遍历是无序的，所以不能在数组上使用；
   - in 运算符判断属性是否在对象或对象的原型链上，可以判断**不可枚举 & valueOf 等原生属性**，不含空值；
-
-
 
 
 - for...in 是唯一一个可以遍历**原型链**上的属性；
@@ -180,7 +175,7 @@
   - map & forEach 都不能使用`break 、continue`；
   - `map` 返回新的数组，forEach 返回 undefined；
 
-##### API
+## API
 
 参考:  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object  
 
@@ -210,7 +205,7 @@
 
   
 
-##### 浅拷贝对象
+## 浅拷贝对象
 
 Object.assign() 方法只能拷贝源对象的可枚举的自身属性，同时拷贝时无法拷贝属性的特性们，而且访问器属性会被转换成数据属性，也无法拷贝源对象的原型，该方法配合 Object.create() 方法可以实现上面说的这些。
 
@@ -223,7 +218,7 @@ Object.create(
 
 参考： https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors 
 
-##### 深拷贝
+## 深拷贝
 
 1)  `JSON.stringify + JSON.parse` :  `undefined`、symbol、函数
 
@@ -258,28 +253,28 @@ export function deepClone(srcData, hash = new WeakMap()) {
 
 
 
-#### 数组
+# 数组
 
 > - 本质是对象，数字索引在内部被转换为字符串，因为 JS 对象的属性名只能是字符串。
 > - 使用 [] 字面量创建数组比使用 new 效率更高；
 
-##### 数组有哪些方法支持响应式更新，如果不支持怎么办，底层原理如何实现？
+## 数组有哪些方法支持响应式更新，如果不支持怎么办，底层原理如何实现？
 
 - 支持：push、pop、shift、unshift、splice、sort、reverse，这些方法会改变原数组。
 - 不支持：filter、concat、slice、forEach、map，这些方法不会改变原数组；可以修改整个数组实现响应式更新(将新的数组赋值给原来的数组)。
 - 原理同样是使用 Object.defineProperty 对数组方法(get、set)进行改写
 
-##### forEach 和 map 的区别
+## forEach 和 map 的区别
 
 1. `forEach` 执行后返回 `undefined`，不会修改原数组，不能提前终止和跳出循环；
 2. `map` 执行后返回新的数组，不会修改原数组，不能提前终止和跳出循环；
 3. `for in ` & `for of` 可以提前终止(break)循环；
 
-#### 正则表达式
+# 正则表达式
 
-##### RegExp
+## RegExp
 
-###### RegExp 对象的属性
+### RegExp 对象的属性
 
 - lastInd: 下一次检索的起始位置，RegExp.exec() & RegExp.test() 会用到；
 - source: 正则表达式的字符串形式；
@@ -288,7 +283,7 @@ export function deepClone(srcData, hash = new WeakMap()) {
 - RegExp.test('abc')：Boolean 值，是否匹配；
 - RegExp.exec('abc')：[完整匹配的子串, index: 0, input: 输入的字符串]，数组的第二项开始是括号捕获的字符串，如果有修饰符 g，则可以多次调用 exec()，每次调用是从 lastInd 开始搜索；
 
-##### String 方法
+## String 方法
 
 - String.search()，首次匹配的索引，未匹配则返回 -1；
 - String.match()
@@ -312,7 +307,7 @@ export function deepClone(srcData, hash = new WeakMap()) {
   }
   ```
 
-#### 继承
+# 继承
 
 ```js
 function Parent(){}
@@ -351,7 +346,7 @@ API
 
 - [双重继承](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215832&idx=1&sn=7e48c9ef8bf7c4ccaa246907eb6579f5&chksm=befe15b989899caf8612620992acdb67783396f1b2bf981fae71cf761fac43c16b4b60457975&scene=0&key=06b6f34db6d09e01cbeea01642f35f6916e02c7d3cc0c4d1b777d666c2d8d94cacb1516bc3b5a608a6713416a69e553d88c1feba945dc494447e016071b279de4675b2ca438636285d10a796bdf5b3b2&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060739&lang=zh_CN&pass_ticket=ltTFzXuqdXnUtMsLWgFnt%2B8zWUV2F%2B3hSDDtrPIUYwtCjZ5qZr5AlYFajnxJ9w5P) 
 
-#### bind apply
+# bind apply
 
 - fn.bind(obj) 之后 fn 的执行上下文就无法更改；
 
@@ -365,7 +360,7 @@ API
   ```
 
 
-##### fn.apply
+## fn.apply
 
 指定函数 fn 的 this 对象；并且将参数的传递方式改为数组(即参数为数组)
 
@@ -411,7 +406,7 @@ API
 
   
 
-#### this
+# this
 
 > 定义：**运行时**函数的执行环境；
 >
@@ -476,7 +471,7 @@ API
 
 - [JS 中的 this 的原理-阮一峰](http://www.ruanyifeng.com/blog/2018/06/javascript-this.html)
 
-#### 作用域
+# 作用域
 
 > - Scope：当前执行上下文，包含当前所有可见的变量，Scope在我们写代码的时候就被定义好了，比如谁嵌套在谁里面。
 >
@@ -503,14 +498,14 @@ API
 
 将执行上下文表述为对象，其属性分别为：作用域链 变量 this；
 
-##### 参考
+## 参考
 
 - [执行上下文-重点-英文](http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/)
 - [作用域链-重点-英文](http://davidshariff.com/blog/javascript-scope-chain-and-closures/)
 - [执行上下文-segementFault](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215808&idx=1&sn=8c882586a033f58a56498c02f5b88792&chksm=befe15a189899cb7c66ab13e987130c3aa72d5888e5da6676b9aa37a664012cb9e5bcc02ac7f&scene=0&key=aed6be2b7ed28ff5f6586ea4cb6bdcf73f5d9f7317d7c6ca48d223d2c2cbe07e5ee4cfed2395e25889e258ccbc81272f38ba2c899370291e19cd8aff41009769922c6d9df34c30b99f745bbd3e4ce914&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060720&lang=zh_CN&pass_ticket=Pn9cJyIWK2xt%2BmQltkMddf4S5oGoplFdiJ%2B16Yj6gD8L9Zd0WMlQ1u32%2FRJtZE1p)
 - [变量对象-掘金](https://juejin.im/post/58ec3cc944d90400576a2cdc)
 
-#### 闭包
+# 闭包
 
 > - 词法作用域：变量的作用域，即变量能被访问的区域；每个函数都有一个与之关联的作用域链，**函数定义时创建作用域链**，调用函数时创建一个新的对象用来保存当前函数作用域；内嵌函数的作用域上至少有3个作用域对象(内嵌函数作用域、外部函数作用域、全局作用域)；
 >
@@ -600,9 +595,9 @@ API
   
   参考：JS 高阶程序设计 P179、P181
 
-#### 函数-函数式编程
+# 函数-函数式编程
 
-##### arguments
+## arguments
 
 定义：函数调用时，传递给函数的实参的有序列表；
 
@@ -616,7 +611,7 @@ Q：arguments 与声明的形参是否同步
 - 函数内部开启严格模式，则该函数不能使用默认参数、剩余参数、解构赋值、arguments.caller;
 - 使用函数表达式形式、或将 `use strict` 移至函数外可以解决上述问题；
 
-##### 柯里化
+## 柯里化
 
 > 作用：将一个函数拆分为多个函数，将多参形式转为单参形式，预先设置函数的参数；
 >
@@ -636,7 +631,7 @@ Q：arguments 与声明的形参是否同步
   utils.isNumber(12);
   ```
 
-##### 节流 & 防抖
+## 节流 & 防抖
 
 - 对计算复杂度较高的函数，限制其在一定时间内的执行次数，如1秒内调用多次，但只执行一次；比如 `onresize` 事件。
 
@@ -692,21 +687,21 @@ Q：arguments 与声明的形参是否同步
   }
   ```
 
-##### 组合 compose
+## 组合 compose
 
 
 
-##### 偏函数
+## 偏函数
 
 
 
-##### 函数记忆
+## 函数记忆
 
 
 
-#### 事件
+# 事件
 
-##### 事件流（事件传播）
+## 事件流（事件传播）
 - 事件流：事件冒泡 & 事件捕获，用来描述从页面中接收事件的顺序；
 
   - IE 的事件流是事件冒泡机制，即事件是由最具体的元素(触发事件的那个元素)接收事件，然后沿 DOM 树逐级向上传播直到 document 对象，在每一级节点上都会发生该事件；
@@ -749,8 +744,14 @@ Q：arguments 与声明的形参是否同步
   - 通过 addEventListener注册的完全相同的事件监听器按注册的顺序执行；
   - `addEventListener(type, listener, options)`  options 选项
     - passive: 不会阻止默认事件，https://zh.javascript.info/default-browser-action#chu-li-cheng-xu-xuan-xiang-passive
+  
+- 移除元素上的所有监听器
 
-##### 事件捕获与事件冒泡
+  - 1): `$0.parentNode.replaceChild($0.cloneNode(true), $0)`
+  - 2): `ele.outHtml = element.outHtml` (元素多时慢)
+  
+
+## 事件捕获与事件冒泡
 
 <img src="assets/1561894029832.png" style="margin:0; width: 80%">
 
@@ -776,14 +777,14 @@ Q：arguments 与声明的形参是否同步
   8. 内联事件处理程序 & `btn.onclick = handle` 都是在事件**冒泡**阶段执行回调函数；
 - 一句话：`addEventListener` 的第三个参数指定回调函数在事件的捕获或冒泡阶段执行；
 
-###### 事件委托
+### 事件委托
 
 - 将监听器注册在父级元素上，监听来自子元素的事件，根据事件对象 event.target 来区分子元素；如 `<ul>` 及 `<li>`；
 - event.preventDefault() 阻止默认事件；
   - Event.cancelable:  事件是否可以被取消，当 `cancelable` 为 `false` 时调用 `preventDefault` 无效。
 
 
-##### 触发事件
+## 触发事件
 
 如何手动触发事件：IE 中使用 fireEvent，标准浏览器中使用 dispatchEvent。
 
@@ -799,7 +800,7 @@ Q：arguments 与声明的形参是否同步
 >
 > `dispathcEvent` 派发的自定义事件只能用 `addEventListener` 监听，不能用 `on<event>` 
 
-##### 嵌套事件的执行顺序
+## 嵌套事件的执行顺序
 
 通常事件的执行是异步的，在执行事件a时，发生了事件b，事件b会被添加到事件队列中；但是如果在一个事件是在另一个事件中发起时，该事件会立刻执行，然后恢复到之前的执行顺序
 
@@ -824,7 +825,7 @@ Q：arguments 与声明的形参是否同步
 [javascript-info-event](https://javascript.info/dispatch-events) 
 
 
-#### 事件循环
+# 事件循环
 
 任务队列  宏任务(`macrotask`)  微任务(`microtask`)
 
@@ -859,7 +860,7 @@ console.debug("4");
 - [JavaScript 运行机制--Event Loop详解](https://juejin.im/post/5aab2d896fb9a028b86dc2fd)
 - [腾讯-从 setTimeout 谈事件循环](http://www.alloyteam.com/2015/10/turning-to-javascript-series-from-settimeout-said-the-event-loop-model/#prettyPhoto)
 
-#### Web Worker
+# Web Worker
 
 > 浏览器中 JavaScript 引擎是单线程执行的。也就是说，在同一时间内，只能有一段代码被 JavaScript 引擎执行。如果同一时间还有其它代码需要执行的话，则这些代码需要等待 JavaScript 引擎执行完成当前的代码之后才有可能获得被执行的机会。正常情况下，作为页面加载过程中的重要一步，JavaScript 引擎会顺序执行页面上的所有 JavaScript 代码。当页面加载完成之后，JavaScript 引擎会进入空闲状态。用户在页面上的操作会触发一些事件，这些事件的处理方法会交给 JavaScript 引擎来执行。由于 JavaScript 引擎的单线程特性，一般会在内部维护一个待处理的事件队列。每次从事件队列中选出一个事件处理方法来执行。如果在执行过程中，有新的事件发生，则新事件的处理方法只会被加入到队列中等待执行。如果当前正在执行的事件处理方法非常耗时，则队列中的其它事件处理方法可能长时间无法得到执行，造成用户界面失去响应，严重影响用户的使用体验。
 
@@ -886,7 +887,7 @@ console.debug("4");
 - [JS 工作线程实现方式-setTimeout & web worker](https://www.ibm.com/developerworks/cn/web/1105_chengfu_jsworker/index.html)
   setTimeout & setInterval 执行过程；
 
-#### Ajax
+# Ajax
 
 **`XMLHttpRequest` 实例的属性**
 
@@ -940,9 +941,9 @@ console.debug("4");
   }
   ```
 
-#### 各种方法实现
+# 各种方法实现
 
-##### 实现 Array.reduce
+## 实现 Array.reduce
 
 ```js
 Object.defineProperty(Array.prototype, 'reduce', {
@@ -997,7 +998,7 @@ Object.defineProperty(Array.prototype, 'reduce', {
   }
   ```
 
-##### Object.create
+## Object.create
 
 ```js
 if(typeof Object.create !== 'function'){
@@ -1009,7 +1010,7 @@ if(typeof Object.create !== 'function'){
 }
 ```
 
-##### 多维数组平铺
+## 多维数组平铺
 
 ```js
 function selfFlat(depth = 1){
@@ -1030,7 +1031,7 @@ function selfFlat(depth = 1){
 arr.join().split(',').map(i => print(i));
 ```
 
-##### 快排
+## 快排
 
 ```js
 //排序
@@ -1062,7 +1063,7 @@ function part(arr, start, end){
 }
 ```
 
-##### 数组排序并去重
+## 数组排序并去重
 
 ```js
 function sortRemoveDuplicate(oriArr){
@@ -1088,7 +1089,7 @@ function sortRemoveDuplicate(oriArr){
   2. Array.splice
   3. 尾递归
 
-##### 函数柯里化
+## 函数柯里化
 
 ```js
 function curry(fn) {
@@ -1110,7 +1111,7 @@ let curryed = curry(add);
 print( curryed(1,2)(3)(4) );
 ```
 
-##### 图像懒加载
+## 图像懒加载
 
 ```js
 <img src="./imgs/default.png" data="./imgs/1.png" alt="">
@@ -1135,29 +1136,29 @@ setInterval(lazyLoad, 1000)
 
 
 
-##### 参考
+## 参考
 
 - [一个合格的中级前端工程师要掌握的JavaScript 技巧](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247483958&idx=1&sn=66a115a5ea1707f2947de0a8decefe3b&chksm=c06683a0f7110ab64021c9613f9d88bd47ec645e5a241859e9548f10c25958d735f62d0d1749&mpshare=1&scene=1&srcid=&key=06b6f34db6d09e012be03b7bef14060e321a7fbb4d11935feaea803d3af4fd7a8c5711e8666856a63385bea5cbe185461629077415a1f5e3adcf452bc16ae83de5648bdf8c1e6a85edd20de4a1603fbf&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=xxDfG3UAWJ1CvPVMnUqmt%2FAQ83Ih6iim%2FeHMcWKLZk0MttltZwQ3Tf2IdlzE5BYs)
 - [JS 常用工具函数](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247484390&idx=1&sn=c0c844f18ddade5bc96fc99d11b06103&chksm=c0668270f7110b662815eab075b0b12c452a59454f80035ae7998e9bb5cd9a15977acad8ee76&mpshare=1&scene=1&srcid=&sharer_sharetime=1567989742920&sharer_shareid=c0fa4bb765d12545f4439ab827814978&key=3e754fdb358244861665075a257e0962a2c20f2945caa4684dc19a63c9756a01305c6b216a3dbbf0b80b2e74ffec18360d1fa41ae555af14d1deed4ed62bcb9312523cbe877d5d512922dad0f0465b9a&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=D8igzih7KnA8%2F5LHQdRG6th5IVXvvQD7ukUD5HSt%2FLcfZ7gOforYJWqBjo9rYF%2FC)
 
 ---
 
-#### JS 小技巧
+# JS 小技巧
 
-##### 速获取毫秒数
+## 速获取毫秒数
 
 ```js
 const now = + new Date();   // +运算符将string类型转换为Number类型
 ```
 
-##### 小数取整 && 强转 boolean
+## 小数取整 && 强转 boolean
 
 ```js
 ~~2.8    // 2
 !!0      // false
 ```
 
-##### 逻辑运算 & 短路规则
+## 逻辑运算 & 短路规则
 
 ```js
 let result = (0 || {age:12});  // result: {age:12}
@@ -1167,7 +1168,7 @@ let result = (1 && {age:12});    // {age:12}
 // || 运算符返回第一个 true 的值，当所有操作数都返回 false 时，返回最后一个表达式的值；
 ```
 
-##### 判断变量是否定义
+## 判断变量是否定义
 
 ```js
 (typeof x) === 'undefined';
@@ -1175,7 +1176,7 @@ var y;
 typeof y === 'undefined'  // true, 不能区分定义了未初始化的变量
 ```
 
-##### 判断数据类型
+## 判断数据类型
 
 - typeof：不能区分数组和对象，可以区分 function；
 
@@ -1199,7 +1200,7 @@ typeof y === 'undefined'  // true, 不能区分定义了未初始化的变量
   isArray(arr);
   ```
 
-##### 解构
+## 解构
 
 - 数组对象的解构
 
@@ -1210,12 +1211,12 @@ typeof y === 'undefined'  // true, 不能区分定义了未初始化的变量
   ```
 
 
-#### 垃圾回收和内存泄漏
+# 垃圾回收和内存泄漏
 
 https://juejin.im/post/6844903833387155464 
 
 
 
-#### JS 全局函数
+# JS 全局函数
 
 <img src="assets/JS全局函数.png" style="margin:0">

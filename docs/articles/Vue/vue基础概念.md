@@ -17,7 +17,7 @@
 
 
 
-#### 组件
+# 组件
 
 > 组件是可复用的 Vue 实例
 >
@@ -93,7 +93,7 @@ data(){
 
 
 
-##### [动态组件](https://cn.vuejs.org/v2/guide/components.html#%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6)  
+## [动态组件](https://cn.vuejs.org/v2/guide/components.html#%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6)  
 
 ```html
 <tbody is="my-cmp"></tbody>
@@ -112,7 +112,7 @@ $emit ==> $event
 
 ---
 
-#### vue组件三大核心概念
+# vue组件三大核心概念
 
 <img src="assets/vue%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/vue%E7%BB%84%E4%BB%B6%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5.jpeg" alt="vue组件核心概念" style="zoom: 67%;" />    
 
@@ -147,19 +147,19 @@ Vue最核心的功能：数据的双向绑定，实时同步数据，数据驱�
 
 - 实例属性与方法用$开头来访问，如vueApp.$el可以访问元素；
 
-##### Vue构成
+## Vue构成
 
 1. 组件化
 2. 数据驱动 & 状态管理(vuex)
 3. 指令
 
-##### 计算属性 & watch
+## 计算属性 & watch
 
 1. 计算属性只能执行同步代码，计算属性根据响应式依赖进行缓存，当依赖的数据没有更新时，多次访问计算属性直接取缓存的值；
 2. watch 可以执行异步操作；
 
 
-##### 1. 属性
+## 1. 属性
 
 **1.1 分类**
 
@@ -172,33 +172,33 @@ data与props的区别？
 
 单向数据流？
 
-###### Vue为什么禁止修改父组件传递进来的props， 又是如何监控到子组件修改了props?
+### Vue为什么禁止修改父组件传递进来的props， 又是如何监控到子组件修改了props?
 
 - 因为Vue遵循单向数据流，模型(比如props数据)渲染视图，如果允许子组件修改父组件传递的值，那么同一父组件的其他子组件就会受影响，导致数据流向很混乱，所以禁止子组件修改props。可以通过父组件传递一个回调函数实现。Vue通过 `defineProperty`  定义属性的属性描述符中的`get`和`set`，当修改属性时判断是否是父组件触发的修改。
 
-###### 组件内部修改 props 的方法
+### 组件内部修改 props 的方法
 
 1. 拷贝至 data 或 计算属性，结合 emit 实现父组件更新；
 2. `sync` 修饰符；
 3. 将 props 包装为对象，因为 props 传递是引用；
 
-##### 2. 事件
+## 2. 事件
 
 - 事件驱动 & 数据驱动
 - 普通事件 & 修饰符事件
 
 在自定义组件上注册监听原生事件(如click)，使用 native 事件修饰符 `<my-componenet @click.native="handle"></my-component>`；因为 my-component 不在DOM树上，添加的是组件内模板的代码(组件模板默认会继承非props特性)，如果没有 native 修饰，则原生的监听器(click)没有作用；注意自定义事件this.$emit不需要native修饰。
 
-##### 3. 插槽
+## 3. 插槽
 
 - 普通插槽
 - 作用域插槽
 
 参考链接: [详解vue组件三大核心概念](<https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247483942&idx=1&sn=bb123cb4d34f94f79881f0fa226da26b&chksm=c06683b0f7110aa6baf6e8ab59870a10fbf9a07083910054a25e67e50d306985103570d88ca2&mpshare=1&scene=1&srcid=&key=3e64675c4af2e8c1cb87133eea4dc87d7279f068d389ab5644397f9f2d0c1e1cd7e62cc0d356a7eed5b35b508b65ab0ee65bab9587ba98854bfbffa1c964800fab1fc979d082faa5ab76ece9c4c63431&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060739&lang=zh_CN&pass_ticket=S8Ujki2fz5qcjOi%2B1GEFSYgOxjQ%2BmiRmgp17ybRU2kbGBIyFXc%2FGjUjxA3p23gkD>)
 
-#### 组件构成
+# 组件构成
 
-##### props
+## props
 
 > `props`  的 key & value，类型、默认值、验证
 
@@ -219,7 +219,7 @@ data与props的区别？
   })
   ```
 
-##### 无参bind
+## 无参bind
 
 - v-bind:参数='表达式'
 
@@ -236,12 +236,12 @@ data与props的区别？
   
   
 
-##### slot
+## slot
 
 - slot：分发__内容__(元素由开始标签、结束标签和**内容**构成)，当有多个内容需要分发时，通过指定slot.name即具名slot实现。
 - 插槽prop: 绑定在`<slot>`上的特性
 
-##### watch监听引用数据
+## watch监听引用数据
 
 - 监听复杂数据(object、array)
   
@@ -257,7 +257,7 @@ data与props的区别？
   ```
 
 
-##### keep-alive
+## keep-alive
 
 - 将组件\<my-component>进行缓存，避免每次重新渲染组件(create, mounte等)，用于路由及组件切换(动态组件\<component v-bind:is="cmp">)。
 
@@ -267,7 +267,7 @@ data与props的区别？
   </keep-alive>
 	```
 
-##### native
+## native
 
 - 若没有修饰符native，那下面的@click就是自定义事件click而非原生click
   
@@ -276,7 +276,7 @@ data与props的区别？
   ```
   
 
-#### key
+# key
 
 vue和react的虚拟DOM的Diff算法大致相同，其核心是基于两个简单的假设：
 
@@ -290,7 +290,7 @@ vue和react的虚拟DOM的Diff算法大致相同，其核心是基于两个简�
 - `key` 的作用是给予一个节点唯一的身份识别，有相同父元素的子元素必须有独特的 `key`，特别是列表渲染时的节点，因为相同的组件产生类似的DOM结构 。这样在使用Diff算法对新旧虚拟DOM进行比较时，计算出哪些节点是可以**就地复用或者调整顺序**，可以更高效的重用排序现有的元素；比较时，依次对比两个节点的类型、属性、子节点。
 - key的作用主要是为了高效的更新虚拟DOM。
 
-#### 组件通信
+# 组件通信
 
 1. props & emit：自定义属性和自定义事件
 2. $refs、$parent、$children
@@ -301,9 +301,9 @@ vue和react的虚拟DOM的Diff算法大致相同，其核心是基于两个简�
 
 - [SegmentFault参考](<https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215866&idx=1&sn=c4cc189d145d5c358db61697ca70a82e&chksm=befe159b89899c8d4ae785b5f63063434dc1279830c020d8b60985e8e6a36a2e55f93a2ac6d4&scene=0&key=2bb12b254a1b99044f1b54db34647d49c8c06f37b302512cea302a011df276cdf11973e6bbdd41b9ebfa174ff119d5b271bd567f7bbc5eb6a01718c24400c75602ee6810ea48253930f85fd15310ff25&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060739&lang=zh_CN&pass_ticket=Ssclv0EjFV5vOJWuvp4F%2F2EaOid5lYknyYjfJDT8vOG1egweHVyv%2ByaE%2BGO8rIc8>)
 
-#### Virtual DOM
+# Virtual DOM
 
-##### Diff 算法
+## Diff 算法
 
 Diff 算法将时间复杂度从O(n3)减少到O(n)；
 
@@ -317,7 +317,7 @@ diff 算法包括几个步骤：
 
 - [揭秘Vue中的Virtual Dom](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247484031&idx=1&sn=ece0d952f7192b3d408da5fc68a880a4&chksm=c06683e9f7110aff8b0b9f0cbbd5de34754c28c1176189964564ed5cd28a459e6f9e09be54d5&mpshare=1&scene=1&srcid=&key=3e64675c4af2e8c1434a938098a616e5abdb665d9e84903be474c86d977e282af3b8878d3952b0c28b6c2d63d63a00ed7195b0d74798baf1d7c34bd3d2ead3a110f204c293a0583dab0b48772f18fb87&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=WoiLyjX22pgkcex3J0Zr4C7XhoDMUgwrJ0I8gXuNREhi9k%2F0J3OO2IhX87FJPVXU)
 
-#### render & JSX & 函数组件 
+# render & JSX & 函数组件 
 
 如何描述组件的UI和状态信息？
 
@@ -327,7 +327,7 @@ diff 算法包括几个步骤：
 
 这三中方法的作用都是一样的(可以相互替换)
 
-##### 1.render
+## 1.render
 
 <u>render 函数</u>
 
@@ -352,14 +352,14 @@ diff 算法包括几个步骤：
 - template 模板的来源？
   当 Vue 选项对象中有 render 渲染函数时，Vue 构造函数将直接使用渲染函数渲染 DOM 树，当选项对象中没有 render 渲染函数时，Vue 构造函数首先通过将 template 模板编译生成渲染函数，然后再渲染 DOM 树，而当 Vue 选项对象中既没有 render 渲染函数，也没有 template 模板时，会通过 el 属性获取挂载元素的 outerHTML 来作为模板，并编译生成渲染函数。
 
-##### 2.函数式组件
+## 2.函数式组件
 
 特点：
 
 1. 声明了functional: true; 
 2. render(h, context);     // 由第二个参数提供状态数据, h-->createElement
 
-##### 3.JSX
+## 3.JSX
 
 **JSX只是JS的语法扩展，在JS文件中使用。**
 
@@ -425,9 +425,9 @@ __Demo：__
   </script>
   ```
 
-##### 参考
+## 参考
 
-###### [render 函数与模板编译：运行时构建 & 独立构建](https://zhuanlan.zhihu.com/p/25486761)
+### [render 函数与模板编译：运行时构建 & 独立构建](https://zhuanlan.zhihu.com/p/25486761)
 
 ---
 
@@ -435,11 +435,11 @@ __Demo：__
 
 
 
-#### vue实例
+# vue实例
 
 当一个 Vue 实例被创建时，它将 `data` 对象中的所有的属性加入到 Vue 的**响应式系统**中。当这些属性的值发生改变时，视图将会产生“响应”，即匹配更新为新的值。当这些数据改变时，视图会进行重渲染。值得注意的是只有当实例被创建时就已经存在于 `data` 中的属性才是**响应式**的。也就是说如果你添加一个新的属性，
 
-##### 模板
+## 模板
 
 - 绑定的数据对象不必内联定义在模板里
 
@@ -489,7 +489,7 @@ __Demo：__
   }
   ```
 
-#### vue 响应式原理
+# vue 响应式原理
 
 <img src="assets/vue%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E6%9B%B4%E6%96%B0.png" alt="vue响应式更新" style="zoom: 50%;" />   
 
@@ -499,12 +499,12 @@ __Demo：__
 
 每个组件实例都对应一个 **watcher** 实例，它会在组件渲染的过程中把“接触”过的数据属性记录为依赖。之后当依赖项的 setter 触发时，会通知 watcher，从而使它关联的组件重新渲染。
 
-##### 异步更新队列
+## 异步更新队列
 
 > [vue官网](https://cn.vuejs.org/v2/guide/reactivity.html#异步更新队列)
 
 
 
-##### 参考
+## 参考
 
 - [深入响应式原理-vue官网](https://cn.vuejs.org/v2/guide/reactivity.html)

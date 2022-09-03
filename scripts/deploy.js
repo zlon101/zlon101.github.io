@@ -7,7 +7,7 @@ const { log } = console;
 
 const ArticleList = [
   '前端',
-  '数据结构与算法',
+  '数据算法',
   '网络',
   'assets',
   'React',

@@ -30,7 +30,7 @@ $ git stash pop
 - [git merge 与 git rebase的区别](https://juejin.im/post/6844903603694469134)  
 - [rebase](https://www.liaoxuefeng.com/wiki/896043488029600/1216289527823648)
 
-#### 配置
+# 配置
 
 本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，生成公钥私钥后，分发公钥，自己保留私钥。
 
@@ -76,17 +76,15 @@ $ git stash pop
 
   
 
-#### 创建版本库
+# 创建版本库
 
 1. 本地创建
 
    ```tex
    git init
    ```
-   
-2. xxxx
 
-#### 管理本地仓库
+# 管理本地仓库
 
 - 本地文件更新，且未 add 到暂存区，撤销本地更改。
 
@@ -134,7 +132,7 @@ $ git stash pop
   git diff 工作区和版本库里面最新版本的区别：
   ```
 
-#### 远程仓库
+# 远程仓库
 
 本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，生成公钥私钥后，分发公钥，自己保留私钥。
 
@@ -209,7 +207,7 @@ $ git stash pop
   - git merge
   - git rebase
 
-#### 分支
+# 分支
 
 关键字：HEAD  master
 
@@ -359,7 +357,7 @@ $ git stash pop
 - [Git远程操作-阮一峰](https://www.ruanyifeng.com/blog/2014/06/git_remote.html) 
 - [Git骚操作](https://mp.weixin.qq.com/s/1wFDbOm-FJ_NlBYvxN05Ng) 
 
-#### 标签
+# 标签
 
 Tag 与commit 相关联，创建的Tag存储在本地，不会自动上传到远程库，
 
@@ -373,6 +371,7 @@ Tag 与commit 相关联，创建的Tag存储在本地，不会自动上传到远
   % 默认将Tag添加到最新的commit上(HEAD指向的commit)，可以通过指定commit id，为指定的commit添加Tag.
   git tag <TagName> [commitId]
   
+  git tag -a v1.4 -m "my version 1.4"
   % 添加带注释的Tag
   git tag -a <TagName> -m "xx" commitID
   ```
@@ -388,7 +387,7 @@ Tag 与commit 相关联，创建的Tag存储在本地，不会自动上传到远
   git push origin :refs/tags/v0.9 % 删除远程Tag
   ```
 
-#### Git Commit
+# Git Commit
 
 **一次commit只对应一件事。**需清晰明了，说明本次提交的目的。
 
@@ -408,20 +407,20 @@ type用于说明commit的类型，只允许使用以下类型。
 
 比如：一个组件现在有2个bug，按照以前我们是把2个bug都改了，再commit。而现在需要，解决一个bug就提交一次，并在commit message中写上**fix: bug#1234**（bug号）。
 
-#### Commitizen
+# Commitizen
 
 - [优雅的提交你的 Git Commit Message-掘金](https://juejin.im/post/5afc5242f265da0b7f44bee4) 
 - [看下大厂 Git 提交规范是怎么做的-腾讯云](https://cloud.tencent.com/developer/article/1580371) 
 
-#### 理论
+# 理论
 
 `HEAD` 文件存放的是当前所在分支的引用。
 
-#### 其他
+# 其他
 
 - [Gitee](https://gitee.com/) 国内Git托管平台
 
-##### [Commit message 和 Change log 编写指南](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html) 
+## [Commit message 和 Change log 编写指南](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html) 
 
 [git rebase 与 merge的区别](https://mp.weixin.qq.com/s/XDINQCV2uv7TMhCi-ldGSw) 
 

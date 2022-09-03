@@ -1,10 +1,10 @@
-#### 待解决
+# 待解决
 
 - `const ProfilePage = React.lazy(() => import('./ProfilePage')); // 懒加载`  
 
 
 
-#### [React哲学](https://zh-hans.reactjs.org/docs/thinking-in-react.html)  
+# [React哲学](https://zh-hans.reactjs.org/docs/thinking-in-react.html)  
 
 > 将渲染UI和添加交互分开编写，视图和逻辑功能分开。
 >
@@ -15,11 +15,11 @@
 
 
 
-#### [组件状态-state & props](https://zh-hans.reactjs.org/docs/faq-state.html#what-is-the-difference-between-state-and-props)  
+# [组件状态-state & props](https://zh-hans.reactjs.org/docs/faq-state.html#what-is-the-difference-between-state-and-props)  
 
 
 
-#### setState到底是异步还是同步?
+# setState到底是异步还是同步?
 
 先给出答案: 有时表现出异步,有时表现出同步
 1. `setState` 只在**合成事件**和**钩子函数**中是“异步”的，在原生事件和 `setTimeout` 中都是同步的。
@@ -28,11 +28,11 @@
 
 
 
-#### [受控 | 非受控](https://segmentfault.com/a/1190000012458996) 
+# [受控 | 非受控](https://segmentfault.com/a/1190000012458996) 
 
 
 
-##### [弹性组件设计原则](https://overreacted.io/zh-hans/writing-resilient-components/)  
+## [弹性组件设计原则](https://overreacted.io/zh-hans/writing-resilient-components/)  
 
 - 不要阻断数据流
   不要将props传递的数据转交给state，避免复制props到state
@@ -57,9 +57,9 @@
   
 - 不要在Side Effects中阻断数据流
 
-#### 性能优化
+# 性能优化
 
-##### 纯函数组件
+## 纯函数组件
 
 继承 React.PureComponent( `class Cmp extends React.PureComponent` )或在 `shouldComponentUpdate` 中比较current props 和 next props。
 
@@ -69,13 +69,13 @@
 
 
 
-#### 模态对话框
+# 模态对话框
 
 [模态对话框](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal)  
 
   
 
-#### [在 React 组件中获取数据的标准方法](https://zh-hans.reactjs.org/docs/concurrent-mode-suspense.html)   
+# [在 React 组件中获取数据的标准方法](https://zh-hans.reactjs.org/docs/concurrent-mode-suspense.html)   
 
 > 该方法处于试验阶段
 
@@ -89,15 +89,15 @@
 - [异步渲染更新](https://zh-hans.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props) 
   在类组件的各种生命周期中执行数据请求、setState
 
-##### 类组件
+## 类组件
 
 
 
-##### 函数式组件
+## 函数式组件
 
 
 
-#### 函数式组件 vs 类组件
+# 函数式组件 vs 类组件
 
 参考：https://juejin.im/post/6844904049146331150
 
@@ -105,7 +105,7 @@
 
 
 
-#### 组件的默认属性及类型约束
+# 组件的默认属性及类型约束
 
 **1) 类组件**  
 
@@ -126,7 +126,7 @@ class Greeting extends React.Component<Props, {}> {
 
 
 
-#### TS + React
+# TS + React
 
 1). 为什么使用函数表达式而不是函数声明定义函数式组件？
 
