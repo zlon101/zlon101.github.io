@@ -14,24 +14,24 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "@deckdeckgo/highlight-code": "^4.2.0",
-    "gatsby": "^2.32.13",
-    "gatsby-plugin-alias-imports": "^1.0.5",
-    "gatsby-plugin-less": "^5.13.0",
-    "gatsby-plugin-sharp": "^4.10.2",
-    "gatsby-plugin-typescript": "^3.13.0",
-    "gatsby-remark-highlight-code": "^3.2.0",
-    "gatsby-remark-images": "^6.10.2",
-    "gatsby-source-filesystem": "^2.2.2",
-    "gatsby-transformer-remark": "^2.7.1",
-    "less": "^4.1.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "@deckdeckgo/highlight-code": "4.2.0",
+    "gatsby": "2.32.13",
+    "gatsby-plugin-alias-imports": "1.0.5",
+    "gatsby-plugin-less": "5.13.0",
+    "gatsby-plugin-sharp": "4.10.2",
+    "gatsby-plugin-typescript": "3.13.0",
+    "gatsby-remark-highlight-code": "3.2.0",
+    "gatsby-remark-images": "6.10.2",
+    "gatsby-source-filesystem": "2.2.2",
+    "gatsby-transformer-remark": "2.7.1",
+    "less": "4.1.1",
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
   },
   "devDependencies": {
-    "@babel/compat-data": "^7.9.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^1.19.1"
+    "@babel/compat-data": "7.9.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "prettier": "1.19.1"
   },
   "repository": {
     "type": "git",
