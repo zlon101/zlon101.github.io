@@ -51,7 +51,8 @@ const srcFiles = ArticleList.reduce(
 log(`cwd: ${cwd}`);
 // log(`srcFiles: ${srcFiles}`);
 
-const copy = `cp -r ${srcFiles} ${cwd}/static/articles/`;
+const dstArticleDir = `${cwd}/static/articles/`;
+const copy = `rm -rf ${dstArticleDir}* && cp -r ${srcFiles} ${dstArticleDir}`;
 const gitPush = `git add . && git commit -m "${commitMsg}" && git push origin master`;
 const childProcs = exec(`${copy} && npm run build && ${gitPush}`, { cwd });
 childProcs.stdout.on('data', data => log(`${data}`));
