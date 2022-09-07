@@ -53,7 +53,7 @@ log(`cwd: ${cwd}`);
 
 const dstArticleDir = `${cwd}/static/articles/`;
 const copy = `rm -rf ${dstArticleDir}* && cp -r ${srcFiles} ${dstArticleDir}`;
-const gitPush = `git add . && git commit -m "${commitMsg}" && git push origin master`;
+const gitPush = `git add . && git commit -m "${commitMsg}" && git push origin`;
 // const childProcs = exec(`${copy}`, { cwd });
 const childProcs = exec(`${copy} && npm run build && ${gitPush}`, { cwd });
 childProcs.stdout.on('data', data => log(`${data}`));
