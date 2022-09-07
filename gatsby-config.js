@@ -15,6 +15,7 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          'gatsby-remark-copy-linked-files', // 在md文件中使用svg图像
           {
             resolve: 'gatsby-remark-images',
             options: {

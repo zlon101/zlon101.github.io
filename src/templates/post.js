@@ -1,7 +1,7 @@
 // MD文件模板
 import React from 'react';
 import { graphql } from 'gatsby';
-import { defineCustomElements } from "@deckdeckgo/highlight-code/dist/loader";
+import { defineCustomElements } from '@deckdeckgo/highlight-code/dist/loader';
 import Layout from '@cmp/layout';
 import { isBrowser } from '@/util';
 import '@style/global.less';
@@ -32,8 +32,6 @@ export const postQuery = graphql`
   }
 `;
 
-const tempDom = isBrowser() ? document.createElement('div') : {};
-
 const handleScroll = e => {
   if (!isBrowser()) return;
   const article = document.querySelector('.article-wrap');
@@ -42,27 +40,36 @@ const handleScroll = e => {
   title && title.scrollIntoView({ block: 'center', behavior: 'smooth' });
 };
 
+const tempDom = isBrowser() ? document.createElement('div') : {};
 function Template({ data }) {
   const { markdownRemark: post } = data;
-  let html = post.html;
-  const titlesHtml = [...html.matchAll(/<h\d>(.+)<\/h\d>/g)];
+  let mdHtml = post.html;
+  const titlesHtml = [...mdHtml.matchAll(/<h\d>(.+)<\/h\d>/g)];
+  // console.log('\ntitlesHtml:\n', titlesHtml);
   const titles = titlesHtml.map(item => {
-    tempDom.innerHTML = item[0];
-    return tempDom.textContent;
+    return item[0];
+    // tempDom.innerHTML = item[0];
+    // return tempDom.textContent;
   });
   const N = titlesHtml.length;
   [...titlesHtml].reverse().forEach((item, idx) => {
-    html = html.slice(0, item.index + 3) + ` id="t-${N - idx - 1}" ` + html.slice(item.index + 3);
+    mdHtml = mdHtml.slice(0, item.index + 3) + ` id="t-${N - idx - 1}" ` + mdHtml.slice(item.index + 3);
   });
   return (
     <Layout className="page page-article-template">
-      <article className='article-wrap' dangerouslySetInnerHTML={{ __html: html }}></article>
-      <div className='article-title-wrap'>
-        <ul onClick={handleScroll} className='article-title-list'>
-          {titles.map((item, idx2) => <li data-id={idx2} key={idx2}>{item}</li>)}
-        </ul>
+      <article className="article-wrap" dangerouslySetInnerHTML={{ __html: mdHtml }}></article>
+      <div className="article-title-wrap">
+        <Title titles={titles} />
       </div>
     </Layout>
+  );
+}
+
+function Title({ titles }) {
+  const items = titles.map((htmlItem, idx) => htmlItem.slice(0, 3) + ` data-id="${idx}" class="item"` + htmlItem.slice(3));
+  const innerHtml = items.join('');
+  return (
+    <div onClick={handleScroll} className="article-title-list" dangerouslySetInnerHTML={{ __html: innerHtml }}></div>
   );
 }
 
