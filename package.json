@@ -2,7 +2,7 @@
   "name": "zlong-blog",
   "private": true,
   "description": "zlong blog",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "license": "MIT",
   "scripts": {
     "build": "rm -rf docs && npx gatsby build && mv public docs && rm -rf public",
@@ -13,17 +13,20 @@
     "clean": "npx gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
-    "@deckdeckgo/highlight-code": "4.2.0",
-    "gatsby": "2.32.13",
+    "@deckdeckgo/highlight-code": "3.6.0",
+    "gatsby": "4.22.0",
     "gatsby-plugin-alias-imports": "1.0.5",
-    "gatsby-plugin-less": "5.13.0",
-    "gatsby-plugin-sharp": "4.10.2",
-    "gatsby-plugin-typescript": "3.13.0",
+    "gatsby-plugin-less": "6.22.0",
+    "gatsby-plugin-sharp": "4.22.0",
+    "gatsby-plugin-typescript": "4.22.0",
     "gatsby-remark-highlight-code": "3.2.0",
-    "gatsby-remark-images": "6.10.2",
-    "gatsby-source-filesystem": "2.2.2",
-    "gatsby-transformer-remark": "2.7.1",
+    "gatsby-remark-images": "6.22.0",
+    "gatsby-source-filesystem": "4.22.0",
+    "gatsby-transformer-remark": "5.22.0",
     "less": "4.1.1",
     "react": "16.12.0",
     "react-dom": "16.12.0"

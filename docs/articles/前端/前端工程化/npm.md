@@ -71,12 +71,15 @@ npm install -D only-allow
 
 # npm 依赖
 
-> 在安装一个 package，而此 package 要打包到生产环境 bundle 中时，你应该使用 `npm install --save`。如果你在安装一个用于开发环境的 package 时（例如，linter, 测试库等），你应该使用 `npm install --save-dev`。
+在安装一个 package，而此 package 要打包到生产环境 bundle 中时，你应该使用 `npm install --save`。如果你在安装一个用于开发环境的 package 时（例如，linter, 测试库等），你应该使用 `npm install --save-dev`。
 
-- dependencies
-- devDependencies
-- peerDependencies
-  - npm v8.x.x 会自动安装 `peerDependencies` 依赖
+> dependencies、devDependencies 和 peerDependencies 的区别
+
+当一个 package(pkg-xx) 提供给其他人使用时，这个 package 的 package.json 的 dependencies、devDependencies 和 peerDependencies 配置决定了 `npm i pkg-xx` 时哪些依赖包被安装
+- dependencies: `npm i pkg-xx` 时会安装对应的依赖包
+- devDependencies：不会安装
+- peerDependencies：
+  - npm v8.x.x 会自动安装 `peerDependencies` 依赖，之前版本的 npm 不会自动安装
   - `peerDependencies` 和 `devDependencies` 的区别：devDependencies 表示开发依赖，源码中应该要引用该依赖(`import` 或 `require`)，peerDependencies 源码中不用引用
 
 
