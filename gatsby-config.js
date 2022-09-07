@@ -6,7 +6,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Blog',
+    title: 'zlong blog',
   },
   plugins: [
     // 处理文章中的图像

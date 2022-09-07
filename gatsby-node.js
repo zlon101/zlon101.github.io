@@ -1,5 +1,5 @@
 /*
- * 我们用GraphQL取得所有的文章，用 foreach 针对每一篇文章使用 createPage 建立新页面，这里则需要用到 path 和 postTemplate
+ * 用GraphQL取得所有的文章，用 foreach 针对每一篇文章使用 createPage 建立新页面，这里则需要用到 path 和 postTemplate
  * Each export found in this file will be parsed by Gatsby
  */
 const path = require('path');

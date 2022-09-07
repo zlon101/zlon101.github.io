@@ -20,21 +20,20 @@
 }
 
 .article-wrap {
-  padding: 0 32px 0 64px;
+  padding: 0 32px 0 24px;
   h1 {
+    margin: 36px;
     font-size: 16px;
+    border-bottom: 2px solid blue;
   }
   h2,
   h3,
   h4,
   h5,
   h6 {
+    margin: 24px 0;
+    border-bottom: 2px solid blue;
     font-size: 18px;
-    margin: 16px 0;
-    &::before {
-      content: '#';
-      color: blue;
-    }
   }
   div,
   p {
@@ -55,12 +54,11 @@
   }
   ol {
     margin-left: 3px;
-    li {
-      // list-style-position: inside;
-      > :first-child {
-        // display: inline-block;
-      }
-    }
+    // li {
+    //   > :first-child {
+    //     display: inline-block;
+    //   }
+    // }
   }
   blockquote {
     padding-left: 24px;
@@ -78,8 +76,6 @@
     white-space: nowrap;
     color: rgb(155, 110, 35);
     background-color: rgb(255, 245, 227);
-    // color: #5b5b66;
-    // background-color: #f0f0f4;
   }
   img {
     box-shadow: 0 0 80px -30px rgba(0, 0, 0, 0.5) !important;
@@ -97,7 +93,49 @@
       border-bottom: 1px solid rgba(220, 223, 230, 0.3);
     }
   }
-  // .gatsby-resp-image-wrapper {
-  //   margin-left: 0 !important;
-  // }
+}
+
+/* 自动计算标题编号 */
+/** initialize css counter */
+.article-wrap {
+  counter-reset: h1;
+  h1 {
+    counter-reset: h2;
+    &::before {
+      counter-increment: h1;
+      content: counter(h1) '. ';
+    }
+  }
+  h2 {
+    counter-reset: h3;
+    &::before {
+      counter-increment: h2;
+      content: counter(h1) '.' counter(h2) '. ';
+    }
+  }
+  h3 {
+    counter-reset: h4;
+    &::before {
+      counter-increment: h3;
+      content: counter(h1) '.' counter(h2) '.' counter(h3) '. ';
+    }
+  }
+  h4 {
+    counter-reset: h5;
+    &::before {
+      counter-increment: h4;
+      content: counter(h1) '.' counter(h2) '.' counter(h3) '.' counter(h4) '. ';
+    }
+  }
+  h5 {
+    counter-reset: h6;
+    &::before {
+      counter-increment: h5;
+      content: counter(h1) '.' counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '. ';
+    }
+  }
+  h6:before {
+    counter-increment: h6;
+    content: counter(h1) '.' counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '.' counter(h6) '. ';
+  }
 }
