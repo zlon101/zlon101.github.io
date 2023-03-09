@@ -13,7 +13,7 @@ const config = [
   },
   {
     name: 'vue组件指令',
-    path: 'https://zlong1010.github.io/vue-components/#/',
+    path: 'https://github.com/zlon101/npm-lib',
   },
   {
     name: 'Debug',
@@ -21,7 +21,7 @@ const config = [
   },
   {
     name: 'Github',
-    path: 'https://github.com/zlong1010',
+    path: 'https://github.com/zlon101',
   },
 ];
 

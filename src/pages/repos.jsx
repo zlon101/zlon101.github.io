@@ -9,7 +9,7 @@ const nav = <Link to='/'>vue组件</Link>;
 
 const Repos = () => (
   <Layout nav={nav} className={`page ${prefix('wrap')}`}>
-    <iframe src="https://zlong1010.github.io/vue-components/#/" width="100%" height="900"></iframe>
+    <iframe src="https://github.com/zlon101/npm-lib/" width="100%" height="900"></iframe>
   </Layout>
 );
 
