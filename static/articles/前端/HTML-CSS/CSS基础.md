@@ -8,8 +8,7 @@
 - [利用 vw 实现适配布局-凹凸实验室](https://aotu.io/notes/2017/04/28/2017-4-28-CSS-viewport-units/index.html) 
 
 
-
-**vue 项目使用 vw**  
+> vue 项目使用 vw
 
 postcss-aspect-ratio-mini 
 
@@ -17,53 +16,53 @@ postcss-px-to-viewport
 
 - 安装插件
 
-  ```js
-  npm i –save 
-  postcss-aspect-ratio-mini 
-  postcss-px-to-viewport 
-  postcss-write-svg 
-  postcss-cssnext 
-  postcss-viewport-units 
-  cssnano 
-  cssnano-preset-advanced 
-  postcss-import 
-  postcss-url
-  ```
+```javascript
+npm i –save 
+postcss-aspect-ratio-mini 
+postcss-px-to-viewport 
+postcss-write-svg 
+postcss-cssnext 
+postcss-viewport-units 
+cssnano 
+cssnano-preset-advanced 
+postcss-import 
+postcss-url
+```
 
 - 配置 .postcssrc.js
 
-  ```js
-  module.exports = {
-    "plugins": {
-      // to edit target browsers: use "browserlist" field in package.json
-      "autoprefixer": {},
-      "postcss-import": {}, 
-      "postcss-url": {}, 
-      "postcss-aspect-ratio-mini": {}, 
-      "postcss-write-svg": { 
-        utf8: false 
-      },
-      "postcss-cssnext": {}, 
-  
-      "postcss-px-to-viewport": {
-        viewportWidth: 750,      // 视窗的宽度，对应的是我们设计稿的宽度，一般是750
-        viewportHeight: 1334,    // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
-        unitPrecision: 3,        // 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
-        viewportUnit: 'vw',      // 指定需要转换成的视窗单位，建议使用vw
-        selectorBlackList: ['.ignore', '.hairlines'],  // 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
-        minPixelValue: 1,       // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
-        mediaQuery: false       // 允许在媒体查询中转换`px`
-      }
-      
-      "postcss-viewport-units":{}, 
-      "cssnano": { 
-        preset: "advanced", 
-        autoprefixer: false, 
-        "postcss-zindex": false 
-      }
+```javascript
+module.exports = {
+  "plugins": {
+    // to edit target browsers: use "browserlist" field in package.json
+    "autoprefixer": {},
+    "postcss-import": {}, 
+    "postcss-url": {}, 
+    "postcss-aspect-ratio-mini": {}, 
+    "postcss-write-svg": { 
+      utf8: false 
+    },
+    "postcss-cssnext": {}, 
+
+    "postcss-px-to-viewport": {
+      viewportWidth: 750,      // 视窗的宽度，对应的是我们设计稿的宽度，一般是750
+      viewportHeight: 1334,    // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
+      unitPrecision: 3,        // 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
+      viewportUnit: 'vw',      // 指定需要转换成的视窗单位，建议使用vw
+      selectorBlackList: ['.ignore', '.hairlines'],  // 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
+      minPixelValue: 1,       // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
+      mediaQuery: false       // 允许在媒体查询中转换`px`
+    }
+    
+    "postcss-viewport-units":{}, 
+    "cssnano": { 
+      preset: "advanced", 
+      autoprefixer: false, 
+      "postcss-zindex": false 
     }
   }
-  ```
+}
+```
 
 - 如果需要某些元素不使用vw单位，可以设置配置文件中的selectorBlackList里面的类名，该属性可无限添加，随便自定义，不需要转换的单位需要写在该类名上才可生效；
 
@@ -90,25 +89,25 @@ postcss-px-to-viewport
 2. 另一类是依旧使用 CSS，但使用 JS 来管理样式依赖（需要构建工具支持），代表是 [CSS Modules](https://github.com/css-modules/css-modules)。CSS Modules 能最大化地结合现有 CSS 生态和 JS 模块化能力，发布时依旧编译出单独的 JS 和 CSS。它并不依赖于 React，只要你使用 Webpack，可以在 Vue/Angular/jQuery 中使用。
 
 
-
 - CSS modules？
 
   **`<style module>`**
 
 - BEM策略：Block-Element-Modifier
   
-  类命名策略：类名按  块-元素-修饰符 命名
-  
-  ```html
-  <style>
-      .c-Button {
-          ...
-      }
-      .c-Button--close {
-          ...
-      }
-  </style>
-  ```
+
+类命名策略：类名按  块-元素-修饰符 命名
+
+```html
+<style>
+  .c-Button {
+    ...
+  }
+  .c-Button--close {
+    ...
+  }
+</style>
+```
 
 # em, rem
 
@@ -119,18 +118,18 @@ postcss-px-to-viewport
 
 - css中的变量相当与宏，作用只是将一个值替换为另一个值
 
-  ```css
-  html {
-      /*自定义变量*/
-      --base-color: blue;
-  }
-  :root{
-    --base-color: blue;
-  }
-  p {
-      color: var(--base-color);
-  }
-  ```
+```css
+html {
+  /*自定义变量*/
+  --base-color: blue;
+}
+:root{
+  --base-color: blue;
+}
+p {
+  color: var(--base-color);
+}
+```
 
 # @import
 
@@ -154,32 +153,16 @@ postcss-px-to-viewport
 # 视觉上清除一个元素
 
 - `opacity:0;`  `visibility: hidden;` `display:none;` `index: 99`
-
   - `display` 影响布局，会导致回流，不会占据空间；`visibility` 和 `opacity` 会占据空间，不会导致回流。
   - 只有 `opacity` 能触发点击事件。
   - 父元素设置 `display` 和 `opacity` ，子元素一定会隐藏；父元素设置 `visibility` ，子元素 `visibility: visible` 子元素可以显示。
 
 - 回流 & 重绘
-
   - `display` 导致回流， `visibility` 导致重绘
-
   - 在一般情况下，`opacity` 会触发重绘，即 `Recalculate style` => `Update Layer Tree`。不管你是否开启GPU提升为合成层与否。
-
     如果利用 `animation` 动画，对 `opacity` 做变化（`animation` 会默认触发GPU加速），则只会触发 GPU 层面的 composite，不会触发重绘。
 
 https://segmentfault.com/a/1190000015116392  
-
-# 图像居中
-
-1. 父元素固定宽高，利用定位及设置子元素margin值为自身的一半；
-
-2. 父元素固定宽高，子元素设置position: absolute，margin：auto平均分配margin；
-
-3. css3属性transform。子元素设置position: absolute; left: 50%; top: 50%;transform: translate(-50%,-50%);即可；
-
-4. 将父元素设置成display: table, 子元素设置为单元格 display: table-cell；
-
-5. 弹性布局display: flex。设置align-items: center; justify-content: center；
 
 # 元素垂直居中 
 
@@ -194,69 +177,78 @@ https://segmentfault.com/a/1190000015116392
 
 - 块级元素中的行内元素
 
-  ```css
-  .box-contain {
-    text-align: center;
-  }
-  .box-contain::after {
-    display: inline-block;
-    content: ''; 
-    width: 100%;
-    height: 0;
-  }
-  ```
+```css
+.box-contain {
+  text-align: center;
+}
+.box-contain::after {
+  display: inline-block;
+  content: ''; 
+  width: 100%;
+  height: 0;
+}
+```
 
 ## 垂直对齐
 
 - 作用于行内元素
 
-  ```js
-  .inline-ele {
-    vertical-align: middle;
-  }
-  // 作用于 内联元素上
-  
-  // 容器元素设置 line-height 为容器高度，line-height 平均分配给行内框的上、下
-  .container {
-    font-size: 0;
-    line-height: 800px;
-  }
-  ```
+```js
+.inline-ele {
+  vertical-align: middle;
+}
+// 作用于 内联元素上
+
+// 容器元素设置 line-height 为容器高度，line-height 平均分配给行内框的上、下
+.container {
+  font-size: 0;
+  line-height: 800px;
+}
+```
 
 
 ## 未知宽高的水平垂直居中
 
 - demo
 
-  ```js
-  /* 1. 绝对定位 + translate */
-  .transform {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-  }
-  
-  /* 2. flex布局*/
-  .flex {
-    display: flex;
-    justify-content: center;//使子项目水平居中
-    align-items: center;		//使子项目垂直居中
-  }
-  
-  /* 3. table*/
-  .table {
-    display: table-cell;
-    vertical-align: middle; //使子元素垂直居中
-    text-align: center;     //使子元素水平居中
-  }
-  /* 4. inline-block*/
-  .box {
-    display: inline-block;
-    margin: auto;
-    text-align: center;    // 只有一行 & 强制换行时无效
-  }
-  ```
+```js
+/* 1. 绝对定位 + translate */
+.transform {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+/* 2. flex布局*/
+.flex {
+  display: flex;
+  justify-content: center;//使子项目水平居中
+  align-items: center;		//使子项目垂直居中
+}
+
+/* 3. table*/
+.table {
+  display: table-cell;
+  vertical-align: middle; //使子元素垂直居中
+  text-align: center;     //使子元素水平居中
+}
+/* 4. inline-block*/
+.box {
+  display: inline-block;
+  margin: auto;
+  text-align: center;    // 只有一行 & 强制换行时无效
+}
+```
+
+## 图像居中
+
+1. 父元素固定宽高，利用定位及设置子元素margin值为自身的一半；
+2. 父元素固定宽高，子元素设置position: absolute，margin：auto平均分配margin；
+3. css3属性transform。子元素设置position: absolute; left: 50%; top: 50%;transform: translate(-50%,-50%);即可；
+4. 将父元素设置成display: table, 子元素设置为单元格 display: table-cell；
+5. 弹性布局display: flex。设置align-items: center; justify-content: center；
+
 
 ## 参考
 
@@ -266,48 +258,29 @@ https://segmentfault.com/a/1190000015116392
 
 flex 布局分为三点：flex 容器、flex直系子元素的伸缩、flex子元素的对齐；
 
-1. flex 容器：
+2. flex 元素的对齐
 
-   ```js
-   .flex-contain {
-     display: flex;
-     flex-direction: row;
-     flex-wrap: wrap;
-     flex-flow: flex-direction flex-wrap; // 简写
-   }
-   ```
+```css
+// 全部item在主轴的对齐方式
+flex-contain {
+ justify-content: center;  
+}
+// 全部item在副轴的对齐方式
+flex-contain {
+  align-items: center;
+}
 
-2. flex 元素的缩放
+// 多行时多个主轴的对齐方式
+flex-contain {
+  align-content: center;
+}
 
-   ```js
-   .flex-item {
-     flex: flex-grow flex-shrink flex-basis; // 默认 1 1 auto
-   }
-   ```
+// 单个item在副轴的对齐方式
+flex-item {
+  align-self: flex-end;
+}
+```
 
-3. flex 元素的对齐
-
-   ```js
-   // 全部item在主轴的对齐方式
-   flex-contain {
-    justify-content: center;  
-   }
-   // 全部item在副轴的对齐方式
-   flex-contain {
-     align-items: center;
-   }
-   
-   // 多行时多个主轴的对齐方式
-   flex-contain {
-     align-content: center;
-   }
-   
-   // 单个item在副轴的对齐方式
-   flex-item {
-     align-self: flex-end;
-   }
-   ```
-   
 
 # [外边距塌陷（折叠）](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)  
 
@@ -343,30 +316,26 @@ flex 布局分为三点：flex 容器、flex直系子元素的伸缩、flex子�
 
 # 文本对齐缩进
 
-## text-indent
+> text-indent
 
-
-
-## text-align
+> text-align
 
 - 应用于块级元素，不控制块元素自身的对齐，控制其元素内容(行内内容: 文本、图像等)的对齐
 
-## line-height
+> line-height
 
 - 设置行内元素的height和width无效，通过设置`line-height`调整高度
 
-## vertical-align
+> vertical-align
 
 - 指定行内元素（`display:inline`，如<img><span>）或表格单元格（table-cell）元素的垂直对齐方式。
-
 - 应用于块级容器中的行内元素的垂直对齐方式，设置行内元素的 vertical-align
 
-  
 
 # 行内框？
 
 <img src="assets/16a23a2f6db810d5" style="width: 70%; margin: 0; padding: 0;">  
 
----
+---------------------------------
 
-# **块格式化上下文(BFC)？** 
+# 块格式化上下文(BFC)？ 

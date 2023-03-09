@@ -86,6 +86,7 @@ const NavItem = ({ node, urlPath }) => {
   if (node.type === NodeType.file) {
     return <Link to={node.to} className={`file-name ${node.name === fileName && 'light'}`}>{node.name.replace('.md', '')}</Link>;
   }
+  const childs = [...node.child].sort(fileSort);
   return (
     <div className={`file-item fold ${expand && 'expand'}`}>
       <div onClick={handleClick} className="file-name" role="button">
@@ -93,7 +94,7 @@ const NavItem = ({ node, urlPath }) => {
       </div>
       {
         <ul className="child-list">
-          {node.child.map(childNode => (
+          {childs.map(childNode => (
             <NavItem node={childNode} urlPath={urlPath} key={childNode.id} />
           ))}
         </ul>

@@ -388,31 +388,6 @@ Js 中可以通过 `document.cookie` 对 Cookie 进行 CRUD
 >
 > - cookie 和 token 都是由服务器生成，发送给浏览器
 
-# WebSocket
-
-> 浏览器与服务器进行全双工通信，可相互发送任意格式的数据。
-
-WebSocket 建立在 HTTP 基础上，连接的发起方是客户端，WebSocket 连接建立后希望一直保持连接状态。
-
-要实现 WebSocket 通信，在 HTTP 连接建立之后需要完成一次握手步骤：
-
-<img src="assets/HTTP/WebSocket通信.svg" style="background-color:#fff" />
-
-<p align="center">WebSocket 通信</p>
-
-> WebSocket API
-
-```js
-// websocket url 格式: ws://example.com/  wss://example.com/
-const socket = new WebSocket('ws://game.example.com:1200/xx');
-socket.onopen = function() {
-  setInterval(() => {
-    if (socket.bufferedAmount === 0) {
-      socket.send('xxxx');
-    }
-  });
-};
-```
 
 # 网络攻击
 
@@ -443,12 +418,10 @@ socket.onopen = function() {
 > 跨站请求伪造CSRF
 
 - 解决方法：
-  
 
 1：检查referer字段；
 2：添加校验Token；
 3：通过输入验证码校验合法请求；
-
 
 
 > 提高安全性
