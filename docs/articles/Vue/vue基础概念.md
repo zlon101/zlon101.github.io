@@ -503,8 +503,6 @@ __Demo：__
 
 > [vue官网](https://cn.vuejs.org/v2/guide/reactivity.html#异步更新队列)
 
-
-
 ## 参考
 
 - [深入响应式原理-vue官网](https://cn.vuejs.org/v2/guide/reactivity.html)

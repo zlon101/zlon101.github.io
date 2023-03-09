@@ -1,8 +1,8 @@
-## [ES6入门-阮一峰](https://es6.ruanyifeng.com/#docs/class)  
+# [ES6入门-阮一峰](https://es6.ruanyifeng.com/#docs/class)  
 
-## const let
+# const let
 
-1. const 和 let 都不存在变量提升；都存在暂时性死区；
+1. const 和 let 都不存在变量提升，都存在暂时性死区；
    
    - 暂时性死区：在块级作用域中被 let 和 const 声明的变量从进入块级作用域就绑定了，不能在 let 或 const 声明语句之前使用 var 或者 没有 var 声明及使用该变量；因此在 let 和 const 声明语句之前(死区)不能以任何形式出现该变量，并且 typeof 也不是一定安全的操作(在没有 let 和 const 之前，typeof 一定不会产生错误)。
    - 总之，暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。
@@ -35,15 +35,15 @@
      ```js
      // ES6的浏览器环境, 此处为全局作用域
      function f() { 
-       console.log('I am outside!'); 
+       console.log('I am outside!');
      }
      (function () {
-       // 此处为函数作用域  
+       // 此处为函数作用域
        // var f = undefined; 该语句是块级作用域中的函数声明部分提升至此;
-       typeof f;           // undefined 
+       typeof f;           // undefined
        if (true) {
          // 此处为块级作用域, 在该作用域中函数是可以访问的;
-         f();             // 输出 xx indide  
+         f();             // 输出 xx indide
          function f() { console.log('I am inside!'); }
        }
        f();               // 输出 inside
@@ -59,7 +59,7 @@
    - const 声明复合类型的变量，变量名指向数据的地址，因此 const 只保证该地址不会改变，但地址中的数据可以被改变；
    - 使用 Object.freeze(obj) 冻结 obj 对象；
 
-## 全局对象 & 顶层对象
+# 全局对象 & 顶层对象
 
 - 获取全局对象的三种方式：window、global、self
 
@@ -95,12 +95,10 @@
 
   - 在语言标准层面引入 global 作为顶层对象，即在所有环境中都存在 global 对象，垫片库[`system.global`](https://github.com/ljharb/System.global)模拟了该方法，可以在所有环境拿到 `global`。
 
-## 变量的解构赋值
+# 变量的解构赋值
 
 - 从复杂数据变量中提取部分数据(数组元素、对象属性值)赋值给新的变量；
-
 - 变量：复杂数据类型的变量(数组、对象)，要求是可遍历的结构，具有 Iterator 接口；
-
 - 赋值遵守模式匹配；
 
 数组和对象的解构赋值是一种**模式匹配**，要求等号两边的模式相匹配。数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
@@ -175,7 +173,7 @@ var { p: [x, { y }] } = obj;  // x: "Hello", y: "World"
    const { SourceMapConsumer, SourceNode } = require("source-map");
    ```
 
-## 扩展运算符
+# 扩展运算符
 
 > 任何定义了遍历器（Iterator）接口的对象（参阅 Iterator 一章），都可以用扩展运算符转为真正的数组；
 
@@ -199,9 +197,9 @@ var { p: [x, { y }] } = obj;  // x: "Hello", y: "World"
 
   
 
-## 字符串扩展
+# 字符串扩展
 
-### 标签模板
+# 标签模板
 
 模板字符串可以紧跟在一个函数名后面，该函数将被调用来处理这个模板字符串。这被称为“标签模板”功能（tagged template）。
 
@@ -214,7 +212,7 @@ styled.dic`
 `;
 ```
 
-## 数组扩展
+# 数组扩展
 
 **类数组对象**：本质特征就是要有 length 属性；
 
@@ -244,7 +242,7 @@ styled.dic`
 
 参考：[数组扩展](http://caibaojian.com/es6/array.html)
 
-## 函数的扩展
+# 函数的扩展
 
 1. 参数的默认值
 
@@ -372,77 +370,86 @@ styled.dic`
 
    参考：[函数扩展](http://caibaojian.com/es6/function.html)
 
-## Class
+# Class
 
-- 例子
+> 例子
 
-  ```js
-  class Person{
-    constructor(name, age){
-      this.name = name;
-      this.age = age;
-    }
-    getName(){
-      return this.name;
-    }
+```js
+class Person{
+  static staticProA = 'xxx';
+  static staticMethodA() {
+    // this 指向 Person，而不是示例
   }
-  /*
-  * this 指向实例对象,
-  * 类的方法(getName)定义在类的prototype(Person.prototype)上, 并且不可枚举;
-  * 方法之间不需要逗号,
-  */
-  ```
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+  }
+  getName(){
+    return this.name;
+  }
+}
+/*
+* this 指向实例对象,
+* 类的方法(getName)定义在类的prototype(Person.prototype)上, 并且不可枚举;
+* 方法之间不需要逗号,
+*/
+```
 
-- constructor
-  类必须有一个 constructor 方法，若没有显示定义，默认的 constructor 为 `constructor(){}`
+> constructor
 
-- super
+类必须有一个 constructor 方法，若没有显示定义，默认的 constructor 为 `constructor(){}`
 
-  1. 在super方法调用前，不能使用this，因为 ES6 是先创建父类实例；
+> super
 
-  2. 作为函数调用，super 指向父类的构造函数，并且作为函数调用时只能出现在子类的构造函数中；
-  
-     ```js
-     class A {}
-     
-     class B extends A {
-       constructor() {
-         super();
-         // 相当于 A.prototype.constructor.call(this);
-       }
-   }
-     ```
+1. 在super方法调用前，不能使用this，因为 ES6 是先创建父类实例；
+2. 作为函数调用，super 代表父类的构造函数，此时父类构造函数中的 `new.target` 为子类构造函数，并且作为函数调用时只能出现在子类的构造函数中；
 
-  3. 作为对象时，super 指向父类的原型；ES6 规定，通过 `super` 调用父类的方法时，`super` 会绑定子类的`this`。
-  
-     ```js
-     class A {
-       p() {
-         return 2;
-       }
-     }
-     
-     class B extends A {
-       constructor() {
-         super();
-         this.name = 'czl';
-         console.log(super.p()); // 调用 A的 方法, 该方法中的this 指向子类的实例,可以访问 this.name
-       }
-       p(){
-      		return 100;
-       }
-     }
-     ```
-  
-- ES6 中Class 与 ES5 的区别
+```js
+class A {}
 
-  - 函数存在声明提升，Class 不会；
-  - 类内部默认开启严格模式；
-  - ES5 继承先创建子类实例，再调用父类构造函数，将属性和方法添加到子类实例上；ES6 是先创建父类实例，再通过子类的构造函数修改 this；
-  - Class 定义在原型上的方法是不可枚举的；
-  - Class 实现了子类的构造函数继承父类的构造函数；
+class B extends A {
+  constructor() {
+    super();
+    // 相当于 A.prototype.constructor.call(this);
+  }
+ }
+```
 
-## Proxy & Reflect
+3. 作为对象时，super 指向父类的原型，ES6 规定通过 `super` 调用父类的方法时，`super` 会绑定子类的`this`。
+```js
+class A {
+  p() {
+    return 2;
+  }
+}
+
+class B extends A {
+  constructor() {
+    super();
+    this.name = 'czl';
+    console.log(super.p()); // 调用 A的 方法, 该方法中的this 指向子类的实例,可以访问 this.name
+  }
+  p(){
+ 		return 100;
+  }
+}
+```
+
+> 静态属性和静态方法
+
+父类中的静态属性和静态方法可以被子类继承
+
+
+> ES6 中Class 与 ES5 的区别
+
+- 函数存在声明提升，Class 不会；
+- 类内部默认开启严格模式；
+- ES5 继承先创建子类实例，再调用父类构造函数，将属性和方法添加到子类实例上；ES6 是先创建父类实例，再通过子类的构造函数修改 this；
+- Class 定义在原型上的方法是不可枚举的；
+- Class 实现了子类的构造函数继承父类的构造函数；
+
+
+# Proxy & Reflect
 
 Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种**元编程**，即对编程语言进行编程。**Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。**Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。
 
@@ -458,25 +465,32 @@ Proxy 用于修改某些操作的默认行为，等同于在语言层面做出�
 **this 指向**：
 
 - 使用 Proxy 代理的情况下，目标对象内部的 `this` 关键字会指向 Proxy 代理。
+```js
+const target = {
+  m: function () {
+    console.log(this === proxy);
+  }
+};
+const handler = {};
+const proxy = new Proxy(target, handler);
 
-  ```js
-  const target = {
-    m: function () {
-      console.log(this === proxy);
-    }
-  };
-  const handler = {};
-  const proxy = new Proxy(target, handler);
-  
-  target.m() // false
-  proxy.m()  // true
-  ```
+target.m() // false
+proxy.m()  // true
+```
 
-### Reflect
+> 参考:[proxy-polyfill](https://github.com/GoogleChrome/proxy-polyfill) 
+
+# Reflect
+
+> 使用 Reflect 来将操作转发给原始对象
 
 `Reflect` 对象的方法与 `Proxy` 对象的方法一一对应，只要是 `Proxy` 对象的方法，就能在 `Reflect` 对象上找到对应的方法。这就让 `Proxy` 对象可以方便地调用对应的 `Reflect` 方法，完成默认行为，作为修改行为的基础。也就是说，不管`Proxy` 怎么修改默认行为，你总可以在 `Reflect` 上获取默认行为。
 
-## 使用 Proxy 实现观察者模式
+
+
+**对于每个可被 `Proxy` 捕获的内部方法，在 `Reflect` 中都有一个对应的方法，其名称和参数与 `Proxy` 捕捉器相同。** 
+
+# 使用 Proxy 实现观察者模式
 
 观察者模式（Observer mode）指的是观察者(函数)自动观察被观察者(数据对象)，一旦对象有变化，函数就会自动执行。
 
@@ -511,7 +525,8 @@ function set(target, key, value, receiver) {
 }
 ```
 
-## Iterator & 遍历器
+
+# Iterator & 遍历器
 
 遍历器生成函数接收一个可选的数据结构(如数组)，返回一个遍历器对象，该对象必须要有 `next` 方法，且 `next` 属性的值是一个函数，调用该函数会返回指定的数据结构中的下一个元素。for...of 根据遍历器对象依次访问元素。
 
@@ -519,73 +534,8 @@ function set(target, key, value, receiver) {
 
 - for...of、扩展运算符、解构赋值；
 
-## Generator
 
-Generator函数是ES6提供的一种异步编程解决方案，执行Generator函数会返回一个**遍历器对象**；
-
-Generator函数有多种理解角度：
-
-- Generator函数是一个状态机，封装了多个内部状态。
-
-- 形式上，Generator函数是一个普通函数，但是有两个特征。
-
-  1. `function` 关键字与函数名之间有一个星号；
-  2. 函数体内部使用 **yield** 语句，定义不同的内部状态（yield语句在英语里的意思就是“产出”）。
-
-- 例如
-
-  ```js
-  function* foo(x) {
-    var y = 2 * (yield (x + 1));
-    var z = yield (y);
-    return (x + y + z);
-  }
-  var hw = foo(1);
-  hw.next();   // { value: 2, done: false }
-  hw.next(3);  // { value: 6, done: false }
-  ```
-
-**yield：**
-
-- 遇到 `yield` 语句，就暂停执行后面的操作，并将紧跟在 `yield` 后面的那个表达式的值，作为返回的对象的 `value` 属性值。
-- yield 表达式(如：yield(x+1)) 的返回值是 undefined，通过 hw.next(val)可以设置上次 yield 表达式的返回值；
-
-**this & 原型对象：**
-
-- Generator函数总是返回一个遍历器，ES6规定这个遍历器是Generator函数的实例，也继承了Generator函数的`prototype`对象上的方法。
-
-  ```js
-  function* g() {}
-  g.prototype.hello = function () {
-    return 'hi!';
-  };
-  
-  let iter = g();
-  
-  iter instanceof g // true
-  iter.hello()      // 'hi!'
-  // 生成器函数g()生成的迭代器对象 iter 是 g 的实例，并且继承了 g.prototype 上的方法;
-  // g() 类似于构造函数, 但又不是;g() 返回的不是 this, this === global;
-  ```
-
-### 异步Generator
-
-> 异步 Generator 生成 异步的 Iterator ，异步 Iterator 的 next() 方法返回的是一个 Promise；
->
-> 异步 Generator 的 yield 产出的是 Promise 对象或 Thunk ，即异步生成器创建的迭代器的 next() 方法返回的是 Promise；
-
-### 应用
-
-1. 异步操作的同步表达；
-2. 控制流管理；
-3. 部署 Iterator 接口；
-4. 作为数据结构； 
-
-### 参考：
-
-- [Generatot函数](http://caibaojian.com/es6/generator.html)
-
-## Promise
+# Promise
 
 - Promise是异步编程的一种解决方案，比传统的解决方案—**回调函数和事件**更合理和更强大；
 
@@ -608,7 +558,7 @@ Generator函数有多种理解角度：
 
 - `then` 方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。
 
-### Promise 读取文件
+## Promise 读取文件
 
   ```javascript
   let read = require('read-file');
@@ -648,52 +598,7 @@ Generator函数有多种理解角度：
   
   ```
 
-### Promise 实现 Ajax请求
-
-```javascript
-var getJSON = function(url) {
-  var promise = new Promise(function(resolve, reject){
-    var client = new XMLHttpRequest();
-    client.open("GET", url);
-    client.onreadystatechange = handler;
-    client.responseType = "json";
-    client.setRequestHeader("Accept", "application/json");
-    client.send();
-
-    function handler() {
-      if (this.readyState !== 4) {
-        return;
-      }
-      if (this.status === 200) {
-        resolve(this.response);
-      } else {
-        reject(new Error(this.statusText));
-      }
-    };
-  });
-
-  return promise;
-};
-
-getJSON("/posts.json").then(function(json) {
-  	// json 是异步操作成功后, resolve(this.response)传递过来的
-  	console.log('Contents: ' + json);
-	}, 
-  function(error) {
-    console.error('出错了', error);
-  });
-
-// then 返回一个新的 Promise,
-getJSON("/posts.json")
-	.then(function(json) {
-  	return json.post;
-	})
-  .then(function(post) {
-  	// 该回调函数接收上一个回调函数的返回值(return json.post)作为参数
-	});
-```
-
-### 手写 Promise
+## 手写 Promise
 
 理解浏览器的事件循环（Event loop），一句话即Promise是先同步处理then、catch函数再异步处理executor函数，接着通过resolve或reject触发then、catch的参数。
 
@@ -734,15 +639,155 @@ p.then(data=>{
 console.log('同步代码执行完成!');
 ```
 
-### 参考
+## 参考
 
 - [你了解Promise吗-segmentfault](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247484260&idx=1&sn=0bc8a7aed8b15d3cc7e75c76394b648a&chksm=c06682f2f7110be41b29ce0eabc441fba11e1ab306ca40e4e7d81d338b4af7e35721573d1cca&mpshare=1&scene=1&srcid=&sharer_sharetime=1566171898757&sharer_shareid=c0fa4bb765d12545f4439ab827814978&key=56eb82a42460d979c3afc63a4f31177e13db16329cf4763c707bf96642e8906b81d68c0b03fa52eaabde20326b79c31368a9de23b389122e084df4a3c4aa327001973a319a1020fe8e99f6a26930b5b9&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=D8igzih7KnA8%2F5LHQdRG6th5IVXvvQD7ukUD5HSt%2FLcfZ7gOforYJWqBjo9rYF%2FC)
 - [Promse A+ 规范](https://malcolmyu.github.io/2015/06/12/Promises-A-Plus/#note-4) 
 - [Promise 实现原理-掘金](https://juejin.im/post/5b83cb5ae51d4538cc3ec354)
 
-## async & await
 
-**async 函数就是 Generator 函数的语法糖。**  
+
+# Generator
+
+Generator函数是ES6提供的一种异步编程解决方案，执行Generator函数会返回一个**遍历器对象**，即 Generator 是迭代器生成函数。
+
+从语法上，首先可以把它理解成，Generator函数是一个状态机，封装了多个内部状态。
+
+执行Generator函数会返回一个遍历器对象，也就是说，Generator函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历Generator函数内部的每一个状态。
+
+Generator函数有多种理解角度：
+
+- Generator函数是一个状态机，封装了多个内部状态。
+
+- 形式上，Generator函数是一个普通函数，但是有两个特征。
+
+  1. `function` 关键字与函数名之间有一个星号；
+  2. 函数体内部使用 **yield** 语句，定义不同的内部状态（yield语句在英语里的意思就是“产出”）。
+
+- 例如
+
+```js
+function* foo(x) {
+  var y = 2 * (yield (x + 1));
+  var z = yield (y);
+  return (x + y + z);
+}
+var hw = foo(1);
+hw.next();   // { value: 2, done: false }
+hw.next(3);  // { value: 6, done: false }
+```
+
+> yield
+
+- 遇到 `yield` 语句，就暂停执行后面的操作，并将紧跟在 `yield` 后面的那个表达式的值，作为返回的对象的 `value` 属性值。
+- yield 表达式(如：yield(x+1)) 的返回值是 undefined，通过 hw.next(val)可以设置上次 yield 表达式的返回值；
+
+<p style="color:red;font-weight:bold">核心：yield 暂停执行，next 继续执行</p>
+
+> 返回值: iterator 遍历器对象
+
+Generator函数总是返回一个遍历器，ES6规定这个遍历器是Generator函数的实例，也继承了Generator函数的`prototype`对象上的方法。
+
+```javascript
+function* g() {}
+  g.prototype.hello = function () {
+  return 'hi!';
+};
+
+let iter = g();
+
+iter instanceof g // true
+iter.hello()      // 'hi!'
+// 生成器函数g()返回的迭代器对象 iter 是 g 的实例，并且继承了 g.prototype 上的方法;
+// g() 类似于构造函数, 但又不是，g() 返回的不是 this, this === global;
+```
+
+> 将 Generator 封装为构造函数并 在 Generator 中使用 this
+
+```javascript
+function* gen() {
+  this.a = 1;
+  yield this.b = 2;
+  yield this.c = 3;
+}
+
+function F() {
+  return gen.call(gen.prototype);
+}
+
+var f = new F();
+
+f.next();  // Object {value: 2, done: false}
+f.next();  // Object {value: 3, done: false}
+f.next();  // Object {value: undefined, done: true}
+```
+
+> `yield*`
+
+`yield*` 遍历遍历器对象，任何有 Iterator 接口的数据结构都可以被 `yield*` 遍历
+
+用来在一个Generator函数里面执行另一个Generator函数。
+
+
+## 异步 Generator
+
+异步 Generator 生成 异步的 Iterator ，异步 Iterator 的 next() 方法返回的是一个 Promise
+
+异步 Generator 的 yield 产出的是 Promise 对象或 Thunk ，即异步生成器创建的迭代器的 next() 方法返回的是 Promise
+
+## 应用
+
+1. 异步操作的同步表达；
+2. 控制流管理；
+3. 部署 Iterator 接口；
+4. 作为数据结构：类数组结构
+
+> 遍历二叉树
+
+```javascript
+// 下面是二叉树的构造函数，
+// 三个参数分别是左树、当前节点和右树
+function Tree(left, label, right) {
+  this.left = left;
+  this.label = label;
+  this.right = right;
+}
+
+// 下面是中序（inorder）遍历函数。
+// 由于返回的是一个遍历器，所以要用generator函数。
+// 函数体内采用递归算法，所以左树和右树要用yield*遍历
+function* inorder(t) {
+  if (t) {
+    yield* inorder(t.left);
+    yield t.label;
+    yield* inorder(t.right);
+  }
+}
+
+// 下面生成二叉树
+function make(array) {
+  // 判断是否为叶节点
+  if (array.length == 1) return new Tree(null, array[0], null);
+  return new Tree(make(array[0]), array[1], make(array[2]));
+}
+let tree = make([[['a'], 'b', ['c']], 'd', [['e'], 'f', ['g']]]);
+
+// 遍历二叉树
+var result = [];
+for (let node of inorder(tree)) {
+  result.push(node);
+}
+```
+
+## 参考：
+
+- [Generatot函数](http://caibaojian.com/es6/generator.html)
+
+
+
+# async & await
+
+**async 函数就是 Generator 函数的语法糖**。用 `async` 替换 Generator 函数声明中的 `*`，用 `await` 替换 `yield` 
 
 await 命令只能出现在 async 函数中，await 表达式会暂停当前 [`async function`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function) 的执行，等待其后面表达式的结果，像 Generateor 函数一样将执行权转让给其他程序；
 
@@ -775,8 +820,7 @@ result = await 表达式
 
 
 
-
-**async 实现**
+> async 实现
 
 async 函数的实现原理，就是将 Generator 函数和自动执行器，包装在一个函数里。
 
@@ -824,10 +868,11 @@ function spawn(genF) {
 - [setTimeout promise async](https://gongchenghuigch.github.io/2019/09/14/awat/) 
 
 
-## 异步编程
+# 异步编程
 
-- ES6诞生以前，异步编程的方法，大概有下面四种。
-  - 回调、事件监听、Promise对象
+ES6诞生以前，异步编程的方法，大概有下面四种：回调、事件监听、Promise对象
+
+[异步编程](http://caibaojian.com/es6/async.html) 
 
 # 模块
 
