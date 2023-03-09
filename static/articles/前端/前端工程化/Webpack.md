@@ -1,5 +1,19 @@
 [webpack文档](https://webpack.docschina.org/concepts/) 
 
+> [createapp](https://createapp.dev/)：在线自定义 webpack 配置
+
+[代码更新时自动编译](https://webpack.js.org/guides/development/#choosing-a-development-tool) 
+
+1. webpack's [Watch Mode](https://webpack.js.org/configuration/watch/#watch)
+2. [webpack-dev-server](https://github.com/webpack/webpack-dev-server) ：热加载，其他方式都没有
+3. [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) 
+
+> [代码拆分](https://webpack.js.org/guides/code-splitting/)
+
+- SplitChunksPlugin：提取公共依赖
+- [`mini-css-extract-plugin`](https://webpack.js.org/plugins/mini-css-extract-plugin): Useful for splitting CSS out from the main application.
+
+
 # 目的
 
 > - 命名chunk: `output.chunkFilename: '[name].[hash:8].js'`
@@ -31,7 +45,7 @@ webpack 的应用场景主要是 SPA (单页面富应用)，而 SPA 的核心是
 
 > - webpack 是用来处理模块间的依赖关系，并对他们进行打包。
 > - webpack基于node，在node环境下运行，可以使用ES6的模块加载方法;
-> - npm命令根据package.json配置文件执行，在该文件中设置webpack使用的命令及哪个配置文件；
+> - npm 命令根据package.json配置文件执行，在该文件中设置webpack使用的命令及哪个配置文件；
 > - `entry` 可以有多个，但`output` 只能有一个
 
 ## webpack结构
@@ -51,12 +65,28 @@ webpack 的应用场景主要是 SPA (单页面富应用)，而 SPA 的核心是
 6. 输出所有 `chunk` 到文件系统。
 7. 需要注意的是，在构建生命周期中有一系列插件在合适的时机做了合适的事情，比如 `UglifyJsPlugin` 会在 loader 转换递归完后对结果再使用 `UglifyJs` 压缩覆盖之前的结果。
 
+**[什么是 chunk？](https://webpack.js.org/concepts/under-the-hood/#chunks)** 
+modules are combined into chunks. Chunks combine into chunk groups and form a graph (ChunkGraph) interconnected through modules. When you describe an entry point - under the hood, you create a chunk group with one chunk.
+
+# 依赖管理
+
+> https://webpack.js.org/guides/dependency-management/
+
+> 动态导入
+
+`require('./template/' + name + '.ejs');`
+`require.context('./test', false, /\.test\.js$/);`
+`require.context()` 的参数必须是字面量。
+
 # loader
+
+loader 处理项目中各种类型的依赖文件，webpack 默认可以处理 JS、JSON 文件。
 
 - webpack 只能理解 **JS** 和 **JSON** 文件，其他类型的文件需要用 loader 处理并被 loader 转换为有效的模块，然后添加到依赖图中。
 - loader 可以将文件从不同的语言（如 TypeScript）转换为 JavaScript 或将内联图像转换为 data URL。loader 甚至允许你直接在 JavaScript 模块中 `import` CSS 文件！
 - webpack 的其中一个强大的特性就是能通过 `import` 导入任何类型的模块（例如 `.css` 文件），
 - 所有的 loader 按照**前置 -> 行内 -> 普通 -> 后置**的顺序执行
+- `webpack.config.js` 中配置多个 loader 时按从后往前（从右往左）的顺序执行。
 
 ## 常用loader
 
@@ -124,69 +154,21 @@ module.exports = ConsoleLogOnBuildWebpackPlugin;
 
 https://www.webpackjs.com/contribute/writing-a-plugin/ 
 
+# [code splitting](https://webpack.js.org/guides/code-splitting/)
+
+# [Bundle Analysis](https://webpack.js.org/guides/code-splitting/#bundle-analysis)
+
 # webpack配置
 
 > [自定义配置UI](https://createapp.dev/webpack/vue--babel--typescript) 
 
-1. package.json
+# require.context
 
-   ```javascript
-   {
-       ...
-       "script": {
-           "build": "webpack --config 配置文件webpack.config.js",
-            "dev": "webpack --config 配置文件"
-       }
-   }
-   ```
+[require.context](https://v4.webpack.js.org/guides/dependency-management/#requirecontext) 
+[动态导入](https://v4.webpack.js.org/api/module-methods/#dynamic-expressions-in-import) 
+使用 `import(somepath)` 动态导入资源时，资源路径不能完全是一个变量，必须以字符串开头。
 
-
-2. webpack.config.js 
-
-	``` javascript
-	module.exports = {
-	  entry: {
-	      "main": "./main.js"
-	  },
-	  output: {
-	      filename: "./dist/build.js"
-	  },
-	  devtool: "source-map",
-	  // watch: 监听文件的变化，当文件改动时，自动执行构建,输出build.js
-	  watch: true,
-	  module: {
-	      rules: [
-	          // 对css文件，webpack先用css-loader解析css文件，  
-	          // 解析完成后再用style-loader将css代码用style标签嵌入到<head>标签里
-	          {
-	              test: /\.css$/,
-	              use: 'style-loader!css-loader'
-	              // use: ['style-loader', 'css-loader'] 先用css-loader处理，在用style-loader处理
-	          },
-	          // 处理less文件
-	          {
-	              test: /\.less$/,
-	              use: 'style-loader!css-loader!less-loader'
-	          },
-	          // 处理ES5，ES6,ES7等
-	          {
-	              test: /\.js$/,
-	              loader: 'babel-loader',
-	              exclude: '/node_modules/',
-	              options: {
-	                  presets: ['env'],	// 处理关键字es5，es6，env等
-	                  plugins: ['transform-runtime']	 // 处理函数
-	              }
-	          }
-	      ]
-	  },
-	  plugins: []
-	}
-	```
-
-# 自动加载组件|路由
-
-> require.context
+## 自动加载组件|路由
 
 ```js
 var requireComponent = require.context("./src", true, /^Base[A-Z]/)

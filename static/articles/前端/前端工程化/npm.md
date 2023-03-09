@@ -23,7 +23,7 @@ Each npm user/organization has their own scope, and only you can add packages in
 
 混合使用来自 npm registry 和私有 registry 的包
 
-```sh
+```shell
 npm login --registry=http://reg.example.com --scope=@myco
 或者
 npm config set @myco:registry http://reg.example.com
@@ -59,7 +59,7 @@ engine-strict = true
 
 利用 only-allow 工具包、npm scripts 快速实现锁定
 
-```sh
+```shell
 npm install -D only-allow
 // package.json
 "scripts": {
@@ -82,13 +82,24 @@ npm install -D only-allow
   - npm v8.x.x 会自动安装 `peerDependencies` 依赖，之前版本的 npm 不会自动安装
   - `peerDependencies` 和 `devDependencies` 的区别：devDependencies 表示开发依赖，源码中应该要引用该依赖(`import` 或 `require`)，peerDependencies 源码中不用引用
 
+## 依赖冲突
+
+项目 project 中依赖组件 B、C 两个组件，组件 B、C 的依赖项中都有组件 A
+
+- B 中对 A 的版本指定为 @latest，C 对 A 的版本指定为 C@1.0.0，在项目 project 中执行 npm install 时，安装的组件 C 的版本是 1.0.0
+- B 中对 A 的版本指定为 @latest，C 对 A 的版本指定为 C>=1.0.0，在项目 project 中执行 npm install 时，安装的组件 C 的 latest 最新版本
+
+- B 中对 A 的版本指定为 @latest，C 对 A 的版本指定为 C@1.0.0，在项目 project 的 package.json 中指定组件 C 的版本为以下情况时，执行 npm install 安装的组件 C 的版本分别对应：
+  - package.json 中指定为 @latest，安装后的版本为 latest
+  - package.json 中指定为 >=1.0.0，安装后版本为 latest
+  - package.json 中指定为 @2.2.0，安装后版本为 2.2.0
 
 # 常用命令
 
 > 查看全局包: npm list -g --depth 0sdps
 > 安装全局包: npm i -g xx
 > 删除全局包: npm uninstall -g vue
-> 创建软链接: [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link) [解读](https://juejin.cn/post/6844903960805900295) 
+> 创建软链接: [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link) [解读](https://juejin.cn/post/6844903960805900295) [npx link](https://www.npmjs.com/package/link) 
 
 # 常用包
 
@@ -115,7 +126,7 @@ npm install -D only-allow
 > exampel
 
 - bash版本
-```sh
+```shell
 #!/bin/bash
 registry=$(npm config get registry);
 if ! [[ $registry =~ "http://registry.x.com" ]]; then

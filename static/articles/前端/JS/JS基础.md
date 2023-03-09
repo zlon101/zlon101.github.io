@@ -1,9 +1,7 @@
 # 基本概念
 
-> 1. JS 属于解释型语言，不用编译转换为其他语言(如C++需编译为汇编语言才能由计算机执行)。
-> 2. **单线程**：同一时间只能做一件事，只能有一段代码被 JavaScript 引擎执行；
-
-
+1. JS 属于解释型语言，不用编译转换为其他语言(如C++需编译为汇编语言才能由计算机执行)。
+2. **单线程**：同一时间只能做一件事，只能有一段代码被 JavaScript 引擎执行；
 
 ## 数据类型
 
@@ -19,41 +17,17 @@
 - 对于引用类型，赋值(参数传递 & 返回值)相当于复制指针(引用)，新变量的内部数据与原数据完全相同；
 - 浅拷贝，只会对第一层创建新的变量；
 
-> 数组的 slice、from、concat 及析构 ... 属于浅拷贝，Object.assign 也是浅拷贝；深度拷贝可以利用JSON.parse(JSON.stringify(obj)) 实现，但不能处理 undefine、函数、symbol 等在序列化时被忽略的值；
+数组的 slice、from、concat 及析构 ... 属于浅拷贝，Object.assign 也是浅拷贝；深度拷贝可以利用JSON.parse(JSON.stringify(obj)) 实现，但不能处理 undefine、函数、symbol 等在序列化时被忽略的值；
 
 ## 对象和数组字面量
 
 - 使用对象和数组字面量创建时不会调用各自的构造函数；
 
-# 动态原型
-
-- JS中原型上的方法可以访问该原型的实例的上下文, 即访问实例的数据或方法；
-
-  ```js
-  Vue.prototype.$reverseText = function (propertyName) {
-    this[propertyName] = this[propertyName]
-      .split('')
-      .reverse()
-      .join('')
-  }
-  
-  new Vue({
-    data: {
-      message: 'Hello'
-    },
-    created: function () {
-      console.log(this.message) // => "Hello"
-      this.$reverseText('message')
-      console.log(this.message) // => "olleH"
-    }
-  })
-  ```
-
 # 类型转换
 
 > 参考:  [类型和精度](https://juejin.im/post/6844903854882947080#heading-23) 
 
-**规则：**  
+> 规则
 
 - 基本数据类型之间的相互转换；(参考JavaScript 权威指南 P49)
 
@@ -75,7 +49,7 @@
      - 加法运算符(不是一元 `+` 运算符)、==、!=、关系运算符 (>、<等)这四类运算符作用于非日期对象时，使用第一条规则，但是不会对 valueOf 或 toString 的返回值进一步转换；
      - 加法、==、!=运算符作用于日期对象时，都将 Date 转换为 String 类型，并返回 string ，
 
-     ```js
+     ```javascript
      let date = new Date();
      print(typeof (date + 0));	// string
      date == String(date);     // true
@@ -113,73 +87,161 @@
   0 -0 +0 null defined NaN ''
   [] 和 {} 转换为 true
 
-  ```js
-  undefined == null; // undefined === null 为 false
-  NaN == NaN;		   // false , JS 中唯一的一个
-  ```
-  
+```js
+undefined == null; // undefined === null 为 false
+NaN == NaN;		   // false , JS 中唯一的一个
+```
+
 - Boolean、String、Number 包装对象
 
-  ```js
-  var x = new Boolean(false); // x 是一个对象
-  if(x){
-     console.log(true);  // true
-  }
-  ```
+```js
+var x = new Boolean(false); // x 是一个对象
+if(x){
+   console.log(true);  // true
+}
+```
+
+# 数组
+
+> - 本质是对象，数字索引在内部被转换为字符串，因为 JS 对象的属性名只能是字符串。
+> - 使用 [] 字面量创建数组比使用 new 效率更高；
+
+## 数组有哪些方法支持响应式更新，如果不支持怎么办，底层原理如何实现？
+
+- 支持：push、pop、shift、unshift、splice、sort、reverse，这些方法会改变原数组。
+- 不支持：filter、concat、slice、forEach、map，这些方法不会改变原数组；可以修改整个数组实现响应式更新(将新的数组赋值给原来的数组)。
+- 原理同样是使用 Object.defineProperty 对数组方法(get、set)进行改写
+
+## forEach 和 map 的区别
+
+1. `forEach` 执行后返回 `undefined`，不会修改原数组，不能提前终止和跳出循环；
+2. `map` 执行后返回新的数组，不会修改原数组，不能提前终止和跳出循环；
+3. `for in ` & `for of` 可以提前终止(break、continue)循环；
+
+
 # 对象
 
-> 对象只能用 string 类型作为键，Map 的键可以是任何类型；
->
-> 对象的某个属性只能是**数据属性**或**访问器属性**中的一种；
->
-> - 数据属性：用 configurable、enumerable、value、writable描述符对象描述；
->
-> - 访问器属性：用configurable、enumerable、get、set 描述符对象描述；
->
-> - Object.create、assign、defineProperty、defineProperties、getOwnPropertyDescriptor、getOwnPropertyDescriptors
->
->   - create 与 defineProperties 的第二个参数是相同类型，都是一个属性描述符对象；使用以上三类方法定义对象的属性时，value、configurable、enumerable、writable 默认值分别是 undefined、false、false、false，而使用属性访问(点运算符 `obj.prop`)定义的属性的 configurable、writable、enumerable 默认值是 true；
->   - assign 浅拷贝源对象的属性时，只能拷贝源对象的可枚举的自身属性，同时拷贝时无法拷贝属性的特性们(configurable、writable、enumerable 的值被忽略，被全设为 true)，而且访问器属性会被转换成数据属性；
->   - configurable 为 false 时，属性的 `configurable、enumerable、getter、setter` 不能被修改，唯一能修改的是将 `writable` 从 true 改为 false；属性的值是否能被修改只需要看 `writable` 属性。
->
-> 
+对象只能用 String、Symbol 类型作为键，Map 的键可以是任何类型。
+
+对象的某个属性只能是【数据属性】或【访问器属性】中的一种；
+
+- 数据属性：用 configurable、enumerable、value、writable描述符对象描述；
+- 访问器属性：用configurable、enumerable、get、set 描述符对象描述；
+
+> API
+
+Object.create、assign、defineProperty、defineProperties、getOwnPropertyDescriptor、getOwnPropertyDescriptors
+
+- create 与 defineProperties 的第二个参数是相同类型，都是一个【属性描述符对象】。使用 create、defineProperty、definePropteries 方法定义对象的属性时，value、configurable、enumerable、writable 默认值分别是 undefined、false、false、false，而使用属性访问(点运算符 `obj.prop`)定义的属性的 configurable、writable、enumerable 默认值是 true；
+
+- assign 浅拷贝源对象的属性时，只能拷贝源对象的可枚举的自身属性，同时拷贝时无法拷贝属性的特性们(configurable、writable、enumerable 的值被忽略，被全设为 true)，而且访问器属性会被转换成数据属性；
+
+- configurable 为 false 时，属性的 `configurable、enumerable、getter、setter` 不能被修改，唯一能修改的是将 `writable` 从 true 改为 false；属性的值是否能被修改只需要看 `writable` 属性。
+
+
 
 - 无值：没有值与值为 undefined 不同 
 
-  ```js
-  var arr = new Array(3);
-  arr[0] = undefined;
-  // 第一项有值，其余项没有值
-  ```
+```js
+var arr = new Array(3);
+arr[0] = undefined;
+// 第一项有值，其余项没有值
+```
 
 - 字符串 in obj;  遍历对象及其**原型链**上的**有值**的属性，包括**不可枚举**的属性；
 
-  ```js
-  'valueOf' in [];	// true
-  'valueOf' in {};	// true
-  ```
+```js
+'valueOf' in [];	// true
+'valueOf' in {};	// true
+```
+
+> for...in
+
+- 遍历可枚举的字符串属性，不包括 Symbol 类型的 key
+- 无序、含继承属性、可枚举、有值(含undefined null)、可终止循环；
+- in 运算符判断属性是否在对象或对象的原型链上，可以判断**不可枚举 & valueOf 等原生属性**，不含空值；
 
 
-- for...in
-  
-  - 无序  含继承属性  可枚举  有值(含undefined null)     可终止循环；
-  - for-in 以原始插入顺序遍历对象的可枚举属性(key)；
-  - 因为遍历是无序的，所以不能在数组上使用；
-  - in 运算符判断属性是否在对象或对象的原型链上，可以判断**不可枚举 & valueOf 等原生属性**，不含空值；
+<p style="color:red;font-weight:bold">遍历顺序</p>
 
+- ES6 之前规范没有明确规定
+- ES6 之后 Object.keys 输出键值的顺序按以下规则：先遍历自身属性，再遍历原型对象上的属性
+  - 先按升序遍历自身属性中 key 为自然数的属性
+  - 然后按加入顺序遍历非数字并且类型为 String 的属性
+  - 浮点数、负数、NaN或者Infinity 按 String 类型处理
+  - 自身属性遍历完后再依次遍历原型对象上的属性
+
+```javascript
+const obj = {
+  3: 'val-3',
+  b: 'val-b',
+};
+obj.__proto__[2] = '2';
+obj.__proto__['a'] = '2';
+
+obj.c = 'val-c';
+obj[1] = 'val-1';
+obj[Symbol('aa')] = 'symbol';
+
+let keys1 = [], keys2 = [];
+for (let k in obj) {
+  keys1.push(k);
+}
+keys2 = Object.keys(obj);
+// keys1:  ['1', '3', 'b', 'c', '2', 'a']
+// keys2:  ['1', '3', 'b', 'c']
+```
+
+参考: https://stackoverflow.com/questions/5525795/does-javascript-guarantee-object-property-order/38218582#38218582
+
+> 几种遍历的区别
 
 - for...in 是唯一一个可以遍历**原型链**上的属性；
 - `Object.getOwnPropertyNames(obj)`  & `obj.hasOwnProperty`是唯一一个可以遍历**不可枚举**属性；
-- for...of 调用的是 Iterable 接口, 唯一可遍历**无值**的方法；
-- 其余的 Array.map、forEach、Object.keys、Object.values()都是遍历自身、可枚举、有值的属性；
-  - map & forEach 都不能使用`break 、continue`；
-  - `map` 返回新的数组，forEach 返回 undefined；
+- for...of 调用的是 Iterable 接口，遍历可枚举对象的值，不遍历原型链，唯一可遍历**无值**的方法；
+
+```js
+Object.prototype.objCustom = function () {};
+Array.prototype.arrCustom = function () {};
+
+const iterable = [3, 5, 7];
+iterable.foo = "hello";
+
+for (const i in iterable) {
+  console.log(i);
+}
+// "0", "1", "2", "foo", "arrCustom", "objCustom"
+
+for (const i in iterable) {
+  if (Object.hasOwn(iterable, i)) {
+    console.log(i);
+  }
+}
+// "0" "1" "2" "foo"
+
+for (const i of iterable) {
+  console.log(i);
+}
+// 3 5 7
+```
+
+其余的 Array.map、forEach、Object.keys、Object.values()都是遍历自身、可枚举、有值的属性；
+- map & forEach 都不能使用`break 、continue`；
+- `map` 返回新的数组，forEach 返回 undefined；
+
+> in 运算符
+
+有两种方式使用 `in` 运算符
+
+1): `prop in obj`，判断对象能否访问某个属性（对象本身或对象的原型链上）；
+2): `for prop in boj` 返回所有能够通过对象访问的【可枚举】属性。
+
 
 ## API
 
 参考:  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object  
 
-**原型相关：**  
+**原型相关：** 
 
 - `Object.getPrototypeOf(obj)` 
 - `Object.setPrototypeOf(obj, protoObj)`
@@ -188,22 +250,15 @@
 **属性相关：**  
 
 - `Object.keys(obj)`：自身**可枚举**属性
-
 - `Object.getOwnPropertyNames(obj)`:  返回包括**不可枚举**在内的自有属性
-
 - `Object.getOwnPropertySymbols(obj)` 
-
 - `Object.getOwnPropertyDescriptor(obj,prop)`：返回`obj.proto`属性描述符对象
-
 - `Object.getOwnPropertyDescriptors(obj)`：返回`obj` 的所有自身属性(包括 Symbol )的描述符对象
-
 - `Object.defineProperty(obj,prop, descriptor)` 
-
 - `Object.defineProperties(obj,props)` 
-
 - `Object.prototype.hasOwnProperty(prop)`：
 
-  
+`Object.keys` 返回字符串数组，由对象自身可枚举属性组成，并且只包含类型是字符串的属性。Object.keys 返回的属性顺序与 `for in` 遍历的顺序一致。
 
 ## 浅拷贝对象
 
@@ -249,63 +304,12 @@ export function deepClone(srcData, hash = new WeakMap()) {
 }
 ```
 
+# Map & Object
 
+> [区别](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map#objects_vs._maps) 
 
+遍历 Map 时，会按照插入的顺序遍历。
 
-
-# 数组
-
-> - 本质是对象，数字索引在内部被转换为字符串，因为 JS 对象的属性名只能是字符串。
-> - 使用 [] 字面量创建数组比使用 new 效率更高；
-
-## 数组有哪些方法支持响应式更新，如果不支持怎么办，底层原理如何实现？
-
-- 支持：push、pop、shift、unshift、splice、sort、reverse，这些方法会改变原数组。
-- 不支持：filter、concat、slice、forEach、map，这些方法不会改变原数组；可以修改整个数组实现响应式更新(将新的数组赋值给原来的数组)。
-- 原理同样是使用 Object.defineProperty 对数组方法(get、set)进行改写
-
-## forEach 和 map 的区别
-
-1. `forEach` 执行后返回 `undefined`，不会修改原数组，不能提前终止和跳出循环；
-2. `map` 执行后返回新的数组，不会修改原数组，不能提前终止和跳出循环；
-3. `for in ` & `for of` 可以提前终止(break)循环；
-
-# 正则表达式
-
-## RegExp
-
-### RegExp 对象的属性
-
-- lastInd: 下一次检索的起始位置，RegExp.exec() & RegExp.test() 会用到；
-- source: 正则表达式的字符串形式；
-- global、ignoreCase、mutiline：Boolean 类型的值，表示是否有该修饰符；
-
-- RegExp.test('abc')：Boolean 值，是否匹配；
-- RegExp.exec('abc')：[完整匹配的子串, index: 0, input: 输入的字符串]，数组的第二项开始是括号捕获的字符串，如果有修饰符 g，则可以多次调用 exec()，每次调用是从 lastInd 开始搜索；
-
-## String 方法
-
-- String.search()，首次匹配的索引，未匹配则返回 -1；
-- String.match()
-  1. 没有 g 修饰时，返回的结果与 RegExp.exec()相同
-  2. 有 g 修饰时，返回数组，数组项包含全部匹配的子字符串；
-- String.replace()
-- String.split()
-
-> 创建正则表达式的两种方式: 字面量和构造函数的区别
-
-- 字面量形式的表达式在脚本加载后编译，正则表达式是常量是用字面量更合适；
-
-- 构造函数形式的表达式在脚本运行时编译，构造函数用于创建动态的正则表达式；
-
-- 反斜杠(\\)在字符串中有特殊含义，表示其后的字符作为普通字符处理（the backslash is an escape in string literals）。`/a\*b/` 和 `RegExp("a\\*b")` 等价。
-
-  ```js
-  // 字符串的特殊字符前加入反斜杠
-  function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-  }
-  ```
 
 # 继承
 
@@ -319,32 +323,90 @@ Child.prototype = Object.create(Parent.prototype);
 Child.prototype.constructor = Child;
 ```
 
-
-
-API
+> API
 
 - 原型相关
-
-  ```js
-  // 原型链, 可以是原型的原型
-  obj.isPrototypeOf()
-  Object.getPrototypeOf()
-  Object.setPrototypeOf()
-  //obj instanceof 构造函数
-  ```
+```js
+// 原型链, 可以是原型的原型
+obj.isPrototypeOf()
+Object.getPrototypeOf()
+Object.setPrototypeOf()
+//obj instanceof 构造函数
+```
 
 - 访问对象的原型
 
-  1: `__proto__`
+1: `__proto__`
+2: Object.setPrototypeOf、Object.getPrototypeOf
+3: 通过构造函数 obj.constructor.prototype
 
-  2: Object.setPrototypeOf、Object.getPrototypeOf
+> 最佳实现: 组合寄生式继承
 
-  3: 通过构造函数 obj.constructor.prototype
+```js
+function Sup(name) {
+  this.name = name;
+}
 
+function Sub(name, age) {
+  Sup.call(this, name);
+  this.age = age;
+}
+// 避免调用两次Sup
+Sub.prototype = Object.create(Sup.prototype);
+Sub.constructor = Sub;
+```
 
-参考：
+> 参考
 
 - [双重继承](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215832&idx=1&sn=7e48c9ef8bf7c4ccaa246907eb6579f5&chksm=befe15b989899caf8612620992acdb67783396f1b2bf981fae71cf761fac43c16b4b60457975&scene=0&key=06b6f34db6d09e01cbeea01642f35f6916e02c7d3cc0c4d1b777d666c2d8d94cacb1516bc3b5a608a6713416a69e553d88c1feba945dc494447e016071b279de4675b2ca438636285d10a796bdf5b3b2&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060739&lang=zh_CN&pass_ticket=ltTFzXuqdXnUtMsLWgFnt%2B8zWUV2F%2B3hSDDtrPIUYwtCjZ5qZr5AlYFajnxJ9w5P) 
+
+# 原型
+
+每个函数都有一个 `prototype` 属性，该属性是指针，指向一个对象，这个对象的用途是包含由这个函数实例化的所有实例**共享**的属性和方法。这个对象是通过调用构造函数而创建的对象实例的原型对象。
+
+创建一个函数就会为该函数创建一个指向函数的原型对象的 prototype 属性，默认情况下所有原型对象都会自动获得一个 constructor 属性，constructor 属性指向函数自己。
+
+> 自定义类型的最佳实践
+
+```js
+function Person(name, age) {
+  // 属性定义在构造函数中
+  this.name = name;
+  this.age = age;
+}
+// 方法定义在原型中
+Person.prototype = {
+  constructor: Person,
+  getName: function() {
+    return this.name;
+  }
+}
+```
+
+
+## 动态原型
+
+- JS中原型上的方法可以访问该原型的实例的上下文, 即访问实例的数据或方法；
+
+```js
+Vue.prototype.$reverseText = function (propertyName) {
+  this[propertyName] = this[propertyName]
+    .split('')
+    .reverse()
+    .join('')
+}
+
+new Vue({
+  data: {
+    message: 'Hello'
+  },
+  created: function () {
+    console.log(this.message) // => "Hello"
+    this.$reverseText('message')
+    console.log(this.message) // => "olleH"
+  }
+})
+```
 
 # bind apply
 
@@ -404,13 +466,11 @@ API
   }
   ```
 
-  
-
 # this
 
 > 定义：**运行时**函数的执行环境；
->
-> JS 中一切皆对象，运行环境也是对象，函数、对象方法都是运行在某个环境中(this)；
+
+JS 中一切皆对象，运行环境也是对象，函数、对象方法都是运行在某个环境中(this)；
 
 - this指向代码运行时所在的对象，非箭头函数的this由运行时(**调用时**)决定；箭头函数的this由定义是外层作用域的this决定。
   函数调用的形式有：
@@ -486,7 +546,6 @@ API
 - 泡泡3是作用域bar，仅有标识符c。
 
 
-
 每次调用函数都会创建新的执行上下文，具体分解为两步：
 
 1. creation stage(调用函数时，但在执行函数内部代码之前)
@@ -505,95 +564,96 @@ API
 - [执行上下文-segementFault](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215808&idx=1&sn=8c882586a033f58a56498c02f5b88792&chksm=befe15a189899cb7c66ab13e987130c3aa72d5888e5da6676b9aa37a664012cb9e5bcc02ac7f&scene=0&key=aed6be2b7ed28ff5f6586ea4cb6bdcf73f5d9f7317d7c6ca48d223d2c2cbe07e5ee4cfed2395e25889e258ccbc81272f38ba2c899370291e19cd8aff41009769922c6d9df34c30b99f745bbd3e4ce914&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060720&lang=zh_CN&pass_ticket=Pn9cJyIWK2xt%2BmQltkMddf4S5oGoplFdiJ%2B16Yj6gD8L9Zd0WMlQ1u32%2FRJtZE1p)
 - [变量对象-掘金](https://juejin.im/post/58ec3cc944d90400576a2cdc)
 
+
 # 闭包
 
-> - 词法作用域：变量的作用域，即变量能被访问的区域；每个函数都有一个与之关联的作用域链，**函数定义时创建作用域链**，调用函数时创建一个新的对象用来保存当前函数作用域；内嵌函数的作用域上至少有3个作用域对象(内嵌函数作用域、外部函数作用域、全局作用域)；
->
-> - 函数对象的内部状态除了包含函数的代码，还必须引用当前作用域链；
->
-> - JavaScript 允许函数嵌套，并且内部函数可以访问定义在外部函数中的所有变量和函数，以及外部函数能访问的所有变量和函数。但是，外部函数却不能够访问定义在内部函数中的变量和函数(函数作用域 & 局部作用域)。这给内部函数的变量提供了一定的安全性。此外，由于内部函数可以访问外部函数的作用域，因此当内部函数生存周期大于外部函数时，外部函数中定义的变量和函数的生存周期比内部函数执行时间长。当内部函数以某一种方式被任何一个外部函数作用域访问时，一个闭包就产生了；
->
-> - **JS 每次执行一个函数**，都会创建一个新的**作用域对象**(scope object)，用来保存在该函数中创建的局部变量；通常在函数返回时，垃圾回收器会在这时回收这个作用域对象；如果这个函数返回的函数或对象方法却保留一个指向这个作用域对象的引用，因此这个作用域对象不会被回收；
->
-> ```js
->function outside(x){
->      var privateVar;     // 此处可以定义私有数据
->      function inside(y){
->       	return x+y;
->    	}
->    	return inside;
->   }
->   var fn_inside = outside(3); // fn_inside的功能是将实参加3
->   var result = fn_inside(2);  // 5
->   var result2 = outside(3)(2);// 5
-> ```
-> 
->   inside 被 return 后，传入 outside 的实参(当前是3)是如何保存的( outide 的形参 x 与在该函数内部定义的 privateVar 一样)。一个闭包必须保存它可见作用域中所有的参数、变量，因为每次调用 outside 传入的参数可能不同，每次调用 outside (外部函数 )实际上都重新创建了一遍这个闭包(**本质是内部函数被重新定义，关联了新的作用域链**)。只有当返回的inside 没有被引用时，内存才会被释放。上式的作用域链为：inside--->outside--->全局；
->
->   **注：**不能在内嵌函数中(特别是形参)定义与外部函数同名的变量，否则将无法访问定义在外部函数中的变量；参考：函数 MDN
+词法作用域：变量的作用域，即变量能被访问的区域；每个函数都有一个与之关联的作用域链，**函数定义时创建作用域链**，调用函数时创建一个新的对象用来保存当前函数作用域；内嵌函数的作用域上至少有3个作用域对象(内嵌函数作用域、外部函数作用域、全局作用域)；
+
+- 函数对象的内部状态除了包含函数的代码，还必须引用当前作用域链；
+- JavaScript 允许函数嵌套，并且内部函数可以访问定义在外部函数中的所有变量和函数，以及外部函数能访问的所有变量和函数。但是，外部函数却不能够访问定义在内部函数中的变量和函数(函数作用域 & 局部作用域)。这给内部函数的变量提供了一定的安全性。此外，由于内部函数可以访问外部函数的作用域，因此当内部函数生存周期大于外部函数时，外部函数中定义的变量和函数的生存周期比内部函数执行时间长。当内部函数以某一种方式被任何一个外部函数作用域访问时，一个闭包就产生了；
+
+- **JS 每次执行一个函数**，都会创建一个新的**作用域对象**(scope object)，用来保存在该函数中创建的局部变量；通常在函数返回时，垃圾回收器会在这时回收这个作用域对象；如果这个函数返回的函数或对象方法却保留一个指向这个作用域对象的引用，因此这个作用域对象不会被回收；
+
+```javascript
+function outside(x){
+  var privateVar;     // 此处可以定义私有数据
+  function inside(y){
+   	return x+y;
+	}
+	return inside;
+}
+var fn_inside = outside(3); // fn_inside的功能是将实参加3
+var result = fn_inside(2);  // 5
+var result2 = outside(3)(2);// 5
+```
+
+- inside 被 return 后，传入 outside 的实参(当前是3)是如何保存的( outide 的形参 x 与在该函数内部定义的 privateVar 一样)。一个闭包必须保存它可见作用域中所有的参数、变量，因为每次调用 outside 传入的参数可能不同，每次调用 outside (外部函数 )实际上都重新创建了一遍这个闭包(**本质是内部函数被重新定义，关联了新的作用域链**)。只有当返回的inside 没有被引用时，内存才会被释放。上式的作用域链为：inside--->outside--->全局；
+
+**注：**不能在内嵌函数中(特别是形参)定义与外部函数同名的变量，否则将无法访问定义在外部函数中的变量；参考：函数 MDN
 
 - demo
 
-  ```js
-  // 情况1
-  function fn(){
-      var n = 0;
-      function add(){
-          n++;
-          console.log(n);
-      }
-      return {
-          n: n,
-          add: add
-      }
+```js
+// 情况1
+function fn(){
+  var n = 0;
+  function add(){
+    n++;
+    console.log(n);
   }
-  var r1 = fn();	var r2 = fn();	
-  r1.add();	r1.add();
-  console.log(r1.n);
-  r2.add();
-  // 输出：1 2 0 1, 第三个为什么不是 2
-  
-  /* 情况2：如果 r1.n 是引用类型, 此时输出的值与前一个值相同 */
-  function fn(){
-      let obj = {};
-      obj.n = 0;
-      function add(){
-          obj.n++;
-          console.log(obj.n);
-      }
-      return {
-          n: obj,  // 不能用 n: obj.n, 必须是引用类型, 
-          add: add // 因为函数返回是按值传递(复制), 如果返回的是基本数据类型, 
-      }
+  return {
+    n: n,
+    add: add
   }
-  var r1 = fn();	var r2 = fn();	
-  r1.add();	r1.add();
-  console.log(r1.obj.n);
-  r2.add();
-  // 输出 1 2 2 1
-  // 答: 这种情况与闭包无关, 是因为return 返回的是对象的引用(与赋值一样), 
-  // 所以当返回的是基本数据类型时, 返回的这个值与闭包中的值已经没有关联了;
-  
-  // 情况3
-  function fn(){
-    var n = 0;
-    setTimeout( () => ++n );
-    function add(){
-        return n;
-    }
-    return {n: n, add: add  }
+}
+var r1 = fn();	var r2 = fn();	
+r1.add();	r1.add();
+console.log(r1.n);
+r2.add();
+// 输出：1 2 0 1, 第三个为什么不是 2
+
+/* 情况2：如果 r1.n 是引用类型, 此时输出的值与前一个值相同 */
+function fn(){
+  let obj = {};
+  obj.n = 0;
+  function add(){
+    obj.n++;
+    console.log(obj.n);
   }
-  var r1 = fn();
-  setTimeout(()=>{
-    console.log('1s 后 r1.n: ' + r1.n);    // 输出 0
-    console.log('1s 后 闭包: ', r1.add());  // 输出 1
-  }, 1000);
-  ```
-  
-  - 定义一个函数时，会创建一个**作用域链**，包含了该函数可以访问的作用域对象(VO变量对象)， 作用域链以数组的形式赋值给该函数的 [[Scopes]] 属性，作用域链中至少包含一个全局作用域对象；例如当执行 fn() 时，会创建 add 函数，同时创建包含两个作用域对象的作用域链，([[Scopes]] 数组有两个元素，Scopes[0] 代表的是外层函数 fn 的作用域对象，该对象只有 obj 一个属性；Scopes[1] 代表全局作用域对象)；
-  - 调用函数 add 时，会为函数创建一个执行上下文，然后**复制** add 函数的 Scopes 属性值，构建当前执行环境的作用域链，再将当前 add 函数的作用域对象加入到所构建的作用域链的前端，组成 add 函数所能访问的全部作用域对象。 
-  
-  参考：JS 高阶程序设计 P179、P181
+  return {
+    n: obj,  // 不能用 n: obj.n, 必须是引用类型, 
+    add: add // 因为函数返回是按值传递(复制), 如果返回的是基本数据类型, 
+  }
+}
+var r1 = fn();	var r2 = fn();	
+r1.add();	r1.add();
+console.log(r1.obj.n);
+r2.add();
+// 输出 1 2 2 1
+// 答: 这种情况与闭包无关, 是因为return 返回的是对象的引用(与赋值一样), 
+// 所以当返回的是基本数据类型时, 返回的这个值与闭包中的值已经没有关联了;
+
+// 情况3
+function fn(){
+  var n = 0;
+  setTimeout( () => ++n );
+  function add(){
+    return n;
+  }
+  return {n: n, add: add  }
+}
+var r1 = fn();
+setTimeout(()=>{
+  console.log('1s 后 r1.n: ' + r1.n);    // 输出 0
+  console.log('1s 后 闭包: ', r1.add());  // 输出 1
+}, 1000);
+```
+
+- 定义一个函数时，会创建一个**作用域链**，包含了该函数可以访问的作用域对象(VO变量对象)， 作用域链以数组的形式赋值给该函数的 [[Scopes]] 属性，作用域链中至少包含一个全局作用域对象；例如当执行 fn() 时，会创建 add 函数，同时创建包含两个作用域对象的作用域链，([[Scopes]] 数组有两个元素，Scopes[0] 代表的是外层函数 fn 的作用域对象，该对象只有 obj 一个属性；Scopes[1] 代表全局作用域对象)；
+
+- 调用函数 add 时，会为函数创建一个执行上下文，然后**复制** add 函数的 Scopes 属性值，构建当前执行环境的作用域链，再将当前 add 函数的作用域对象加入到所构建的作用域链的前端，组成 add 函数所能访问的全部作用域对象。 
+
+参考：JS 高阶程序设计 P179、P181
 
 # 函数-函数式编程
 
@@ -613,143 +673,153 @@ Q：arguments 与声明的形参是否同步
 
 ## 柯里化
 
-> 作用：将一个函数拆分为多个函数，将多参形式转为单参形式，预先设置函数的参数；
->
-> 形式：函数的封装，一个函数返回另一个函数；
+**作用**：将一个函数拆分为多个函数，将多参形式转为单参形式，预先设置函数的参数；
+**形式**：函数的封装，一个函数返回另一个函数；
 
-- 判断数据类型
+Thunk 函数
 
-  ```js
-  const checkType = type => {
-    return data => Object.prototype.toString.call(data) === `[object ${type}]`;
-  }
-  let types = ['Number', 'String', 'Boolean'];
-  let utils = {};
-  types.forEach( type => utils[`is${type}`]=checkType(type) );
-  
-  // 使用
-  utils.isNumber(12);
-  ```
+```js
+var Thunk = function(fn) {
+  return function (...args) {
+    return function (callback) {
+      return fn.call(this, ...args, callback);
+    }
+  };
+};
+```
+
+
 
 ## 节流 & 防抖
 
-- 对计算复杂度较高的函数，限制其在一定时间内的执行次数，如1秒内调用多次，但只执行一次；比如 `onresize` 事件。
+对计算复杂度较高的函数，限制其在一定时间内的执行次数，如1秒内调用多次，但只执行一次；比如 `onresize` 事件。
 
-  ```js
-  window.onresize = throttle(handleResize, 1000);
-  function throttle(fn, time) {
-    let timer;
-    return (...args) => {
-      timer && clearTimeout(timer);
-      timer = setTimeout(() => fn(...args), time);
-    }
+```js
+window.onresize = throttle(handleResize, 1000);
+function throttle(fn, time) {
+  let timer;
+  return (...args) => {
+    timer && clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), time);
   }
-  function handleResize(e) {
-    print(e.currentTarget.innerWidth);
-  }
-  
-  
-  // 防抖
-  function debounce (callFn, interval){
-    let timer = null;
-    return function(){
+}
+function handleResize(e) {
+  print(e.currentTarget.innerWidth);
+}
+
+
+// 防抖
+function debounce (callFn, interval){
+  let timer = null;
+  return function(){
+    clearTimeout(timer);
+    timer = setTimeout(()=>{
       clearTimeout(timer);
+      callFn.apply(this, arguments);
+    }, interval);
+  }
+}
+
+// 节流:  降低执行的频率
+function throttle(callFn, interval){
+  let timer = null;
+  return function(){
+    if(!timer){
       timer = setTimeout(()=>{
         clearTimeout(timer);
+        timer = null;
         callFn.apply(this, arguments);
       }, interval);
     }
   }
-  
-  // 节流:  降低执行的频率
-  function throttle(callFn, interval){
-    let timer = null;
-    return function(){
-      if(!timer){
-        timer = setTimeout(()=>{
-          clearTimeout(timer);
-          timer = null;
-          callFn.apply(this, arguments);
-        }, interval);
-      }
+}
+
+// 函数调用 N 次后才真正执行一次
+function throttleTimer(callFn, N){
+  let count = 0;
+  return function(...args){
+    if(count++ === N){
+      callFn.apply(this, args);
+      count = 0;
     }
   }
-  
-  // 函数调用 N 次后才真正执行一次
-  function throttleTimer(callFn, N){
-    let count = 0;
-    return function(...args){
-  		if(count++ === N){
-  			callFn.apply(this, args);
-        count = 0;
-      }
-    }
-  }
-  ```
+}
+```
 
 ## 组合 compose
 
-
-
 ## 偏函数
 
-
-
 ## 函数记忆
-
-
 
 # 事件
 
 ## 事件流（事件传播）
-- 事件流：事件冒泡 & 事件捕获，用来描述从页面中接收事件的顺序；
 
-  - IE 的事件流是事件冒泡机制，即事件是由最具体的元素(触发事件的那个元素)接收事件，然后沿 DOM 树逐级向上传播直到 document 对象，在每一级节点上都会发生该事件；
-  - Netscape 是事件捕获机制，
-  - 事件流即执行事件处理程序有三个阶段：事件捕获、处于目标阶段( event.target )、事件冒泡阶段；
+> 事件流
 
-- 注册事件监听器的方法有3种：
+事件冒泡 & 事件捕获，用来描述从页面中接收事件的顺序。
 
-  1. 内联标签属性：`<input type="button" onclick="需要执行的JS代码 alert(event.type, 23)">`，监听器函数中的 this 执行全局对象 window；
+- IE 的事件流是事件冒泡机制，即事件是由最具体的元素(触发事件的那个元素)接收事件，然后沿 DOM 树逐级向上传播直到 document 对象，在每一级节点上都会发生该事件；
+- Netscape 是事件捕获机制，
+- 事件流即执行事件处理程序有三个阶段：事件捕获、处于目标阶段( event.target )、事件冒泡阶段；
 
-  2. DOM 0 级事件处理程序：
+> 事件处理程序
 
-     ```js
-     btn = document.getElementById(btn'');
-     btn.onclick = function (event){
-         // 需要执行的代码
-         // this 指向当前元素, this === event.target
-         // 返回false会阻止事件的默认行为
-         // 一类事件只能有一个事件监听器，多个监听器以最后一个注册的有效； 
-     }
-     ```
-     
-  3. DOM2 级事件处理程序：
-  
-     ```js
-     btn = document.getElementById(btn'');
-     btn.addEventListener('click', function(event){
-         // this 指向当前元素, this === event.target
-     });
-     ```
-  
-     一类事件可以注册多个事件监听器，按注册的顺序调用执行；
-  
-     三种方法的事件处理程序函数中的 this 都指向当前元素(`this === event.currentTarget`)，参考《JS高级程序设计-P356》；
-  
-     当某种事件(如 click )通过三种方法注册了多个事件监听器时，他们的调用顺序为：
-  
-     - 标签属性注册的事件监听器最先执行；
-     - DOM0 优先级高于 DOM2级的事件处理程序；
-  - 通过 addEventListener注册的完全相同的事件监听器按注册的顺序执行；
-  - `addEventListener(type, listener, options)`  options 选项
-    - passive: 不会阻止默认事件，https://zh.javascript.info/default-browser-action#chu-li-cheng-xu-xuan-xiang-passive
-  
-- 移除元素上的所有监听器
+描述：又称事件监听器
+注册事件监听器的方法有3种：
 
-  - 1): `$0.parentNode.replaceChild($0.cloneNode(true), $0)`
-  - 2): `ele.outHtml = element.outHtml` (元素多时慢)
+1. 内联标签属性，监听器函数中的 this 执行全局对象 window；
+```html
+<input type="button" onclick="需要执行的JS代码 alert(event.type, 23)">
+```
+
+2. DOM 0 级事件处理程序：
+
+事件处理程序在事件冒泡阶段执行
+```javascript
+btn = document.getElementById(btn'');
+btn.onclick = function (event){
+  // 需要执行的代码
+  // this 指向当前元素, this === event.target
+  // 返回false会阻止事件的默认行为
+  // 一类事件只能有一个事件监听器，多个监听器以最后一个注册的有效； 
+}
+```
+
+3. DOM2 级事件处理程序：
+
+```javascript
+btn = document.getElementById(btn'');
+btn.addEventListener('click', function(event){
+  // this 指向当前元素, this === event.target
+});
+```
+
+一类事件可以注册多个事件监听器，按注册的顺序调用执行。
+
+<b style="color:red">event.target</b> 指向用户交互（点击）的那个最具体的元素（DOM树中层级最深的元素，事件起源的那个元素），<b style="color:red">event.currentTarget</b> 指向事件处理程序绑定的那个元素。
+
+三种方法的事件处理程序函数中的 <b style="color:red">this</b> 都指向绑定事件监听器的那个元素(`this === event.currentTarget`)，参考《JS高级程序设计-P356》。事件处理程序是在其依附的元素的作用域中运行。
+
+当某种事件(如 click )通过三种方法注册了多个事件监听器时，他们的调用顺序为：
+
+- 标签属性注册的事件监听器最先执行；
+- DOM0 优先级高于 DOM2级的事件处理程序；
+
+- 通过 addEventListener注册的完全相同的事件监听器按注册的顺序执行；
+- `addEventListener(type, listener, options)`  options 选项
+  passive: 不会阻止默认事件，https://zh.javascript.info/default-browser-action#chu-li-cheng-xu-xuan-xiang-passive
   
+> 清除事件监听器
+
+通过 HTML 属性和 DOM0 级方式添加的事件监听器可以使用 `element.onclick = null;` 清除；
+通过 `addEventListener` 添加的事件监听器使用 `removeEventListener` 清除；
+
+移除元素上的所有监听器
+1. `$0.parentNode.replaceChild($0.cloneNode(true), $0)`
+2. `ele.outHtml = element.outHtml` (元素多时慢)
+
 
 ## 事件捕获与事件冒泡
 
@@ -757,25 +827,30 @@ Q：arguments 与声明的形参是否同步
 
 <img src="assets/eventflow.svg" style="margin:0; width:75%; height:450px">
 
-- 当某类事件发生在一个元素上，现代浏览器运行两种方式：捕获和冒泡；
-  - 捕获以 `<html>` 元素沿 DOM 树到该元素为路径，从 `<html>` 检测该路径上的元素是否注册了某类事件处理程序，若是，则运行该程序，然后继续检测路径上的下一个元素；
-  - 冒泡：与捕获的不同之处在于，沿与捕获相反的方向开始检测，即从该元素开始到 html 元素；
-  - 如今，默认所有事件处理程序都在**冒泡**阶段执行，若想在事件捕获阶段执行事件处理函数，可以用 addEventListener(, , true)，指定在该回调函数在事件捕获阶段执行。
-  - 实际的目标元素的监听器的执行阶段始终在第二阶段(处于目标)，DOM2 级事件规范明确要求捕获阶段不涉及事件目标；
-- 例子
-  - div--->p--->button 表示 DOM 树，div 是 p 的父级，三个元素都用 addEventListener() 注册了 click 事件监听器，默认第三个参数为 false ，默认情况下三个元素的监听器的执行顺序为 ：button(第2阶段执行)、p(第3阶段执行)、div(第3阶段执行)；
-  - 当第三个参数都设为 true 时，监听器的执行顺序为：div(第1阶段执行)、p(第1阶段执行)、button(第2阶段执行)；
-  - 当div 和 button 使用 false注册事件监听，p使用 true 注册，点击button后执行的顺序为：p(事件捕获阶段)、button(处于目标阶段)、div(事件冒泡阶段)
-- 小结：
-  1. 一个事件被触发后(如点击页面上的一个元素，触发click类型的事件，这个元素称作目标元素)；
-  2. 首先进行事件捕获，以根元素html元素为起点，沿DOM树直到目标元素，检查路径上的元素是否注册了同一类型的事件，并且指定了该事件处理程序在事件捕获阶段执行，若是，则执行事件处理程序；
-  3. 处于目标阶段，执行目标元素的事件理程序；
-  4. 最后是事件冒泡阶段，以目标元素为起点，直到根元素，若路径上的元素注册了相同类型的事件处理程序，并且指定了事件处理程序在事件冒泡阶段执行，则执行该事件处理程序；
-  5. 若同一元素同一事件类型，在事件捕获和事件冒泡阶段都指定了事件处理函数，则这两个事件处理函数都会执行，即使该元素是目标元素也是，若是目标元素，则第三个参数无效，都是在第二阶段执行，按注册的顺序执行；
-  6. event.stopPropagation(); 阻止捕获 & 冒泡阶段事件的传播，捕获阶段事件从根元素向目标元素传递，冒泡阶段事件从目标元素向根元素传递；
-  7. event.preventDefault(); 取消默认事件；event.stopPropagation() 和 event.preventDefault()也可以在另外两种注册事件处理器的方法中使用；
-  8. 内联事件处理程序 & `btn.onclick = handle` 都是在事件**冒泡**阶段执行回调函数；
-- 一句话：`addEventListener` 的第三个参数指定回调函数在事件的捕获或冒泡阶段执行；
+当某类事件发生在一个元素上，现代浏览器运行两种方式：捕获和冒泡；
+- 捕获以 `<html>` 元素沿 DOM 树到该元素为路径，从 `<html>` 检测该路径上的元素是否注册了某类事件处理程序，若是，则运行该程序，然后继续检测路径上的下一个元素；
+- 冒泡：与捕获的不同之处在于，沿与捕获相反的方向开始检测，即从该元素开始到 html 元素；
+- 如今，默认所有事件处理程序都在<b style="color:red">冒泡</b>阶段执行，若想在事件捕获阶段执行事件处理函数，可以用 `addEventListener(name, func, true)`，指定在该回调函数在事件捕获阶段执行。
+- 实际的目标元素的监听器的执行阶段始终在第二阶段(处于目标)，DOM2 级事件规范明确要求捕获阶段不涉及事件目标；
+
+**例子**
+
+- div--->p--->button 表示 DOM 树，div 是 p 的父级，三个元素都用 addEventListener() 注册了 click 事件监听器，默认第三个参数为 false ，默认情况下三个元素的监听器的执行顺序为 ：button(第2阶段执行)、p(第3阶段执行)、div(第3阶段执行)；
+- 当第三个参数都设为 true 时，监听器的执行顺序为：div(第1阶段执行)、p(第1阶段执行)、button(第2阶段执行)；
+- 当div 和 button 使用 false注册事件监听，p使用 true 注册，点击button后执行的顺序为：p(事件捕获阶段)、button(处于目标阶段)、div(事件冒泡阶段)
+
+**小结**
+
+1. 一个事件被触发后(如点击页面上的一个元素，触发click类型的事件，这个元素称作目标元素)；
+2. 首先进行事件捕获，以根元素html元素为起点，沿DOM树直到目标元素，检查路径上的元素是否注册了同一类型的事件，并且指定了该事件处理程序在事件捕获阶段执行，若是，则执行事件处理程序；
+3. 处于目标阶段，执行目标元素的事件理程序；
+4. 最后是事件冒泡阶段，以目标元素为起点，直到根元素，若路径上的元素注册了相同类型的事件处理程序，并且指定了事件处理程序在事件冒泡阶段执行，则执行该事件处理程序；
+5. 若同一元素同一事件类型，在事件捕获和事件冒泡阶段都指定了事件处理函数，则这两个事件处理函数都会执行，即使该元素是目标元素也是，若是目标元素，则第三个参数无效，都是在第二阶段执行，按注册的顺序执行；
+6. event.stopPropagation(); 阻止捕获 & 冒泡阶段事件的传播，捕获阶段事件从根元素向目标元素传递，冒泡阶段事件从目标元素向根元素传递；
+7. event.preventDefault(); 取消默认事件；event.stopPropagation() 和 event.preventDefault()也可以在另外两种注册事件处理器的方法中使用；
+8. 内联事件处理程序 & `btn.onclick = handle` 都是在事件**冒泡**阶段执行回调函数；
+
+一句话：`addEventListener` 的第三个参数指定回调函数在事件的捕获或冒泡阶段执行。
 
 ### 事件委托
 
@@ -783,163 +858,170 @@ Q：arguments 与声明的形参是否同步
 - event.preventDefault() 阻止默认事件；
   - Event.cancelable:  事件是否可以被取消，当 `cancelable` 为 `false` 时调用 `preventDefault` 无效。
 
+## [自定义事件](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events) 
 
-## 触发事件
+接口：postMessage  CustomEvent  initEvent
+
+> 触发事件
 
 如何手动触发事件：IE 中使用 fireEvent，标准浏览器中使用 dispatchEvent。
 
-> `EventTarget.dispatchEvent()`  
->
-> ```js
-> let event = new MouseEvent("click", {
->   bubbles: true,
->   cancelable: true,
-> });
-> ele.dispatch(event);
-> ```
->
-> `dispathcEvent` 派发的自定义事件只能用 `addEventListener` 监听，不能用 `on<event>` 
+接口：EventTarget.dispatchEvent()
+
+```javascript
+let event = new MouseEvent("click", {
+  bubbles: true,
+  cancelable: true,
+});
+ele.dispatch(event);
+```
+
+`dispathcEvent` 派发的自定义事件只能用 `addEventListener` 监听，不能用 `on<event>` 
 
 ## 嵌套事件的执行顺序
 
 通常事件的执行是异步的，在执行事件a时，发生了事件b，事件b会被添加到事件队列中；但是如果在一个事件是在另一个事件中发起时，该事件会立刻执行，然后恢复到之前的执行顺序
 
-```js
+```html
 <button id="menu">Menu (click me)</button>
 <script>
   menu.onclick = function() {
-    alert(1);
+    console.log(1);
     menu.dispatchEvent(new CustomEvent("menu-open", {
       bubbles: true
     }));
-    alert(2);
+    console.log(2);
   };
   // triggers between 1 and 2
-  document.addEventListener('menu-open', () => alert('nested'));
+  document.addEventListener('menu-open', () => console.log('nested'));
 </script>
 // 输出: 1 → nested → 2.
 ```
 
-
-
 [javascript-info-event](https://javascript.info/dispatch-events) 
 
+<span style="color:red">更新</span>：不是因为【嵌套】，而是因为事件是以编程的方式触发的。
 
-# 事件循环
+## 焦点管理
 
-任务队列  宏任务(`macrotask`)  微任务(`microtask`)
-
-任务队列中，在每一次事件循环中，`macrotask` 只会提取一个执行，而 `microtask `会一直提取，直到 `microsoft `队列为空为止。
-
-也就是说如果某个 `microtask` 任务被推入到执行中，那么当主线程任务执行完成后，会循环调用该队列任务中的下一个任务来执行，直到该任务队列到最后一个任务为止。而事件循环每次只会入栈一个 `macrotask`，主线程执行完成该任务后又会检查 `microtasks`队列并完成里面的所有任务后再执行 `macrotask` 的任务。
-
-macrotasks: setTimeout, setInterval, setImmediate, I/O, UI rendering;
-microtasks: process.nextTick, Promise, MutationObserver；
-
-```js
-setTimeout(function () {
-  console.debug("0");
-}, 0);
-
-let p = new Promise((resolve) => {
-  console.debug("1");
-  resolve();
-});
-p.then(() => console.debug("2")).finally(() => console.debug("3"));
-
-console.debug("4");
-// 1 4 2 3 0
+接口：
+```javascript
+document.hasFocus();
+document.activeElement;
+// focus  blur   focusin  focusout  事件
 ```
 
+focus 和 blur 事件不冒泡，但是可以在捕获阶段监听到它们。focusin 、focusout 和 focus、blur 等价，但它们冒泡。
+
+当焦点从元素A 移动到元素B 上时，依次触发下列事件：
+（1）focusout 在元素A 上触发
+（2）focusin 在元素B 上触发
+（3）blur 在元素A 上触发
+（4）focus 在元素B 上触发
+
+## 鼠标事件
+
+事件：click  dblcick  mousedown  mouseenter mouseleave mousemove mouseout mouseover contextmenu  wheel
+
+mouseenter 和 mouseleave 是一对，没有触发 mouseenter 就不会触发 mouseleave
+- mouseenter：光标从元素外部**首次**移动到元素范围内时触发，光标移动到后代元素上时不会在父元素上触发，不冒泡；
+- mouseleave：光标从元素上方移动到元素范围外时触发，光标移动到后代元素上不会触发，不冒泡；
+
+mouseover 和 mouseout 是一对，成对出现
+- mouseover：鼠标移动到元素或元素的子元素上时触发，会冒泡；
+- mouseout：光标位于一个元素A 上方，然后用户将光标移入另一个元素B 时触发，元素B 可能位于元素A 的外部，也可能是**元素A 的子元素**，会冒泡；
+
+**区别：**
+
+- 从父元素进入子元素，会在父元素上触发 mouseout，在子元素上触发 mouseover 和 mouseenter，并且 mouseover 会冒泡到父元素；
+  触发顺序：父元素mouseout、子元素mouseover、冒泡到父元素的mouseover、子元素mouseenter
+
+- 离开子元素回到父元素范围，会在子元素上触发 mouseout、mouseleave（mouseout 会冒泡到父元素），在父元素上触发 mouseover；
+  触发顺序：子元素mouseout、冒泡到父元素的mouseout、子元素mouseleave、父元素mouseover
+
+> 双击鼠标触发的事件顺序
+
+（1）mousedown
+（2）mouseup
+（3）click
+（4）mousedown
+（5）mouseup
+（6）click
+（7）dblclick
+
+> 鼠标位置
+
+在视口中的位置
+- event.clientY：相对于 viewport 左上角的垂直坐标
+
+在页面上的位置
+- event.pageY:  相对于页面左上角的垂直坐标
+
+```javascript
+pageX = clientX + document.documentElement.scrollLeft;
+```
+
+## 拖拽
+
+拖拽事件有：dragstart、dragend、drag、dragenter、dragleave、dragover、drop
+
+> 注意
+
+使用 `mousemove` 实现拖拽移动时，要阻止 `dragstart` 默认事件。
+
+> 三方库
+
+- [sortable](https://sortablejs.github.io/Sortable/) https://github.com/SortableJS/Sortable
+- [dragula](https://bevacqua.github.io/dragula/)
+
+> 参考
+
+[原生JS快速实现拖放实例效果与解析](https://mp.weixin.qq.com/s/4WLbV46MsDzlNWzzDep3Pw) 
+[HTML 拖放 API-| MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API) 
+[拖拽操作 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations) 
 
 
-**参考：**
+# 正则表达式
 
-- [JS 运行机制-事件循环-阮一峰](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
-- [这一次，彻底弄懂 JavaScript 执行机制](https://juejin.im/post/59e85eebf265da430d571f89)
-- [JavaScript 运行机制--Event Loop详解](https://juejin.im/post/5aab2d896fb9a028b86dc2fd)
-- [腾讯-从 setTimeout 谈事件循环](http://www.alloyteam.com/2015/10/turning-to-javascript-series-from-settimeout-said-the-event-loop-model/#prettyPhoto)
+## RegExp
 
-# Web Worker
+> RegExp 对象的属性
 
-> 浏览器中 JavaScript 引擎是单线程执行的。也就是说，在同一时间内，只能有一段代码被 JavaScript 引擎执行。如果同一时间还有其它代码需要执行的话，则这些代码需要等待 JavaScript 引擎执行完成当前的代码之后才有可能获得被执行的机会。正常情况下，作为页面加载过程中的重要一步，JavaScript 引擎会顺序执行页面上的所有 JavaScript 代码。当页面加载完成之后，JavaScript 引擎会进入空闲状态。用户在页面上的操作会触发一些事件，这些事件的处理方法会交给 JavaScript 引擎来执行。由于 JavaScript 引擎的单线程特性，一般会在内部维护一个待处理的事件队列。每次从事件队列中选出一个事件处理方法来执行。如果在执行过程中，有新的事件发生，则新事件的处理方法只会被加入到队列中等待执行。如果当前正在执行的事件处理方法非常耗时，则队列中的其它事件处理方法可能长时间无法得到执行，造成用户界面失去响应，严重影响用户的使用体验。
+- lastInd: 下一次检索的起始位置，RegExp.exec() & RegExp.test() 会用到；
+- source: 正则表达式的字符串形式；
+- global、ignoreCase、mutiline：Boolean 类型的值，表示是否有该修饰符；
 
+- RegExp.test('abc')：Boolean 值，是否匹配；
+- RegExp.exec('abc')：[完整匹配的子串, index: 0, input: 输入的字符串]，数组的第二项开始是括号捕获的字符串，如果有修饰符 g，则可以多次调用 exec()，每次调用是从 lastInd 开始搜索；
 
+## String 方法
 
-- 主线程**异步**创建 web worker，主线程代码不会阻塞在这里等待 worker 线程去加载、执行指定的脚本文件，而是会立即向下继续执行后面代码。
+- `str.indexOf(substr, pos)`、`str.lastIndexOf(substr, pos)`、`str.search(reg)` 返回第一个匹配的索引
+- String.search()，首次匹配的索引，未匹配则返回 -1；
+- String.match()
+  1. 没有 g 修饰时，返回的结果与 RegExp.exec()相同
+  2. 有 g 修饰时，返回数组，数组项包含全部匹配的子字符串；
+- String.replace()
+- String.split()
 
-- Web Worker 自身是由 webkit(浏览器内核) 多线程实现，但它并没有为 JavaScript 语言带来多线程编程特性，我们现在仍然不能在 JavaScript 代码中创建并管理一个线程，或者主动控制线程间的同步与锁等特性。
+> 创建正则表达式的两种方式: 字面量和构造函数的区别
 
-- 在我看来，Web Worker 是 worker 编程模型在浏览器端 JavaScript 语言中的应用。浏览器的运行时, 同其他 GUI 程序类似，核心逻辑像是下面这个无限循环: 
+- 字面量形式的表达式在脚本加载后编译，正则表达式是常量是用字面量更合适；
+
+- 构造函数形式的表达式在脚本运行时编译，构造函数用于创建动态的正则表达式；
+
+- 反斜杠(\\)在字符串中有特殊含义，表示其后的字符作为普通字符处理（the backslash is an escape in string literals）。`/a\*b/` 和 `RegExp("a\\*b")` 等价。
 
   ```js
-  while(true){  
-      // 1 更新数据和对象状态  
-      // 2 渲染可视化UI  
+  // 字符串的特殊字符前加入反斜杠
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
   }
   ```
+> [字符串表达式和字符串方法](https://zh.javascript.info/regexp-methods) 
 
-- 在 Web Worker 之前，JavaScript 执行引擎只能在一个单线程环境中完成这两项任务。而在其他典型 GUI 框架，如前文 Swing 库中，早已引入了 Swing Worker 来解决大量计算对 UI 渲染的阻塞问题。Web Worker 的引入，是借鉴了 worker 编程模型，给单线程的 JavaScript 带来了后台计算的能力。
+![image-20220926152722447](assets/JS基础/image-20220926152722447.png) 
 
-参考：
-
-- [腾讯全端 AlloyTeam-Web Worker](http://www.alloyteam.com/2015/11/deep-in-web-worker/#prettyPhoto)
-- [JS 工作线程实现方式-setTimeout & web worker](https://www.ibm.com/developerworks/cn/web/1105_chengfu_jsworker/index.html)
-  setTimeout & setInterval 执行过程；
-
-# Ajax
-
-**`XMLHttpRequest` 实例的属性**
-
-- readyState：xhr 的状态，0-4；
-  - 0：unsend 未初始化，未调用open；
-  - 1：opened，已建立服务器链接；
-  - 2：headers_receive，加载成功；
-  - 3：loading，交互，正在处理请求；
-  - 4：done，完成，请求已完成；
-- onreadystatechange：xhr的状态更新时触发该事件；
-- onloadstart、progress、onload：通信的进度事件；
-- status：HTTP 响应状态码；
-- statusText：HTTP 响应状态说明；
-- responseText：响应内容； 
-
-**使用**
-
-- 为了确保跨浏览器兼容，在 `open` 之前注册 `onreadystatechange` 事件监听器，
-
-- setRequestHeader必须在open方法之后，send()方法之前；且setRequestHeader可以调用多次，最终的值采用追加得到。
-
-  ```js
-  let xhr = getXHR();
-  xhr.onreadystatechange = function (){
-    if(xhr.readyState == 4){
-      if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
-         result = xhr.responseText;
-  		}
-    }
-  }
-  // 保证这些方法一定要是大写字母，否则其他一些浏览器（比如FireFox）可能无法处理这个请求
-  xhr.open('GET', url);
-  xhr.send(null);
-  
-  function getXHR(){
-    var xhr = null;
-    if(window.XMLHttpRequest) {// 兼容 IE7+, Firefox, Chrome, Opera, Safari
-      xhr = new XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-      try {
-        xhr = new ActiveXObject("Msxml2.XMLHTTP");// 即MSXML3
-      } catch (e) {
-        try {
-          xhr = new ActiveXObject("Microsoft.XMLHTTP"); // 兼容IE5、6
-        } catch (e) {
-          alert("您的浏览器暂不支持Ajax!");
-        }
-      }
-    }
-    return xhr;
-  }
-  ```
 
 # 各种方法实现
 
