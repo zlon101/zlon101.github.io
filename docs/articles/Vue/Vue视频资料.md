@@ -1,4 +1,4 @@
-### v-for中key的作用
+# v-for中key的作用
 
 大家要知道，不仅只是vue中，react中在执行列表渲染时也会要求给每个组件添加key这个属性
 
@@ -8,59 +8,37 @@
 
 所谓虚拟DOM的诞生，使我们可以不直接操作DOM元素，只操作数据便可以重新渲染页面。而隐藏在背后的原理便是其高效的Diff算法，它的核心是基于两个简单的假设：
 
-1. ### 两个相同的组件产生类似的DOM结构，不同的组件产生不同的DOM结构
-
-2. ### 同一个层级的一组节点，他们可以通过唯一的id进行区分
-
+1. 两个相同的组件产生类似的DOM结构，不同的组件产生不同的DOM结构
+2. 同一个层级的一组节点，他们可以通过唯一的id进行区分
 
 
-下面这张图是react的Diff示意图：
+当页面的数据发生变化时，Diff算法只会比较同一层级的节点
 
-![image-20180820211848710](/var/folders/7b/sz6pt5jd3y3b51q1ngm_8pph0000gn/T/abnerworks.Typora/image-20180820211848710.png)
-
-由此图我们可以看出：
-
-当页面的数据发生变化时，Diff算法只会比较同一层级的节点：
-
-### 如果节点类型不同，直接干掉前面的节点，再创建并插入新的节点，不会再比较这个节点以后的子节点了
-
-### 如果节点类型相同，则会重新设置该节点的属性，从而实现节点的更新
-
-当某一层有很多相同的界定啊时，也就是列表节点，Diff算法的更新过程默认情况下也是遵循以上原则
+- 如果节点类型不同，直接干掉前面的节点，再创建并插入新的节点，不会再比较这个节点以后的子节点了
+- 如果节点类型相同，则会重新设置该节点的属性，从而实现节点的更新
 
 比如下面这个情况
 
-![image-20180820212221368](/var/folders/7b/sz6pt5jd3y3b51q1ngm_8pph0000gn/T/abnerworks.Typora/image-20180820212221368.png)
-
 我们希望可以在B和C之间加一个F,Diff算法默认 执行起来是这样的：
 
-![image-20180820212311533](/var/folders/7b/sz6pt5jd3y3b51q1ngm_8pph0000gn/T/abnerworks.Typora/image-20180820212311533.png)
-
-既把C更新成F,D更新成C,E更新成D,最后再插入E,是不是很没有效率？
+所有我们**需要使用key来给每个节点做一个唯一的标识，Diff算法就可以正确的识别此节点，找到正确的位置区插入新的节点**
 
 
+所以一句话，**key的作用主要是为了高效的更新虚拟DOM**。另外vue的在使用相同标签名元素的过渡切换时，也会使用到key属性，其目的也是为了让vue可以区分他们，否则vue只会替换其内部属性而不会触发过渡效果。
 
-所有我们***需要使用key来给每个节点做一个唯一的标识，Diff算法就可以正确的识别此节点，找到正确的位置区插入新的节点***
+# 事件
 
-![image-20180820212507408](/var/folders/7b/sz6pt5jd3y3b51q1ngm_8pph0000gn/T/abnerworks.Typora/image-20180820212507408.png)
-
-所以一句话，***key的作用主要是为了高效的更新虚拟DOM***。另外vue的在使用相同标签名元素的过渡切换时，也会使用到key属性，其目的也是为了让vue可以区分他们，否则vue只会替换其内部属性而不会触发过渡效果。
-
-
-
-### $emit和$on进行组件之间的传值
-
-> 注意：$emit和$on的事件必须在一个公共的实例上，才能够触发
-
+> $emit和$on进行组件之间的传值
+注意：$emit和$on的事件必须在一个公共的实例上，才能够触发
 
 
 需求：
 
-​	1.有A，B，C三个组件，同时挂载到入口组件中
+1. 有A，B，C三个组件，同时挂载到入口组件中
 
-​	2.将A组件中的数据传递到C组件，再将B组件中的数据传递到C组件
+2. 将A组件中的数据传递到C组件，再将B组件中的数据传递到C组件
 
-```javascript
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -168,11 +146,11 @@
 
 ```
 
-### vue-router的导航守卫之在导航完成后获取数据
+# vue-router的导航守卫之在导航完成后获取数据
 
 需求：在导航完成之后加载数据。渲染DOM
 
-```javascript
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -286,15 +264,13 @@
 	</script>
 </body>
 </html>
-
-
 ```
 
-### vue-router的导航守卫之导航完成之前获取数据
+# vue-router的导航守卫之导航完成之前获取数据
 
 需求：在导航完成之前获取数据，之后再渲染DOM
 
-```javascript
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -423,13 +399,7 @@
 </html>
 ```
 
-
-
-
-
-
-
-### vue-cli2.x脚手架的使用
+# vue-cli2.x脚手架的使用
 
 参考链接：https://github.com/vuejs/vue-cli/tree/v2#vue-cli--
 
@@ -468,7 +438,7 @@ $ vue init webpack my-project
 
 ![image-20180823225043216](/var/folders/7b/sz6pt5jd3y3b51q1ngm_8pph0000gn/T/abnerworks.Typora/image-20180823225043216.png)
 
-### vue-cli3x脚手架的使用
+# vue-cli3x脚手架的使用
 
 vue-cli3x的官方文档：https://cli.vuejs.org/
 
@@ -534,23 +504,19 @@ module.exports = {
 
 ```
 
-
-
-### RESTful
-
+# RESTful
 
 
 ## RESTful 规范
 
-　　一种软件的架构风格，设计风格，而不是标准，为客户端和服务端的交互提供一组设计原则和约束条件。
+一种软件的架构风格，设计风格，而不是标准，为客户端和服务端的交互提供一组设计原则和约束条件。
 
 ## 一  面向资源编程
 
-　　每个URL代表一种资源，URL中尽量不要用动词，要用名词，往往名词跟数据库表格相对应。
+每个URL代表一种资源，URL中尽量不要用动词，要用名词，往往名词跟数据库表格相对应。
 
-​	一般来说，数据库中的表都是同种记录的集合，所有API中的名词也应该使用复数。
-
-​	举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。
+- 一般来说，数据库中的表都是同种记录的集合，所有API中的名词也应该使用复数。
+- 举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。
 
 ```javascript
 https://api.example.com/v1/zoos
@@ -559,114 +525,6 @@ https://api.example.com/v1/employees
 ```
 
 
+# HTTPS
 
-## 二  HTTP动词
-
-​	对于资源的具体操作类型，由HTTP动词表示
-
-​	常用的HTTP动词有下面五个(括号里对应的sql命令)
-
-```javascript
-GET（SELECT）：从服务器取出资源（一项或多项）。
-POST（CREATE）：在服务器新建一个资源。
-PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。
-PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。
-DELETE（DELETE）：从服务器删除资源。
-```
-
-　　
-
-## 三  在URL中体现版本
-
-## 　　https://www.bootcss.com/v1/
-
-　　https://v1.bootcss.com/
-
-## 四  在URL中体现是否是API
-
-　　https://www.bootcss.com/api/mycss
-
-　　https://api.bootcss.com/mycss
-
-## 五  在URL中的过滤条件
-
-​	如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。
-
-```javascript
-?limit=10：指定返回记录的数量
-?offset=10：指定返回记录的开始位置。
-?page=2&per_page=100：指定第几页，以及每页的记录数。
-?sortby=name&order=asc：指定返回结果按照哪个属性排序，以及排序顺序。
-?animal_type_id=1：指定筛选条件
-```
-
-
-
-## 六  尽量使用HTTPS
-
-　　https://www.bootcss.com/v1/mycss
-
-## 七  响应时设置状态码
-
-　　1**   信息，服务器收到请求，需要请求者继续执行操作
-
-　　2**  成功，操作被成功接收并处理
-
-　　3**  重定向，需要进一步的操作以完成请求
-
-　　4**  客户端错误，请求包含语法错误或无法完成请求
-
-　　5**  服务器错误，服务器在处理请求的过程中发生了错误
-
-## 八  返回值
-
-　　GET请求 返回查到所有或单条数据
-
-　　POST请求  返回新增的数据
-
-　　PUT请求  返回更新数据
-
-　　PATCH请求  局部更新  返回更新整条数据
-
-　　DELETE请求  返回值为空
-
-## 九  返回错误信息
-
-如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。
-
-```javascript
-{
-    error: "Invalid API key"
-}
-```
-
-
-
-## 十   Hypermedia API
-
-　　如果遇到需要跳转的情况 携带调转接口的URL
-
-　Hypermedi API的设计,比如github的API就是这种设计，访问api.github.com会得到一个所有可用的API的网址列表。
-
-```javascript
-{
-  "current_user_url": "https://api.github.com/user",
-  "authorizations_url": "https://api.github.com/authorizations",
-  // ...
-}
-```
-
-从上面可以看到，如果想获取当前用户的信息，应该去访问 api.github.com/user，就会得到下面的记过
-
-```javascript
-{
-message: "Requires authentication",
-documentation_url: "https://developer.github.com/v3/users/#get-the-authenticated-user"
-}
-```
-
-## 十一 其他
-
-（1）API的身份认证应该使用OAuth 2.0框架
-
-（2）服务器返回的数据格式，应该尽量使用JSON，避免使用XML
+https://www.bootcss.com/v1/mycss

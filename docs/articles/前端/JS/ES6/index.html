@@ -1,124 +1,103 @@
-<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.22.0"/><style data-href="/styles.f8ed7cdd0b842235ccf7.css" data-identity="gatsby-global-css">@-webkit-keyframes silde{0%{background-color:green}50%{background-color:blue}to{background-color:red}}@keyframes silde{0%{background-color:green}50%{background-color:blue}to{background-color:red}}.p-debug{margin:40px auto 0;outline:1px solid red;overflow:auto;padding:16px;position:relative;width:70vw}.p-debug .animation{background-color:red;height:200px;width:200px}.p-debug .animation.active{-webkit-animation:silde 10s infinite;animation:silde 10s infinite}.c-header{align-items:center;background-color:#fff;border-bottom:2px solid #eaecef;display:flex;height:48px;left:0;padding:8px 16px;position:fixed;top:0;width:100%;z-index:1000}.c-header>*{cursor:pointer;font-size:18px;font-weight:600;margin-right:18px}.c-header>:last-child{margin-left:auto;margin-right:0}.c-nav{min-height:calc(100vh - 48px);overflow:auto;padding:16px 16px 16px 0;position:-webkit-sticky;position:sticky;top:48px}.c-nav .file-item{display:block;margin:8px 0;white-space:nowrap}.c-nav .file-item.fold>.file-name:after{border-color:transparent transparent transparent #ccc;border-style:solid;border-width:6px 0 6px 9px;content:"";display:inline-block;height:0;margin-left:8px;transition:all .2s ease-out;width:0}.c-nav .file-item.fold.expand>.file-name:after{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.c-nav .file-item.fold.expand>.child-list{display:block}.c-nav .file-name{border-left:4px solid transparent;color:#2c3e50;cursor:pointer;display:block;font-size:16px;font-weight:700;margin-bottom:12px;padding-left:16px;position:relative}.c-nav .file-name.light{color:#3eaf7c;font-size:18px}.c-nav .child-list{display:none;margin:0;padding-left:16px;transition:all .2s ease-out}.c-layout-sidebar-content{display:flex;position:relative}.c-layout-sidebar-content .article-wrap{flex:1 1 auto}.c-layout-nav{border-right:2px solid #eaecef;max-width:300px;min-width:200px}
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.22.0"/><style data-href="/styles.91e060046c9149377d22.css" data-identity="gatsby-global-css">@-webkit-keyframes silde{0%{background-color:green}50%{background-color:blue}to{background-color:red}}@keyframes silde{0%{background-color:green}50%{background-color:blue}to{background-color:red}}.p-debug{margin:40px auto 0;outline:1px solid red;overflow:auto;padding:16px;position:relative;width:70vw}.p-debug .animation{background-color:red;height:200px;width:200px}.p-debug .animation.active{-webkit-animation:silde 10s infinite;animation:silde 10s infinite}.c-header{align-items:center;background-color:#fff;border-bottom:2px solid #eaecef;display:flex;height:48px;left:0;padding:8px 16px;position:fixed;top:0;width:100%;z-index:1000}.c-header>*{cursor:pointer;font-size:18px;font-weight:600;margin-right:18px}.c-header>:last-child{margin-left:auto;margin-right:0}.c-nav{max-height:calc(100vh - 48px);overflow:auto;padding:16px 16px 16px 0;position:-webkit-sticky;position:sticky;top:48px}.c-nav .file-item{display:block;margin:8px 0;white-space:nowrap}.c-nav .file-item.fold>.file-name:after{border-color:transparent transparent transparent #ccc;border-style:solid;border-width:6px 0 6px 9px;content:"";display:inline-block;height:0;margin-left:8px;transition:all .2s ease-out;width:0}.c-nav .file-item.fold.expand>.file-name:after{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.c-nav .file-item.fold.expand>.child-list{display:block}.c-nav .file-name{border-left:4px solid transparent;color:#2c3e50;cursor:pointer;display:block;font-size:16px;font-weight:700;margin-bottom:12px;padding-left:16px;position:relative}.c-nav .file-name.light{color:#3eaf7c;font-size:18px}.c-nav .child-list{display:none;margin:0;padding-left:16px;transition:all .2s ease-out}.c-layout-sidebar-content{display:flex;position:relative}.c-layout-sidebar-content .article-wrap{flex:1 1 auto}.c-layout-nav{border-right:2px solid #eaecef;max-width:300px;min-width:200px}
 
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box;margin:0;outline:0;padding:0}body,html{font-family:Source Sans Pro,Helvetica Neue,Arial,sans-serif;font-size:16px}p{line-height:1.5}a{color:#2c3e50;text-decoration:none}a:hover{text-decoration:underline}.page{padding-top:48px}.g-desc{color:#7f8fa4;font-size:14px}.icon-arrow{border-color:transparent transparent transparent blue;border-style:solid;border-width:44.5px 0 44.5px 118px;height:0;width:0}.icon-font{fill:currentColor;overflow:hidden;vertical-align:-.15em}.page-home-excerpt{background-color:#9cc;border:1px solid transparent;border-radius:6px;margin-bottom:24px;padding:16px}.page-home-excerpt-header{margin-bottom:4px}.page-home-excerpt-header-title{font-size:18px;font-weight:700}.page-home-excerpt-header-desc{color:#7f8fa4;font-size:14px;margin-left:8px}.page-home-excerpt-text{font-size:16px}.page-article-template .article-title-wrap{border-left:2px solid #eaecef;min-width:10%}.page-article-template .article-title-wrap .item{font-size:14px;font-weight:500}.page-article-template .article-title-wrap .item a{pointer-events:none}.page-article-template .article-title-list{padding:8px;position:-webkit-sticky;position:sticky;top:48px}.page-article-template .article-title-list .item{cursor:pointer;list-style:none;margin-bottom:12px}.page-article-template .article-title-list .item:hover{color:#3eaf7c;text-decoration:underline}.article-wrap{padding:0 8px 0 24px}.article-wrap h1{border-bottom:2px solid blue;font-size:16px;margin:36px 0}.article-wrap h2,.article-wrap h3,.article-wrap h4,.article-wrap h5,.article-wrap h6{border-bottom:2px solid blue;font-size:18px;margin:24px 0}.article-wrap div,.article-wrap p{margin:8px 0}.article-wrap a{color:#0969da}.article-wrap>:not(ul){margin-left:-14px}.article-wrap li{margin:8px 0}.article-wrap li ol,.article-wrap li ul{margin-left:12px}.article-wrap ol{margin-left:3px}.article-wrap blockquote{background-color:#fff5e3;border-left:.25em solid #ffb11b;color:#57606a;padding-left:24px}.article-wrap blockquote>p{margin-left:-16px}.article-wrap code{background-color:#fff5e3;border-radius:2px;color:#9b6e23;margin:0 2px;padding:3px 5px;white-space:nowrap}.article-wrap img{box-shadow:0 0 80px -30px rgba(0,0,0,.5)!important}.article-wrap table{border-collapse:collapse;border-spacing:0}.article-wrap table td,.article-wrap table th{background-color:#1f2329;border-bottom:1px solid rgba(220,223,230,.3);border-right:1px solid rgba(220,223,230,.3);color:#fff;padding:8px 16px;text-align:left}.article-title-wrap,.article-wrap{counter-reset:h1}.article-title-wrap h1,.article-wrap h1{counter-reset:h2}.article-title-wrap h1:before,.article-wrap h1:before{content:counter(h1) ". ";counter-increment:h1}.article-title-wrap h2,.article-wrap h2{counter-reset:h3}.article-title-wrap h2:before,.article-wrap h2:before{content:counter(h1) "." counter(h2) ". ";counter-increment:h2}.article-title-wrap h3,.article-wrap h3{counter-reset:h4}.article-title-wrap h3:before,.article-wrap h3:before{content:counter(h1) "." counter(h2) "." counter(h3) ". ";counter-increment:h3}.article-title-wrap h4,.article-wrap h4{counter-reset:h5}.article-title-wrap h4:before,.article-wrap h4:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) ". ";counter-increment:h4}.article-title-wrap h5,.article-wrap h5{counter-reset:h6}.article-title-wrap h5:before,.article-wrap h5:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";counter-increment:h5}.article-title-wrap h6:before,.article-wrap h6:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";counter-increment:h6}</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="c-layout-wrap  page page-article-template"><header class="c-header"><a href="/">首页</a><a href="/">博客</a><a href="https://github.com/zlon101/npm-lib" target="_blank" rel="noreferrer noopener">vue组件指令</a><a href="/debug/">Debug</a><a href="https://github.com/zlon101" target="_blank" rel="noreferrer noopener"><svg class="icon-font" width="24px" height="24px" aria-hidden="true"><use href="#icon-font-github1"></use></svg></a></header><div class="c-layout-sidebar-content "><div class="c-layout-nav "><div class="c-nav"><div class="file-item fold false"><div class="file-name" role="button">博客</div><ul class="child-list"><a class="file-name false" href="/articles/博客/Gatsby建站/">Gatsby建站</a><a class="file-name false" href="/articles/博客/指南/">指南</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">Vue</div><ul class="child-list"><a class="file-name false" href="/articles/Vue/PWA/">PWA</a><a class="file-name false" href="/articles/Vue/vue2源码/">vue2源码</a><a class="file-name false" href="/articles/Vue/Vue技术栈/">Vue技术栈</a><a class="file-name false" href="/articles/Vue/vue基础概念/">vue基础概念</a><a class="file-name false" href="/articles/Vue/Vue视频资料/">Vue视频资料</a><a class="file-name false" href="/articles/Vue/服务端渲染/">服务端渲染</a><a class="file-name false" href="/articles/Vue/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">React</div><ul class="child-list"><a class="file-name false" href="/articles/React/React基础/">React基础</a><a class="file-name false" href="/articles/React/React总结/">React总结</a><a class="file-name false" href="/articles/React/React技术栈/">React技术栈</a><a class="file-name false" href="/articles/React/TODO/">TODO</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端</div><ul class="child-list"><div class="file-item fold false"><div class="file-name" role="button">HTML-CSS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/HTML-CSS/CSS基础/">CSS基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/HTML基础/">HTML基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">JS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/JS/ES6/">ES6</a><a class="file-name false" href="/articles/前端/JS/JS基础/">JS基础</a><a class="file-name false" href="/articles/前端/JS/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端工程化</div><ul class="child-list"><a class="file-name false" href="/articles/前端/前端工程化/Babel/">Babel</a><a class="file-name false" href="/articles/前端/前端工程化/npm/">npm</a><a class="file-name false" href="/articles/前端/前端工程化/Gulp/">Gulp</a><a class="file-name false" href="/articles/前端/前端工程化/Webpack/">Webpack</a><a class="file-name false" href="/articles/前端/前端工程化/图标/">图标</a><a class="file-name false" href="/articles/前端/前端工程化/打包工具/">打包工具</a><a class="file-name false" href="/articles/前端/前端工程化/模块/">模块</a><a class="file-name false" href="/articles/前端/前端工程化/私有源/">私有源</a></ul></div><a class="file-name false" href="/articles/前端/webView/">webView</a><a class="file-name false" href="/articles/前端/前端调试/">前端调试</a><a class="file-name false" href="/articles/前端/前端资源整理/">前端资源整理</a><a class="file-name false" href="/articles/前端/浏览器/">浏览器</a><a class="file-name false" href="/articles/前端/总结/">总结</a><a class="file-name false" href="/articles/前端/规范/">规范</a><a class="file-name false" href="/articles/前端/设计模式/">设计模式</a><a class="file-name false" href="/articles/前端/练题/">练题</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">数据算法</div><ul class="child-list"><a class="file-name false" href="/articles/数据算法/数据结构基础/">数据结构基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">网络</div><ul class="child-list"><a class="file-name false" href="/articles/网络/HTTP/">HTTP</a><a class="file-name false" href="/articles/网络/代理/">代理</a><a class="file-name false" href="/articles/网络/服务端/">服务端</a><a class="file-name false" href="/articles/网络/网络基础/">网络基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">服务端</div><ul class="child-list"><a class="file-name false" href="/articles/服务端/基础/">基础</a></ul></div><a class="file-name false" href="/articles/Linux命令/">Linux命令</a><a class="file-name false" href="/articles/Git/">Git</a><a class="file-name false" href="/articles/TS基础/">TS基础</a><a class="file-name false" href="/articles/vue3/">vue3</a><a class="file-name false" href="/articles/WebRTC/">WebRTC</a><a class="file-name false" href="/articles/微前端/">微前端</a><a class="file-name false" href="/articles/爬虫/">爬虫</a></div></div><article class="article-wrap"><h1 id="t-0" ><a href="https://es6.ruanyifeng.com/#docs/class">ES6入门-阮一峰</a></h1>
-<h1 id="t-1" >const let</h1>
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box;margin:0;outline:0;padding:0}body,html{font-family:Source Sans Pro,Helvetica Neue,Arial,sans-serif;font-size:16px}p{line-height:1.5}a{color:#2c3e50;text-decoration:none}a:hover{text-decoration:underline}.page{padding-top:48px}.g-desc{color:#7f8fa4;font-size:14px}.icon-arrow{border-color:transparent transparent transparent blue;border-style:solid;border-width:44.5px 0 44.5px 118px;height:0;width:0}.icon-font{fill:currentColor;overflow:hidden;vertical-align:-.15em}.page-home-excerpt{background-color:#9cc;border:1px solid transparent;border-radius:6px;margin-bottom:24px;padding:16px}.page-home-excerpt-header{margin-bottom:4px}.page-home-excerpt-header-title{font-size:18px;font-weight:700}.page-home-excerpt-header-desc{color:#7f8fa4;font-size:14px;margin-left:8px}.page-home-excerpt-text{font-size:16px}.page-article-template .article-title-wrap{border-left:2px solid #eaecef;min-width:10%}.page-article-template .article-title-wrap .item{font-size:14px;font-weight:500}.page-article-template .article-title-wrap .item a{pointer-events:none}.page-article-template .article-title-list{max-height:calc(100vh - 48px);overflow:auto;padding:8px;position:-webkit-sticky;position:sticky;top:48px}.page-article-template .article-title-list .item{cursor:pointer;list-style:none;margin-bottom:12px}.page-article-template .article-title-list .item:hover{color:#3eaf7c;text-decoration:underline}.article-wrap{padding:0 8px 0 24px}.article-wrap h1{border-bottom:2px solid blue;font-size:16px;margin:36px 0}.article-wrap h2,.article-wrap h3,.article-wrap h4,.article-wrap h5,.article-wrap h6{border-bottom:2px solid blue;font-size:18px;margin:24px 0}.article-wrap div,.article-wrap p{margin:8px 0}.article-wrap a{color:#0969da}.article-wrap>:not(ul){margin-left:-14px}.article-wrap li{margin:8px 0}.article-wrap li ol,.article-wrap li ul{margin-left:12px}.article-wrap ol{margin-left:3px}.article-wrap blockquote{background-color:#fff5e3;border-left:.25em solid #ffb11b;color:#57606a;padding-left:24px}.article-wrap blockquote>p{margin-left:-16px}.article-wrap code{background-color:#fff5e3;border-radius:2px;color:#9b6e23;margin:0 2px;padding:3px 5px;white-space:nowrap}.article-wrap img{box-shadow:0 0 80px -30px rgba(0,0,0,.5)!important}.article-wrap table{border-collapse:collapse;border-spacing:0}.article-wrap table td,.article-wrap table th{background-color:#1f2329;border-bottom:1px solid rgba(220,223,230,.3);border-right:1px solid rgba(220,223,230,.3);color:#fff;padding:8px 16px;text-align:left}.article-title-wrap,.article-wrap{counter-reset:h1}.article-title-wrap h1,.article-wrap h1{counter-reset:h2}.article-title-wrap h1:before,.article-wrap h1:before{content:counter(h1) ". ";counter-increment:h1}.article-title-wrap h2,.article-wrap h2{counter-reset:h3}.article-title-wrap h2:before,.article-wrap h2:before{content:counter(h1) "." counter(h2) ". ";counter-increment:h2}.article-title-wrap h3,.article-wrap h3{counter-reset:h4}.article-title-wrap h3:before,.article-wrap h3:before{content:counter(h1) "." counter(h2) "." counter(h3) ". ";counter-increment:h3}.article-title-wrap h4,.article-wrap h4{counter-reset:h5}.article-title-wrap h4:before,.article-wrap h4:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) ". ";counter-increment:h4}.article-title-wrap h5,.article-wrap h5{counter-reset:h6}.article-title-wrap h5:before,.article-wrap h5:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";counter-increment:h5}.article-title-wrap h6:before,.article-wrap h6:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";counter-increment:h6}</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="c-layout-wrap  page page-article-template"><header class="c-header"><a href="/">首页</a><a href="/">博客</a><a href="https://zlon101.github.io/npm-lib/#/" target="_blank" rel="noreferrer noopener">vue组件库</a><a href="/debug/">Debug</a><a href="https://github.com/zlon101" target="_blank" rel="noreferrer noopener"><svg class="icon-font" width="24px" height="24px" aria-hidden="true"><use href="#icon-font-github1"></use></svg></a></header><div class="c-layout-sidebar-content "><div class="c-layout-nav "><div class="c-nav"><div class="file-item fold false"><div class="file-name" role="button">React</div><ul class="child-list"><a class="file-name false" href="/articles/React/React基础/">React基础</a><a class="file-name false" href="/articles/React/开发环境配置/">开发环境配置</a><a class="file-name false" href="/articles/React/React总结/">React总结</a><a class="file-name false" href="/articles/React/TODO/">TODO</a><a class="file-name false" href="/articles/React/React技术栈/">React技术栈</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">Vue</div><ul class="child-list"><a class="file-name false" href="/articles/Vue/PWA/">PWA</a><a class="file-name false" href="/articles/Vue/vue2源码/">vue2源码</a><a class="file-name false" href="/articles/Vue/vue基础概念/">vue基础概念</a><a class="file-name false" href="/articles/Vue/Vue技术栈/">Vue技术栈</a><a class="file-name false" href="/articles/Vue/Vue视频资料/">Vue视频资料</a><a class="file-name false" href="/articles/Vue/总结/">总结</a><a class="file-name false" href="/articles/Vue/服务端渲染/">服务端渲染</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端</div><ul class="child-list"><div class="file-item fold false"><div class="file-name" role="button">HTML-CSS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/HTML-CSS/CSS基础/">CSS基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/HTML基础/">HTML基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">JS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/JS/ES6/">ES6</a><a class="file-name false" href="/articles/前端/JS/总结/">总结</a><a class="file-name false" href="/articles/前端/JS/JS基础/">JS基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端工程化</div><ul class="child-list"><a class="file-name false" href="/articles/前端/前端工程化/Babel/">Babel</a><a class="file-name false" href="/articles/前端/前端工程化/Gulp/">Gulp</a><a class="file-name false" href="/articles/前端/前端工程化/npm/">npm</a><a class="file-name false" href="/articles/前端/前端工程化/Webpack/">Webpack</a><a class="file-name false" href="/articles/前端/前端工程化/图标/">图标</a><a class="file-name false" href="/articles/前端/前端工程化/打包工具/">打包工具</a><a class="file-name false" href="/articles/前端/前端工程化/模块/">模块</a><a class="file-name false" href="/articles/前端/前端工程化/私有源/">私有源</a></ul></div><a class="file-name false" href="/articles/前端/前端调试/">前端调试</a><a class="file-name false" href="/articles/前端/webView/">webView</a><a class="file-name false" href="/articles/前端/前端资源整理/">前端资源整理</a><a class="file-name false" href="/articles/前端/微前端/">微前端</a><a class="file-name false" href="/articles/前端/总结/">总结</a><a class="file-name false" href="/articles/前端/练题/">练题</a><a class="file-name false" href="/articles/前端/浏览器/">浏览器</a><a class="file-name false" href="/articles/前端/规范/">规范</a><a class="file-name false" href="/articles/前端/设计模式/">设计模式</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端工程化</div><ul class="child-list"><a class="file-name false" href="/articles/前端工程化/Babel/">Babel</a><a class="file-name false" href="/articles/前端工程化/Gulp/">Gulp</a><a class="file-name false" href="/articles/前端工程化/npm/">npm</a><a class="file-name false" href="/articles/前端工程化/Monorepo/">Monorepo</a><a class="file-name false" href="/articles/前端工程化/Webpack/">Webpack</a><a class="file-name false" href="/articles/前端工程化/打包工具/">打包工具</a><a class="file-name false" href="/articles/前端工程化/图标/">图标</a><a class="file-name false" href="/articles/前端工程化/模块/">模块</a><a class="file-name false" href="/articles/前端工程化/私有源/">私有源</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">博客</div><ul class="child-list"><a class="file-name false" href="/articles/博客/Gatsby建站/">Gatsby建站</a><a class="file-name false" href="/articles/博客/指南/">指南</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">数据算法</div><ul class="child-list"><a class="file-name false" href="/articles/数据算法/数据结构基础/">数据结构基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">服务端</div><ul class="child-list"><a class="file-name false" href="/articles/服务端/基础/">基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">网络</div><ul class="child-list"><a class="file-name false" href="/articles/网络/HTTP/">HTTP</a><a class="file-name false" href="/articles/网络/代理/">代理</a><a class="file-name false" href="/articles/网络/数据安全/">数据安全</a><a class="file-name false" href="/articles/网络/服务端/">服务端</a><a class="file-name false" href="/articles/网络/爬虫/">爬虫</a><a class="file-name false" href="/articles/网络/网络基础/">网络基础</a></ul></div><a class="file-name false" href="/articles/Git/">Git</a><a class="file-name false" href="/articles/Linux命令/">Linux命令</a><a class="file-name false" href="/articles/TS基础/">TS基础</a><a class="file-name false" href="/articles/vue3/">vue3</a><a class="file-name false" href="/articles/小程序/">小程序</a><a class="file-name false" href="/articles/微前端/">微前端</a><a class="file-name false" href="/articles/爬虫/">爬虫</a><a class="file-name false" href="/articles/跨平台开发/">跨平台开发</a></div></div><article class="article-wrap"><blockquote>
+<p><a href="https://es6.ruanyifeng.com/#docs/class">ES6入门-阮一峰</a></p>
+</blockquote>
+<h1 id="t-0" >变量声明</h1>
+<blockquote>
+<p>var 特点</p>
+</blockquote>
+<p>声明函数作用域或全局作用域变量</p>
+<p>可以重复声明</p>
+<p>存在声明提升</p>
+<blockquote>
+<p><a href="https://github.com/febobo/web-interview/issues/34">const let 特点</a></p>
+</blockquote>
 <ol>
+<li>const 和 let 都不存在变量提升，都存在暂时性死区</li>
+</ol>
+<p><strong>暂时性死区</strong>：let 和 const 声明的变量从进入块级作用域就绑定了，不能在 let 或 const 声明语句之前使用 var 或者 没有 var 声明及使用该变量。因此在 let 和 const 声明语句之前(死区)不能以任何形式出现该变量，并且 typeof 也不是一定安全的操作(在没有 let 和 const 之前，typeof 一定不会产生错误)。</p>
+<p>总之，暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。</p>
+<ol start="2">
 <li>
-<p>const 和 let 都不存在变量提升，都存在暂时性死区；</p>
-<ul>
-<li>暂时性死区：在块级作用域中被 let 和 const 声明的变量从进入块级作用域就绑定了，不能在 let 或 const 声明语句之前使用 var 或者 没有 var 声明及使用该变量；因此在 let 和 const 声明语句之前(死区)不能以任何形式出现该变量，并且 typeof 也不是一定安全的操作(在没有 let 和 const 之前，typeof 一定不会产生错误)。</li>
-<li>总之，暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。</li>
-</ul>
-</li>
-<li>
-<p>不能重复声明；</p>
+<p>不能重复声明</p>
 </li>
 <li>
 <p>var 声明的全局变量作为顶层对象( window\global )的属性，let 和 const 声明的变量不会；</p>
 </li>
 <li>
 <p>块级作用域中的函数声明</p>
-<ul>
-<li>
-<p>ES5 规定函数声明只能在全局或函数作用域中，不能在块级作用域(ES5 没有块级作用域)；但浏览器没有遵守该规定，ES5 环境下，在块级作用域中声明的函数存在声明提升，等同于函数表达式(声明提升，值为 undefined)；</p>
 </li>
-<li>
+</ol>
+<p>ES5 规定函数声明只能在全局或函数作用域中，不能在块级作用域(ES5 没有块级作用域)，但浏览器没有遵守该规定，ES5 环境下，在块级作用域中声明的函数存在声明提升，等同于函数表达式(声明提升，值为 undefined)；</p>
 <p>ES6 引入块级作用域，允许在块级作用域中声明函数；</p>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">// ES6严格模式
 &#39;use strict&#39;;
 if (true) {
-  function f() {}
+ function f() {}
 }
 // 不报错</code>
         </deckgo-highlight-code>
 <p>ES6 规定块级作用域中的函数声明语句的行为类似于 let，在块级作用域之外不可引用；</p>
-</li>
-<li>
 <p>为了减少兼容性问题，浏览器可以不遵守 ES6 的规定，在 ES6 环境下的浏览器中的行为方式：</p>
-<ul>
-<li>可以在块级作用域中声明函数，但会像对待 var 语句一样(而不是 let)，将函数的声明提升至函数作用域的顶部(只是声明，尚未赋值)；在块级作用域中该函数都是可用的。</li>
-</ul>
+<p>可以在块级作用域中声明函数，但会像对待 var 语句一样(而不是 let)，将函数的声明提升至函数作用域的顶部(只是声明，尚未赋值)；在块级作用域中该函数都是可用的。</p>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">// ES6的浏览器环境, 此处为全局作用域
 function f() { 
-  console.log(&#39;I am outside!&#39;);
+ console.log(&#39;I am outside!&#39;);
 }
 (function () {
-  // 此处为函数作用域
-  // var f = undefined; 该语句是块级作用域中的函数声明部分提升至此;
-  typeof f;           // undefined
-  if (true) {
-    // 此处为块级作用域, 在该作用域中函数是可以访问的;
-    f();             // 输出 xx indide
-    function f() { console.log(&#39;I am inside!&#39;); }
-  }
-  f();               // 输出 inside
+ // 此处为函数作用域
+ // var f = undefined; 该语句是块级作用域中的函数声明部分提升至此;
+ typeof f;           // undefined
+ if (true) {
+   // 此处为块级作用域, 在该作用域中函数是可以访问的;
+   f();             // 输出 xx indide
+   function f() { console.log(&#39;I am inside!&#39;); }
+ }
+ f();               // 输出 inside
 }());</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>总结：</p>
-<ol>
+<p><strong>总结：</strong></p>
+<ul>
 <li>避免在块级作用域中声明函数，如果要声明也建议使用函数表达式而不是函数声明语句；</li>
 <li>ES6 的块级作用域允许声明函数的规则，只在使用大括号的情况下成立，如果没有使用大括号，就会报错。</li>
-</ol>
-</li>
 </ul>
-</li>
-<li>
-<p>const 声明复杂数据类型</p>
-<ul>
-<li>const 声明复合类型的变量，变量名指向数据的地址，因此 const 只保证该地址不会改变，但地址中的数据可以被改变；</li>
-<li>使用 Object.freeze(obj) 冻结 obj 对象；</li>
-</ul>
-</li>
+<ol start="4">
+<li>const 声明复杂数据类型</li>
 </ol>
-<h1 id="t-2" >全局对象 &#x26; 顶层对象</h1>
-<ul>
-<li>
+<p>const 声明复合类型的变量，变量名指向数据的地址，因此 const 只保证该地址不会改变，但地址中的数据可以被改变；</p>
+<p>使用 Object.freeze(obj) 冻结 obj 对象；</p>
+<h1 id="t-1" >全局对象 &#x26; 顶层对象</h1>
+<blockquote>
 <p>获取全局对象的三种方式：window、global、self</p>
+</blockquote>
 <ol>
-<li>global 也只在 node 中才支持；</li>
+<li>global 只在 node 中才支持；</li>
 <li>window 只在浏览器环境中支持；</li>
 <li>self 在浏览器和 web worker 中支持；</li>
 </ol>
-</li>
-<li>
+<blockquote>
 <p>不同环境中 this 的指向：</p>
+</blockquote>
 <ol>
 <li>全局环境 this 指向全局对象，</li>
 <li>node 模块和 ES6 模块中，this 指向当前模块；</li>
 <li>函数中，指向调用对象或顶层对象、undefined(严格模式)；</li>
 </ol>
-</li>
-<li>
+<blockquote>
 <p>勉强能获取不同环境中的 全局对象</p>
+</blockquote>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
-          <code slot="code">// 方法1
-(typeof window !== &#39;undefined&#39;
-   ? window
-   : (typeof process === &#39;object&#39; &amp;&amp;
-      typeof require === &#39;function&#39; &amp;&amp;
-      typeof global === &#39;object&#39;)
-     ? global
-     : this);
-// 方法2
-var getGlobal = function () {
-  if (typeof self !== &#39;undefined&#39;) { return self; }
-  if (typeof window !== &#39;undefined&#39;) { return window; }
-  if (typeof global !== &#39;undefined&#39;) { return global; }
-  throw new Error(&#39;unable to locate global object&#39;);
-};</code>
+          <code slot="code">function getGlobal() {
+  return global || self;
+}</code>
         </deckgo-highlight-code>
+<p>在语言标准层面引入 global 作为顶层对象，即在所有环境中都存在 global 对象，垫片库<a href="https://github.com/ljharb/System.global"><code>system.global</code></a>模拟了该方法，可以在所有环境拿到 <code>global</code>。</p>
+<h1 id="t-2" >变量的解构赋值</h1>
 <ul>
-<li>在语言标准层面引入 global 作为顶层对象，即在所有环境中都存在 global 对象，垫片库<a href="https://github.com/ljharb/System.global"><code>system.global</code></a>模拟了该方法，可以在所有环境拿到 <code>global</code>。</li>
-</ul>
-</li>
-</ul>
-<h1 id="t-3" >变量的解构赋值</h1>
-<ul>
-<li>从复杂数据变量中提取部分数据(数组元素、对象属性值)赋值给新的变量；</li>
+<li>从引用类型变量中提取部分数据(数组元素、对象属性值)赋值给新的变量；</li>
 <li>变量：复杂数据类型的变量(数组、对象)，要求是可遍历的结构，具有 Iterator 接口；</li>
 <li>赋值遵守模式匹配；</li>
 </ul>
@@ -141,37 +120,39 @@ var obj = {
 };
 var { p: [x, { y }] } = obj;  // x: &quot;Hello&quot;, y: &quot;World&quot;</code>
         </deckgo-highlight-code>
-<p><strong>用途</strong>：</p>
+<blockquote>
+<p>应用</p>
+</blockquote>
 <ol>
-<li>
-<p>交换变量的值</p>
+<li>交换变量的值</li>
+</ol>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">[x, y] = [y, x];</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>函数返回多个值</p>
+<ol start="2">
+<li>函数返回多个值</li>
+</ol>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">function example() {
-  return [1, 2, 3];
+ return [1, 2, 3];
 }
 var [a, b, c] = example();</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>函数参数</p>
+<ol start="3">
+<li>函数参数</li>
+</ol>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">// 参数是一组无次序的值
 function f({x, y, z}) { ... }
 f({z: 3, y: 2, x: 1});
 
 function ({mapState, content}){
-    // ...
+   // ...
 }</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>函数默认参数</p>
+<ol start="4">
+<li>函数默认参数</li>
+</ol>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">jQuery.ajax = function (url, {
   async = true,
@@ -185,39 +166,33 @@ function ({mapState, content}){
   // ... do stuff
 };</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>导入模块的指定方法</p>
+<ol start="5">
+<li>导入模块的指定方法</li>
+</ol>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">const { SourceMapConsumer, SourceNode } = require(&quot;source-map&quot;);</code>
         </deckgo-highlight-code>
-</li>
-</ol>
-<h1 id="t-4" >扩展运算符</h1>
-<blockquote>
+<h1 id="t-3" >扩展运算符</h1>
 <p>任何定义了遍历器（Iterator）接口的对象（参阅 Iterator 一章），都可以用扩展运算符转为真正的数组；</p>
-</blockquote>
 <ul>
-<li>
-<p>demo
-数组合并</p>
+<li>数组合并</li>
+</ul>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">let arr1 = [1,2];
 let arr2 = [3,4];
 let arr3 = [...arr1, ...arr2];
 // arr3 = [1,2,3,4]</code>
         </deckgo-highlight-code>
-<p>和解构赋值同时使用</p>
+<ul>
+<li>和解构赋值同时使用</li>
+</ul>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">let arr = [1,2,3];
 let [first, ...rest] = arr;
 // first = 1; rest = [2,3]</code>
         </deckgo-highlight-code>
-</li>
-</ul>
-<h1 id="t-5" >字符串扩展</h1>
-<h1 id="t-6" >标签模板</h1>
-<p>模板字符串可以紧跟在一个函数名后面，该函数将被调用来处理这个模板字符串。这被称为“标签模板”功能（tagged template）。</p>
+<h1 id="t-4" >标签模板</h1>
+<p>模板字符串可以紧跟在一个函数名后面，该函数将被调用来处理这个模板字符串。这被称为【标签模板】功能（tagged template）。</p>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">alert`123`;  // 调用alert 处理后面的字符串; 弹出 123;
 
@@ -226,27 +201,33 @@ styled.dic`
 	margin: 0 auto;
 `;</code>
         </deckgo-highlight-code>
-<h1 id="t-7" >数组扩展</h1>
+<h1 id="t-5" >数组扩展</h1>
 <p><strong>类数组对象</strong>：本质特征就是要有 length 属性；</p>
 <ul>
-<li>
-<p>将类数组对象和可遍历对象转换为数组</p>
+<li>将类数组对象和可遍历对象转换为数组</li>
+</ul>
 <ol>
-<li>Array.from：可以转换类数组对象和可遍历对象；</li>
-<li><strong>扩展运算符</strong>：将数组转换为逗号分隔的列表，背后调用的是遍历器接口（<code>Symbol.iterator</code>），如果一个对象没有部署这个接口，就无法转换；<code>[...arguments]</code>，扩展运算符后面跟的一定是数组(或类数组)；</li>
-<li>像 <code>{length: 2}</code> 这个对象就只能使用 <code>Array.from</code> 转换；</li>
-</ol>
+<li>
+<p>Array.from：可以转换类数组对象和可遍历对象；</p>
 </li>
 <li>
-<p>得到初始化的数组</p>
+<p><strong>扩展运算符</strong>：将数组转换为逗号分隔的列表，背后调用的是遍历器接口（<code>Symbol.iterator</code>），如果一个对象没有部署这个接口，就无法转换；<code>[...arguments]</code>，扩展运算符后面跟的一定是数组(或类数组)；</p>
+</li>
+<li>
+<p>像 <code>{length: 2}</code> 这个对象就只能使用 <code>Array.from</code> 转换；</p>
+</li>
+</ol>
+<ul>
+<li>得到初始化的数组</li>
+</ul>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">Array.from({length: 5}, (v, i) =&gt; i);   // [0,1,2,3,4]
 Array.from({length: 3}, ele=&gt;0);        // [0,0,0]
 new Array(3).fill(0);  // // [0,0,0]</code>
         </deckgo-highlight-code>
-</li>
-</ul>
-<p><strong>数组扩展的内容：</strong></p>
+<blockquote>
+<p>数组扩展的内容</p>
+</blockquote>
 <ol>
 <li>Array.from</li>
 <li>Array.of</li>
@@ -257,10 +238,10 @@ new Array(3).fill(0);  // // [0,0,0]</code>
 <li>数组的空位</li>
 </ol>
 <p>参考：<a href="http://caibaojian.com/es6/array.html">数组扩展</a></p>
-<h1 id="t-8" >函数的扩展</h1>
+<h1 id="t-6" >函数的扩展</h1>
 <ol>
-<li>
-<p>参数的默认值</p>
+<li>参数的默认值</li>
+</ol>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">// 写法一
 function m1({x = 0, y = 0} = {}) {
@@ -275,53 +256,52 @@ function m2({x, y} = { x: 0, y: 0 }) {
 m1({x: 1});  // [1, 0]
 m2({x: 1});  // [1, undefined]</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>length 属性：默认参数之前的参数的个数(预期传入的参数的个数)</p>
+<ol start="2">
+<li>length 属性：默认参数之前的参数的个数(预期传入的参数的个数)</li>
+</ol>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">function fn(a, b=0, c){
     //...
 }
 // fn.length: 1</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>剩余参数：必须位于参数列表的最后</p>
+<ol start="3">
+<li>剩余参数：必须位于参数列表的最后</li>
+</ol>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">function fn(...args){
-    // args 是一个数组    
+  // args 是一个数组    
 }</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>箭头函数
-部署管道机制（pipeline）的例子，即前一个函数的输出是后一个函数的输入。</p>
+<ol start="4">
+<li>箭头函数</li>
+</ol>
+<p>部署管道机制（pipeline）的例子，即前一个函数的输出是后一个函数的输入。</p>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
-          <code slot="code">const pipeline = (...funcs) =&gt;
-    initVal =&gt; funcs.reduce((a, b) =&gt; b(a), initVal);
+          <code slot="code">const pipeline = (...funcs) =&gt; initVal =&gt; funcs.reduce((acc, cur) =&gt; cur(acc), initVal);
 
 const plus1 = a =&gt; a + 1;
 const mult2 = a =&gt; a * 2;
 const addThenMult = pipeline(plus1, mult2);
 
-console.log( addThenMult() );  // 12</code>
+console.log( addThenMult(2) ); // 6</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>函数绑定运算符(::)</p>
+<ol start="5">
+<li>函数绑定运算符(::)</li>
+</ol>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">foo::bar(...arguments);
 // 等同于
 bar.apply(foo, arguments);
 // 运算符左侧是指定的 this 对象, 右侧是函数</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>严格模式
-《ECMAScript 2016标准》规定只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。严格模式下也不能使用 arguments 和 callers</p>
-</li>
-<li>
-<p>尾调用优化</p>
+<ol start="6">
+<li>严格模式</li>
+</ol>
+<p>《ECMAScript 2016标准》规定只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。严格模式下也不能使用 arguments 和 callers</p>
+<ol start="7">
+<li>尾调用优化</li>
+</ol>
 <p>ES6 下的<strong>尾调用优化</strong>只在严格模式下才有效；</p>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">// 将调用函数的操作放到当前函数执行的最后一步
@@ -343,7 +323,7 @@ function fn(){
     // return undefined;
 }</code>
         </deckgo-highlight-code>
-<p>只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行 “尾调用优化”。下面的函数无法实现尾调用优化。</p>
+<p>只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行【尾调用优化】。下面的函数无法实现尾调用优化。</p>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">function addOne(a){
   var one = 1;
@@ -353,10 +333,8 @@ function fn(){
   return inner(a);
 }</code>
         </deckgo-highlight-code>
-<ul>
-<li>
-<p>尾递归优化示例
-尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。</p>
+<p><strong>尾递归优化示例</strong></p>
+<p>尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。</p>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">// 1. 阶乘
 function factorial(n) {
@@ -380,12 +358,8 @@ function Fibonacci2 (n , ac1 = 1 , ac2 = 1) {
   return Fibonacci2 (n - 1, ac2, ac1 + ac2);
 }</code>
         </deckgo-highlight-code>
-</li>
-</ul>
-<p>参考：<a href="http://caibaojian.com/es6/function.html">函数扩展</a></p>
-</li>
-</ol>
-<h1 id="t-9" >Class</h1>
+<p><a href="http://caibaojian.com/es6/function.html">函数扩展</a></p>
+<h1 id="t-7" >Class</h1>
 <blockquote>
 <p>例子</p>
 </blockquote>
@@ -393,7 +367,7 @@ function Fibonacci2 (n , ac1 = 1 , ac2 = 1) {
           <code slot="code">class Person{
   static staticProA = &#39;xxx&#39;;
   static staticMethodA() {
-    // this 指向 Person，而不是示例
+    // this 指向 Person，而不是实例
   }
   constructor(name, age){
     this.name = name;
@@ -456,6 +430,13 @@ class B extends A {
 </blockquote>
 <p>父类中的静态属性和静态方法可以被子类继承</p>
 <blockquote>
+<p>私有属性</p>
+</blockquote>
+<p>私有属性不能被继承</p>
+<p>私有属性名必须在类实例和类本身上是唯一标识</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields</a></p>
+<p><a href="https://zh.javascript.info/private-protected-properties-methods">https://zh.javascript.info/private-protected-properties-methods</a></p>
+<blockquote>
 <p>ES6 中Class 与 ES5 的区别</p>
 </blockquote>
 <ul>
@@ -463,10 +444,10 @@ class B extends A {
 <li>类内部默认开启严格模式；</li>
 <li>ES5 继承先创建子类实例，再调用父类构造函数，将属性和方法添加到子类实例上；ES6 是先创建父类实例，再通过子类的构造函数修改 this；</li>
 <li>Class 定义在原型上的方法是不可枚举的；</li>
-<li>Class 实现了子类的构造函数继承父类的构造函数；</li>
+<li>Class 实现了子类的构造函数继承父类的构造函数（继承静态属性和方法）</li>
 </ul>
-<h1 id="t-10" >Proxy &#x26; Reflect</h1>
-<p>Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种<strong>元编程</strong>，即对编程语言进行编程。**Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。**Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。</p>
+<h1 id="t-8" >Proxy</h1>
+<p>Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种<strong>元编程</strong>，即对编程语言进行编程。<strong>Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写</strong>。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。</p>
 <ol>
 <li>get(target, propKey, receiver)
 拦截对象属性的读取；</li>
@@ -477,10 +458,10 @@ class B extends A {
 <li>apply(target, object, args)
 <code>apply</code>方法拦截函数的调用、call和apply操作；</li>
 </ol>
-<p><strong>this 指向</strong>：</p>
-<ul>
-<li>使用 Proxy 代理的情况下，目标对象内部的 <code>this</code> 关键字会指向 Proxy 代理。</li>
-</ul>
+<blockquote>
+<p>this 指向</p>
+</blockquote>
+<p>使用 Proxy 代理的情况下，目标对象内部的 <code>this</code> 关键字会指向 Proxy 代理。</p>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">const target = {
   m: function () {
@@ -494,15 +475,8 @@ target.m() // false
 proxy.m()  // true</code>
         </deckgo-highlight-code>
 <blockquote>
-<p>参考:<a href="https://github.com/GoogleChrome/proxy-polyfill">proxy-polyfill</a></p>
+<p>使用 Proxy 实现观察者模式</p>
 </blockquote>
-<h1 id="t-11" >Reflect</h1>
-<blockquote>
-<p>使用 Reflect 来将操作转发给原始对象</p>
-</blockquote>
-<p><code>Reflect</code> 对象的方法与 <code>Proxy</code> 对象的方法一一对应，只要是 <code>Proxy</code> 对象的方法，就能在 <code>Reflect</code> 对象上找到对应的方法。这就让 <code>Proxy</code> 对象可以方便地调用对应的 <code>Reflect</code> 方法，完成默认行为，作为修改行为的基础。也就是说，不管<code>Proxy</code> 怎么修改默认行为，你总可以在 <code>Reflect</code> 上获取默认行为。</p>
-<p><strong>对于每个可被 <code>Proxy</code> 捕获的内部方法，在 <code>Reflect</code> 中都有一个对应的方法，其名称和参数与 <code>Proxy</code> 捕捉器相同。</strong></p>
-<h1 id="t-12" >使用 Proxy 实现观察者模式</h1>
 <p>观察者模式（Observer mode）指的是观察者(函数)自动观察被观察者(数据对象)，一旦对象有变化，函数就会自动执行。</p>
 <deckgo-highlight-code language="javascript" terminal="carbon" theme="blackboard"  >
           <code slot="code">const person = observable({
@@ -534,17 +508,26 @@ function set(target, key, value, receiver) {
   return result;
 }</code>
         </deckgo-highlight-code>
-<h1 id="t-13" >Iterator &#x26; 遍历器</h1>
-<p>遍历器生成函数接收一个可选的数据结构(如数组)，返回一个遍历器对象，该对象必须要有 <code>next</code> 方法，且 <code>next</code> 属性的值是一个函数，调用该函数会返回指定的数据结构中的下一个元素。for...of 根据遍历器对象依次访问元素。</p>
+<blockquote>
+<p><a href="https://github.com/GoogleChrome/proxy-polyfill">proxy-polyfill</a></p>
+</blockquote>
+<h1 id="t-9" >Reflect</h1>
+<blockquote>
+<p>使用 Reflect 来将操作转发给原始对象</p>
+</blockquote>
+<p><code>Reflect</code> 对象的方法与 <code>Proxy</code> 对象的方法一一对应，只要是 <code>Proxy</code> 对象的方法，就能在 <code>Reflect</code> 对象上找到对应的方法。这就让 <code>Proxy</code> 对象可以方便地调用对应的 <code>Reflect</code> 方法，完成默认行为，作为修改行为的基础。也就是说，不管<code>Proxy</code> 怎么修改默认行为，你总可以在 <code>Reflect</code> 上获取默认行为。</p>
+<p><strong>对于每个可被 <code>Proxy</code> 捕获的内部方法，在 <code>Reflect</code> 中都有一个对应的方法，其名称和参数与 <code>Proxy</code> 捕捉器相同。</strong></p>
+<h1 id="t-10" >Iterator &#x26; 遍历器</h1>
+<p>遍历器生成函数接收一个可选的数据结构(如数组)，返回一个遍历器对象，该对象必须要有 <code>next</code> 方法，调用该函数会返回指定的数据结构中的下一个元素。for...of 根据遍历器对象依次访问元素。</p>
 <ul>
 <li>
 <p><strong>可遍历数据</strong>：部署了 iterator 接口，原生的数组、部分类数组对象、Set、Map的 <code>Symbol.iterator</code> 属性就是遍历器生成函数，最简单的实现方式就是 generator 函数。</p>
 </li>
 <li>
-<p>for...of、扩展运算符、解构赋值；</p>
+<p>for...of、扩展运算符、解构赋值。</p>
 </li>
 </ul>
-<h1 id="t-14" >Promise</h1>
+<h1 id="t-11" >Promise</h1>
 <ul>
 <li>
 <p>Promise是异步编程的一种解决方案，比传统的解决方案—<strong>回调函数和事件</strong>更合理和更强大；</p>
@@ -557,6 +540,8 @@ function set(target, key, value, receiver) {
 </li>
 <li>
 <p>Promise 创建后会立即执行</p>
+</li>
+</ul>
 <deckgo-highlight-code language="javascript" terminal="carbon" theme="blackboard"  >
           <code slot="code">let promise = new Promise(function(resolve, reject) {
   // 需要执行的异步操作, 立即执行
@@ -564,15 +549,12 @@ function set(target, key, value, receiver) {
   // resolve 和 reject 会将数据以实参的形式传递出去;
   console.log(&#39;Promise&#39;);
   setTimeout(resolve, ms, &#39;done&#39;);  
-});
-</code>
+});</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p><code>then</code> 方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。</p>
-</li>
+<ul>
+<li><code>then</code> 方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。</li>
 </ul>
-<h2 id="t-15" >Promise 读取文件</h2>
+<h2 id="t-12" >Promise 读取文件</h2>
 <deckgo-highlight-code language="javascript" terminal="carbon" theme="blackboard"  >
           <code slot="code">let read = require(&#39;read-file&#39;);
 function readFile(name) {
@@ -607,54 +589,15 @@ readFile(&#39;name2.txt&#39;)
  2. 执行第二步, 根据上一步是成功或失败, 执行 then 的成功回调或失败回调; 如果上一步返回的是 promise 实例,
     则回调函数的参数来自于 resolve(data) 或 reject(error) 的实参;
     如果上一步返回的不是 promise 实例, 则回调函数的参数来自于上一步 return 的值。 
- */
-</code>
+*/</code>
         </deckgo-highlight-code>
-<h2 id="t-16" >手写 Promise</h2>
-<p>理解浏览器的事件循环（Event loop），一句话即Promise是先同步处理then、catch函数再异步处理executor函数，接着通过resolve或reject触发then、catch的参数。</p>
-<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
-          <code slot="code">// 因为会立即执行这个执行器函数
-function MyPromise(executor){
-  let self = this
-  self.status = &#39;pending&#39; // 默认promise状态是pending
-  function resolve(value){
-    self.status = &#39;resolved&#39; // 成功状态
-    self.onSuccess(value);
-  }
-  function reject(reason){
-    self.status = &#39;rejected&#39; //失败状态
-    self.onFail(reason);
-  }
-  executor(resolve, reject) 
-}
-
-MyPromise.prototype.then = function(onFulfilled, onRejected){
-	this.onSuccess = onFulfilled;
-  this.onFail = onRejected;
-} 
-
-// 使用MyPromise
-let p = new MyPromise((resolve, reject) =&gt; {
-  let timer = setTimeout( ()=&gt;{
-    console.log(&#39;开始异步执行!&#39;);
-    resolve(timer);
-  }, 2000);
-})
-p.then(data=&gt;{
-  console.log(`异步执行完成!  data:${data}`);
-  clearTimeout(data);
-})
-.catch(error=&gt;console.log(error));
-
-console.log(&#39;同步代码执行完成!&#39;);</code>
-        </deckgo-highlight-code>
-<h2 id="t-17" >参考</h2>
+<h2 id="t-13" >参考</h2>
 <ul>
 <li><a href="https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&#x26;mid=2247484260&#x26;idx=1&#x26;sn=0bc8a7aed8b15d3cc7e75c76394b648a&#x26;chksm=c06682f2f7110be41b29ce0eabc441fba11e1ab306ca40e4e7d81d338b4af7e35721573d1cca&#x26;mpshare=1&#x26;scene=1&#x26;srcid=&#x26;sharer_sharetime=1566171898757&#x26;sharer_shareid=c0fa4bb765d12545f4439ab827814978&#x26;key=56eb82a42460d979c3afc63a4f31177e13db16329cf4763c707bf96642e8906b81d68c0b03fa52eaabde20326b79c31368a9de23b389122e084df4a3c4aa327001973a319a1020fe8e99f6a26930b5b9&#x26;ascene=1&#x26;uin=Mjc2NDI1NDU2NA%3D%3D&#x26;devicetype=Windows+7&#x26;version=62060833&#x26;lang=zh_CN&#x26;pass_ticket=D8igzih7KnA8%2F5LHQdRG6th5IVXvvQD7ukUD5HSt%2FLcfZ7gOforYJWqBjo9rYF%2FC">你了解Promise吗-segmentfault</a></li>
 <li><a href="https://malcolmyu.github.io/2015/06/12/Promises-A-Plus/#note-4">Promse A+ 规范</a></li>
 <li><a href="https://juejin.im/post/5b83cb5ae51d4538cc3ec354">Promise 实现原理-掘金</a></li>
 </ul>
-<h1 id="t-18" >Generator</h1>
+<h1 id="t-14" >Generator</h1>
 <p>Generator函数是ES6提供的一种异步编程解决方案，执行Generator函数会返回一个<strong>遍历器对象</strong>，即 Generator 是迭代器生成函数。</p>
 <p>从语法上，首先可以把它理解成，Generator函数是一个状态机，封装了多个内部状态。</p>
 <p>执行Generator函数会返回一个遍历器对象，也就是说，Generator函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历Generator函数内部的每一个状态。</p>
@@ -676,11 +619,12 @@ console.log(&#39;同步代码执行完成!&#39;);</code>
 </ul>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">function* foo(x) {
+  log(&#39;start&#39;);
   var y = 2 * (yield (x + 1));
   var z = yield (y);
   return (x + y + z);
 }
-var hw = foo(1);
+var hw = foo(1);  // 执行该行不会输出 start
 hw.next();   // { value: 2, done: false }
 hw.next(3);  // { value: 6, done: false }</code>
         </deckgo-highlight-code>
@@ -697,8 +641,8 @@ hw.next(3);  // { value: 6, done: false }</code>
 </blockquote>
 <p>Generator函数总是返回一个遍历器，ES6规定这个遍历器是Generator函数的实例，也继承了Generator函数的<code>prototype</code>对象上的方法。</p>
 <deckgo-highlight-code language="javascript" terminal="carbon" theme="blackboard"  >
-          <code slot="code">function* g() {}
-  g.prototype.hello = function () {
+          <code slot="code">function* g() {};
+g.prototype.hello = function () {
   return &#39;hi!&#39;;
 };
 
@@ -734,10 +678,10 @@ f.next();  // Object {value: undefined, done: true}</code>
 </blockquote>
 <p><code>yield*</code> 遍历遍历器对象，任何有 Iterator 接口的数据结构都可以被 <code>yield*</code> 遍历</p>
 <p>用来在一个Generator函数里面执行另一个Generator函数。</p>
-<h2 id="t-19" >异步 Generator</h2>
+<h2 id="t-15" >异步 Generator</h2>
 <p>异步 Generator 生成 异步的 Iterator ，异步 Iterator 的 next() 方法返回的是一个 Promise</p>
 <p>异步 Generator 的 yield 产出的是 Promise 对象或 Thunk ，即异步生成器创建的迭代器的 next() 方法返回的是 Promise</p>
-<h2 id="t-20" >应用</h2>
+<h2 id="t-16" >应用</h2>
 <ol>
 <li>异步操作的同步表达；</li>
 <li>控制流管理；</li>
@@ -781,11 +725,11 @@ for (let node of inorder(tree)) {
   result.push(node);
 }</code>
         </deckgo-highlight-code>
-<h2 id="t-21" >参考：</h2>
-<ul>
-<li><a href="http://caibaojian.com/es6/generator.html">Generatot函数</a></li>
-</ul>
-<h1 id="t-22" >async &#x26; await</h1>
+<blockquote>
+<p>参考</p>
+</blockquote>
+<p><a href="http://caibaojian.com/es6/generator.html">Generatot函数</a></p>
+<h1 id="t-17" >async &#x26; await</h1>
 <p><strong>async 函数就是 Generator 函数的语法糖</strong>。用 <code>async</code> 替换 Generator 函数声明中的 <code>*</code>，用 <code>await</code> 替换 <code>yield</code></p>
 <p>await 命令只能出现在 async 函数中，await 表达式会暂停当前 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function"><code>async function</code></a> 的执行，等待其后面表达式的结果，像 Generateor 函数一样将执行权转让给其他程序；</p>
 <ul>
@@ -794,19 +738,32 @@ for (let node of inorder(tree)) {
 <li><code>async</code>表示函数里有异步操作，<code>await</code>表示紧跟在后面的表达式需要等待结果。</li>
 <li><code>async</code>函数返回的 Promise 对象，必须等到内部所有<code>await</code>命令后面的 Promise 对象执行完，才会发生状态改变，才会执行<code>then</code>方法指定的回调函数，除非遇到<code>return</code>语句或者抛出错误。</li>
 </ul>
+<blockquote>
 <p>result = await 表达式</p>
+</blockquote>
+<p>When an <code>await</code> is encountered in code (either in an async function or in a module), the awaited expression is executed, while all code that depends on the expression's value is paused and pushed into the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop">microtask queue</a>. The main thread is then freed for the next task in the event loop. This happens even if the awaited value is an already-resolved promise or not a promise.</p>
+<p>当在 async 函数或 module 顶层中遇到 await 运算符，await 后面的表达式立即执行，await 语句后面的语句加入到【微任务】队列中，即使 await 表达式是 already-resolved promise or not a promise。</p>
 <ul>
 <li>
-<p>await 等待一个Promise对象，await 表达式的值就是 Promise 处理的结果，若表达式不是 Promise，则返回表达式本身的值；</p>
+<p>await 等待一个Promise对象，await 表达式的值就是 Promise 处理的结果，若表达式不是 Promise，</p>
 </li>
 <li>
-<p>await 会暂停异步函数(async 函数)的执行，调用async函数的上层函数会继续执行(收到异步函数返回的隐式Promise)</p>
+<p>则返回表达式本身的值；</p>
 </li>
 <li>
-<p>若 await 后面的表达式是Promise，且 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function"><code>async function</code></a>。</p>
+<p>await 会暂停异步函数(async 函数)的执行（无论表示的是否是 Promise-like），调用async函数的上层函数会继续执行(收到异步函数返回的隐式Promise)</p>
 </li>
 <li>
-<p>若 await 后面的表达式是Promise，且  Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。所以最好将await命令放在<code>try catch</code>中</p>
+<p>若 await 后面的表达式的值不是 Promise 或 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#thenables">thneables</a> ，则用 Promise.resolve() 包装
+If the value is not a <code>Promise</code>, <code>await</code> converts the value to a resolved <code>Promise</code>, and waits for it.</p>
+</li>
+<li>
+<p>若 await 后面的表达式的值是Promise，且 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function"><code>async function</code></a>。</p>
+</li>
+<li>
+<p>若 await 后面的表达式的值是Promise，且  Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。所以最好将await命令放在<code>try catch</code>中</p>
+</li>
+</ul>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">async function myFunction() {
   try {
@@ -816,8 +773,6 @@ for (let node of inorder(tree)) {
   }
 }</code>
         </deckgo-highlight-code>
-</li>
-</ul>
 <blockquote>
 <p>async 实现</p>
 </blockquote>
@@ -856,7 +811,9 @@ for (let node of inorder(tree)) {
   });
 }</code>
         </deckgo-highlight-code>
-<p><strong>参考</strong></p>
+<blockquote>
+<p>参考</p>
+</blockquote>
 <ul>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function">MDN-aync</a></li>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/await">MDN-await</a></li>
@@ -864,25 +821,19 @@ for (let node of inorder(tree)) {
 <li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&#x26;mid=2650215577&#x26;idx=1&#x26;sn=0edb4be37430e17ba1029ab3b1a36a57&#x26;chksm=befe14b889899daea69684da9ac22613cfef5e534f920a194a640f21ab5ec839d498642ed455&#x26;scene=0&#x26;key=6deb43fc298651d2935752bd2c9f8fa907d71cfcf410807341a1a420ced46efe20f453fa8f835874ef05bec5deefb1be9a1a136a7027e798b32030bded88d257b46b8f1442a2b56ac165cfaa80db49f5&#x26;ascene=1&#x26;uin=Mjc2NDI1NDU2NA%3D%3D&#x26;devicetype=Windows+7&#x26;version=62060720&#x26;lang=zh_CN&#x26;pass_ticket=Pn9cJyIWK2xt%2BmQltkMddf4S5oGoplFdiJ%2B16Yj6gD8L9Zd0WMlQ1u32%2FRJtZE1p">async &#x26; await 面试题</a></li>
 <li><a href="https://gongchenghuigch.github.io/2019/09/14/awat/">setTimeout promise async</a></li>
 </ul>
-<h1 id="t-23" >异步编程</h1>
+<h1 id="t-18" >异步编程</h1>
 <p>ES6诞生以前，异步编程的方法，大概有下面四种：回调、事件监听、Promise对象</p>
 <p><a href="http://caibaojian.com/es6/async.html">异步编程</a></p>
-<h1 id="t-24" >模块</h1>
+<h1 id="t-19" >模块</h1>
 <ul>
-<li>
-<p>import 命令具有提升效果，import 是在编译阶段执行的，在代码运行之前。</p>
-</li>
-<li>
-<p><code>import</code>语句会执行所加载的模块</p>
-</li>
-<li>
-<p><code>import</code>语句是 Singleton 模式，多次import 同一个模块只会导入一次，也只会执行一次模块中的全局代码</p>
+<li>import 命令具有提升效果，import 是在编译阶段执行的，在代码运行之前。</li>
+<li><code>import</code>语句会执行所加载的模块</li>
+<li><code>import</code>语句是 Singleton 模式，多次import 同一个模块只会导入一次，也只会执行一次模块中的全局代码</li>
+</ul>
 <deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
           <code slot="code">import {A} from &#39;mode&#39;
 import {A} from &#39;mode&#39;
 
 // 等价于 
 import {A, B} from &#39;mode&#39;</code>
-        </deckgo-highlight-code>
-</li>
-</ul></article><div class="article-title-wrap"><div class="article-title-list"><h1 data-id="0" class="item"><a href="https://es6.ruanyifeng.com/#docs/class">ES6入门-阮一峰</a></h1><h1 data-id="1" class="item">const let</h1><h1 data-id="2" class="item">全局对象 &#x26; 顶层对象</h1><h1 data-id="3" class="item">变量的解构赋值</h1><h1 data-id="4" class="item">扩展运算符</h1><h1 data-id="5" class="item">字符串扩展</h1><h1 data-id="6" class="item">标签模板</h1><h1 data-id="7" class="item">数组扩展</h1><h1 data-id="8" class="item">函数的扩展</h1><h1 data-id="9" class="item">Class</h1><h1 data-id="10" class="item">Proxy &#x26; Reflect</h1><h1 data-id="11" class="item">Reflect</h1><h1 data-id="12" class="item">使用 Proxy 实现观察者模式</h1><h1 data-id="13" class="item">Iterator &#x26; 遍历器</h1><h1 data-id="14" class="item">Promise</h1><h2 data-id="15" class="item">Promise 读取文件</h2><h2 data-id="16" class="item">手写 Promise</h2><h2 data-id="17" class="item">参考</h2><h1 data-id="18" class="item">Generator</h1><h2 data-id="19" class="item">异步 Generator</h2><h2 data-id="20" class="item">应用</h2><h2 data-id="21" class="item">参考：</h2><h1 data-id="22" class="item">async &#x26; await</h1><h1 data-id="23" class="item">异步编程</h1><h1 data-id="24" class="item">模块</h1></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/articles/前端/JS/ES6/";window.___webpackCompilationHash="b49c521d6dc75a12a1a0";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-38bff700e245e8493772.js"],"app":["/app-10896d9b1e770b1c82d9.js"],"component---src-pages-404-js":["/component---src-pages-404-js-a1cb840e6fe8c403c00b.js"],"component---src-pages-debug-jsx":["/component---src-pages-debug-jsx-19f27fb8a0713cec9f30.js"],"component---src-pages-index-jsx":["/component---src-pages-index-jsx-69e54fb59778b99df048.js"],"component---src-pages-other-js":["/component---src-pages-other-js-9c6c2b81a35ac0392fee.js"],"component---src-pages-repos-jsx":["/component---src-pages-repos-jsx-8504805d76fa72c3661f.js"],"component---src-templates-post-js":["/component---src-templates-post-js-93773b9ed0c07b2c71c7.js"]};/*]]>*/</script><script src="/polyfill-38bff700e245e8493772.js" nomodule=""></script><script src="/app-10896d9b1e770b1c82d9.js" async=""></script><script src="/framework-00aa2f30c053856ae873.js" async=""></script><script src="/webpack-runtime-dbb4c9a98e3509abf034.js" async=""></script></body></html>
+        </deckgo-highlight-code></article><div class="article-title-wrap"><div class="article-title-list"><h1 data-id="0" class="item">变量声明</h1><h1 data-id="1" class="item">全局对象 &#x26; 顶层对象</h1><h1 data-id="2" class="item">变量的解构赋值</h1><h1 data-id="3" class="item">扩展运算符</h1><h1 data-id="4" class="item">标签模板</h1><h1 data-id="5" class="item">数组扩展</h1><h1 data-id="6" class="item">函数的扩展</h1><h1 data-id="7" class="item">Class</h1><h1 data-id="8" class="item">Proxy</h1><h1 data-id="9" class="item">Reflect</h1><h1 data-id="10" class="item">Iterator &#x26; 遍历器</h1><h1 data-id="11" class="item">Promise</h1><h2 data-id="12" class="item">Promise 读取文件</h2><h2 data-id="13" class="item">参考</h2><h1 data-id="14" class="item">Generator</h1><h2 data-id="15" class="item">异步 Generator</h2><h2 data-id="16" class="item">应用</h2><h1 data-id="17" class="item">async &#x26; await</h1><h1 data-id="18" class="item">异步编程</h1><h1 data-id="19" class="item">模块</h1></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/articles/前端/JS/ES6/";window.___webpackCompilationHash="c883488adf3f372ea0a2";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-1c82c9b017e64ba4eb20.js"],"app":["/app-fae9f38663d1f603e486.js"],"component---src-pages-404-js":["/component---src-pages-404-js-104fdd48e6deefb0b055.js"],"component---src-pages-debug-jsx":["/component---src-pages-debug-jsx-6d68ed8816a03321c33d.js"],"component---src-pages-index-jsx":["/component---src-pages-index-jsx-59cf54365f6a97668d01.js"],"component---src-pages-other-js":["/component---src-pages-other-js-48e569e636e8d0ecf927.js"],"component---src-pages-repos-jsx":["/component---src-pages-repos-jsx-aafc15aef56b320b5240.js"],"component---src-templates-post-js":["/component---src-templates-post-js-90384a4e905582211ec0.js"]};/*]]>*/</script><script src="/polyfill-1c82c9b017e64ba4eb20.js" nomodule=""></script><script src="/app-fae9f38663d1f603e486.js" async=""></script><script src="/framework-31fcd97794ac9b085877.js" async=""></script><script src="/webpack-runtime-561bce53e847aceb651a.js" async=""></script></body></html>

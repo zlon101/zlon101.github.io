@@ -1,36 +1,299 @@
-<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.22.0"/><style data-href="/styles.f8ed7cdd0b842235ccf7.css" data-identity="gatsby-global-css">@-webkit-keyframes silde{0%{background-color:green}50%{background-color:blue}to{background-color:red}}@keyframes silde{0%{background-color:green}50%{background-color:blue}to{background-color:red}}.p-debug{margin:40px auto 0;outline:1px solid red;overflow:auto;padding:16px;position:relative;width:70vw}.p-debug .animation{background-color:red;height:200px;width:200px}.p-debug .animation.active{-webkit-animation:silde 10s infinite;animation:silde 10s infinite}.c-header{align-items:center;background-color:#fff;border-bottom:2px solid #eaecef;display:flex;height:48px;left:0;padding:8px 16px;position:fixed;top:0;width:100%;z-index:1000}.c-header>*{cursor:pointer;font-size:18px;font-weight:600;margin-right:18px}.c-header>:last-child{margin-left:auto;margin-right:0}.c-nav{min-height:calc(100vh - 48px);overflow:auto;padding:16px 16px 16px 0;position:-webkit-sticky;position:sticky;top:48px}.c-nav .file-item{display:block;margin:8px 0;white-space:nowrap}.c-nav .file-item.fold>.file-name:after{border-color:transparent transparent transparent #ccc;border-style:solid;border-width:6px 0 6px 9px;content:"";display:inline-block;height:0;margin-left:8px;transition:all .2s ease-out;width:0}.c-nav .file-item.fold.expand>.file-name:after{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.c-nav .file-item.fold.expand>.child-list{display:block}.c-nav .file-name{border-left:4px solid transparent;color:#2c3e50;cursor:pointer;display:block;font-size:16px;font-weight:700;margin-bottom:12px;padding-left:16px;position:relative}.c-nav .file-name.light{color:#3eaf7c;font-size:18px}.c-nav .child-list{display:none;margin:0;padding-left:16px;transition:all .2s ease-out}.c-layout-sidebar-content{display:flex;position:relative}.c-layout-sidebar-content .article-wrap{flex:1 1 auto}.c-layout-nav{border-right:2px solid #eaecef;max-width:300px;min-width:200px}
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.22.0"/><style data-href="/styles.91e060046c9149377d22.css" data-identity="gatsby-global-css">@-webkit-keyframes silde{0%{background-color:green}50%{background-color:blue}to{background-color:red}}@keyframes silde{0%{background-color:green}50%{background-color:blue}to{background-color:red}}.p-debug{margin:40px auto 0;outline:1px solid red;overflow:auto;padding:16px;position:relative;width:70vw}.p-debug .animation{background-color:red;height:200px;width:200px}.p-debug .animation.active{-webkit-animation:silde 10s infinite;animation:silde 10s infinite}.c-header{align-items:center;background-color:#fff;border-bottom:2px solid #eaecef;display:flex;height:48px;left:0;padding:8px 16px;position:fixed;top:0;width:100%;z-index:1000}.c-header>*{cursor:pointer;font-size:18px;font-weight:600;margin-right:18px}.c-header>:last-child{margin-left:auto;margin-right:0}.c-nav{max-height:calc(100vh - 48px);overflow:auto;padding:16px 16px 16px 0;position:-webkit-sticky;position:sticky;top:48px}.c-nav .file-item{display:block;margin:8px 0;white-space:nowrap}.c-nav .file-item.fold>.file-name:after{border-color:transparent transparent transparent #ccc;border-style:solid;border-width:6px 0 6px 9px;content:"";display:inline-block;height:0;margin-left:8px;transition:all .2s ease-out;width:0}.c-nav .file-item.fold.expand>.file-name:after{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.c-nav .file-item.fold.expand>.child-list{display:block}.c-nav .file-name{border-left:4px solid transparent;color:#2c3e50;cursor:pointer;display:block;font-size:16px;font-weight:700;margin-bottom:12px;padding-left:16px;position:relative}.c-nav .file-name.light{color:#3eaf7c;font-size:18px}.c-nav .child-list{display:none;margin:0;padding-left:16px;transition:all .2s ease-out}.c-layout-sidebar-content{display:flex;position:relative}.c-layout-sidebar-content .article-wrap{flex:1 1 auto}.c-layout-nav{border-right:2px solid #eaecef;max-width:300px;min-width:200px}
 
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box;margin:0;outline:0;padding:0}body,html{font-family:Source Sans Pro,Helvetica Neue,Arial,sans-serif;font-size:16px}p{line-height:1.5}a{color:#2c3e50;text-decoration:none}a:hover{text-decoration:underline}.page{padding-top:48px}.g-desc{color:#7f8fa4;font-size:14px}.icon-arrow{border-color:transparent transparent transparent blue;border-style:solid;border-width:44.5px 0 44.5px 118px;height:0;width:0}.icon-font{fill:currentColor;overflow:hidden;vertical-align:-.15em}.page-home-excerpt{background-color:#9cc;border:1px solid transparent;border-radius:6px;margin-bottom:24px;padding:16px}.page-home-excerpt-header{margin-bottom:4px}.page-home-excerpt-header-title{font-size:18px;font-weight:700}.page-home-excerpt-header-desc{color:#7f8fa4;font-size:14px;margin-left:8px}.page-home-excerpt-text{font-size:16px}.page-article-template .article-title-wrap{border-left:2px solid #eaecef;min-width:10%}.page-article-template .article-title-wrap .item{font-size:14px;font-weight:500}.page-article-template .article-title-wrap .item a{pointer-events:none}.page-article-template .article-title-list{padding:8px;position:-webkit-sticky;position:sticky;top:48px}.page-article-template .article-title-list .item{cursor:pointer;list-style:none;margin-bottom:12px}.page-article-template .article-title-list .item:hover{color:#3eaf7c;text-decoration:underline}.article-wrap{padding:0 8px 0 24px}.article-wrap h1{border-bottom:2px solid blue;font-size:16px;margin:36px 0}.article-wrap h2,.article-wrap h3,.article-wrap h4,.article-wrap h5,.article-wrap h6{border-bottom:2px solid blue;font-size:18px;margin:24px 0}.article-wrap div,.article-wrap p{margin:8px 0}.article-wrap a{color:#0969da}.article-wrap>:not(ul){margin-left:-14px}.article-wrap li{margin:8px 0}.article-wrap li ol,.article-wrap li ul{margin-left:12px}.article-wrap ol{margin-left:3px}.article-wrap blockquote{background-color:#fff5e3;border-left:.25em solid #ffb11b;color:#57606a;padding-left:24px}.article-wrap blockquote>p{margin-left:-16px}.article-wrap code{background-color:#fff5e3;border-radius:2px;color:#9b6e23;margin:0 2px;padding:3px 5px;white-space:nowrap}.article-wrap img{box-shadow:0 0 80px -30px rgba(0,0,0,.5)!important}.article-wrap table{border-collapse:collapse;border-spacing:0}.article-wrap table td,.article-wrap table th{background-color:#1f2329;border-bottom:1px solid rgba(220,223,230,.3);border-right:1px solid rgba(220,223,230,.3);color:#fff;padding:8px 16px;text-align:left}.article-title-wrap,.article-wrap{counter-reset:h1}.article-title-wrap h1,.article-wrap h1{counter-reset:h2}.article-title-wrap h1:before,.article-wrap h1:before{content:counter(h1) ". ";counter-increment:h1}.article-title-wrap h2,.article-wrap h2{counter-reset:h3}.article-title-wrap h2:before,.article-wrap h2:before{content:counter(h1) "." counter(h2) ". ";counter-increment:h2}.article-title-wrap h3,.article-wrap h3{counter-reset:h4}.article-title-wrap h3:before,.article-wrap h3:before{content:counter(h1) "." counter(h2) "." counter(h3) ". ";counter-increment:h3}.article-title-wrap h4,.article-wrap h4{counter-reset:h5}.article-title-wrap h4:before,.article-wrap h4:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) ". ";counter-increment:h4}.article-title-wrap h5,.article-wrap h5{counter-reset:h6}.article-title-wrap h5:before,.article-wrap h5:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";counter-increment:h5}.article-title-wrap h6:before,.article-wrap h6:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";counter-increment:h6}</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="c-layout-wrap  page page-article-template"><header class="c-header"><a href="/">首页</a><a href="/">博客</a><a href="https://github.com/zlon101/npm-lib" target="_blank" rel="noreferrer noopener">vue组件指令</a><a href="/debug/">Debug</a><a href="https://github.com/zlon101" target="_blank" rel="noreferrer noopener"><svg class="icon-font" width="24px" height="24px" aria-hidden="true"><use href="#icon-font-github1"></use></svg></a></header><div class="c-layout-sidebar-content "><div class="c-layout-nav "><div class="c-nav"><div class="file-item fold false"><div class="file-name" role="button">博客</div><ul class="child-list"><a class="file-name false" href="/articles/博客/Gatsby建站/">Gatsby建站</a><a class="file-name false" href="/articles/博客/指南/">指南</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">Vue</div><ul class="child-list"><a class="file-name false" href="/articles/Vue/PWA/">PWA</a><a class="file-name false" href="/articles/Vue/vue2源码/">vue2源码</a><a class="file-name false" href="/articles/Vue/Vue技术栈/">Vue技术栈</a><a class="file-name false" href="/articles/Vue/vue基础概念/">vue基础概念</a><a class="file-name false" href="/articles/Vue/Vue视频资料/">Vue视频资料</a><a class="file-name false" href="/articles/Vue/服务端渲染/">服务端渲染</a><a class="file-name false" href="/articles/Vue/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">React</div><ul class="child-list"><a class="file-name false" href="/articles/React/React基础/">React基础</a><a class="file-name false" href="/articles/React/React总结/">React总结</a><a class="file-name false" href="/articles/React/React技术栈/">React技术栈</a><a class="file-name false" href="/articles/React/TODO/">TODO</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端</div><ul class="child-list"><div class="file-item fold false"><div class="file-name" role="button">HTML-CSS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/HTML-CSS/CSS基础/">CSS基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/HTML基础/">HTML基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">JS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/JS/ES6/">ES6</a><a class="file-name false" href="/articles/前端/JS/JS基础/">JS基础</a><a class="file-name false" href="/articles/前端/JS/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端工程化</div><ul class="child-list"><a class="file-name false" href="/articles/前端/前端工程化/Babel/">Babel</a><a class="file-name false" href="/articles/前端/前端工程化/npm/">npm</a><a class="file-name false" href="/articles/前端/前端工程化/Gulp/">Gulp</a><a class="file-name false" href="/articles/前端/前端工程化/Webpack/">Webpack</a><a class="file-name false" href="/articles/前端/前端工程化/图标/">图标</a><a class="file-name false" href="/articles/前端/前端工程化/打包工具/">打包工具</a><a class="file-name false" href="/articles/前端/前端工程化/模块/">模块</a><a class="file-name false" href="/articles/前端/前端工程化/私有源/">私有源</a></ul></div><a class="file-name false" href="/articles/前端/webView/">webView</a><a class="file-name false" href="/articles/前端/前端调试/">前端调试</a><a class="file-name false" href="/articles/前端/前端资源整理/">前端资源整理</a><a class="file-name false" href="/articles/前端/浏览器/">浏览器</a><a class="file-name false" href="/articles/前端/总结/">总结</a><a class="file-name false" href="/articles/前端/规范/">规范</a><a class="file-name false" href="/articles/前端/设计模式/">设计模式</a><a class="file-name false" href="/articles/前端/练题/">练题</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">数据算法</div><ul class="child-list"><a class="file-name false" href="/articles/数据算法/数据结构基础/">数据结构基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">网络</div><ul class="child-list"><a class="file-name false" href="/articles/网络/HTTP/">HTTP</a><a class="file-name false" href="/articles/网络/代理/">代理</a><a class="file-name false" href="/articles/网络/服务端/">服务端</a><a class="file-name false" href="/articles/网络/网络基础/">网络基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">服务端</div><ul class="child-list"><a class="file-name false" href="/articles/服务端/基础/">基础</a></ul></div><a class="file-name false" href="/articles/Linux命令/">Linux命令</a><a class="file-name false" href="/articles/Git/">Git</a><a class="file-name false" href="/articles/TS基础/">TS基础</a><a class="file-name false" href="/articles/vue3/">vue3</a><a class="file-name false" href="/articles/WebRTC/">WebRTC</a><a class="file-name false" href="/articles/微前端/">微前端</a><a class="file-name false" href="/articles/爬虫/">爬虫</a></div></div><article class="article-wrap"><h2 id="t-0" >如何定义一个类型，或得到一个类型？</h2>
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;box-sizing:border-box;margin:0;outline:0;padding:0}body,html{font-family:Source Sans Pro,Helvetica Neue,Arial,sans-serif;font-size:16px}p{line-height:1.5}a{color:#2c3e50;text-decoration:none}a:hover{text-decoration:underline}.page{padding-top:48px}.g-desc{color:#7f8fa4;font-size:14px}.icon-arrow{border-color:transparent transparent transparent blue;border-style:solid;border-width:44.5px 0 44.5px 118px;height:0;width:0}.icon-font{fill:currentColor;overflow:hidden;vertical-align:-.15em}.page-home-excerpt{background-color:#9cc;border:1px solid transparent;border-radius:6px;margin-bottom:24px;padding:16px}.page-home-excerpt-header{margin-bottom:4px}.page-home-excerpt-header-title{font-size:18px;font-weight:700}.page-home-excerpt-header-desc{color:#7f8fa4;font-size:14px;margin-left:8px}.page-home-excerpt-text{font-size:16px}.page-article-template .article-title-wrap{border-left:2px solid #eaecef;min-width:10%}.page-article-template .article-title-wrap .item{font-size:14px;font-weight:500}.page-article-template .article-title-wrap .item a{pointer-events:none}.page-article-template .article-title-list{max-height:calc(100vh - 48px);overflow:auto;padding:8px;position:-webkit-sticky;position:sticky;top:48px}.page-article-template .article-title-list .item{cursor:pointer;list-style:none;margin-bottom:12px}.page-article-template .article-title-list .item:hover{color:#3eaf7c;text-decoration:underline}.article-wrap{padding:0 8px 0 24px}.article-wrap h1{border-bottom:2px solid blue;font-size:16px;margin:36px 0}.article-wrap h2,.article-wrap h3,.article-wrap h4,.article-wrap h5,.article-wrap h6{border-bottom:2px solid blue;font-size:18px;margin:24px 0}.article-wrap div,.article-wrap p{margin:8px 0}.article-wrap a{color:#0969da}.article-wrap>:not(ul){margin-left:-14px}.article-wrap li{margin:8px 0}.article-wrap li ol,.article-wrap li ul{margin-left:12px}.article-wrap ol{margin-left:3px}.article-wrap blockquote{background-color:#fff5e3;border-left:.25em solid #ffb11b;color:#57606a;padding-left:24px}.article-wrap blockquote>p{margin-left:-16px}.article-wrap code{background-color:#fff5e3;border-radius:2px;color:#9b6e23;margin:0 2px;padding:3px 5px;white-space:nowrap}.article-wrap img{box-shadow:0 0 80px -30px rgba(0,0,0,.5)!important}.article-wrap table{border-collapse:collapse;border-spacing:0}.article-wrap table td,.article-wrap table th{background-color:#1f2329;border-bottom:1px solid rgba(220,223,230,.3);border-right:1px solid rgba(220,223,230,.3);color:#fff;padding:8px 16px;text-align:left}.article-title-wrap,.article-wrap{counter-reset:h1}.article-title-wrap h1,.article-wrap h1{counter-reset:h2}.article-title-wrap h1:before,.article-wrap h1:before{content:counter(h1) ". ";counter-increment:h1}.article-title-wrap h2,.article-wrap h2{counter-reset:h3}.article-title-wrap h2:before,.article-wrap h2:before{content:counter(h1) "." counter(h2) ". ";counter-increment:h2}.article-title-wrap h3,.article-wrap h3{counter-reset:h4}.article-title-wrap h3:before,.article-wrap h3:before{content:counter(h1) "." counter(h2) "." counter(h3) ". ";counter-increment:h3}.article-title-wrap h4,.article-wrap h4{counter-reset:h5}.article-title-wrap h4:before,.article-wrap h4:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) ". ";counter-increment:h4}.article-title-wrap h5,.article-wrap h5{counter-reset:h6}.article-title-wrap h5:before,.article-wrap h5:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";counter-increment:h5}.article-title-wrap h6:before,.article-wrap h6:before{content:counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";counter-increment:h6}</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="c-layout-wrap  page page-article-template"><header class="c-header"><a href="/">首页</a><a href="/">博客</a><a href="https://zlon101.github.io/npm-lib/#/" target="_blank" rel="noreferrer noopener">vue组件库</a><a href="/debug/">Debug</a><a href="https://github.com/zlon101" target="_blank" rel="noreferrer noopener"><svg class="icon-font" width="24px" height="24px" aria-hidden="true"><use href="#icon-font-github1"></use></svg></a></header><div class="c-layout-sidebar-content "><div class="c-layout-nav "><div class="c-nav"><div class="file-item fold false"><div class="file-name" role="button">React</div><ul class="child-list"><a class="file-name false" href="/articles/React/React基础/">React基础</a><a class="file-name false" href="/articles/React/开发环境配置/">开发环境配置</a><a class="file-name false" href="/articles/React/React总结/">React总结</a><a class="file-name false" href="/articles/React/TODO/">TODO</a><a class="file-name false" href="/articles/React/React技术栈/">React技术栈</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">Vue</div><ul class="child-list"><a class="file-name false" href="/articles/Vue/PWA/">PWA</a><a class="file-name false" href="/articles/Vue/vue2源码/">vue2源码</a><a class="file-name false" href="/articles/Vue/vue基础概念/">vue基础概念</a><a class="file-name false" href="/articles/Vue/Vue技术栈/">Vue技术栈</a><a class="file-name false" href="/articles/Vue/Vue视频资料/">Vue视频资料</a><a class="file-name false" href="/articles/Vue/总结/">总结</a><a class="file-name false" href="/articles/Vue/服务端渲染/">服务端渲染</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端</div><ul class="child-list"><div class="file-item fold false"><div class="file-name" role="button">HTML-CSS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/HTML-CSS/CSS基础/">CSS基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/HTML基础/">HTML基础</a><a class="file-name false" href="/articles/前端/HTML-CSS/总结/">总结</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">JS</div><ul class="child-list"><a class="file-name false" href="/articles/前端/JS/ES6/">ES6</a><a class="file-name false" href="/articles/前端/JS/总结/">总结</a><a class="file-name false" href="/articles/前端/JS/JS基础/">JS基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端工程化</div><ul class="child-list"><a class="file-name false" href="/articles/前端/前端工程化/Babel/">Babel</a><a class="file-name false" href="/articles/前端/前端工程化/Gulp/">Gulp</a><a class="file-name false" href="/articles/前端/前端工程化/npm/">npm</a><a class="file-name false" href="/articles/前端/前端工程化/Webpack/">Webpack</a><a class="file-name false" href="/articles/前端/前端工程化/图标/">图标</a><a class="file-name false" href="/articles/前端/前端工程化/打包工具/">打包工具</a><a class="file-name false" href="/articles/前端/前端工程化/模块/">模块</a><a class="file-name false" href="/articles/前端/前端工程化/私有源/">私有源</a></ul></div><a class="file-name false" href="/articles/前端/前端调试/">前端调试</a><a class="file-name false" href="/articles/前端/webView/">webView</a><a class="file-name false" href="/articles/前端/前端资源整理/">前端资源整理</a><a class="file-name false" href="/articles/前端/微前端/">微前端</a><a class="file-name false" href="/articles/前端/总结/">总结</a><a class="file-name false" href="/articles/前端/练题/">练题</a><a class="file-name false" href="/articles/前端/浏览器/">浏览器</a><a class="file-name false" href="/articles/前端/规范/">规范</a><a class="file-name false" href="/articles/前端/设计模式/">设计模式</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">前端工程化</div><ul class="child-list"><a class="file-name false" href="/articles/前端工程化/Babel/">Babel</a><a class="file-name false" href="/articles/前端工程化/Gulp/">Gulp</a><a class="file-name false" href="/articles/前端工程化/npm/">npm</a><a class="file-name false" href="/articles/前端工程化/Monorepo/">Monorepo</a><a class="file-name false" href="/articles/前端工程化/Webpack/">Webpack</a><a class="file-name false" href="/articles/前端工程化/打包工具/">打包工具</a><a class="file-name false" href="/articles/前端工程化/图标/">图标</a><a class="file-name false" href="/articles/前端工程化/模块/">模块</a><a class="file-name false" href="/articles/前端工程化/私有源/">私有源</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">博客</div><ul class="child-list"><a class="file-name false" href="/articles/博客/Gatsby建站/">Gatsby建站</a><a class="file-name false" href="/articles/博客/指南/">指南</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">数据算法</div><ul class="child-list"><a class="file-name false" href="/articles/数据算法/数据结构基础/">数据结构基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">服务端</div><ul class="child-list"><a class="file-name false" href="/articles/服务端/基础/">基础</a></ul></div><div class="file-item fold false"><div class="file-name" role="button">网络</div><ul class="child-list"><a class="file-name false" href="/articles/网络/HTTP/">HTTP</a><a class="file-name false" href="/articles/网络/代理/">代理</a><a class="file-name false" href="/articles/网络/数据安全/">数据安全</a><a class="file-name false" href="/articles/网络/服务端/">服务端</a><a class="file-name false" href="/articles/网络/爬虫/">爬虫</a><a class="file-name false" href="/articles/网络/网络基础/">网络基础</a></ul></div><a class="file-name false" href="/articles/Git/">Git</a><a class="file-name false" href="/articles/Linux命令/">Linux命令</a><a class="file-name false" href="/articles/TS基础/">TS基础</a><a class="file-name false" href="/articles/vue3/">vue3</a><a class="file-name false" href="/articles/小程序/">小程序</a><a class="file-name false" href="/articles/微前端/">微前端</a><a class="file-name false" href="/articles/爬虫/">爬虫</a><a class="file-name false" href="/articles/跨平台开发/">跨平台开发</a></div></div><article class="article-wrap"><blockquote>
+<p><code>ReactNode</code> 、 <code>ReactElement</code> 和 <code>JSX.Element</code> 的区别？</p>
+</blockquote>
+<p><code>children?: React.ReactNode </code></p>
+<blockquote>
+<p>任意数量的参数、剩余参数、默认参数的类型声明</p>
+</blockquote>
+<blockquote>
+<p>Class private 声明？</p>
+</blockquote>
+<blockquote>
+<p>交叉类型、联合类型、extends 区别</p>
+</blockquote>
+<blockquote>
+<p>infer</p>
+</blockquote>
+<blockquote>
+<p>泛型只能用在函数中，<code>()</code> 前面？</p>
+</blockquote>
+<h1 id="t-0" >概况</h1>
+<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 621px; ">
+      <a class="gatsby-resp-image-link" href="/static/2d5d45cf184dbee81bfeca5b3846a42f/3075e/image-20200820171028681.png" style="display: block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom: 71.50000000000001%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAACuklEQVQ4y32Ta28aRxSG94/3W9Xf0KpS+6FN3TpWjO0a2/iixCEOEDCYa2RDzYKXhV32fr/xVKwhcqq2M3q0Z45m33nnzIxwdnrG4cEhpbMSxeMT9t8UeL27R7VaQ5JmyDMZeTZnMVdQ5grqQmWpLFmqGpqmoWs6ur7GQDdMhKVhYDjOFyzPw/Y9TNdBty10287z67HpulhrPBfb8/D8AD/YEuYIURyzbiv48t3GL9t/5f6JEIZRHmSrVU66ev51PFcp1Ttc3nbRLDvPbef8H0IYRV+tmm0ExcWSwrsqB+8qGI77r4IvjWy7ICtLdq4q/FG6ZiROeF1u8r7e4n4qc1DpclRpIz5JHFda/Fm5I96UKNuIPYu+3HIQcNcb0Oj0kGcSzW6f4eMjk8mE6l2Hym0TWZboD0e0e30c28L1XNI4zIXTLPvKpdAYPHBcrpGkCcUPddoPj5iOw+7FNZqh0/trTPGmjh/4nNeaVDt95KXG7mWZhW5s3G7LkCHU2gP2L8s4nsvJxwbvb9vIqsovxQskRaE7GnN0XcFybE4+fuJTt49mWfx2esVwLJKlCUHowyrLxQVFUbl/GG7uQUIYeCRpTOg/H4S8mDOeiHn8KI5RliphHNHq9ZirKtVmi6EoUu90mc4XCDvnZb75eQ/DMonTJHcSRCGa+bydN+U63746ZDKT+G7niF9P3yIpKj8USlzVGvxYOONV8YLvD875/fQK4WH8RLU9IE3TvAZxtLaf4m8cjqYS9f5nojiiMbhnOJmiOw77b29QTRN/fUBpgm2bxHGEkIQRrmWTJglP8oxyq0ft84hGt0eSxFiWiWObpFmKbZlEoc9YkvmpcMJQnGAYOrbrYJhGPkcI1u/QCwgCn6k8o3DTZK98y4dmJ3dpr9+3Y+P5HrZj5/iBl9c6DIN87LgOQRjk1+ZvAk4QuOg/yRkAAAAASUVORK5CYII='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="image-20200820171028681" title="image-20200820171028681" src="/static/2d5d45cf184dbee81bfeca5b3846a42f/3075e/image-20200820171028681.png" srcset="/static/2d5d45cf184dbee81bfeca5b3846a42f/772e8/image-20200820171028681.png 200w,
+/static/2d5d45cf184dbee81bfeca5b3846a42f/e17e5/image-20200820171028681.png 400w,
+/static/2d5d45cf184dbee81bfeca5b3846a42f/3075e/image-20200820171028681.png 621w" sizes="(max-width: 621px) 100vw, 621px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
+  </a>
+    </span>  
+<img src="assets/TS%E5%9F%BA%E7%A1%80/image-20201114122155270.png" alt="image-20201114122155270" style="zoom:80%;" />  
+<p>上面的是父级，下面是子级，子级类型可以赋值给父级。</p>
+<p>TS简单的说就是为JS中的变量指定了类型，JS中的变量本身是没有类型的。有了TS就可以为变量指定一个类型，这样在【编译阶段】就可以检查变量是否赋予了正确的类型，提前发现错误，配合编辑器的语法提示能有效提高开发效率。</p>
+<blockquote>
+<p>TypeScript体系</p>
+</blockquote>
+<p><strong>值 、变量 和 类型</strong></p>
+<ul>
+<li>类型的标注/推导确定</li>
+<li>类型的检查，检查数据类型是否安全</li>
+</ul>
+<blockquote>
+<p>TS资源</p>
+</blockquote>
+<p><a href="https://ts.xcatliu.com/">TS入门教程-阮一峰</a>
+<a href="https://jkchao.github.io/typescript-book-chinese/#why">深入理解TS</a></p>
+<h1 id="t-1" >类型声明</h1>
+<p>类型是值的集合，比如：
+Null  只有<code>null</code>一个元素的集合
+Boolean  有两个元素<code>false</code>和<code>true</code>的集合</p>
+<p>变量的类型有：基本数据类型、数组、对象、函数、枚举。</p>
+<p>基本数据类型除了 number、string 等还包括 TS 中 3 种特殊类型：<code>never</code>、<code>undefined</code>、<code>null</code>、<code>any</code>、<code>void</code></p>
 <ul>
 <li>
-<p><code>keyof</code> 后面跟一个类型，获取该类型的所有 key，产生联合类型。
-<code>typeof</code> 后面跟一个变量，获取变量的类型。</p>
+<p>undefined 、null、any 可以视为不进行类型检查</p>
+</li>
+<li>
+<p>void 表示函数没有返回值</p>
+</li>
+<li>
+<p><code>never</code> 表示永远不存在的值的类型，即这个类型没有对应的值，never 只能被 never 赋值</p>
+</li>
+</ul>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">type State = Readonly&lt;typeof initialState&gt;;</code>
+          <code slot="code">function fail(message: string): never {
+  throw new Error(message);
+}</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>类型别名</p>
-<deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
-          <code slot="code">type Props = { 
- onClick(e: MouseEvent&lt;HTMLElement&gt;): void
- children?: ReactNode 
+<h2 id="t-2" >指定变量的类型</h2>
+<ul>
+<li>变量声明为基本数据类型</li>
+</ul>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">const name: string = &#39;xxx&#39;</code>
+        </deckgo-highlight-code>
+<ul>
+<li>变量声明为数组类型</li>
+</ul>
+<deckgo-highlight-code  terminal="carbon" theme="blackboard"  >
+          <code slot="code">const arr: number[]</code>
+        </deckgo-highlight-code>
+<ul>
+<li>变量声明为对象</li>
+</ul>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface Person {
+  name: string;
+  age: number;
+  seedrandom(seed?: string): void;
 }
- 
-type RenderCallback = (args: ToggleableComponentProps) =&gt; JSX.Element;</code>
+interface Array&lt;T&gt; {
+  reverse(): T[];
+}
+// 或者使用【内联类型】，省略类型的定义
+let name: {
+  first: string;
+  second: string;
+};</code>
         </deckgo-highlight-code>
-<p><strong><code>type</code> 和 <code>interface</code> 的区别？</strong></p>
-</li>
-<li>
-<p><strong>类型断言</strong></p>
-<deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
-          <code slot="code">const initialState = {name: &#39;&#39;}
-type State = Readonly&lt;typeof initialState&gt;</code>
+<ul>
+<li>变量声明为函数</li>
+</ul>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">const onBlur:  (value: string, e?: React.FocusEvent&lt;HTMLInputElement&gt;) =&gt; void;
+
+const listener: (ev: MouseEvent) =&gt; any  // 指定listener 是一个函数，同时指定该函数的输入输出类型
+
+let mySum: (x: number, y: number) =&gt; number = function (x: number, y: number): number {
+    return x + y;
+};</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>查找类型
-从已有的类型中查找</p>
+<ul>
+<li>变量声明为枚举</li>
+</ul>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type Week = &#39;Mon&#39; | &#39;Tue&#39;</code>
+        </deckgo-highlight-code>
+<ul>
+<li>元组类型</li>
+</ul>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">let nameNumber: [string, number];</code>
+        </deckgo-highlight-code>
+<h2 id="t-3" >字面量类型</h2>
+<p>string、boolean、number 类型的值可以作为字面量类型</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">let foo: &#39;Hello&#39;;
+type OneToFive = 1 | 2 | 3 | 4 | 5;
+type Bools = true | false;</code>
+        </deckgo-highlight-code>
+<h2 id="t-4" >索引签名</h2>
+<p>指定对象的 key 或 key-value 对应该符合的类型</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface Foo {
+  [key: string | number]: any
+}
+
+const foo: {
+  [key: string]: { message: string }; // key 可以改为任意名称
+} = {};
+
+type Index = &#39;a&#39; | &#39;b&#39; | &#39;c&#39;;
+type FromIndex = { [k in Index]?: number };
+const good: FromIndex = { b: 1, c: 2 };</code>
+        </deckgo-highlight-code>
+<h1 id="t-5" >类型运算</h1>
+<p>操作数应该是【类型】</p>
+<h2 id="t-6" >type 别名</h2>
+<p>与接口不同，接口定义了一种新的类型，别名只是对现有的类型声明了新的名字，别名通常与字面量类型、联合类型、交叉类型、泛型使用，例如：</p>
+<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// 为string起一个别名Name，
+type Name = string;
+let myName:Name = &#39;abc&#39;;
+
+// 等号右边是字符串字面量类型，Easing是这个字面量类型的别名
+type Easing = &quot;ease-in&quot; | &quot;ease-out&quot; | &quot;ease-in-out&quot;;
+let easing: Easing = &#39;ease-in&#39;;
+let easing: Easing = &#39;other&#39;; // 报错
+// easing这个变量只能被赋值为&quot;ease-in&quot; 或 &quot;ease-out&quot; 或 &quot;ease-in-out&quot;这三个字符串中的一个，赋值为其他值就会报错
+
+type Callback = (data: string) =&gt; void;</code>
+        </deckgo-highlight-code>
+<p>interface 可以作为 <code>implements</code> 和 <code>extends</code> 的操作数，type 声明的别名不能。</p>
+<h2 id="t-7" >enum 枚举</h2>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">enum CardSuit {
+  Clubs,
+  Diamonds = 1,
+  Hearts,
+  Spades
+}
+// 简单的使用枚举类型
+let Card = CardSuit.Clubs;</code>
+        </deckgo-highlight-code>
+<h2 id="t-8" >或运算  联合类型</h2>
+<p>多个类型的或运算，逆 <code>extends</code> ，生成的类型是参与运算的类型的父类型。</p>
+<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// 声明了NumOrStr为一个联合类型
+type NumOrStr = sting | number;
+
+let x: NumOrStr = 1; // success
+x = &#39;abc&#39;; // success
+x = [1]; // error</code>
+        </deckgo-highlight-code>
+<h2 id="t-9" >与运算  交叉类型</h2>
+<p>合并多个类型</p>
+<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type Parent1 = {
+  name: string;
+}
+type Parent2 = {
+  age: number;
+}
+type Child = Parent1 &amp; Parent2;
+
+// 子级类型可以赋值给父类型(属性只能多不能少)
+let my: Parent1 = {
+  age: 2,
+  name: &#39;&#39;
+}</code>
+        </deckgo-highlight-code>
+<h2 id="t-10" >as  类型断言</h2>
+<p>当 <code>S</code> 类型是 <code>T</code> 类型的子集，或者 <code>T</code> 类型是 <code>S</code> 类型的子集时，<code>S</code> 能被成功断言成 <code>T</code>。</p>
+<p>如果 S 和 T 类型不存在包含关系时，可以使用【双重断言】</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">let foo = 123;
+let bar = &#39;hey&#39;;
+bar = foo as any; // ok
+// 双重断言
+bar = (foo as string) as any;</code>
+        </deckgo-highlight-code>
+<p>使用类型断言手动去除某个类型中的<code>null</code>和<code>undefined</code></p>
+<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
+          <code slot="code">name!.charAt(0)  // name为undefined 时会报错,!的意思是显式告诉编译器name不会为undefined
+name?.charAt(0) // 可选链运算符，name为undefined 时不会报错</code>
+        </deckgo-highlight-code>
+<blockquote>
+<p>const 断言</p>
+</blockquote>
+<p>使用 const 断言构造新的字面量表达式时，我们可以向编程语言发出以下信号：</p>
+<ul>
+<li>表达式中的任何字面量类型都不应该被扩展；</li>
+<li>对象字面量的属性，将使用 readonly 修饰；</li>
+<li>数组字面量将变成 readonly 元组。</li>
+</ul>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">let z = { text: &quot;hello&quot; } as const;
+type Z = typeof z; // let z: { readonly text: &quot;hello&quot;; }</code>
+        </deckgo-highlight-code>
+<h2 id="t-11" >类型保护</h2>
+<p>缩小类型范围或更精确的指明变量的类型，具体实现方法有：instance、typeof、in</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">function doSome(x: number | string) {
+  if (typeof x === &#39;string&#39;) {
+    // 在这个块中，TypeScript 知道 `x` 的类型必须是 `string`
+    console.log(x.subtr(1)); // Error: &#39;subtr&#39; 方法并没有存在于 `string` 上
+    console.log(x.substr(1)); // ok
+  }
+
+  x.substr(1); // Error: 无法保证 `x` 是 `string` 类型
+}</code>
+        </deckgo-highlight-code>
+<p>typeof 类型保护只支持两种形式：typeof v === "typename" 和 typeof v !== typename，"typename" 必须是 "number"， "string"， "boolean" 或 "symbol"。但是 TypeScript 并不会阻止你与其它字符串比较，语言不会把那些表达式识别为类型保护</p>
+<blockquote>
+<p>自定义类型保护</p>
+</blockquote>
+<p>当 instance、typeof、in 无法满足复杂的类型判断场景时可以自定义类型保护</p>
+<p>自定义类型保护的主要特点是：</p>
+<ul>
+<li>返回类型谓词，如 <code>vehicle is Car</code>；</li>
+<li>包含可以准确确定给定变量类型的逻辑语句，如 <code>xx.someProp !== undefined &#x26;&#x26; xx.someProp !== 0</code>。</li>
+</ul>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">function isOfType&lt;T&gt;(
+  varToBeChecked: any,
+  propertyToCheckFor: keyof T
+): varToBeChecked is T {
+  return (varToBeChecked as T)[propertyToCheckFor] !== undefined;
+}
+
+// 使用
+if (isOfType&lt;Car&gt;(vehicle,  &#39;turnSteeringWheel&#39;)) {
+  console.log(&quot;这是一辆车&quot;);
+} else {
+  console.log(&quot;这不是一辆车&quot;);
+}</code>
+        </deckgo-highlight-code>
+<h2 id="t-12" >类型推断</h2>
+<p>TypeScript 能根据一些简单的规则推断变量的类型</p>
+<ol>
+<li>变量定义并赋值</li>
+<li>赋值</li>
+<li>函数返回值</li>
+<li>对象、数组解构</li>
+</ol>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">let foo = 123;
+let bar: typeof foo; 
+
+// 捕获 key 的名称
+const colors = {
+  red: &#39;red&#39;,
+  blue: &#39;blue&#39;
+};
+
+type Colors = keyof typeof colors;
+
+let color: Colors; // color 的类型是 &#39;red&#39; | &#39;blue&#39;
+color = &#39;red&#39;; // ok
+color = &#39;blue&#39;; // ok
+color = &#39;anythingElse&#39;; // Error</code>
+        </deckgo-highlight-code>
+<p>从实现中推断类型</p>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
           <code slot="code">const initialState = {
   show: false,
@@ -40,9 +303,7 @@ type ToggleableComponentProps = {
   show: State[&#39;show&#39;];
 };</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>从实现中推断类型</p>
+<p>xxx</p>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
           <code slot="code">type ToggleableComponentProps = {
   toggle: Toggleable[&#39;toggle&#39;];
@@ -57,87 +318,96 @@ export class Toggleable extends Component&lt;Props, State&gt; {
   private toggle = (event: MouseEvent&lt;HTMLElement&gt;) =&gt; this.setState(updateShowState);
 }</code>
         </deckgo-highlight-code>
-</li>
-</ul>
-<h2 id="t-1" ><code>ReactNode</code> 、 <code>ReactElement</code> 和 <code>JSX.Element</code> 的区别？</h2>
-<ul>
-<li><code>children?: React.ReactNode </code></li>
-</ul>
-<h1 id="t-2" >概况</h1>
-<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 621px; ">
-      <a class="gatsby-resp-image-link" href="/static/2d5d45cf184dbee81bfeca5b3846a42f/3075e/image-20200820171028681.png" style="display: block" target="_blank" rel="noopener">
-    <span class="gatsby-resp-image-background-image" style="padding-bottom: 71.50000000000001%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAACuklEQVQ4y32Ta28aRxSG94/3W9Xf0KpS+6FN3TpWjO0a2/iixCEOEDCYa2RDzYKXhV32fr/xVKwhcqq2M3q0Z45m33nnzIxwdnrG4cEhpbMSxeMT9t8UeL27R7VaQ5JmyDMZeTZnMVdQ5grqQmWpLFmqGpqmoWs6ur7GQDdMhKVhYDjOFyzPw/Y9TNdBty10287z67HpulhrPBfb8/D8AD/YEuYIURyzbiv48t3GL9t/5f6JEIZRHmSrVU66ev51PFcp1Ttc3nbRLDvPbef8H0IYRV+tmm0ExcWSwrsqB+8qGI77r4IvjWy7ICtLdq4q/FG6ZiROeF1u8r7e4n4qc1DpclRpIz5JHFda/Fm5I96UKNuIPYu+3HIQcNcb0Oj0kGcSzW6f4eMjk8mE6l2Hym0TWZboD0e0e30c28L1XNI4zIXTLPvKpdAYPHBcrpGkCcUPddoPj5iOw+7FNZqh0/trTPGmjh/4nNeaVDt95KXG7mWZhW5s3G7LkCHU2gP2L8s4nsvJxwbvb9vIqsovxQskRaE7GnN0XcFybE4+fuJTt49mWfx2esVwLJKlCUHowyrLxQVFUbl/GG7uQUIYeCRpTOg/H4S8mDOeiHn8KI5RliphHNHq9ZirKtVmi6EoUu90mc4XCDvnZb75eQ/DMonTJHcSRCGa+bydN+U63746ZDKT+G7niF9P3yIpKj8USlzVGvxYOONV8YLvD875/fQK4WH8RLU9IE3TvAZxtLaf4m8cjqYS9f5nojiiMbhnOJmiOw77b29QTRN/fUBpgm2bxHGEkIQRrmWTJglP8oxyq0ft84hGt0eSxFiWiWObpFmKbZlEoc9YkvmpcMJQnGAYOrbrYJhGPkcI1u/QCwgCn6k8o3DTZK98y4dmJ3dpr9+3Y+P5HrZj5/iBl9c6DIN87LgOQRjk1+ZvAk4QuOg/yRkAAAAASUVORK5CYII='); background-size: cover; display: block;"></span>
-  <img class="gatsby-resp-image-image" alt="image-20200820171028681" title="image-20200820171028681" src="/static/2d5d45cf184dbee81bfeca5b3846a42f/3075e/image-20200820171028681.png" srcset="/static/2d5d45cf184dbee81bfeca5b3846a42f/772e8/image-20200820171028681.png 200w,
-/static/2d5d45cf184dbee81bfeca5b3846a42f/e17e5/image-20200820171028681.png 400w,
-/static/2d5d45cf184dbee81bfeca5b3846a42f/3075e/image-20200820171028681.png 621w" sizes="(max-width: 621px) 100vw, 621px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
-  </a>
-    </span>  
-<img src="assets/TS%E5%9F%BA%E7%A1%80/image-20201114122155270.png" alt="image-20201114122155270" style="zoom:50%;" />  
-<p>上面的是父级，下面是子级，子级类型可以赋值给父级。</p>
-<p><strong>TypeScript体系</strong></p>
-<p><strong>值 、变量 和 类型</strong></p>
-<ul>
-<li>类型的标注/推导确定</li>
-<li>类型的检查，检查数据类型是否安全</li>
-</ul>
-<h1 id="t-3" >TS资源</h1>
-<ul>
-<li><a href="https://www.typescriptlang.org/docs/home.html">官网</a>  <a href="https://www.tslang.cn/">中文</a></li>
-<li><a href="https://ts.xcatliu.com/">TS入门教程-阮一峰</a></li>
-<li><a href="https://zhongsp.gitbook.io/typescript-handbook/">非官方中文版</a></li>
-<li><a href="https://jkchao.github.io/typescript-book-chinese/#why">深入理解TS</a></li>
-</ul>
-<h1 id="t-4" >泛型参数组件</h1>
-<ul>
-<li>
-<p>类组件定义及使用</p>
-<deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
-          <code slot="code">// 定义泛型参数的组件
-class GenericComponent&lt;P&gt; extends React.Component&lt;P&gt; {
-  internalProp: P;
-  constructor(props: P) {
-    super(props);
-    this.internalProp = props;
-  }
-  render() {
-    return null;
-  }
+<h2 id="t-13" >keyof &#x26; typeof</h2>
+<p><code>keyof</code> 后面跟一个【类型】，获取该类型的所有 key，产生联合类型。
+在 TS 中 <code>typeof</code> 后面跟一个【变量】，得到的是类型。</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type State = Readonly&lt;typeof initialState&gt;;
+
+const COLORS = {
+  red: &#39;red&#39;,
+  blue: &#39;blue&#39;
 }
 
-type Props = { a: number; b: string };
+// 首先通过 typeof 操作符获取 Colors 变量的类型，然后通过keyof操作符获取该类型的所有键，
+// 即字符串字面量联合类型 &#39;red&#39; | &#39;blue&#39;
+type Colors = keyof typeof COLORS
+let color: Colors;
+color = &#39;red&#39;// Ok
+color = &#39;blue&#39;// Ok
 
-&lt;GenericComponent&lt;Props&gt; a={10} b=&quot;hi&quot; /&gt;; // OK
-&lt;GenericComponent&lt;Props&gt; a={10} b={20} /&gt;; // Error</code>
+// Type &#39;&quot;yellow&quot;&#39; is not assignable to type &#39;&quot;red&quot; | &quot;blue&quot;&#39;.
+color = &#39;yellow&#39;// Error</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>函数式组件</p>
-<deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
-          <code slot="code">function GenericComponent&lt;P&gt;(props: P) {
-  const internalProp = useRef(props)
-  return null;
+<p>定义一个获取对象属性值的函数</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">function prop&lt;T extends object, K extends keyof T&gt;(obj: T, key: K) {
+  return obj[key];
 }</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>箭头函数</p>
-<deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
-          <code slot="code">// 这样会解析错误
-const GenericComponent = &lt;P&gt;(props: P) =&gt;{
-  const internalProp = useRef(props);
-  return null;
+<h2 id="t-14" >索引访问类型</h2>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type P3 = string[&quot;charAt&quot;];  // (pos: number) =&gt; string
+type P4 = string[][&quot;push&quot;];  // (...items: string[]) =&gt; number</code>
+        </deckgo-highlight-code>
+<h2 id="t-15" >类型提取</h2>
+<p>从复合类型中提取出单个类型，方法有索引访问类型、条件类型+infer、ReturnType</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type Person = {
+  name: string;
+  age: number;
+}
+type PersonName = Person[&quot;name&quot;];</code>
+        </deckgo-highlight-code>
+<h2 id="t-16" >条件类型</h2>
+<p>根据某些条件得到不同的类型，这里所说的条件是类型兼容性约束</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">T extends U ? X : Y</code>
+        </deckgo-highlight-code>
+<p>上述表达式为若 <code>T</code> 能够赋值给 <code>U</code>，那么类型是 <code>X</code>，否则为 <code>Y</code></p>
+<h2 id="t-17" >infer</h2>
+<p><code>infer</code> 声明一个类型变量并且对它进行使用</p>
+<h2 id="t-18" >readonly</h2>
+<p>readonly 作用于属性，表示属性不能被修改</p>
+<ul>
+<li>Readonly</li>
+</ul>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface Foo {
+  readonly [x: number]: number;
 }
 
-// 泛型必须使用extends关键字才能解析
-const GenericComponent = &lt;P extends any&gt;(props: P) =&gt;{
-  const internalProp = useRef(props);
-  return null;
-}</code>
+type Foo = {
+  bar: number;
+  bas: number;
+};
+// 将所有属性标记为只读类型
+type FooReadonly = Readonly&lt;Foo&gt;;</code>
         </deckgo-highlight-code>
-</li>
+<ul>
+<li>ReadonlyArray</li>
 </ul>
-<h1 id="t-5" >关键字</h1>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">let foo: ReadonlyArray&lt;number&gt; = [1, 2, 3];</code>
+        </deckgo-highlight-code>
+<h2 id="t-19" >extends</h2>
+<p>使用 extends 给泛型添加约束</p>
+<p>有时候我们定义的泛型不想过于灵活或者说想继承某些类等，可以通过 extends 关键字添加泛型约束。</p>
 <p>extends ：ts 中的 extends 理解为扩展更合适，用 <code>&#x26; </code> 可以实现和 <code>extends</code> 类似的效果。</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface ILengthwise {
+  length: number;
+}
+function loggingIdentity&lt;T extends ILengthwise&gt;(arg: T): T {
+  console.log(arg.length);
+  return arg;
+}
+
+// 这时我们需要传入符合约束类型的值，必须包含必须的属性：
+loggingIdentity(3);  // Error, number doesn&#39;t have a .length property
+loggingIdentity({length: 10, value: 3});</code>
+        </deckgo-highlight-code>
+<h2 id="t-20" >implements</h2>
 <p>implements：在 TypeScript 中，<code>implements</code>操作只是为<code>class</code>提供一种类型约束。</p>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
           <code slot="code">interface Alarm {
@@ -158,60 +428,7 @@ class Car implements Alarm {
   }
 }</code>
         </deckgo-highlight-code>
-<ul>
-<li>
-<p>example</p>
-<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">(&lt;any&gt;result)[id] = (&lt;any&gt;first)[id];  // 类型断言
-
-
-interface Padder {
-    getPaddingString(): string
-}
-class SpaceRepeatingPadder implements Padder {
-    constructor(private numSpaces: number) { }
-    getPaddingString() {
-        return Array(this.numSpaces + 1).join(&quot; &quot;);
-    }
-}</code>
-        </deckgo-highlight-code>
-</li>
-<li>
-<p>使用类型断言手动去除某个类型中的<code>null</code>和<code>undefined</code></p>
-<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
-          <code slot="code">name!.charAt(0)  // name为undefined 时会报错,!的意思是显式告诉编译器name不会为undefined
-
-name?.charAt(0) // name为undefined 时不会报错</code>
-        </deckgo-highlight-code>
-</li>
-<li>
-<p>函数类型</p>
-<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
-          <code slot="code">export interface ThemeContextValue {
-  theme: Theme;
-  onThemeChange: (theme: Theme) =&gt; void;
-  handleClick?(e: React.MouseEvent&lt;HTMLElement&gt;):void;
-}</code>
-        </deckgo-highlight-code>
-</li>
-</ul>
-<h2 id="t-6" >extends</h2>
-<p>使用 extends 给泛型添加约束</p>
-<p>有时候我们定义的泛型不想过于灵活或者说想继承某些类等，可以通过 extends 关键字添加泛型约束。</p>
-<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">interface ILengthwise {
-  length: number;
-}
-function loggingIdentity&lt;T extends ILengthwise&gt;(arg: T): T {
-  console.log(arg.length);
-  return arg;
-}
-
-// 这时我们需要传入符合约束类型的值，必须包含必须的属性：
-loggingIdentity(3);  // Error, number doesn&#39;t have a .length property
-loggingIdentity({length: 10, value: 3});</code>
-        </deckgo-highlight-code>
-<h1 id="t-7" >参考</h1>
+<h2 id="t-21" >参考</h2>
 <ul>
 <li><a href="https://ts.xcatliu.com/basics/primitive-data-types.html">原始数据类型</a></li>
 <li><a href="https://ts.xcatliu.com/basics/any.html">任意值</a></li>
@@ -224,127 +441,134 @@ loggingIdentity({length: 10, value: 3});</code>
 <li><a href="https://ts.xcatliu.com/basics/declaration-files.html">声明文件</a></li>
 <li><a href="https://ts.xcatliu.com/basics/built-in-objects.html">内置对象</a></li>
 </ul>
-<h1 id="t-8" >数据类型</h1>
+<h1 id="t-22" >Interfaces</h1>
+<p>使用接口（Interfaces）来定义对象的类型，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。除了可用于<a href="https://ts.xcatliu.com/advanced/class-and-interfaces.html#%E7%B1%BB%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3">对类的一部分行为进行抽象</a>以外，也常用于对「对象的形状（Shape）」进行描述。</p>
 <blockquote>
-<p>类型是值的集合</p>
-<p>Undefined  只有<code>undefined</code>一个元素的集合</p>
-<p>Null  只有<code>null</code>一个元素的集合</p>
-<p>Boolean  有两个元素<code>false</code>和<code>true</code>的集合</p>
-<p>...</p>
+<p>example</p>
 </blockquote>
-<p><strong>指定变量的类型</strong></p>
-<ul>
-<li>
-<p>使用接口（Interfaces）来定义对象的类型</p>
-</li>
-<li>
-<p>指定变量为函数</p>
-<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">interface Cat {
-  name: string;
-  run(): void;
-  onBlur?: (value: string, e?: React.FocusEvent&lt;HTMLInputElement&gt;) =&gt; void;
+<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface Person {
+    name: string;
+    age: number;
 }
 
-listener: (ev: MouseEvent) =&gt; any  // 指定listener 是一个函数，同时指定该函数的输入输出类型
-
-let mySum: (x: number, y: number) =&gt; number = function (x: number, y: number): number {
-    return x + y;
+let tom: Person = {
+    name: &#39;Tom&#39;,
+    age: 25
 };</code>
         </deckgo-highlight-code>
-</li>
-</ul>
-<p>TS简单的说就是为JS中的变量指定了类型，JS中的变量本身是没有类型的，比如：</p>
-<deckgo-highlight-code language="js" terminal="carbon" theme="blackboard"  >
-          <code slot="code">let x = 1;
-x = &#39;anc&#39;;
-x = [1,2,3];</code>
-        </deckgo-highlight-code>
-<p>上述中变量<code>x</code>既可以存储数字也可以存储字符串，JS中的某一个变量可以存储任意类型的值。有了TS就可以为变量指定一个类型，这样在编译阶段就可以检查变量是否赋予了正确的类型，提前发现错误，配合编辑器的语法提示能有效提高开发效率。</p>
-<p>TS中描述类型的方法有：</p>
-<ol>
-<li>
-<p>原始类型: numble  string   Boolean</p>
-</li>
-<li>
-<p>字面量类型：123  'abc'</p>
-</li>
-<li>
-<p>接口：描述一类对象的类型，例如：</p>
-<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">interface IPerson{
-  name: string;
-  age: number
-}
-
-let me: IPerson = {
-  name: &#39;abc&#39;,
-  aeg: 10
-}
-let you: IPerson = {
-  name: 12,  // 报错：name必须是string
-}
-// 报错 you 必须同时包含 name 和 age 两个属性</code>
-        </deckgo-highlight-code>
-<p>上述代码定义了一个名为<code>IPerson</code>的接口来表示'人'这一类对象的类型，如果某个对象被指定为<code>IPerson</code>这种类型，那这个对象就必须符合<code>IPerson</code>描述的特征，即包含<code>name</code>和<code>age </code>两个属性。</p>
-</li>
-<li>
-<p>别名
-与接口不同，接口定义了一种新的类型，别名只是对现有的类型声明了新的名字，别名通常与字面量类型、联合类型、交叉类型、泛型使用，例如：</p>
+<blockquote>
+<p>有时候我们希望一个接口允许有任意的属性，可以使用如下方式</p>
+</blockquote>
 <deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
-          <code slot="code">// 为string起一个别名Name，
-type Name = string;
-let myName:Name = &#39;abc&#39;;
-
-// 等号右边是字符串字面量类型，Easing是这个字面量类型的别名
-type Easing = &quot;ease-in&quot; | &quot;ease-out&quot; | &quot;ease-in-out&quot;;
-let easing: Easing = &#39;ease-in&#39;;
-let easing: Easing = &#39;other&#39;; // 报错
-// easing这个变量只能被赋值为&quot;ease-in&quot; 或 &quot;ease-out&quot; 或 &quot;ease-in-out&quot;这三个字符串中的一个，赋值为其他值就会报错</code>
-        </deckgo-highlight-code>
-</li>
-<li>
-<p><code>never</code>  <code>undefined</code>   <code>null</code>
-<code>never</code>  <code>undefined</code>   <code>null</code> 是TS中三中特殊的类型</p>
-<ul>
-<li><code>never</code> 表示永远不存在的值的类型，即这个类型没有对应的值</li>
-<li><code>undefined</code>这个类型只有一个值，就是<code>undefined</code></li>
-<li><code>null</code>与<code>undefined</code>同理</li>
-</ul>
-</li>
-<li>
-<p>联合类型
-多个类型的或运算，逆 <code>extends</code> ，生成的类型是参与运算的类型的父类型。</p>
-<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
-          <code slot="code">// 声明了NumOrStr为一个联合类型
-type NumOrStr = sting | number;
-
-let x: NumOrStr = 1; // success
-x = &#39;abc&#39;; // success
-x = [1]; // error</code>
-        </deckgo-highlight-code>
-</li>
-<li>
-<p>交叉类型
-和并多个类型</p>
-<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
-          <code slot="code">type Parent1 = {
-  name: string;
+          <code slot="code">interface Person {
+    name: string;
+    age?: number; // 可选
+    [propName: string]: string | number; // 任意属性，一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集。 
 }
-type Parent2 = {
-  age: number;
-}
-type Child = Parent1 &amp; Parent2;
 
-// 子级类型可以赋值给父类型(属性只能多不能少)
-let my: Parent1 = {
-  age: 2,
-  name: &#39;&#39;
+let tom: Person = {
+    name: &#39;Tom&#39;,
+    gender: &#39;male&#39;
+};</code>
+        </deckgo-highlight-code>
+<blockquote>
+<p>使用接口定义类数组数据</p>
+</blockquote>
+<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
+          <code slot="code">function sum() {
+    let args: {
+        [index: number]: number;
+        length: number;
+        callee: Function;
+    } = arguments;
 }</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>泛型：对类型的进一步抽象，与模板的概念相似，例如：</p>
+<h2 id="t-23" >接口继承</h2>
+<p>接口是一个类型，接口可以继承类和其他interface(包括自定义类)。
+接口继承类的时候，只会继承它的实例属性和实例方法。</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface ApiError extends Error {
+  code: number;
+}</code>
+        </deckgo-highlight-code>
+<p><a href="https://ts.xcatliu.com/advanced/class-and-interfaces.html">https://ts.xcatliu.com/advanced/class-and-interfaces.html</a></p>
+<h2 id="t-24" >interface 和 type 的区别</h2>
+<ol>
+<li>interface 可以用于 extends 和 implements，type 不能；</li>
+<li><code>type</code> 可以声明联合、交叉类型，interface 不能；</li>
+<li><code>type</code> 可以与 <code>typeof </code> 联用，从变量值推断类型；</li>
+<li>interface 存在声明合并的情况，可以用来重载函数，<a href="https://www.tslang.cn/docs/handbook/declaration-merging.html">详解</a></li>
+</ol>
+<h1 id="t-25" >函数</h1>
+<p>在没有提供函数实现的情况下，有两种声明函数类型的方式:</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type LongHand = {
+  (a: number): number;
+};
+
+// 内联注释
+type ShortHand = (a: number) =&gt; number;
+const simple: (foo: number) =&gt; string = foo =&gt; foo.toString();</code>
+        </deckgo-highlight-code>
+<p>当你想使用【函数重载】时，只能用第一种方式:</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type LongHandAllowsOverloadDeclarations = {
+  (a: number): number;
+  (a: string): string;
+};</code>
+        </deckgo-highlight-code>
+<p>更复杂的例子</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface Complex {
+  (foo: string, bar?: number, ...others: boolean[]): number;
+}
+
+// ==============================================
+interface Overloaded {
+  (foo: string): string;
+  (foo: number): number;
+}
+
+// 实现接口的一个例子：
+function stringOrNumber(foo: number): number;
+function stringOrNumber(foo: string): string;
+function stringOrNumber(foo: any): any {
+  if (typeof foo === &#39;number&#39;) {
+    return foo * foo;
+  } else if (typeof foo === &#39;string&#39;) {
+    return `hello ${foo}`;
+  }
+}
+
+const overloaded: Overloaded = stringOrNumber;
+
+// 使用
+const str = overloaded(&#39;&#39;); // str 被推断为 &#39;string&#39;
+const num = overloaded(123); // num 被推断为 &#39;number&#39;</code>
+        </deckgo-highlight-code>
+<blockquote>
+<p>函数重载</p>
+</blockquote>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">function padding(all: number);
+function padding(topAndBottom: number, leftAndRight: number);</code>
+        </deckgo-highlight-code>
+<blockquote>
+<p>可实例化</p>
+</blockquote>
+<p>表示需要使用 <code>new</code> 关键字去调用它</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface CallMeWithNewToGetString {
+  new (): string;
+}
+// 使用
+declare const Foo: CallMeWithNewToGetString;
+const bar = new Foo(); // bar 被推断为 string 类型</code>
+        </deckgo-highlight-code>
+<h1 id="t-26" >泛型</h1>
+<p>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。</p>
+<p>对类型的进一步抽象，与模板的概念相似，例如：</p>
 <deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
           <code slot="code">// 定义一个泛型函数
 function logging&lt;T&gt;(arg: T[]): T[] {
@@ -356,74 +580,9 @@ function logging&lt;T&gt;(arg: T[]): T[] {
 logging&lt;number&gt;([1,2,3]); // ok
 loggin&lt;string&gt;([&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]); // ok</code>
         </deckgo-highlight-code>
-</li>
-</ol>
-<h1 id="t-9" >接口</h1>
 <blockquote>
-<p>使用接口（Interfaces）来定义对象的类型，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。除了可用于<a href="https://ts.xcatliu.com/advanced/class-and-interfaces.html#%E7%B1%BB%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3">对类的一部分行为进行抽象</a>以外，也常用于对「对象的形状（Shape）」进行描述。</p>
+<p>示例</p>
 </blockquote>
-<ul>
-<li>
-<p>demo</p>
-<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
-          <code slot="code">interface Person {
-    name: string;
-    age: number;
-}
-
-let tom: Person = {
-    name: &#39;Tom&#39;,
-    age: 25
-};
-
-// 有时候我们希望一个接口允许有任意的属性，可以使用如下方式
-interface Person {
-    name: string;
-    age?: number; // 可选
-    [propName: string]: string | number; // 任意属性，一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集。 
-}
-
-let tom: Person = {
-    name: &#39;Tom&#39;,
-    gender: &#39;male&#39;
-};
-</code>
-        </deckgo-highlight-code>
-</li>
-<li>
-<p>使用接口定义类数组数据</p>
-<deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
-          <code slot="code">function sum() {
-    let args: {
-        [index: number]: number;
-        length: number;
-        callee: Function;
-    } = arguments;
-}</code>
-        </deckgo-highlight-code>
-</li>
-</ul>
-<h2 id="t-10" >接口继承</h2>
-<p>接口是一个类型，接口可以继承类和其他interface(包括自定义类)。
-接口继承类的时候，只会继承它的实例属性和实例方法。</p>
-<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">interface ApiError extends Error {
-  code: number;
-}</code>
-        </deckgo-highlight-code>
-<p><a href="https://ts.xcatliu.com/advanced/class-and-interfaces.html">https://ts.xcatliu.com/advanced/class-and-interfaces.html</a></p>
-<h2 id="t-11" >interface 和 type 的区别</h2>
-<p>​    1)  interface 可以用于 extends 和 implements，type 不能；</p>
-<p>​    2)  <code>type</code> 可以声明联合、交叉类型，interface 不能；</p>
-<p>​    3)  <code>type</code> 可以与 <code>typeof </code> 联用，从变量值推断类型；</p>
-<p>​    4)  interface 存在声明合并的情况，可以用来重在函数，详解：<a href="https://www.tslang.cn/docs/handbook/declaration-merging.html">https://www.tslang.cn/docs/handbook/declaration-merging.html</a></p>
-<h1 id="t-12" >泛型</h1>
-<blockquote>
-<p>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。</p>
-</blockquote>
-<ul>
-<li>
-<p>demo</p>
 <deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
           <code slot="code">function createArray&lt;T&gt;(length: number, value: T): Array&lt;T&gt; {
     let result: T[] = [];
@@ -432,67 +591,138 @@ let tom: Person = {
     }
     return result;
 }
+createArray&lt;string&gt;(3, &#39;x&#39;);
 
-createArray&lt;string&gt;(3, &#39;x&#39;);</code>
+const getJSON = &lt;T&gt;(config: { url: string; headers?: { [key: string]: string } }): Promise&lt;T&gt; =&gt; {
+  const fetchConfig = {
+    method: &#39;GET&#39;,
+    Accept: &#39;application/json&#39;,
+    &#39;Content-Type&#39;: &#39;application/json&#39;,
+    ...(config.headers || {})
+  };
+  return fetch(config.url, fetchConfig).then&lt;T&gt;(response =&gt; response.json());
+};</code>
         </deckgo-highlight-code>
-</li>
-<li>
+<blockquote>
+<p>复杂示例</p>
+</blockquote>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">export interface ResponseData&lt;T = any&gt; {
+  code: number;
+  result: T;
+  message: string;
+}
+
+import Ax from &#39;./axios&#39;;
+export function getUser&lt;T&gt;() {
+  return Ax.get&lt;ResponseData&lt;T&gt;&gt;(&#39;/somepath&#39;)
+    .then(res =&gt; res.data)
+    .catch(err =&gt; console.error(err));
+}
+
+// 使用
+interface User {
+  name: string;
+  age: number;
+}
+async function test() {
+  // user 被推断出为
+  // {
+  //  code: number,
+  //  result: { name: string, age: number },
+  //  message: string
+  // }
+  const user = await getUser&lt;User&gt;();
+}</code>
+        </deckgo-highlight-code>
+<blockquote>
 <p>数组泛型</p>
+</blockquote>
 <deckgo-highlight-code language="typescript" terminal="carbon" theme="blackboard"  >
           <code slot="code">let fibonacci: Array&lt;number&gt; = [1, 1, 2, 3, 5];</code>
         </deckgo-highlight-code>
-</li>
-</ul>
-<h1 id="t-13" >内置高级泛型</h1>
+<h2 id="t-27" >内置高级泛型</h2>
+<p>内置高级类型泛型有： Partial、Required、Pick、Exclude、Omit</p>
+<h3 id="t-28" >Partial</h3>
+<p>将某个类型里的属性全部变为可选项</p>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">// extends 表示类型约束
-function copy&lt;T extends BaseType&gt;(arg: T): T {
-  return arg;
-}
-// 条件类型
-type Extract&lt;T, U&gt; = T extends U ? T : never;</code>
+          <code slot="code">type Partial&lt;T&gt; = { [P in keyof T]  ?:  T[P] };</code>
         </deckgo-highlight-code>
-<ul>
-<li>
-<p>内置高级类型泛型： <code>Partial Required Pick Exclude Omit</code></p>
+<h3 id="t-29" >Required</h3>
+<p>将所有属性变为必选</p>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">// 将所有接口变为可选
-type Partial&lt;T&gt; = { [P in keyof T]?: T[P] };
+          <code slot="code">type Required&lt;T&gt; = { [P in keyof T]  -?:   T[P] };
+// -? 作用是移除 ?</code>
+        </deckgo-highlight-code>
+<h3 id="t-30" >Readonly</h3>
+<p>将某个类型所有属性变为只读属性</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type Readonly&lt;T&gt; = {
+    readonly [P in keyof T]  : T[P];
+};</code>
+        </deckgo-highlight-code>
+<h3 id="t-31" >Extract</h3>
+<p>Extract：从类型 T 中提取 U，类似于取交集</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type Extract&lt;T, U&gt; = T extends U ? T : never;
 
-// 将所有接口变为必选
-type Required&lt;T&gt; = { [P in keyof T]-?: T[P] };
-
-// 从 T 中取出 一系列 K 的属性
-type Pick&lt;T, K extends keyof T&gt; = { [P in K]: T[P] };
-
-type Readonly&lt;T&gt; = {
-    readonly [P in keyof T]: T[P];
+// 使用
+type T1 = Extract&lt;string | number | (() =&gt; void), Function&gt;; // () =&gt;void</code>
+        </deckgo-highlight-code>
+<h3 id="t-32" >Pick</h3>
+<p>Pick：从类型 T 中选中部分，得到选中的类型</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type Pick&lt;T, K extends keyof T&gt; = {
+    [P in K]: T[P];
 };
-
-/**
- * Exclude from T those types that are assignable to U
- * T 是联合类型？
- */
-type Exclude&lt;T, U&gt; = T extends U ? never : T;
-
-/**
- * Extract from T those types that are assignable to U
- */
-type Extract&lt;T, U&gt; = T extends U ? T : never;
-
-/**
- * Construct a type with the properties of T except for those in type K.
- */
-type Omit&lt;T, K extends keyof any&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;;</code>
+// 使用
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+type TodoPreview = Pick&lt;Todo, &quot;title&quot; | &quot;completed&quot;&gt;;
+const todo: TodoPreview = {
+  title: &quot;Clean room&quot;,
+  completed: false
+};</code>
         </deckgo-highlight-code>
-</li>
-<li>
+<h3 id="t-33" >Exclude</h3>
+<p>Exclude：从类型 T 中剔除部分类型，得到剩余的类型</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type Exclude&lt;T, U&gt; = T extends U ? never : T;
+
+// 使用
+type T2 = Exclude&lt;string | number | (() =&gt; void),  Function&gt;; // string | number</code>
+        </deckgo-highlight-code>
+<p>如果 T 能赋值给 U 类型的话，那么就会返回 never 类型，否则返回 T 类型。最终实现的效果就是将 T 中某些属于 U 的类型移除掉</p>
+<h3 id="t-34" >Omit</h3>
+<p>用 T 类型中除了 K 类型的所有属性，来构造一个新的类型。</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">type Omit&lt;T,  K extends keyof any&gt; = Pick&lt;T,  Exclude&lt;keyof T, K&gt;&gt;;
+
+// 使用
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+type TodoPreview = Omit&lt;Todo, &quot;description&quot;&gt;;
+const todo: TodoPreview = {
+  title: &quot;Clean room&quot;,
+  completed: false
+};</code>
+        </deckgo-highlight-code>
+<blockquote>
+<p>Omit 和 Exclude 的区别</p>
+</blockquote>
+<p>xxxxxxxxxxxxxxx</p>
+<h3 id="t-35" >Record</h3>
 <p><code>Record</code> :  <code>Record&#x3C;K extends keyof any, T></code> 的作用是将 <code>K</code> 中所有的属性的值转化为 <code>T</code> 类型。</p>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
           <code slot="code">type Record&lt;K extends keyof any, T&gt; = {
     [P in K]: T;
 };
-
 
 interface PageInfo {
   title: string;
@@ -505,42 +735,98 @@ const x: Record&lt;Page, PageInfo&gt; = {
   home: { title: &quot;home&quot; }
 };</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>Pick：从类型 T 中选中部分，得到选中的类型</p>
-<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">type Pick&lt;T, K extends keyof T&gt; = {
-    [P in K]: T[P];
-};</code>
-        </deckgo-highlight-code>
-</li>
-<li>
-<p>Exclude：从类型 T 中剔除部分类型，得到剩余的类型</p>
-<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">type Exclude&lt;T, U&gt; = T extends U ? never : T;</code>
-        </deckgo-highlight-code>
-</li>
-<li>
-<p>Extract：从类型 T 中提取部分，得到提取的</p>
-<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">type Extract&lt;T, U&gt; = T extends U ? T : never;</code>
-        </deckgo-highlight-code>
-</li>
-<li>
+<h3 id="t-36" >RetureType</h3>
 <p>ReturnType：用于获取函数 <code>T</code> 的返回类型。</p>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">type ReturnType&lt;T extends (...args: any) =&gt; any&gt; = T extends (...args: any) =&gt; infer R ? R : any;</code>
+          <code slot="code">type ReturnType&lt;T extends (...args: any) =&gt; any&gt;   = T extends (...args: any) =&gt; infer R ? R : any;
+
+// 使用
+type T0 = ReturnType&lt;() =&gt;string&gt;; // string</code>
         </deckgo-highlight-code>
-</li>
-</ul>
-<p>参考：</p>
+<h3 id="t-37" >InstanceType</h3>
+<p>获取构造函数类型的实例类型</p>
+<h3 id="t-38" >ThisType</h3>
+<p>指定上下文对象的类型，使用 <code>ThisType&#x3C;T></code> 时，必须确保 --noImplicitThis 标志设置为 true</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface Person {
+    name: string;
+    age: number;
+}
+
+const obj: ThisType&lt;Person&gt; = {
+  dosth() {
+    this.name // string
+  }
+}</code>
+        </deckgo-highlight-code>
+<h3 id="t-39" >参考</h3>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzI2MjcxNTQ0Nw==&#x26;mid=2247484142&#x26;idx=1&#x26;sn=946ba90d10e2625513f09e60a462b3a7&#x26;scene=19#wechat_redirect">TS内置高级泛型</a></p>
-<h1 id="t-14" >声明文件</h1>
-<ul>
-<li>
-<p>demo.d.ts</p>
+<h2 id="t-40" >泛型参数组件</h2>
+<blockquote>
+<p>类组件定义及使用</p>
+</blockquote>
 <deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
-          <code slot="code">export declare enum ButtonsPopoverConfigIconType {
+          <code slot="code">// 定义泛型参数的组件
+class GenericComponent&lt;P&gt; extends React.Component&lt;P&gt; {
+  internalProp: P;
+  constructor(props: P) {
+    super(props);
+    this.internalProp = props;
+  }
+  render() {
+    return null;
+  }
+}
+
+type Props = { a: number; b: string };
+
+&lt;GenericComponent&lt;Props&gt; a={10} b=&quot;hi&quot; /&gt;; // OK
+&lt;GenericComponent&lt;Props&gt; a={10} b={20} /&gt;; // Error</code>
+        </deckgo-highlight-code>
+<blockquote>
+<p>函数式组件</p>
+</blockquote>
+<deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
+          <code slot="code">function GenericComponent&lt;P&gt;(props: P) {
+  const internalProp = useRef(props)
+  return null;
+}</code>
+        </deckgo-highlight-code>
+<blockquote>
+<p>箭头函数</p>
+</blockquote>
+<deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
+          <code slot="code">// 这样会解析错误
+const GenericComponent = &lt;P&gt;(props: P) =&gt;{
+  const internalProp = useRef(props);
+  return null;
+}
+
+// 泛型必须使用extends关键字才能解析
+const GenericComponent = &lt;P extends any&gt;(props: P) =&gt;{
+  const internalProp = useRef(props);
+  return null;
+}</code>
+        </deckgo-highlight-code>
+<h1 id="t-41" >类型兼容</h1>
+<p>一种类型能否赋值给另一种类型，比如 string 不能赋值给 number、子类可以赋值给父类</p>
+<h1 id="t-42" >声明文件</h1>
+<p>你可以通过 <code>declare</code> 关键字来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码</p>
+<deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
+          <code slot="code">interface ReturnString {
+  (): string;
+}
+
+declare const foo: ReturnString;
+const bar = foo(); // bar 被推断为一个字符串。</code>
+        </deckgo-highlight-code>
+<blockquote>
+<p>demo.d.ts</p>
+</blockquote>
+<deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
+          <code slot="code">declare let process: any;
+
+export declare enum ButtonsPopoverConfigIconType {
     XiaoSen = &quot;XiaoSen&quot;,
     Scan = &quot;Scan&quot;,
     AppStore = &quot;AppStore&quot;,
@@ -565,26 +851,35 @@ declare namespace jQuery {
   function ajax(url: string, settings?: AjaxSettings): void;
 }</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>声明合并：当一个变量有多种类型时(如：jQuery 既可以作为函数被调用也可以作为对象)
-可以组合多个声明语句，它们会合并起来。</p>
+<blockquote>
+<p>声明合并</p>
+</blockquote>
+<p>当一个变量有多种类型时(如：jQuery 既可以作为函数被调用也可以作为对象)可以组合多个声明语句，它们会合并起来。</p>
 <deckgo-highlight-code language="tsx" terminal="carbon" theme="blackboard"  >
           <code slot="code">declare function jQuery(selector: string): any;
 declare namespace jQuery {
     function ajax(url: string, settings?: any): void;
 }  </code>
         </deckgo-highlight-code>
-</li>
-</ul>
-<h1 id="t-15" >TS &#x26; React</h1>
-<h2 id="t-16" >内置类型</h2>
-<p>React源码</p>
+<h1 id="t-43" >模块</h1>
+<p>使用其他模块中声明的类型</p>
+<h1 id="t-44" >TS &#x26; React</h1>
+<h2 id="t-45" >内置类型</h2>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">type ComponentType&lt;P = {}&gt; = ComponentClass&lt;P&gt; | FunctionComponent&lt;P&gt;;</code>
+          <code slot="code">type Props = { 
+ onClick(e: MouseEvent&lt;HTMLElement&gt;): void
+ children?: ReactNode 
+}
+ 
+type RenderCallback = (args: ToggleableComponentProps) =&gt; JSX.Element;</code>
         </deckgo-highlight-code>
+<blockquote>
+<p>React源码</p>
+</blockquote>
 <deckgo-highlight-code language="ts" terminal="carbon" theme="blackboard"  >
-          <code slot="code">interface ReactDOM extends ReactHTML, ReactSVG { }
+          <code slot="code">type ComponentType&lt;P = {}&gt; = ComponentClass&lt;P&gt; | FunctionComponent&lt;P&gt;;
+
+interface ReactDOM extends ReactHTML, ReactSVG { }
 
 interface ReactElement&lt;P = any, T extends string | JSXElementConstructor&lt;any&gt; = string | JSXElementConstructor&lt;any&gt;&gt; {
 type: T;
@@ -650,29 +945,40 @@ type ReactEmpty = null | undefined | boolean;</code>
 <li>ReactElement</li>
 <li>ReactNode</li>
 </ul>
+<blockquote>
 <p>一些<code>React</code>的内置类型</p>
+</blockquote>
 <ul>
-<li><code>React.ReactElement</code> —— 使用<code>React.createElement</code>创建的，可以简单理解为<code>React</code>中的<code>JSX</code>的元素</li>
-<li><code>React.ReactNode</code> —— <code>&#x3C;div>xxx&#x3C;/div></code> xxx的合法类型</li>
-<li><code>React.ReactDOM</code></li>
-<li></li>
-<li><code>React.CSSProperties</code> —— 组件内联的<code>style</code>对象的类型</li>
-<li><code>React.RefObject</code> —— <code>React.createRef</code>创建的类型，只读不可改</li>
-<li><code>React.MutableRefObject</code> —— <code>useRef</code>创建的类型，可以修改</li>
+<li>
+<p><code>React.ReactElement</code> —— 使用<code>React.createElement</code>创建的，可以简单理解为<code>React</code>中的<code>JSX</code>的元素</p>
+</li>
+<li>
+<p><code>React.ReactNode</code> —— <code>&#x3C;div>xxx&#x3C;/div></code> xxx的合法类型</p>
+</li>
+<li>
+<p><code>React.ReactDOM</code></p>
+</li>
+<li>
+<p><code>React.CSSProperties</code> —— 组件内联的<code>style</code>对象的类型</p>
+</li>
+<li>
+<p><code>React.RefObject</code> —— <code>React.createRef</code>创建的类型，只读不可改</p>
+</li>
+<li>
+<p><code>React.MutableRefObject</code> —— <code>useRef</code>创建的类型，可以修改</p>
+</li>
 </ul>
-<p><strong>内置事件类型</strong></p>
+<blockquote>
+<p>内置事件类型</p>
+</blockquote>
 <ul>
-<li>
-<p><code>React.MouseEventHandler&#x3C;HEMLInputElement></code></p>
-</li>
-<li>
-<p><code>React.ChangeEventHandler&#x3C;HTMLInputElement></code></p>
-</li>
-<li>
-<p><code>React.FocusEventHandler&#x3C;HTMLInputElement></code></p>
-</li>
-<li>
+<li><code>React.MouseEventHandler&#x3C;HEMLInputElement></code></li>
+<li><code>React.ChangeEventHandler&#x3C;HTMLInputElement></code></li>
+<li><code>React.FocusEventHandler&#x3C;HTMLInputElement></code></li>
+</ul>
+<blockquote>
 <p>无状态组件</p>
+</blockquote>
 <deckgo-highlight-code  terminal="carbon" theme="blackboard"  >
           <code slot="code">
 import { SFC } from &#39;react&#39;
@@ -690,10 +996,10 @@ const Button: SFC&lt;IProps&gt; = ({onClick, children}) =&gt; {
 }
 export default Button</code>
         </deckgo-highlight-code>
-</li>
-<li>
-<p>函数组件
-函数组件定义的方式有两种：</p>
+<blockquote>
+<p>函数组件</p>
+</blockquote>
+<p>函数组件定义的方式有两种：</p>
 <ol>
 <li>使用<code>React.FC</code></li>
 </ol>
@@ -719,6 +1025,4 @@ const App: React.FC&lt;IProps&gt; = (props)=&gt;{
 function App(props:IProps){
   return &lt;div&gt;{children}&lt;/div&gt;
 }</code>
-        </deckgo-highlight-code>
-</li>
-</ul></article><div class="article-title-wrap"><div class="article-title-list"><h2 data-id="0" class="item">如何定义一个类型，或得到一个类型？</h2><h2 data-id="1" class="item"><code>ReactNode</code> 、 <code>ReactElement</code> 和 <code>JSX.Element</code> 的区别？</h2><h1 data-id="2" class="item">概况</h1><h1 data-id="3" class="item">TS资源</h1><h1 data-id="4" class="item">泛型参数组件</h1><h1 data-id="5" class="item">关键字</h1><h2 data-id="6" class="item">extends</h2><h1 data-id="7" class="item">参考</h1><h1 data-id="8" class="item">数据类型</h1><h1 data-id="9" class="item">接口</h1><h2 data-id="10" class="item">接口继承</h2><h2 data-id="11" class="item">interface 和 type 的区别</h2><h1 data-id="12" class="item">泛型</h1><h1 data-id="13" class="item">内置高级泛型</h1><h1 data-id="14" class="item">声明文件</h1><h1 data-id="15" class="item">TS &#x26; React</h1><h2 data-id="16" class="item">内置类型</h2></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/articles/TS基础/";window.___webpackCompilationHash="b49c521d6dc75a12a1a0";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-38bff700e245e8493772.js"],"app":["/app-10896d9b1e770b1c82d9.js"],"component---src-pages-404-js":["/component---src-pages-404-js-a1cb840e6fe8c403c00b.js"],"component---src-pages-debug-jsx":["/component---src-pages-debug-jsx-19f27fb8a0713cec9f30.js"],"component---src-pages-index-jsx":["/component---src-pages-index-jsx-69e54fb59778b99df048.js"],"component---src-pages-other-js":["/component---src-pages-other-js-9c6c2b81a35ac0392fee.js"],"component---src-pages-repos-jsx":["/component---src-pages-repos-jsx-8504805d76fa72c3661f.js"],"component---src-templates-post-js":["/component---src-templates-post-js-93773b9ed0c07b2c71c7.js"]};/*]]>*/</script><script src="/polyfill-38bff700e245e8493772.js" nomodule=""></script><script src="/app-10896d9b1e770b1c82d9.js" async=""></script><script src="/framework-00aa2f30c053856ae873.js" async=""></script><script src="/webpack-runtime-dbb4c9a98e3509abf034.js" async=""></script></body></html>
+        </deckgo-highlight-code></article><div class="article-title-wrap"><div class="article-title-list"><h1 data-id="0" class="item">概况</h1><h1 data-id="1" class="item">类型声明</h1><h2 data-id="2" class="item">指定变量的类型</h2><h2 data-id="3" class="item">字面量类型</h2><h2 data-id="4" class="item">索引签名</h2><h1 data-id="5" class="item">类型运算</h1><h2 data-id="6" class="item">type 别名</h2><h2 data-id="7" class="item">enum 枚举</h2><h2 data-id="8" class="item">或运算  联合类型</h2><h2 data-id="9" class="item">与运算  交叉类型</h2><h2 data-id="10" class="item">as  类型断言</h2><h2 data-id="11" class="item">类型保护</h2><h2 data-id="12" class="item">类型推断</h2><h2 data-id="13" class="item">keyof &#x26; typeof</h2><h2 data-id="14" class="item">索引访问类型</h2><h2 data-id="15" class="item">类型提取</h2><h2 data-id="16" class="item">条件类型</h2><h2 data-id="17" class="item">infer</h2><h2 data-id="18" class="item">readonly</h2><h2 data-id="19" class="item">extends</h2><h2 data-id="20" class="item">implements</h2><h2 data-id="21" class="item">参考</h2><h1 data-id="22" class="item">Interfaces</h1><h2 data-id="23" class="item">接口继承</h2><h2 data-id="24" class="item">interface 和 type 的区别</h2><h1 data-id="25" class="item">函数</h1><h1 data-id="26" class="item">泛型</h1><h2 data-id="27" class="item">内置高级泛型</h2><h3 data-id="28" class="item">Partial</h3><h3 data-id="29" class="item">Required</h3><h3 data-id="30" class="item">Readonly</h3><h3 data-id="31" class="item">Extract</h3><h3 data-id="32" class="item">Pick</h3><h3 data-id="33" class="item">Exclude</h3><h3 data-id="34" class="item">Omit</h3><h3 data-id="35" class="item">Record</h3><h3 data-id="36" class="item">RetureType</h3><h3 data-id="37" class="item">InstanceType</h3><h3 data-id="38" class="item">ThisType</h3><h3 data-id="39" class="item">参考</h3><h2 data-id="40" class="item">泛型参数组件</h2><h1 data-id="41" class="item">类型兼容</h1><h1 data-id="42" class="item">声明文件</h1><h1 data-id="43" class="item">模块</h1><h1 data-id="44" class="item">TS &#x26; React</h1><h2 data-id="45" class="item">内置类型</h2></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/articles/TS基础/";window.___webpackCompilationHash="c883488adf3f372ea0a2";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-1c82c9b017e64ba4eb20.js"],"app":["/app-fae9f38663d1f603e486.js"],"component---src-pages-404-js":["/component---src-pages-404-js-104fdd48e6deefb0b055.js"],"component---src-pages-debug-jsx":["/component---src-pages-debug-jsx-6d68ed8816a03321c33d.js"],"component---src-pages-index-jsx":["/component---src-pages-index-jsx-59cf54365f6a97668d01.js"],"component---src-pages-other-js":["/component---src-pages-other-js-48e569e636e8d0ecf927.js"],"component---src-pages-repos-jsx":["/component---src-pages-repos-jsx-aafc15aef56b320b5240.js"],"component---src-templates-post-js":["/component---src-templates-post-js-90384a4e905582211ec0.js"]};/*]]>*/</script><script src="/polyfill-1c82c9b017e64ba4eb20.js" nomodule=""></script><script src="/app-fae9f38663d1f603e486.js" async=""></script><script src="/framework-31fcd97794ac9b085877.js" async=""></script><script src="/webpack-runtime-561bce53e847aceb651a.js" async=""></script></body></html>

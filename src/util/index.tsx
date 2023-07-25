@@ -31,3 +31,15 @@ const makeObjectClassName = (primitiveResult: String) => (modifier) => {
   }
   return result;
 };
+
+// html 字符转义
+const HtmlEscapes = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  // eslint-disable-next-line
+  "'": '&#39;',
+};
+
+export const htmlEscapes = str => str.split('').map(c => HtmlEscapes[c] || c).join('');

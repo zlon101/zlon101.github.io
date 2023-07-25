@@ -13,86 +13,84 @@
 
 ## 赋值|深拷贝|浅拷贝
 
-- 对于基本类型，赋值、浅拷贝及深拷贝得到完全独立的新的变量；
+- 对于基本类型，赋值、浅拷贝、深拷贝和函数传参得到完全独立的新的变量；
 - 对于引用类型，赋值(参数传递 & 返回值)相当于复制指针(引用)，新变量的内部数据与原数据完全相同；
 - 浅拷贝，只会对第一层创建新的变量；
 
-数组的 slice、from、concat 及析构 ... 属于浅拷贝，Object.assign 也是浅拷贝；深度拷贝可以利用JSON.parse(JSON.stringify(obj)) 实现，但不能处理 undefine、函数、symbol 等在序列化时被忽略的值；
+数组的 slice、from、concat 及解构运行符属于浅拷贝，`Object.assign` 也是浅拷贝。深度拷贝可以利用 `JSON.parse(JSON.stringify(obj))` 实现，但不能处理 undefine、函数、symbol 等在序列化时被忽略的值。
 
 ## 对象和数组字面量
 
-- 使用对象和数组字面量创建时不会调用各自的构造函数；
+使用对象和数组字面量创建时不会调用各自的构造函数
 
 # 类型转换
 
-> 参考:  [类型和精度](https://juejin.im/post/6844903854882947080#heading-23) 
+> 参考:  [类型精度、类型转换](https://juejin.im/post/6844903854882947080#heading-23) 
 
-> 规则
+基本数据类型之间的相互转换(参考JavaScript 权威指南 P49)
 
-- 基本数据类型之间的相互转换；(参考JavaScript 权威指南 P49)
+> 对象转换为基本数据类型
 
-- 对象转换为基本数据类型：
-  valueOf & toString() 分别在什么情况下使用？
+两个值进行数学运算及 `==` 比较时希望类型是 Number
 
-  1. 希望对象转换为数字( Number(obj) )时：
+两个操作数进行 `+` 运行时，若一个操作数是 String 则 `+` 进行字符串拼接，这时若另一个操作数是原始类型则转换为 String，若是引用类型则先尝试调用 `valueOf` 再尝试 `toString`。
 
-     - 若对象有 valueOf，并且 valueOf 返回一个**原始值**(Number、String、Boolean、Null、undefined)，则调用valueOf，并在需要时将 valueOf 返回的原始值转换为 Number 类型；
 
-     - 否则调用 toString ，若 toString 返回的不是原始值则抛出错误，否则返回 toString 的值，并在需要时将 toString 的返回值转换为 Number 类型。
 
-  2. 希望对象转换为 String(obj) 时：
+valueOf & toString() 分别在什么情况下使用？
 
-     - 与上面完全类似，只是先检测 toString ，若不满足再检测 valueOf。
+1. 希望对象转换为数字( Number(obj) )时：
 
-  3. 特殊情况
+- 若对象有 valueOf，并且 valueOf 返回一个**原始值**(Number、String、Boolean、Null、undefined)，则调用valueOf，并在需要时将 valueOf 返回的原始值转换为 Number 类型；
 
-     - 加法运算符(不是一元 `+` 运算符)、==、!=、关系运算符 (>、<等)这四类运算符作用于非日期对象时，使用第一条规则，但是不会对 valueOf 或 toString 的返回值进一步转换；
-     - 加法、==、!=运算符作用于日期对象时，都将 Date 转换为 String 类型，并返回 string ，
+- 否则调用 toString ，若 toString 返回的不是原始值则抛出错误，否则返回 toString 的值，并在需要时将 toString 的返回值转换为 Number 类型。
 
-     ```javascript
-     let date = new Date();
-     print(typeof (date + 0));	// string
-     date == String(date);     // true
-     
-     let obj = {
-       valueOf() {
-         print('call valueOf\n');
-         return '100';
-       },
-       toString() {
-         print('call toString\n');
-         return 200;
-         }
-     }
-     obj + 1;
-     obj + 'str'
-     ```
+2. 希望对象转换为 String(obj) 时：
 
-- String & Number 的关系
-  1：数字与字符串作加法时，将数字转换为字符串；
-  
-  2：其他运算符(==、比较运算符)，将字符串转换为数字；
-  
-  ```js
-  {} == ''
-  // 调 ({}).valueOf() 返回的是自身，一个对象
-  // 再调 toString()，返回 '[object Object]'
-  // 两个字符串做比较，结果为 false
-  // 如果右侧是数字，再将[object Object] 转换为数字 NaN，再做比较
-  
-  '1' == 1;  // true
-  ```
-  
-- 以下数据在转换为 Boolean 类型时为 false
-  0 -0 +0 null defined NaN ''
-  [] 和 {} 转换为 true
+与上面完全类似，只是先检测 toString ，若不满足再检测 valueOf。
 
-```js
-undefined == null; // undefined === null 为 false
-NaN == NaN;		   // false , JS 中唯一的一个
+3. 特殊情况
+
+- 加法运算符(不是一元 `+` 运算符)、==、!=、关系运算符 (>、<等)这四类运算符作用于非日期对象时使用第一条规则，但是不会对 valueOf 或 toString 的返回值进一步转换。
+
+- 加法、==、!=运算符作用于日期对象时，都将 Date 转换为 String 类型，并返回 string 。
+
+```javascript
+let date = new Date();
+print(typeof (date + 0));	// string
+date == String(date);     // true
+
+let obj = {
+ valueOf() {
+   print('call valueOf\n');
+   return '100';
+ },
+ toString() {
+   print('call toString\n');
+   return 200;
+   }
+}
+obj + 1;
+obj + 'str'
 ```
 
-- Boolean、String、Number 包装对象
+> String & Number 的关系
+
+1：数字与字符串作加法时，将数字转换为字符串；
+
+2：其他运算符(==、比较运算符)，将字符串转换为数字；
+
+```js
+{} == ''
+// 调 ({}).valueOf() 返回的是自身，一个对象
+// 再调 toString()，返回 '[object Object]'
+// 两个字符串做比较，结果为 false
+// 如果右侧是数字，再将[object Object] 转换为数字 NaN，再做比较
+
+'1' == 1;  // true
+```
+
+> Boolean、String、Number 包装对象
 
 ```js
 var x = new Boolean(false); // x 是一个对象
@@ -101,15 +99,28 @@ if(x){
 }
 ```
 
+
+以下数据在转换为 Boolean 类型时为 false
+
+- 0 -0 +0 null defined NaN ''
+- [] 和 {} 转换为 true
+
+```js
+undefined == null; // undefined === null 为 false
+NaN == NaN;		   // false , JS 中唯一的一个
+```
 # 数组
 
-> - 本质是对象，数字索引在内部被转换为字符串，因为 JS 对象的属性名只能是字符串。
-> - 使用 [] 字面量创建数组比使用 new 效率更高；
+本质是对象，数字索引在内部被转换为字符串，因为 JS 对象的属性名只能是字符串。
 
-## 数组有哪些方法支持响应式更新，如果不支持怎么办，底层原理如何实现？
+使用 [] 字面量创建数组比使用 new 效率更高。
+
+## 响应式更新
+
+数组有哪些方法支持响应式更新，如果不支持怎么办，底层原理如何实现？
 
 - 支持：push、pop、shift、unshift、splice、sort、reverse，这些方法会改变原数组。
-- 不支持：filter、concat、slice、forEach、map，这些方法不会改变原数组；可以修改整个数组实现响应式更新(将新的数组赋值给原来的数组)。
+- 不支持：filter、concat、slice、forEach、map，这些方法不会改变原数组。可以修改整个数组实现响应式更新(将新的数组赋值给原来的数组)。
 - 原理同样是使用 Object.defineProperty 对数组方法(get、set)进行改写
 
 ## forEach 和 map 的区别
@@ -148,12 +159,12 @@ arr[0] = undefined;
 // 第一项有值，其余项没有值
 ```
 
-- 字符串 in obj;  遍历对象及其**原型链**上的**有值**的属性，包括**不可枚举**的属性；
+> in 运算符
 
-```js
-'valueOf' in [];	// true
-'valueOf' in {};	// true
-```
+有两种方式使用 `in` 运算符
+
+1): `prop in obj`，判断对象能否访问某个属性（对象本身或对象的原型链上，包括**不可枚举**属性）；
+2): `for prop in boj` 返回所有能够通过对象访问的【可枚举】属性。
 
 > for...in
 
@@ -196,7 +207,7 @@ keys2 = Object.keys(obj);
 
 > 几种遍历的区别
 
-- for...in 是唯一一个可以遍历**原型链**上的属性；
+- for...in 是唯一一个可以遍历**原型链**上的属性，不需要对象实现 Iterable 接口；
 - `Object.getOwnPropertyNames(obj)`  & `obj.hasOwnProperty`是唯一一个可以遍历**不可枚举**属性；
 - for...of 调用的是 Iterable 接口，遍历可枚举对象的值，不遍历原型链，唯一可遍历**无值**的方法；
 
@@ -228,13 +239,6 @@ for (const i of iterable) {
 其余的 Array.map、forEach、Object.keys、Object.values()都是遍历自身、可枚举、有值的属性；
 - map & forEach 都不能使用`break 、continue`；
 - `map` 返回新的数组，forEach 返回 undefined；
-
-> in 运算符
-
-有两种方式使用 `in` 运算符
-
-1): `prop in obj`，判断对象能否访问某个属性（对象本身或对象的原型链上）；
-2): `for prop in boj` 返回所有能够通过对象访问的【可枚举】属性。
 
 
 ## API
@@ -304,28 +308,20 @@ export function deepClone(srcData, hash = new WeakMap()) {
 }
 ```
 
-# Map & Object
+# Map | Set
 
 > [区别](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map#objects_vs._maps) 
 
 遍历 Map 时，会按照插入的顺序遍历。
 
+Map 和 Set 实例对象在 JSON.stringfy 时结果为 `{}` 空对象。
+
 
 # 继承
 
-```js
-function Parent(){}
-function Child(){
-  Parent.call(this);
-}
-Child.prototype = new Parent(args);
-Child.prototype = Object.create(Parent.prototype);
-Child.prototype.constructor = Child;
-```
-
 > API
 
-- 原型相关
+原型相关
 ```js
 // 原型链, 可以是原型的原型
 obj.isPrototypeOf()
@@ -334,7 +330,9 @@ Object.setPrototypeOf()
 //obj instanceof 构造函数
 ```
 
-- 访问对象的原型
+
+
+访问对象的原型
 
 1: `__proto__`
 2: Object.setPrototypeOf、Object.getPrototypeOf
@@ -356,9 +354,19 @@ Sub.prototype = Object.create(Sup.prototype);
 Sub.constructor = Sub;
 ```
 
+如果不能用 `Object.create` 
+```js
+function create(proto) {    
+  function F(){}    
+  F.prototype = proto;
+  return new F();
+}
+Child.prototype = create(Parent.prototype);
+```
+
 > 参考
 
-- [双重继承](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215832&idx=1&sn=7e48c9ef8bf7c4ccaa246907eb6579f5&chksm=befe15b989899caf8612620992acdb67783396f1b2bf981fae71cf761fac43c16b4b60457975&scene=0&key=06b6f34db6d09e01cbeea01642f35f6916e02c7d3cc0c4d1b777d666c2d8d94cacb1516bc3b5a608a6713416a69e553d88c1feba945dc494447e016071b279de4675b2ca438636285d10a796bdf5b3b2&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060739&lang=zh_CN&pass_ticket=ltTFzXuqdXnUtMsLWgFnt%2B8zWUV2F%2B3hSDDtrPIUYwtCjZ5qZr5AlYFajnxJ9w5P) 
+[双重继承](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215832&idx=1&sn=7e48c9ef8bf7c4ccaa246907eb6579f5&chksm=befe15b989899caf8612620992acdb67783396f1b2bf981fae71cf761fac43c16b4b60457975&scene=0&key=06b6f34db6d09e01cbeea01642f35f6916e02c7d3cc0c4d1b777d666c2d8d94cacb1516bc3b5a608a6713416a69e553d88c1feba945dc494447e016071b279de4675b2ca438636285d10a796bdf5b3b2&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060739&lang=zh_CN&pass_ticket=ltTFzXuqdXnUtMsLWgFnt%2B8zWUV2F%2B3hSDDtrPIUYwtCjZ5qZr5AlYFajnxJ9w5P) 
 
 # 原型
 
@@ -410,61 +418,58 @@ new Vue({
 
 # bind apply
 
-- fn.bind(obj) 之后 fn 的执行上下文就无法更改；
+`fn.bind(obj)` 之后 fn 的执行上下文就无法更改；
 
-  ```js
-  // 即使是执行 fn.bind(obj2) 或 fn.call(obj2) 或者以对象的方法调用
-  fn.bind(obj);
-  let obj3 = {
-    print: fn
-  }
-  obj3.print();  // print 的执行上下文依然是 obj
-  ```
+```js
+// 即使是执行 fn.bind(obj2) 或 fn.call(obj2) 或者以对象的方法调用
+fn.bind(obj);
+let obj3 = {
+  print: fn
+}
+obj3.print();  // print 的执行上下文依然是 obj
+```
 
 
 ## fn.apply
 
 指定函数 fn 的 this 对象；并且将参数的传递方式改为数组(即参数为数组)
 
-**应用**
+> 应用
 
-- apply 修改参数的传递方式
+1. apply 修改参数的传递方式
 
-  ```js
-  Math.max(1,2,3);    // 3
-  Math.max( [1,23] )  // NaN
-  
-  // 目的: 以数组的形式传参
-  let max = function(arr){
-    return Math.max.apply(Math, arr);
+```js
+Math.max(1,2,3);    // 3
+Math.max( [1,23] )  // NaN
+
+// 目的: 以数组的形式传参
+let max = function(arr){
+  return Math.max.apply(Math, arr);
+}
+max([1,2,3]);
+```
+
+2. 类数组使用数组方法
+
+
+> 手写实现
+
+```javascript
+function.prototype.myBind = function bind(ctx) {
+  let preArg = [].slice.call(arguments, 1);
+  let self = this;
+  let binded = function () {
+    let arg = [].slice.call(arguments);
+    arg = preArg.concat(arg);
+    preArg = null;
+    self.apply(new.target ? this : ctx, arg);
   }
-  max([1,2,3]);
-  ```
-
-- 类数组使用数组方法
-
-**实现**
-
-- demo
-
-  ```js
-  if (!Function.prototype.myBind) {
-    Function.prototype.myBind = function bind(ctx) {
-      let preArg = [].slice.call(arguments, 1);
-      let self = this;
-      let binded = function () {
-        let arg = [].slice.call(arguments);
-        arg = preArg.concat(arg);
-        preArg = null;
-        self.apply(new.target ? this : ctx, arg);
-      }
-      if (self.prototype) {
-        binded.prototype = Object.create(self.prototype);
-      }
-      return binded;
-    }
+  if (self.prototype) {
+    binded.prototype = Object.create(self.prototype);
   }
-  ```
+  return binded;
+}
+```
 
 # this
 
@@ -472,72 +477,76 @@ new Vue({
 
 JS 中一切皆对象，运行环境也是对象，函数、对象方法都是运行在某个环境中(this)；
 
-- this指向代码运行时所在的对象，非箭头函数的this由运行时(**调用时**)决定；箭头函数的this由定义是外层作用域的this决定。
-  函数调用的形式有：
+this 指向代码运行时所在的对象，非箭头函数的 this 由运行时(**调用时**)决定。箭头函数的 this 与运行时它的外层函数的 this 一致。
 
-  1. 普通形式：fn(12)
 
-  2. 箭头函数调用
+> 函数调用的形式
 
-  3. 对象方法 & 数组元素：
+1. 普通形式：fn(12)
+2. 箭头函数调用
+3. 对象方法 & 数组元素：
+```js
+// 以对象的方法调用
+obj.fn(12)
 
-     ```js
-     // 以对象的方法调用
-     obj.fn(12)
-     
-     function fn(){
-       console.log(this.val);
-     }
-     let arr = [fn];
-     arr.val = 100;
-     arr[0]();  // 100; 数组也是对象
-     ```
+function fn(){
+ console.log(this.val);
+}
+let arr = [fn];
+arr.val = 100;
+arr[0]();  // 100; 数组也是对象
+```
 
-  4. 构造函数：new fn(12)
-     调用构造函数会自动创建一个新的实例对象，通过this获取该实例，构造只是用于初始化该对象；构造函数的prototype属性作为实例对象的原型；
+4. 构造函数：new fn(12)
+调用构造函数会自动创建一个新的实例对象，通过this获取该实例，构造只是用于初始化该对象；构造函数的prototype属性作为实例对象的原型；
 
-  5. bind apply call：fn.apply(proto, 12)
+5. bind apply call：fn.apply(proto, 12)
+6. 回调函数，自动调用：
 
-  6. 回调函数，自动调用：
+```js
+arr.map( function(item){
+ // 回调函数是非箭头函数时, 回调函数的this指向全局对象
+ // 回调函数是箭头函数时，this 与外层函数的 this 一致
+})
+```
 
-     ```js
-     arr.map( function(item){
-       // 回调函数是非箭头函数时, 回调函数的this指向全局对象
-       // 回调函数是箭头函数时，this 指向 ???
-     })
-     ```
 
-- 同一个函数可以在不同的环境中执行，而且函数内部可以访问当前环境的其他变量，因此需要能引用当前的执行环境；
 
-- 箭头函数中this由词法作用域决定，this被设置为包含该箭头函数的执行上下文的this(父级上下文)，**且不受调用方式影响**；
+同一个函数可以在不同的环境中执行，而且函数内部可以访问当前环境的其他变量，因此需要能引用当前的执行环境。
 
-  ```js
-  var globalObject = this;
-  var foo = () => this;
-  console.log(foo() === globalObject);    // true
-  
-  var obj = {foo: foo};
-  console.log(obj.foo() === globalObject); // true
-  
-  console.log(foo.call(obj) === globalObject); // true
-  
-  foo = foo.bind(obj);
-  console.log(foo() === globalObject); // true
-  ```
+箭头函数中this由词法作用域决定，this 被设置为包含该箭头函数的执行上下文的this（运行时的父级上下文），**且不受调用方式影响**。
+<p style="color:red">无法通过 call、apply、bind 修改箭头函数的 this</p>
 
-- 函数(方法)中的 this 指向调用该函数(方法)的对象，ES5在非严格模式下的函数调用中，this 指向全局对象(函数作为全局对象的属性，调用函数类似调用全局对象的方法)，严格模式下指向undefined；strict模式下，this指向全局对象会报错，所以strict模式下禁止将对象中使用了this的方法导出至全局环境中。
 
-参考：
+```js
+var globalObject = this;
+var foo = () => this;
+console.log(foo() === globalObject);    // true
 
-- [JS 中的 this 的原理-阮一峰](http://www.ruanyifeng.com/blog/2018/06/javascript-this.html)
+var obj = {foo: foo};
+console.log(obj.foo() === globalObject); // true
+
+console.log(foo.call(obj) === globalObject); // true
+
+foo = foo.bind(obj);
+console.log(foo() === globalObject); // true
+```
+
+
+
+函数(方法)中的 this 指向调用该函数(方法)的对象，ES5在非严格模式下的函数调用中，this 指向全局对象(函数作为全局对象的属性，调用函数类似调用全局对象的方法)，严格模式下指向 `undefined`。strict模式下，this指向全局对象会报错，所以strict模式下禁止将对象中使用了this的方法导出至全局环境中。
+
+> 参考
+
+[JS 中的 this 的原理-阮一峰](http://www.ruanyifeng.com/blog/2018/06/javascript-this.html)
 
 # 作用域
 
-> - Scope：当前执行上下文，包含当前所有可见的变量，Scope在我们写代码的时候就被定义好了，比如谁嵌套在谁里面。
->
-> - 作用域为可访问变量，函数的集合。
->
-> - 当函数被调用，一个 execution context 被创建，这个执行上下文包涵信息：函数在哪调用（call-stack），函数怎么调用的，参数等等；执行上下文的一个属性就是this，指向函数执行期间的this对象。
+Scope：当前执行上下文，包含当前所有可见的变量，Scope在我们写代码的时候就被定义好了，比如谁嵌套在谁里面。
+
+作用域为可访问变量，函数的集合。
+
+当函数被调用，一个 execution context 被创建，这个执行上下文包涵信息：函数在哪调用（call-stack），函数怎么调用的，参数等等；执行上下文的一个属性就是this，指向函数执行期间的this对象。
 
 <img src="assets/1566455349876.png" style="margin:0; padding-left:1em; width:40%">
 
@@ -556,6 +565,18 @@ JS 中一切皆对象，运行环境也是对象，函数、对象方法都是�
    - 分配值，引用函数和解释/执行代码；
 
 将执行上下文表述为对象，其属性分别为：作用域链 变量 this；
+
+> 作用域链
+
+作用域链的作用是保证对执行环境有权访问的所有变量和函数的有序访问，通过作用域链，我们可以访问到外层环境的变量和
+函数。
+
+作用域链的本质上是一个指向变量对象的指针列表。变量对象是一个包含了执行环境中所有变量和函数的对象。作用域链的前
+端始终都是当前执行上下文的变量对象。全局执行上下文的变量对象（也就是全局对象）始终是作用域链的最后一个对象。
+
+当我们查找一个变量时，如果当前执行环境中没有找到，我们可以沿着作用域链向后查找。
+
+作用域链的创建过程跟执行上下文的建立有关....
 
 ## 参考
 
@@ -591,7 +612,7 @@ var result2 = outside(3)(2);// 5
 
 **注：**不能在内嵌函数中(特别是形参)定义与外部函数同名的变量，否则将无法访问定义在外部函数中的变量；参考：函数 MDN
 
-- demo
+- **测试**
 
 ```js
 // 情况1
@@ -695,43 +716,40 @@ var Thunk = function(fn) {
 对计算复杂度较高的函数，限制其在一定时间内的执行次数，如1秒内调用多次，但只执行一次；比如 `onresize` 事件。
 
 ```js
-window.onresize = throttle(handleResize, 1000);
-function throttle(fn, time) {
-  let timer;
-  return (...args) => {
-    timer && clearTimeout(timer);
-    timer = setTimeout(() => fn(...args), time);
-  }
-}
-function handleResize(e) {
-  print(e.currentTarget.innerWidth);
-}
-
-
 // 防抖
-function debounce (callFn, interval){
-  let timer = null;
-  return function(){
-    clearTimeout(timer);
-    timer = setTimeout(()=>{
+function debounce(fn, wait) {
+  var timer = null;
+
+  return function() {
+    var context = this,
+      args = arguments;
+
+    if (timer) {
       clearTimeout(timer);
-      callFn.apply(this, arguments);
-    }, interval);
-  }
+      timer = null;
+    }
+
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, wait);
+  };
 }
 
 // 节流:  降低执行的频率
-function throttle(callFn, interval){
-  let timer = null;
-  return function(){
-    if(!timer){
-      timer = setTimeout(()=>{
-        clearTimeout(timer);
-        timer = null;
-        callFn.apply(this, arguments);
-      }, interval);
+function throttle(fn, delay) {
+  var preTime = Date.now();
+
+  return function() {
+    var context = this,
+      args = arguments,
+      nowTime = Date.now();
+
+    // 如果两次时间间隔超过了指定时间，则执行函数。
+    if (nowTime - preTime >= delay) {
+      preTime = Date.now();
+      return fn.apply(context, args);
     }
-  }
+  };
 }
 
 // 函数调用 N 次后才真正执行一次
@@ -1195,6 +1213,8 @@ print( curryed(1,2)(3)(4) );
 
 ## 图像懒加载
 
+img 的 src 属性先不赋值，监听滚动事件或 `IntersectionObserver`，当图像出现在视野中时才给 src 赋值。
+
 ```js
 <img src="./imgs/default.png" data="./imgs/1.png" alt="">
   
@@ -1217,13 +1237,12 @@ setInterval(lazyLoad, 1000)
 ```
 
 
-
 ## 参考
 
 - [一个合格的中级前端工程师要掌握的JavaScript 技巧](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247483958&idx=1&sn=66a115a5ea1707f2947de0a8decefe3b&chksm=c06683a0f7110ab64021c9613f9d88bd47ec645e5a241859e9548f10c25958d735f62d0d1749&mpshare=1&scene=1&srcid=&key=06b6f34db6d09e012be03b7bef14060e321a7fbb4d11935feaea803d3af4fd7a8c5711e8666856a63385bea5cbe185461629077415a1f5e3adcf452bc16ae83de5648bdf8c1e6a85edd20de4a1603fbf&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=xxDfG3UAWJ1CvPVMnUqmt%2FAQ83Ih6iim%2FeHMcWKLZk0MttltZwQ3Tf2IdlzE5BYs)
+
 - [JS 常用工具函数](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247484390&idx=1&sn=c0c844f18ddade5bc96fc99d11b06103&chksm=c0668270f7110b662815eab075b0b12c452a59454f80035ae7998e9bb5cd9a15977acad8ee76&mpshare=1&scene=1&srcid=&sharer_sharetime=1567989742920&sharer_shareid=c0fa4bb765d12545f4439ab827814978&key=3e754fdb358244861665075a257e0962a2c20f2945caa4684dc19a63c9756a01305c6b216a3dbbf0b80b2e74ffec18360d1fa41ae555af14d1deed4ed62bcb9312523cbe877d5d512922dad0f0465b9a&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=D8igzih7KnA8%2F5LHQdRG6th5IVXvvQD7ukUD5HSt%2FLcfZ7gOforYJWqBjo9rYF%2FC)
 
----
 
 # JS 小技巧
 
@@ -1266,37 +1285,35 @@ typeof y === 'undefined'  // true, 不能区分定义了未初始化的变量
 
 - Object.prototype.toString.call(变量).slice(8, -1)；最准确最常用的方式；但是不能判断自定义类实例。
 
-  ```js
-  /*
-    方法1：
-  	使用箭头函数返回函数, 灵活；
-  	闭包；
-  	字符串模板；
-  */
-  const isType = type => {
-      // type 作为闭包
-      return target => Object.prototype.toString.call(target) === `[object ${type}]`;
-  }
-  let isArray = isType('Array');
-  let arr = [1,2];
-  isArray(arr);
-  ```
+```js
+/*
+  方法1：
+	使用箭头函数返回函数, 灵活；
+	闭包；
+	字符串模板；
+*/
+const isType = type => {
+    // type 作为闭包
+    return target => Object.prototype.toString.call(target) === `[object ${type}]`;
+}
+let isArray = isType('Array');
+let arr = [1,2];
+isArray(arr);
+```
 
 ## 解构
 
-- 数组对象的解构
+数组对象的解构
 
-  ```js
-  let arr = ['czl', 22];
-  let {0: name, 1: age} = arr;
-  // name = 'czl', age = 22
-  ```
-
+```js
+let arr = ['czl', 22];
+let {0: name, 1: age} = arr;
+// name = 'czl', age = 22
+```
 
 # 垃圾回收和内存泄漏
 
 https://juejin.im/post/6844903833387155464 
-
 
 
 # JS 全局函数

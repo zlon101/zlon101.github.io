@@ -203,7 +203,7 @@ data与props的区别？
 > `props`  的 key & value，类型、默认值、验证
 
 - props属性：定义组件时，在组件实例的props选项上声明的属性；可以通过`this.$props`获取该属性，直接使用`v-bind=$props`在`<template>`中的元素上进行绑定。
-- 非props属性：使用组件时，定义了未在props选项上声明的属性；`$attrs` 可以访问非 `props` 属性。默认情况下，所有的非props属性被组件\<template>的根元素继承；通过`inheritAttrs`设置根元素是否继承非`props`属性
+- 非props属性：使用组件时，定义了未在props选项上声明的属性；`$attrs` 可以访问非 `props` 属性。默认情况下，所有的非props属性被组件 `<template>` 的根元素继承；通过`inheritAttrs`设置根元素是否继承非`props`属性
 
   ```javascript
   <my-component name="czl" age="22"></my-component>
@@ -259,7 +259,7 @@ data与props的区别？
 
 ## keep-alive
 
-- 将组件\<my-component>进行缓存，避免每次重新渲染组件(create, mounte等)，用于路由及组件切换(动态组件\<component v-bind:is="cmp">)。
+- 将组件 `<my-component>` 进行缓存，避免每次重新渲染组件(create, mounte等)，用于路由及组件切换(动态组件`<component v-bind:is="cmp">` )。
 
 	```html
   <keep-alive>
@@ -459,12 +459,9 @@ __Demo：__
 
 - [单文件组件 (`.vue`)](https://cn.vuejs.org/v2/guide/single-file-components.html)  
 
-- <script type="text/x-template">
+- `<script type="text/x-template">`
 
 当直接在 DOM 中使用一个组件 (而不是在字符串模板或[单文件组件](https://cn.vuejs.org/v2/guide/single-file-components.html)) 的时候，我们强烈推荐遵循 [W3C 规范](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name)中的自定义组件名 (字母全小写且必须包含一个连字符)。这会帮助你避免和当前以及未来的 HTML 元素相冲突。
-
-
-
 
 
 - 不要在选项属性或回调上使用[箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数并没有 `this`，`this` 会作为变量一直向上级词法作用域查找，直至找到为止；

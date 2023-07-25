@@ -212,5 +212,4 @@ type State = Readonly<typeof initialState>;
 
 // 定义类型/接口
 type State = Readonly<typeof initialState> & Partial<typeof 可选字段集合>;
-
 ```

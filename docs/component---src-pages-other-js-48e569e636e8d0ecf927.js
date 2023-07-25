@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkzlon101_blog=self.webpackChunkzlon101_blog||[]).push([[746],{3817:function(e,t,l){l.r(t);var n=l(7294),o=l.n(n),a=l(1597);t.default=function(){return o().createElement("div",null,o().createElement("h1",null,"Hi from the NEW page"),o().createElement("p",null,"Welcome to the new page"),o().createElement(a.rU,{to:"/"},"Go back to the Home"))}}}]);
+//# sourceMappingURL=component---src-pages-other-js-48e569e636e8d0ecf927.js.map

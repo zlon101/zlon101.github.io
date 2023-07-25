@@ -1,26 +1,19 @@
-# 技术栈
-> 1. React Router
-> 2. Redux
-> 3. Flux & Immutable （是什么?）
-> 4. React Native
-> 5. Middleware（中间件）
-> 6. reselect
-> 7. redux-thunk
-> 8. redux-sage
-> 9. styled-components
+# 概览
+1. React Router
+2. Redux
+3. Flux & Immutable （是什么?）
+4. React Native
+5. Middleware（中间件）
+6. reselect
+7. redux-thunk
+8. redux-sage
+9. styled-components
 
-react+redux+react-router+less+es6+webpack
-
-[redux-saga](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fredux-saga%2Fredux-saga) 用来处理异步请求，[reselect](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Freactjs%2Freselect) 缓存机制用来减少state改变带来的渲染压力,还有一些为了交互衍生出来的中间件 [react-redux](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Freactjs%2Freact-redux)、[react-router-redux](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FReactTraining%2Freact-router%2Ftree%2Fmaster%2Fpackages%2Freact-router-redux)、[react-router-dom](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FReactTraining%2Freact-router%2Ftree%2Fmaster%2Fpackages%2Freact-router-dom) ，预处理器[Sass](https://link.juejin.im?target=https%3A%2F%2Fwww.w3cplus.com%2Fsassguide%2Fsyntax.html)或[Less](https://link.juejin.im?target=https%3A%2F%2Fwww.w3cschool.cn%2Fless%2F) 尽量也掌握下。
-
-
+react + redux + react-router + less + es6 + webpack
 
 Antd＋React＋Redux 开发项目，Roadhog 或者 Webpack 构建项目，Nextjs 做服务端渲染。
 
-# react-native
-
-react-native就是基于Virtual DOM渲染出原生控件。
-
+[redux-saga](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fredux-saga%2Fredux-saga) 用来处理异步请求，[reselect](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Freactjs%2Freselect) 缓存机制用来减少state改变带来的渲染压力,还有一些为了交互衍生出来的中间件 [react-redux](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Freactjs%2Freact-redux)、[react-router-redux](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FReactTraining%2Freact-router%2Ftree%2Fmaster%2Fpackages%2Freact-router-redux)、[react-router-dom](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FReactTraining%2Freact-router%2Ftree%2Fmaster%2Fpackages%2Freact-router-dom) ，预处理器[Sass](https://link.juejin.im?target=https%3A%2F%2Fwww.w3cplus.com%2Fsassguide%2Fsyntax.html)或[Less](https://link.juejin.im?target=https%3A%2F%2Fwww.w3cschool.cn%2Fless%2F) 尽量也掌握下。
 
 
 # browserify是什么？
@@ -314,14 +307,17 @@ function thunkMiddleware(store){
 
 # redux-sage
 
-> redux-saga  是一个用于管理 Redux 应用异步操作的中间件（又称异步 action）。 redux-saga 通过创建 Sagas 将所有的异步操作逻辑收集在一个地方集中处理，可以用来代替 redux-thunk 中间件。
->
-> 这意味着应用的逻辑会存在两个地方：
->
-> - Reducers 负责处理 action 的 state 更新
-> - Sagas 负责协调那些复杂或异步的操作
+redux-saga  是一个用于管理 Redux 应用异步操作的中间件（又称异步 action）。 redux-saga 通过创建 Sagas 将所有的异步操作逻辑收集在一个地方集中处理，可以用来代替 redux-thunk 中间件。
 
-# Immer
+这意味着应用的逻辑会存在两个地方：
+- Reducers 负责处理 action 的 state 更新
+- Sagas 负责协调那些复杂或异步的操作
+
+# [Immer](https://github.com/immerjs/use-immer)
+
+https://react.dev/learn/updating-objects-in-state#write-concise-update-logic-with-immer
+
+
 
 `produce(当前state, draft=>{...});`  返回新的state
 
@@ -502,24 +498,17 @@ Router的实现原理无非就是实现当URL变化的时候渲染的组件跟�
 
 上面代码中，用户访问/repos（比如http://localhost:8080/#/repos）时，加载Repos组件；访问/about（http://localhost:8080/#/about）时，加载About组件。
 
+- 默认路由
 
+```js
+  <IndexRoute component={Home}/>
+```
 
-> - 默认路由
->
->   ```js
->   <IndexRoute component={Home}/>
->   ```
->
->   
->
-> - 默认Link
->
->   ```js
->   <IndexLink to="/">Home</IndexLink>
->   ```
->
+- 默认Link
 
-
+```js
+  <IndexLink to="/">Home</IndexLink>
+```
 
 ## 路径
 
@@ -535,15 +524,23 @@ Router的实现原理无非就是实现当URL变化的时候渲染的组件跟�
 - Flow：Facebook
 - Typescript：微软
 
-# SEO 优化
 
-- Next.js：用于React应用的极简的服务端渲染框架。
+
+# Next.js
+
+**[Next.js 的 App Router](https://beta.nextjs.org/docs/getting-started)是对 Next.js API 的重新设计，旨在实现 React 团队的全栈架构愿景。**它允许您在服务器上运行甚至在构建期间运行的异步组件中获取数据。
+
+您可以[将 Next.js 应用程序部署](https://nextjs.org/docs/deployment)到任何 Node.js 或无服务器托管，或者部署到您自己的服务器。Next.js 还支持不需要服务器的[静态导出。](https://beta.nextjs.org/docs/configuring/static-export)
 
 # Next
 
+**[Next.js](https://nextjs.org/) is a full-stack React framework.** It’s versatile and lets you create React apps of any size—from a mostly static blog to a complex dynamic application. 
+
 ## 介绍
 
-> Next 创建的应用中只有初始页面采用服务端渲染，其他通过路由操作到达的页面均为客户端渲染。
+用于React应用的极简的服务端渲染框架。
+
+Next 创建的应用中只有初始页面采用服务端渲染，其他通过路由操作到达的页面均为客户端渲染。
 
 - pages：./pages 是一个保留路径，在 /pages 路径下任何js文件中导出的默认 React 组件都被视作一个页面；pages中的文件结构自动映射为对应的路由结构；
 - static：保留路径，存放静态资源；
@@ -736,3 +733,14 @@ Next官方推荐使用now作为部署工具，只要在package.json文件中写�
 
 - [中文](https://github.com/accforgit/DayLearnNote/blob/master/React/Next.js-README.md#%E8%B7%AF%E7%94%B1)
 - [入门教程](https://my.oschina.net/chkui/blog/2872965) 
+
+
+# [remix](https://remix.run/)
+
+Remix is a full-stack React framework with nested routing. It lets you break your app into nested parts that can load data in parallel and refresh in response to the user actions. To create a new Remix project, run:
+
+# [expo](https://expo.dev/) 
+
+Android、IOS、Web 跨平台开发
+
+**[Expo](https://expo.dev/) is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.** It provides an SDK for [React Native](https://reactnative.dev/) that makes the native parts easier to use.

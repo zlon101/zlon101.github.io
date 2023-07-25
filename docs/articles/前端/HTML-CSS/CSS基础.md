@@ -5,6 +5,7 @@
 布局的基础+基本的PC端布局+移动端适配
 
 - [移动端适配-segmentFault](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650216321&idx=2&sn=58a93b8805c4a60379543ea53d21ca1b&chksm=befe17a089899eb6c4983fb990778feea3c3abe61f500481b71358b295c0190d94e72983845a&scene=0&xtrack=1&key=5344cfa6bb5e8fd1fa6ad4542d2e7a57a5b9cf6e3ee918bea6abe13f0d0a9816f13bc6e087cafd792eb37a8fa2e3d5391f7efd085edc27b5886da4aafa3dccab8a580f3ba70ad2fc825bb6854c5808af&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=7SxYUoJzta5TNU5RVI%2BjHbbnce3fxtDzNEpJeH1sJL9HgWwKpR7%2BkDY9DiLljFpv) 
+
 - [利用 vw 实现适配布局-凹凸实验室](https://aotu.io/notes/2017/04/28/2017-4-28-CSS-viewport-units/index.html) 
 
 
@@ -66,6 +67,7 @@ module.exports = {
 
 - 如果需要某些元素不使用vw单位，可以设置配置文件中的selectorBlackList里面的类名，该属性可无限添加，随便自定义，不需要转换的单位需要写在该类名上才可生效；
 
+
 # 媒体查询
 
 - 媒体类型
@@ -86,12 +88,13 @@ module.exports = {
 ## 模块化解决方案
 
 1. 一类是彻底抛弃 CSS，使用 JS 或 JSON 来写样式。[Radium](https://github.com/FormidableLabs/radium)，[jsxstyle](https://github.com/petehunt/jsxstyle)，<u>react-style</u> 属于这一类。优点是能给 CSS 提供 JS 同样强大的模块化能力；缺点是不能利用成熟的 CSS 预处理器（或后处理器）。
+
 2. 另一类是依旧使用 CSS，但使用 JS 来管理样式依赖（需要构建工具支持），代表是 [CSS Modules](https://github.com/css-modules/css-modules)。CSS Modules 能最大化地结合现有 CSS 生态和 JS 模块化能力，发布时依旧编译出单独的 JS 和 CSS。它并不依赖于 React，只要你使用 Webpack，可以在 Vue/Angular/jQuery 中使用。
 
 
 - CSS modules？
 
-  **`<style module>`**
+**`<style module>`**
 
 - BEM策略：Block-Element-Modifier
   
@@ -104,7 +107,7 @@ module.exports = {
     ...
   }
   .c-Button--close {
-    ...
+    // ...
   }
 </style>
 ```
@@ -135,14 +138,14 @@ p {
 
 - @import导入的样式表A相当于被导入的样式表中的额样式规则出现在@import的位置
 
-  ```css
-  /*相当于在此处定义样式规则*/
-  @import url(common.css);
-  ```
+```css
+/*相当于在此处定义样式规则*/
+@import url(common.css);
+```
   
 - 页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载；
-
 - 如果你想样式表并行载入，以使页面更快，请使用LINK 替代`@import`。
+
 
 # 清除浮动
 
@@ -295,15 +298,17 @@ flex-item {
 # 布局和包含块
 
 - [布局和包含块-MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block)  
-- 所有毗邻的两个或更多盒元素的margin将会合并为一个margin共享之。毗邻的定义为：同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。
-  ![image-20200802202322310](assets/CSS基础/image-20200802202322310.png) 
 
-  ```css
-  .parent{
-  	content: "",
-  	display: table;
-  }
-  ```
+- 所有毗邻的两个或更多盒元素的margin将会合并为一个margin共享之。毗邻的定义为：同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。
+
+![image-20200802202322310](assets/CSS基础/image-20200802202322310.png) 
+
+```css
+.parent{
+  content: "",
+  display: table;
+}
+```
 
 
 # 视觉格式化模型
@@ -328,14 +333,12 @@ flex-item {
 
 > vertical-align
 
-- 指定行内元素（`display:inline`，如<img><span>）或表格单元格（table-cell）元素的垂直对齐方式。
+- 指定行内元素（`display:inline`，如 `<img>` `<span>`）或表格单元格（table-cell）元素的垂直对齐方式。
 - 应用于块级容器中的行内元素的垂直对齐方式，设置行内元素的 vertical-align
 
 
 # 行内框？
 
 <img src="assets/16a23a2f6db810d5" style="width: 70%; margin: 0; padding: 0;">  
-
----------------------------------
 
 # 块格式化上下文(BFC)？ 

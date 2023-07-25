@@ -14,18 +14,18 @@
 
 - demo
 
-  ```html
-  <ul>
-    <li><img src="xxx"></li>
-    <li><img src="xxx"></li>
-    <li><img src="xxx"></li>  
-  </ul>
-  li {
-  	display: inline-block;
-  	list-style-type: none;
-  }
-  <!-- 多个行内元素，换行被替换为空格，导致页面显示时图像水平之间有空格 -->
-  ```
+```html
+<ul>
+  <li><img src="xxx"></li>
+  <li><img src="xxx"></li>
+  <li><img src="xxx"></li>  
+</ul>
+li {
+  display: inline-block;
+  list-style-type: none;
+}
+<!-- 多个行内元素，换行被替换为空格，导致页面显示时图像水平之间有空格 -->
+```
 
   
 
@@ -33,19 +33,21 @@
 
 - demo
 
-  ```html
-  <link href="https://***/style.css" rel="stylesheet">
-  <script src="https://**/jquery-1.9.1.min.js" type="text/javascript"></script>
-  <img src="**/**.jpg">
-  ```
+```html
+<link href="https://***/style.css" rel="stylesheet">
+<script src="https://**/jquery-1.9.1.min.js" type="text/javascript"></script>
+<img src="**/**.jpg">
+```
 
 - href引用外部资源，建立该标签与资源之间的关系(rel)；
-- src **替换**该标签。href 引用 css 文件，HTML 的解析和渲染不会停止，不同于在<style>中的内联样式表；用@import导入的外部样式表在页面加载完成后再加载，可能导致页面重新渲染而闪烁，因此不建议使用。src将资源嵌入到当前标签所在位置，如<script src=**>，类似于在该标签位置编写js，页面会停止 HTML 解析直到浏览器拿到并执行该JS文件。src用外部资源填充、替换当前元素；
+
+- src **替换**该标签。href 引用 css 文件，HTML 的解析和渲染不会停止，不同于在 `<style>` 中的内联样式表；用@import导入的外部样式表在页面加载完成后再加载，可能导致页面重新渲染而闪烁，因此不建议使用。src将资源嵌入到当前标签所在位置，如 `<script src=**>` ，类似于在该标签位置编写js，页面会停止 HTML 解析直到浏览器拿到并执行该JS文件。src用外部资源填充、替换当前元素；
+
 - **可替换元素**是一种外部对象，它们外观的渲染不受 CSS 的控制，即可替换元素的内容不受当前文档样式的影响。CSS 可以控制它们的位置或定位；典型的可替换元素：iframe、video、embed、**img，**CSS的content属性用于在元素的::before\::after伪元素中插入内容，插入的内容也是匿名的可替换元素。
 
 ## 加载图像
 
-- 浏览器载入网页index.html，网页中含图像，HTML页面是纯文本的，图像不是HTML文件的一部分，<img>只是指向图像浏览器会同时请求多个图像。浏览器在下载了HTML文件并开始显示页面后才下载图像。
+- 浏览器载入网页index.html，网页中含图像，HTML页面是纯文本的，图像不是HTML文件的一部分，`<img>` 只是指向图像浏览器会同时请求多个图像。浏览器在下载了HTML文件并开始显示页面后才下载图像。
 - 浏览器从服务器获取文件index.html；当前窗口为空，尚未获取任何内容。
 - 浏览器读取index,.html文件，显示html，发现其中有图像需要显示。
 - 当前窗口显示html，尚未显示图像。浏览器向服务器请求图像文件；
@@ -61,5 +63,5 @@
 ## strong 和 b 的区别
 
 - 相同:  页面渲染结果一致
-- <b> 是样式加粗，<strong>是逻辑加粗，带有强调的含义，
-- 使用屏幕阅读器时 <b>  不会重读，<strong> 会重读，并且 <strong> 有利于SEO优化(更容易被搜索到)
+- `<b>` 是样式加粗，`<strong>` 是逻辑加粗，带有强调的含义，
+- 使用屏幕阅读器时 `<b>`  不会重读，`<strong>` 会重读，并且 `<strong>` 有利于SEO优化(更容易被搜索到)

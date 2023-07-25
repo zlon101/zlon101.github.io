@@ -78,22 +78,22 @@
 
 - templates
 
-  ```javascript
-  //templates 模板
-  import React from 'react';
-  import Helmet from 'react-helmet';
-  
-  export default function Template({data}) {
-    const {markdownRemark: post} = data;
-    return (
-      <div>
-        <h1>{post.frontmatter.title}</h1>
-      </div>
-    )
-  }
-  ```
+```javascript
+//templates 模板
+import React from 'react';
+import Helmet from 'react-helmet';
 
-  参数 `data` 是由 GraphQL 传递进来的数据，也就是 Markdown 文件里面的内容。这些数据存放在markdownRemark变量当中，我们把它提取并存入post变量中，接着就可以透过`post.frontmatter.title` 使用 `frontmatter` 中的 `title` 内容。
+export default function Template({data}) {
+  const {markdownRemark: post} = data;
+  return (
+    <div>
+      <h1>{post.frontmatter.title}</h1>
+    </div>
+  )
+}
+```
+
+参数 `data` 是由 GraphQL 传递进来的数据，也就是 Markdown 文件里面的内容。这些数据存放在markdownRemark变量当中，我们把它提取并存入post变量中，接着就可以透过`post.frontmatter.title` 使用 `frontmatter` 中的 `title` 内容。
 
 **生成网页** 
 
@@ -101,20 +101,21 @@
 
 - 我们用 GraphQL 取得所有的文章，用 foreach 针对每一篇文章使用 createPage 建立新页面，这里则需要用到 path 和 postTemplate
 
-  ```js
-  createPage({
-  	path: 页面对应的路由,
-    component: 模板组件,
-    context: {}, // 传递给模板组件的上下文 props.pageContext, 用户 graphql 的参数查询
-  })
-  ```
+```js
+createPage({
+  path: 页面对应的路由,
+  component: 模板组件,
+  context: {}, // 传递给模板组件的上下文 props.pageContext, 用户 graphql 的参数查询
+})
+```
 
 ## 数据查询(GraphQL)
 
 > Page queries live outside of the component definition — by convention at the end of a page component file — and are only available on page components.
 >
-> - page components: `src/pages/*.js` 目录下的组件
-> - non-page components: 非 page components，如 Layout.js 不能使用 query 查询数据，改为 useStaticQuery
+
+- page components: `src/pages/*.js` 目录下的组件
+- non-page components: 非 page components，如 Layout.js 不能使用 query 查询数据，改为 useStaticQuery
 
 ```
 frontmatter {
@@ -149,12 +150,12 @@ allMarkdownRemark {
 
 # 动态创建页面
 
-> Gatsby 可以使用 GraphQL 查询数据并将查询结果映射为页面
->
+Gatsby 可以使用 GraphQL 查询数据并将查询结果映射为页面
+
 > 步骤：
->
-> 1. 查询数据
-> 2. 数据映射为页面
+
+1. 查询数据
+2. 数据映射为页面
 
 当动态创建页面时，需要指定一个页面模板。
 

@@ -1,5 +1,18 @@
-> - Hybrid App的本质，其实是在原生的 App 中，使用 WebView 作为容器直接承载 Web页面。因此，最核心的点就是 Native端 与 H5端 之间的**双向通讯层**，其实这里也可以理解为我们需要一套**跨语言通讯方案**，来完成 Native(Java/Objective-c/...) 与 JavaScript 的通讯。这个方案就是我们所说的 JSBridge，而实现的关键便是作为容器的 WebView，一切的原理都是基于 WebView 的机制。
-> - WebView是一个基于webkit引擎、展现web页面的控件。
+Webview 是一种在应用程序内嵌入 Web 内容的技术。它允许开发人员在移动应用程序中显示 Web 内容，同时仍然保留应用程序的原生外观和感觉。Webview 组件由一个用户界面（UI）部分和一个可编程接口（API）部分组成。
+
+- UI 部分是应用程序中的一个视图，它显示 Web 内容。用户可以在此视图中浏览网页、填写表单等。UI 部分可以是 Android 或 iOS 中的一个视图，它支持一些基本的 Web 浏览器功能，例如滚动、放大缩小等。
+
+- API 部分是一组允许应用程序与 Webview 进行交互的编程接口。开发人员可以使用 API 部分访问 Webview 中的 DOM 元素、执行 JavaScript 代码、设置 Webview 的配置选项等。这使得开发人员可以在应用程序和 Web 内容之间实现双向通信和交互。
+
+Webview 在移动应用程序中广泛使用，例如在社交媒体应用程序中显示网页内容，或在电子商务应用程序中显示商品详细信息。
+
+
+
+Hybrid App的本质，其实是在原生的 App 中，使用 WebView 作为容器直接承载 Web页面。因此，最核心的点就是 Native端 与 H5端 之间的**双向通讯层**，其实这里也可以理解为我们需要一套**跨语言通讯方案**，来完成 Native(Java/Objective-c/...) 与 JavaScript 的通讯。这个方案就是我们所说的 JSBridge，而实现的关键便是作为容器的 WebView，一切的原理都是基于 WebView 的机制。
+
+
+
+WebView是一个基于webkit引擎、展现web页面的控件。
 
 # H5开发
 
@@ -10,8 +23,6 @@ Hybrid  APP开发方式，即App中既有原生页面又有H5页面的混合开�
 - 混合开发：同时使用原生和web技术进行App开发，因为web页面需要浏览器支持，原生代码利用webview（Android）或UIWebview\WKWebView（IOS）为H5页面提供容器。
 
 # webview
-
-
 
 WebView是一个基于webkit引擎、展现web页面的控件。JavaScript 执行在 WebView 的 Webkit 引擎中。webview提供了原生与H5（java与JavaScript）之间双向通讯的方案，即JSBridge。JSBridge 是一种 JS 实现的 Bridge，实现了JS调用原生和原生调用JS。
 

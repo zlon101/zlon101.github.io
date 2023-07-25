@@ -12,8 +12,8 @@ const config = [
     path: '/',
   },
   {
-    name: 'vue组件指令',
-    path: 'https://github.com/zlon101/npm-lib',
+    name: 'vue组件库',
+    path: 'https://zlon101.github.io/npm-lib/#/',
   },
   {
     name: 'Debug',

@@ -1,11 +1,11 @@
 {
-  "name": "zlong-blog",
+  "name": "zlon101-blog",
   "private": true,
-  "description": "zlong blog",
-  "version": "4.0.0",
+  "description": "zlon101 blog",
+  "version": "4.0.1",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf docs && npx gatsby build && mv public docs && rm -rf public",
+    "build": "rm -rf docs && npx gatsby build && mv public docs",
     "deploy": "node scripts/deploy.js",
     "dev": "npx gatsby develop --host 127.0.0.1",
     "format": "prettier --config .prettierrc --write 'src/**/*.{js,ts,jsx,tsx,json}'",
