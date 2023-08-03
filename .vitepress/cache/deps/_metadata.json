@@ -1,27 +1,54 @@
 {
-  "hash": "b443a7ea",
-  "browserHash": "6b85b6fa",
+  "hash": "059a24de",
+  "browserHash": "6c604374",
   "optimized": {
     "vue": {
       "src": "../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "8ebe8992",
+      "fileHash": "f6855bba",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
-      "src": "../../../node_modules/@vue/devtools-api/lib/esm/index.js",
+      "src": "../../../../other/vitepress-source/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "c801ccad",
+      "fileHash": "da20c9be",
       "needsInterop": false
     },
-    "@theme/index": {
-      "src": "../../../node_modules/vitepress/dist/client/theme-default/index.js",
-      "file": "@theme_index.js",
-      "fileHash": "cf79f71b",
+    "vitepress > @vueuse/integrations/useFocusTrap": {
+      "src": "../../../../other/vitepress-source/node_modules/.pnpm/@vueuse+integrations@10.2.1_focus-trap@7.5.2_vue@3.3.4/node_modules/@vueuse/integrations/useFocusTrap.mjs",
+      "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
+      "fileHash": "9e6ef791",
+      "needsInterop": false
+    },
+    "vitepress > mark.js/src/vanilla.js": {
+      "src": "../../../../other/vitepress-source/node_modules/.pnpm/mark.js@8.11.1/node_modules/mark.js/src/vanilla.js",
+      "file": "vitepress___mark__js_src_vanilla__js.js",
+      "fileHash": "86382a7c",
+      "needsInterop": false
+    },
+    "vitepress > minisearch": {
+      "src": "../../../../other/vitepress-source/node_modules/.pnpm/minisearch@6.1.0/node_modules/minisearch/dist/es/index.js",
+      "file": "vitepress___minisearch.js",
+      "fileHash": "5412ca78",
+      "needsInterop": false
+    },
+    "@vueuse/core": {
+      "src": "../../../../other/vitepress-source/node_modules/.pnpm/@vueuse+core@10.2.1_vue@3.3.4/node_modules/@vueuse/core/index.mjs",
+      "file": "@vueuse_core.js",
+      "fileHash": "8466aebf",
+      "needsInterop": false
+    },
+    "body-scroll-lock": {
+      "src": "../../../../other/vitepress-source/node_modules/.pnpm/body-scroll-lock@4.0.0-beta.0/node_modules/body-scroll-lock/lib/bodyScrollLock.esm.js",
+      "file": "body-scroll-lock.js",
+      "fileHash": "3414884d",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-HRQQSZFP": {
+      "file": "chunk-HRQQSZFP.js"
+    },
     "chunk-G3CMYKT2": {
       "file": "chunk-G3CMYKT2.js"
     }

@@ -1,1 +1,0 @@
-import{_ as s,o as l,c as a,Q as n}from"./chunks/framework.cbe154cb.js";const A=JSON.parse('{"title":"不同工具的区别","description":"","frontmatter":{},"headers":[],"relativePath":"前端工程化/打包工具.md","filePath":"前端工程化/打包工具.md"}'),p={name:"前端工程化/打包工具.md"},o=n("",44),e=[o];function t(c,r,i,D,y,F){return l(),a("div",null,e)}const u=s(p,[["render",t]]);export{A as __pageData,u as default};

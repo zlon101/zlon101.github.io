@@ -1,1 +1,0 @@
-import{_ as e,o,c as t,Q as r}from"./chunks/framework.cbe154cb.js";const h=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端工程化/Monorepo.md","filePath":"前端工程化/Monorepo.md"}'),n={name:"前端工程化/Monorepo.md"},p=r("",7),a=[p];function l(s,c,i,_,E,m){return o(),t("div",null,a)}const f=e(n,[["render",l]]);export{h as __pageData,f as default};

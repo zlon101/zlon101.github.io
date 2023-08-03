@@ -9,8 +9,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const resolvePath = relaPath => path.resolve(__dirname, relaPath);
 const isDir = absPath => fs.lstatSync(absPath).isDirectory();
 const log = console.log;
-let level = 1;
 
+const Blacklist = ['assets', 'public'];
 let rootDir = '';
 export default function getFileFromDir(dir, tree = {}) {
   !rootDir && (rootDir = dir);
@@ -23,7 +23,7 @@ export default function getFileFromDir(dir, tree = {}) {
   list.forEach(item => {
     itemPath = path.join(dir, item);
     if (isDir(itemPath)) {
-      if (path.basename(itemPath) === 'assets') {
+      if (Blacklist.includes(path.basename(itemPath))) {
         return;
       }
       const newDirNode = {
