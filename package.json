@@ -1,0 +1,29 @@
+{
+  "name": "zlon101-blog",
+  "private": true,
+  "description": "zlon101 blog",
+  "version": "4.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitepress dev --port 9821",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "format": "prettier --config .prettierrc --write 'src/**/*.{js,ts,jsx,tsx,json}'"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "vitepress": "github:zlon101/vitepress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zlon101/zlon101.github.io"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "bin": {}
+}

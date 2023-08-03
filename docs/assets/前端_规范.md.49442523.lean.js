@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,Q as e}from"./chunks/framework.cbe154cb.js";const F=JSON.parse('{"title":"概览","description":"","frontmatter":{},"headers":[],"relativePath":"前端/规范.md","filePath":"前端/规范.md"}'),l={name:"前端/规范.md"},o=e("",38),t=[o];function p(c,i,r,D,y,d){return a(),n("div",null,t)}const u=s(l,[["render",p]]);export{F as __pageData,u as default};

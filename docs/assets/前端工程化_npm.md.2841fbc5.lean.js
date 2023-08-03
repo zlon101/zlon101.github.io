@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,Q as e}from"./chunks/framework.cbe154cb.js";const m=JSON.parse('{"title":"npm registry","description":"","frontmatter":{},"headers":[],"relativePath":"前端工程化/npm.md","filePath":"前端工程化/npm.md"}'),l={name:"前端工程化/npm.md"},o=e("",53),p=[o];function t(c,r,i,y,d,D){return n(),a("div",null,p)}const u=s(l,[["render",t]]);export{m as __pageData,u as default};

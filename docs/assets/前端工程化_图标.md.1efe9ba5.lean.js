@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,Q as o}from"./chunks/framework.cbe154cb.js";const A=JSON.parse('{"title":"SVG","description":"","frontmatter":{},"headers":[],"relativePath":"前端工程化/图标.md","filePath":"前端工程化/图标.md"}'),l={name:"前端工程化/图标.md"},p=o("",35),e=[p];function t(c,r,D,F,y,i){return a(),n("div",null,e)}const u=s(l,[["render",t]]);export{A as __pageData,u as default};

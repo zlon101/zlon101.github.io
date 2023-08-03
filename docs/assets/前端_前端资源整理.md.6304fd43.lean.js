@@ -1,0 +1,1 @@
+import{_ as a,o as e,c,Q as d}from"./chunks/framework.cbe154cb.js";const h=JSON.parse('{"title":"开源库","description":"","frontmatter":{},"headers":[],"relativePath":"前端/前端资源整理.md","filePath":"前端/前端资源整理.md"}'),p={name:"前端/前端资源整理.md"},f=d("",28),m=[f];function b(s,n,i,r,t,l){return e(),c("div",null,m)}const D=a(p,[["render",b]]);export{h as __pageData,D as default};

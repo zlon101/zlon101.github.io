@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as l,Q as n}from"./chunks/framework.cbe154cb.js";const p="/assets/通信模型.f52459a6.png",C=JSON.parse('{"title":"索引","description":"","frontmatter":{},"headers":[],"relativePath":"小程序.md","filePath":"小程序.md"}'),o={name:"小程序.md"},e=n("",115),t=[e];function r(c,i,D,F,y,d){return a(),l("div",null,t)}const A=s(o,[["render",r]]);export{C as __pageData,A as default};

@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,Q as l}from"./chunks/framework.cbe154cb.js";const A=JSON.parse('{"title":"Vue编写风格","description":"","frontmatter":{},"headers":[],"relativePath":"Vue/总结.md","filePath":"Vue/总结.md"}'),p={name:"Vue/总结.md"},o=l("",107),e=[o];function t(c,r,D,F,y,i){return a(),n("div",null,e)}const u=s(p,[["render",t]]);export{A as __pageData,u as default};
