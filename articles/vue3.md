@@ -18,8 +18,6 @@
 
 - 如果你是直接在 DOM 中书写模板 (例如原生 `<template>` 元素的内容)，模板的编译需要遵从浏览器中 HTML 的解析行为。在这种情况下，你应该需要使用 kebab-case 形式并显式地关闭这些组件的标签
 
-> 顶级作用域
-
 # 新特性
 
 - template 支持多个根标签
@@ -47,7 +45,7 @@
 
 - Tree Shaking 支持：Vue.js 3 支持tree shaking，可以更容易地剔除没有使用的代码，使得打包后的代码更小更快。
 
-- Composition API: Vue.js 3 引入了Composition API，它是一种新的API风格，可以让开发者更灵活的组织和重用组件逻辑。它允许将逻辑按照功能而不是选项分离，并且让开发者可以更好地重用逻辑。
+- Composition API: Vue.js 3 引入了Composition API，可以让开发者更灵活的组织和重用组件逻辑。它允许将逻辑按照功能而不是选项分离，并且让开发者可以更好地重用逻辑。
 
 - 指令的钩子函数变化
   created、beforeMount、mounted、beforeUpdate、updated、beforeUnmount、unmounted
@@ -64,7 +62,6 @@
 - expost
 - `props` 和 事件名会自动格式转换，将驼峰转为短横线形式
 - 双向绑定 `v-model` 的 props 由 `value` 改为 `modelValue`
-- 多根节点？
 - 用响应式API替换事件总线
 
 # Vue3 应用开发
@@ -74,6 +71,13 @@
 1. 调用 createApp 创建应用实例
 2. 设置应用级配置 `app.config.xxx`
 3. 挂载根组件 `app.mount()`：mount() 方法应该始终在整个应用配置和资源注册完成后被调用
+
+# template
+
+template 中可以访问的属性
+- $slots
+- $attrs
+- $emit
 
 # 组合式 API
 
@@ -107,7 +111,7 @@ export default {
 
 
 > 同时使用选项式API 和 组合式API
-```js
+```vue
 <script>
 // 使用普通的 <script> 来声明选项
 export default {
@@ -236,7 +240,7 @@ onVnodeUnmounted
 
 > 描述
 
-初始化Vue实例时会创建响应式变量，在执行render函数或其他副作用过程中，访问响应式变量时会进行依赖收集，将正在运行的副作用作为新的订阅者添加到一个集合（Set）中，该集合保存了所有追踪该变量的订阅者。
+初始化Vue实例时会创建响应式变量，在执行 render 函数或其他副作用过程中，访问响应式变量时会进行依赖收集，将正在运行的副作用作为新的订阅者添加到一个集合（Set）中，该集合保存了所有追踪该变量的订阅者。
 
 修改响应式变量时会触发更新，将这个变量的订阅者集合中的副作用全部执行一遍
 
@@ -246,11 +250,11 @@ Vue3 基于 ES6 新增的Proxy对象实现数据代理并通过Reflect对源数�
 
 vue3采用【数据代理+数据劫持+发布订阅模式】的方法。在初始化vue实例时用Proxy对象来代理目标对象，对目标对象的所有属性的基本操作（get、set、del）进行拦截，并通过Reflect操作对象内部数据。
 
+当读取Proxy对象属性时，会触发Proxy属性的getter方法，然后触发它Dep实例的depend方法进行依赖收集。
+
 当Proxy对象属性或Proxy数组元素发生变化时，会触发Proxy属性的setter方法，然后通过Reflect操作目标对象属性，同时触发它Dep实例的notify方法进行依赖分发，通知所有依赖的Watcher实例执行内部回调函数。
 
 最后会触发renderWatcher回调，会重新执行render函数，重新对比新旧虚拟DOM，重新渲染页面。
-
-当读取Proxy对象属性时，会触发Proxy属性的getter方法，然后触发它Dep实例的depend方法进行依赖收集。
 
 Proxy：拦截【对象】中任意属性的变化，包括：读写、新增、删除
 
@@ -304,7 +308,7 @@ Vue 提供了一个 [`ref()`](https://cn.vuejs.org/api/reactivity-core.html#ref)
 > watch 和 watchEffect 的区别
 
 执行时机、监听数据源
-1、watch是惰性执行，也就是只有监听的值发生变化的时候才会执行，但是watchEffect不同，每次代码加载watchEffect都会执行(忽略watch第三个参数的配置，如果修改配置项也可以实现立即执行)
+1、watch是惰性执行，也就是只有监听的值发生变化的时候才会执行（忽略watch第三个参数的配置，如果修改配置项也可以实现立即执行），但是watchEffect不同，每次代码加载watchEffect都会执行
 2、watch 需要传递监听的对象，watchEffect不需要
 3、watch 可以访问旧状态值和当前最新状态值，watchEffect 不行
 4、watch只能监听响应式数据，ref定义的属性和reactive定义的对象，如果直接监听reactive定义对象中的属性是不允许的，除非使用函数转换一下

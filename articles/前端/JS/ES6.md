@@ -374,6 +374,9 @@ function Fibonacci2 (n , ac1 = 1 , ac2 = 1) {
 
 # Class
 
+[Classes-MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 
+[Class-info](https://zh.javascript.info/classes) 
+
 > 例子
 
 ```js
