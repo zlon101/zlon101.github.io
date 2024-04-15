@@ -1,13 +1,13 @@
 import {
   tryOnScopeDispose,
   unrefElement
-} from "./chunk-HRQQSZFP.js";
+} from "./chunk-WZSWIX5T.js";
 import {
   ref,
   watch
-} from "./chunk-G3CMYKT2.js";
+} from "./chunk-Z6B2QTD3.js";
 
-// ../other/vitepress-source/node_modules/.pnpm/tabbable@6.2.0/node_modules/tabbable/dist/index.esm.js
+// node_modules/tabbable/dist/index.esm.js
 var candidateSelectors = ["input:not([inert])", "select:not([inert])", "textarea:not([inert])", "a[href]:not([inert])", "button:not([inert])", "[tabindex]:not(slot):not([inert])", "audio[controls]:not([inert])", "video[controls]:not([inert])", '[contenteditable]:not([contenteditable="false"]):not([inert])', "details>summary:first-of-type:not([inert])", "details:not([inert])"];
 var candidateSelector = candidateSelectors.join(",");
 var NoElement = typeof Element === "undefined";
@@ -338,27 +338,27 @@ var isFocusable = function isFocusable2(node, options) {
   return isNodeMatchingSelectorFocusable(options, node);
 };
 
-// ../other/vitepress-source/node_modules/.pnpm/focus-trap@7.5.2/node_modules/focus-trap/dist/focus-trap.esm.js
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
+// node_modules/focus-trap/dist/focus-trap.esm.js
+function ownKeys(e, r) {
+  var t = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    enumerableOnly && (symbols = symbols.filter(function(sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    })), keys.push.apply(keys, symbols);
+    var o = Object.getOwnPropertySymbols(e);
+    r && (o = o.filter(function(r2) {
+      return Object.getOwnPropertyDescriptor(e, r2).enumerable;
+    })), t.push.apply(t, o);
   }
-  return keys;
+  return t;
 }
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = null != arguments[i] ? arguments[i] : {};
-    i % 2 ? ownKeys(Object(source), true).forEach(function(key) {
-      _defineProperty(target, key, source[key]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function(key) {
-      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+function _objectSpread2(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2 ? ownKeys(Object(t), true).forEach(function(r2) {
+      _defineProperty(e, r2, t[r2]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function(r2) {
+      Object.defineProperty(e, r2, Object.getOwnPropertyDescriptor(t, r2));
     });
   }
-  return target;
+  return e;
 }
 function _defineProperty(obj, key, value) {
   key = _toPropertyKey(key);
@@ -637,11 +637,21 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
       throw new Error("At least one node with a positive tabindex was found in one of your focus-trap's multiple containers. Positive tabindexes are only supported in single-container focus-traps.");
     }
   };
+  var getActiveElement = function getActiveElement2(el) {
+    var activeElement = el.activeElement;
+    if (!activeElement) {
+      return;
+    }
+    if (activeElement.shadowRoot && activeElement.shadowRoot.activeElement !== null) {
+      return getActiveElement2(activeElement.shadowRoot);
+    }
+    return activeElement;
+  };
   var tryFocus = function tryFocus2(node) {
     if (node === false) {
       return;
     }
-    if (node === doc.activeElement) {
+    if (node === getActiveElement(document)) {
       return;
     }
     if (!node || !node.focus) {
@@ -915,14 +925,14 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
       state.active = true;
       state.paused = false;
       state.nodeFocusedBeforeActivation = doc.activeElement;
-      onActivate === null || onActivate === void 0 ? void 0 : onActivate();
+      onActivate === null || onActivate === void 0 || onActivate();
       var finishActivation = function finishActivation2() {
         if (checkCanFocusTrap) {
           updateTabbableNodes();
         }
         addListeners();
         updateObservedNodes();
-        onPostActivate === null || onPostActivate === void 0 ? void 0 : onPostActivate();
+        onPostActivate === null || onPostActivate === void 0 || onPostActivate();
       };
       if (checkCanFocusTrap) {
         checkCanFocusTrap(state.containers.concat()).then(finishActivation, finishActivation);
@@ -951,13 +961,13 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
       var onPostDeactivate = getOption(options, "onPostDeactivate");
       var checkCanReturnFocus = getOption(options, "checkCanReturnFocus");
       var returnFocus = getOption(options, "returnFocus", "returnFocusOnDeactivate");
-      onDeactivate === null || onDeactivate === void 0 ? void 0 : onDeactivate();
+      onDeactivate === null || onDeactivate === void 0 || onDeactivate();
       var finishDeactivation = function finishDeactivation2() {
         delay(function() {
           if (returnFocus) {
             tryFocus(getReturnFocusNode(state.nodeFocusedBeforeActivation));
           }
-          onPostDeactivate === null || onPostDeactivate === void 0 ? void 0 : onPostDeactivate();
+          onPostDeactivate === null || onPostDeactivate === void 0 || onPostDeactivate();
         });
       };
       if (returnFocus && checkCanReturnFocus) {
@@ -974,10 +984,10 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
       var onPause = getOption(pauseOptions, "onPause");
       var onPostPause = getOption(pauseOptions, "onPostPause");
       state.paused = true;
-      onPause === null || onPause === void 0 ? void 0 : onPause();
+      onPause === null || onPause === void 0 || onPause();
       removeListeners();
       updateObservedNodes();
-      onPostPause === null || onPostPause === void 0 ? void 0 : onPostPause();
+      onPostPause === null || onPostPause === void 0 || onPostPause();
       return this;
     },
     unpause: function unpause(unpauseOptions) {
@@ -987,11 +997,11 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
       var onUnpause = getOption(unpauseOptions, "onUnpause");
       var onPostUnpause = getOption(unpauseOptions, "onPostUnpause");
       state.paused = false;
-      onUnpause === null || onUnpause === void 0 ? void 0 : onUnpause();
+      onUnpause === null || onUnpause === void 0 || onUnpause();
       updateTabbableNodes();
       addListeners();
       updateObservedNodes();
-      onPostUnpause === null || onPostUnpause === void 0 ? void 0 : onPostUnpause();
+      onPostUnpause === null || onPostUnpause === void 0 || onPostUnpause();
       return this;
     },
     updateContainerElements: function updateContainerElements(containerElements) {
@@ -1010,41 +1020,10 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
   return trap;
 };
 
-// ../other/vitepress-source/node_modules/.pnpm/@vueuse+integrations@10.2.1_focus-trap@7.5.2_vue@3.3.4/node_modules/@vueuse/integrations/useFocusTrap.mjs
-var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
-  for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    }
-  return a;
-};
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var __objRest = (source, exclude) => {
-  var target = {};
-  for (var prop in source)
-    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
-      target[prop] = source[prop];
-  if (source != null && __getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(source)) {
-      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
-        target[prop] = source[prop];
-    }
-  return target;
-};
+// node_modules/@vueuse/integrations/useFocusTrap.mjs
 function useFocusTrap(target, options = {}) {
   let trap;
-  const _a = options, { immediate } = _a, focusTrapOptions = __objRest(_a, ["immediate"]);
+  const { immediate, ...focusTrapOptions } = options;
   const hasFocus = ref(false);
   const isPaused = ref(false);
   const activate = (opts) => trap && trap.activate(opts);
@@ -1066,7 +1045,8 @@ function useFocusTrap(target, options = {}) {
     (el) => {
       if (!el)
         return;
-      trap = createFocusTrap(el, __spreadProps(__spreadValues({}, focusTrapOptions), {
+      trap = createFocusTrap(el, {
+        ...focusTrapOptions,
         onActivate() {
           hasFocus.value = true;
           if (options.onActivate)
@@ -1077,7 +1057,7 @@ function useFocusTrap(target, options = {}) {
           if (options.onDeactivate)
             options.onDeactivate();
         }
-      }));
+      });
       if (immediate)
         activate();
     },
@@ -1106,7 +1086,7 @@ tabbable/dist/index.esm.js:
 
 focus-trap/dist/focus-trap.esm.js:
   (*!
-  * focus-trap 7.5.2
+  * focus-trap 7.5.4
   * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
   *)
 */

@@ -2,42 +2,10 @@
 
 `children?: React.ReactNode ` 
 
-> Class private 声明？
+> 任意数量的参数、剩余参数、默认参数的类型声明
 
 > 交叉类型、联合类型、extends 区别
 
->  infer
-
-> 泛型只能用在函数中，`()` 前面？
-
-> `strictNullChecks` 编译选项的作用
-
-> 参考资料
-
-[TypeScript 教程-阮一峰](https://wangdoc.com/typescript/) 
-[TypeScript 官网](https://www.typescriptlang.org/docs/) 
-[TypeScript手册-中文](https://bosens-china.github.io/Typescript-manual/describe/) 
-
-# 示例
-
-- 泛型
-
-```ts
-interface Backpack<Type> {
-  add: (obj: Type) => void;
-  get: () => Type;
-}
- 
-// 这一行是一个简写，可以告诉 TypeScript 有一个常量，叫做`backpack`，并且不用担心它是从哪
-// 里来的。
-declare const backpack: Backpack<string>;
- 
-// 对象是一个字符串，因为我们在上面声明了它作为 Backpack 的变量部分。
-const object = backpack.get();
- 
-// 因为 backpack 变量是一个字符串，不能将数字传递给 add 函数。
-backpack.add(23);
-```
 
 # 概况
 
@@ -45,17 +13,9 @@ backpack.add(23);
 
 <img src="./assets/TS基础/image-20201114122155270.png" alt="image-20201114122155270" style="zoom:80%;" />  
 
-上面的是父级，下面是子级，子类型继承了父类型的所有特征并加上了自己的特征，所以子类型可以用于所有使用父类型的场合（子类型可以赋值给父类型），反过来就不行。
-
-如果类型 B 可以赋值给类型 A，TypeScript 就认为 B 是 A 的子类型（subtyping），A 是 B 的父类型。子类型满足父类型的所有结构特征，同时还具有自己的特征。凡是可以使用父类型的地方，都可以使用子类型，即子类型兼容父类型。比如类型`number`就是类型`number|string`的子类型。
-
-TypeScript 有两个【顶层类型】（`any`和`unknown`），但是【底层类型】只有`never`唯一一个。
-
-从集合论的角度看，`any`类型可以看成是所有其他类型的全集，包含了一切可能的类型。TypeScript 将这种类型称为【顶层类型】（top type），意为涵盖了所有下层。
+上面的是父级，下面是子级，子级类型可以赋值给父级。
 
 TS简单的说就是为JS中的变量指定了类型，JS中的变量本身是没有类型的。有了TS就可以为变量指定一个类型，这样在【编译阶段】就可以检查变量是否赋予了正确的类型，提前发现错误，配合编辑器的语法提示能有效提高开发效率。
-
-TS功能：编译时静态类型检查、代码编辑时的代码补全
 
 > TypeScript体系
 
@@ -63,12 +23,6 @@ TS功能：编译时静态类型检查、代码编辑时的代码补全
 
 - 类型的标注/推导确定
 - 类型的检查，检查数据类型是否安全
-
-**TS 中如何确定一个变量的类型？**
-
-优先级由高到低依次为：【类型声明】、【类型断言】、【类型推断】
-
-如果手动声明了变量的类型就使用声明的类型，否则，如果使用了类型断言则使用断言的类型，否则，由 TS 使用类型推断确定变量的类型。
 
 
 > TS资源
@@ -95,19 +49,6 @@ function fail(message: string): never {
   throw new Error(message);
 }
 ```
-
-## any | unknown | never
-
-> any | unknown 区别
-
-- any 类型可以赋值给 never 之外的的任意类型，任意类型也可以赋值给 any
-- unknown 类型只能赋值给 any 和 unknown，也只有any 和 unknown 才能赋值给 unknown
-- 不能直接访问 unknown类型变量的方法和属性，any 可以
-- unknown类型变量能够进行的运算是有限的，只能进行比较运算（运算符==、===、!=、!==、||、&&、?）、取反运算（运算符!）、typeof运算符和instanceof运算符这几种，其他运算都会报错。any 类型没有该限制。
-
-> never
-
-never 类型为空，不包含任何值（**空集**），never 类型可以赋值给任意其他类型，never 类型变量只能被 never 赋值。
 
 ## 指定变量的类型
 
@@ -159,31 +100,7 @@ type Week = 'Mon' | 'Tue'
 let nameNumber: [string, number];
 ```
 
-- any
-允许任何类型
-
-- unknown
-
-- never
-这种类型不可能发生
-
-- void
-  返回 undefined 或没有返回值的函数
-
-- 上下文类型
-
-```ts
-const names = ["Alice", "Bob", "Eve"];
- 
-// Contextual typing for function - parameter s inferred to have type string
-names.forEach((s) => {
-  console.log(s.toUpperCase());
-});
-```
-
-ts 可以根据上下文推断出变量 `s` 是 `string`
-
-- 字面量类型
+## 字面量类型
 
 string、boolean、number 类型的值可以作为字面量类型
 
@@ -247,7 +164,7 @@ enum CardSuit {
 let Card = CardSuit.Clubs;
 ```
 
-## 或运算
+## 或运算  联合类型
 
 多个类型的或运算，逆 `extends` ，生成的类型是参与运算的类型的父类型。
 
@@ -260,9 +177,9 @@ x = 'abc'; // success
 x = [1]; // error
 ```
 
-## 与运算
+## 与运算  交叉类型
 
-合并多个类型，为对象类型添加新属性
+合并多个类型
 
 ```typescript
 type Parent1 = {
@@ -280,9 +197,7 @@ let my: Parent1 = {
 }
 ```
 
-## 类型断言
-
-TypeScript只允许类型断言转换为更具体或更不具体的类型版本。
+## as  类型断言
 
 当 `S` 类型是 `T` 类型的子集，或者 `T` 类型是 `S` 类型的子集时，`S` 能被成功断言成 `T`。
 
@@ -303,20 +218,9 @@ name!.charAt(0)  // name为undefined 时会报错,!的意思是显式告诉编�
 name?.charAt(0) // 可选链运算符，name为undefined 时不会报错
 ```
 
-在非 tsx 的文件中可以使用 `<>` 进行类型断言，与 `as` 语法等价
-
-```ts
-const myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement;
-// 等价于
-const myCanvas = <HTMLCanvasElement>document.getElementById("main_canvas");
-```
-
 > const 断言
 
-使用 const 断言构造新的【字面量类型】时，我们可以向编程语言发出以下信号：
-
-`as const` to convert the entire object to be type literals，对象的属性都被声明为字面量类型，即属性不可修改
-
+使用 const 断言构造新的字面量表达式时，我们可以向编程语言发出以下信号：
 - 表达式中的任何字面量类型都不应该被扩展；
 - 对象字面量的属性，将使用 readonly 修饰；
 - 数组字面量将变成 readonly 元组。
@@ -328,7 +232,7 @@ type Z = typeof z; // let z: { readonly text: "hello"; }
 
 ## 类型保护
 
-缩小类型范围或更精确的指明变量的类型，具体实现方法有：instance、typeof、in、Array.isArray 等能明确变量类型的方式
+缩小类型范围或更精确的指明变量的类型，具体实现方法有：instance、typeof、in
 
 ```ts
 function doSome(x: number | string) {
@@ -378,8 +282,6 @@ TypeScript 能根据一些简单的规则推断变量的类型
 3. 函数返回值
 4. 对象、数组解构
 
-如果没有声明类型的变量，被赋值为 undefined 或 null，它们的类型会被推断为any
-
 > 示例
 
 ```ts
@@ -412,7 +314,7 @@ type ToggleableComponentProps = {
 };
 ```
 
-
+xxx
 
 ```ts
 type ToggleableComponentProps = {
@@ -432,7 +334,7 @@ export class Toggleable extends Component<Props, State> {
 ## keyof & typeof
 
 `keyof` 后面跟一个【类型】，获取该类型的所有 key，产生联合类型。
-在 TS 中 `typeof` 后面跟一个【值】，得到的是类型。
+在 TS 中 `typeof` 后面跟一个【变量】，得到的是类型。
 
 ```ts
 type State = Readonly<typeof initialState>;
@@ -459,10 +361,6 @@ function prop<T extends object, K extends keyof T>(obj: T, key: K) {
   return obj[key];
 }
 ```
-
-## in
-
-`in` 运算符获取对象的属性值
 
 ## 索引访问类型
 
@@ -583,7 +481,7 @@ class Car implements Alarm {
 
 # Interfaces
 
-使用接口（Interfaces）来定义对象和函数的类型，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。除了可用于[对类的一部分行为进行抽象](https://ts.xcatliu.com/advanced/class-and-interfaces.html#类实现接口)以外，也常用于对「对象的形状（Shape）」进行描述。
+使用接口（Interfaces）来定义对象的类型，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。除了可用于[对类的一部分行为进行抽象](https://ts.xcatliu.com/advanced/class-and-interfaces.html#类实现接口)以外，也常用于对「对象的形状（Shape）」进行描述。
 
 > example
 
@@ -635,82 +533,20 @@ function sum() {
 interface ApiError extends Error {
   code: number;
 }
-
-interface Style {
-  color: string;
-}
-interface Shape {
-  name: string;
-}
-interface Circle extends Style, Shape {
-  radius: number;
-}
 ```
 
 https://ts.xcatliu.com/advanced/class-and-interfaces.html 
 
-## interface 合并
-
-多个同名接口会合并成一个接口
-
-```ts
-interface Box {
-  height: number;
-  width: number;
-}
-interface Box {
-  length: number;
-}
-// 扩展全局对象上的属性
-interface Document {
-  foo: string;
-}
-document.foo = 'hello';
-```
-
-两个`Box`接口会合并成一个接口，同时有`height`、`width`和`length`三个属性。
-
-同名接口合并时，同一个属性如果有多个类型声明，彼此不能有类型冲突。
-
-同名接口合并时，如果同名方法有不同的类型声明，那么会发生函数重载。而且，后面的定义比前面的定义具有更高的优先级。
-
 ## interface 和 type 的区别
 
-[Type Aliases and Interfaces 之间的区别](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces) 
-
-[interface-与-type-的异同](https://wangdoc.com/typescript/interface#interface-%E4%B8%8E-type-%E7%9A%84%E5%BC%82%E5%90%8C) 
-
-`type` 是生命类型别名，可以是任意类型的别名，包括 string、number、function、对象等。
-
-interface 是声明对象类型
-
-1.  interface 只能声明对象类型，不能重命名基本类型
-2.  interface 可以用于 extends 和 implements，type 不能；
-3.  `type` 可以声明联合、交叉类型，interface 不能； 
-4.  `type` 可以与 `typeof ` 联用，从变量值推断类型；
-5.  interface 存在声明合并的情况，可以用来重载函数，[详解](https://www.tslang.cn/docs/handbook/declaration-merging.html) 
-
-## 严格字面量检查
-
-如果使用【对象字面量值】给一个声明为对象类型的变量赋值，这个字面量的属性不能多也不能少，必须严格符合声明的类型。
-但如果使用另一个变量赋值，则不会进行严格字面量检查，只需要满足结构类型原则。
-
-```ts
-type Point = {
-  x: number,
-  y: number,
-}
-const myPoint = {x: 1, y: 1, z: 1};
-
-const point: Point = {x: 1, y: 1, z: 1}; // 错误
-const point2: Point = myPoint; // 正确
-```
-
-可以使用中间变量或类型断言规避严格字面量检查
+1.  interface 可以用于 extends 和 implements，type 不能；
+2. `type` 可以声明联合、交叉类型，interface 不能； 
+3. `type` 可以与 `typeof ` 联用，从变量值推断类型；
+4. interface 存在声明合并的情况，可以用来重载函数，[详解](https://www.tslang.cn/docs/handbook/declaration-merging.html) 
 
 # 函数
 
-在没有提供函数实现的情况下，有两种声明函数类型的方式：
+在没有提供函数实现的情况下，有两种声明函数类型的方式:
 
 ```ts
 type LongHand = {
@@ -783,8 +619,6 @@ const bar = new Foo(); // bar 被推断为 string 类型
 ```
 
 # 泛型
-
-**泛型为类型提供变量**。一个常见的例子是数组，没有泛型的数组可以包含任何内容。带有泛型的数组可以描述数组包含的值。
 
 泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。
 
@@ -881,6 +715,15 @@ type Partial<T> = { [P in keyof T]  ?:  T[P] };
 type Required<T> = { [P in keyof T]  -?:   T[P] };
 // -? 作用是移除 ?
 ```
+
+### 可写
+
+```ts
+type Mutable<T> = {
+  -readonly [P in keyof T]: T[P];
+};
+```
+
 
 ### Readonly
 
@@ -1064,9 +907,7 @@ const GenericComponent = <P extends any>(props: P) =>{
 
 # 声明文件
 
-你可以通过 `declare` 关键字来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码。
-
-declare 只能用来描述已经存在的变量和数据结构，不能用来声明新的变量和数据结构。
+你可以通过 `declare` 关键字来告诉 TypeScript，你正在试图表述一个其他地方已经存在的代码
 
 ```ts
 interface ReturnString {
@@ -1124,21 +965,6 @@ declare namespace jQuery {
 # 模块
 
 使用其他模块中声明的类型
-
-# 编译
-
-## 编译配置
-
-- noImplicitAny
-当TS【类型推断】出any类型就会报错
-- strictNullChecks
-  - 打开编译设置 strictNullChecks 以后，赋值为undefined的变量会被推断为undefined类型，赋值为null的变量会被推断为null类型。strictNullChecks 设置为 false 时会被类型推断为 any
-  - undefined 和 null 就不能赋值给其他类型的变量（除了any类型和unknown类型）
-  - 非空断言只有在打开编译选项`strictNullChecks`时才有意义。如果不打开这个选项，编译器就不会检查某个变量是否可能为`undefined`或`null`
-  - 没有设置 strictNullChecks 时 undefined 和 null 可以赋值给 void，strictNullChecks 设置为 true 时只有 undefined 可以赋值给 void
-  
-- suppressExcessPropertyErrors
-[关闭对象多余属性检查](https://wangdoc.com/typescript/object#%E4%B8%A5%E6%A0%BC%E5%AD%97%E9%9D%A2%E9%87%8F%E6%A3%80%E6%9F%A5) 
 
 # TS & React
 
@@ -1227,6 +1053,8 @@ type ReactEmpty = null | undefined | boolean;
 - ReactElement
 - ReactNode
 
+
+
 > 一些`React`的内置类型
 
 - `React.ReactElement` —— 使用`React.createElement`创建的，可以简单理解为`React`中的`JSX`的元素
@@ -1243,11 +1071,15 @@ type ReactEmpty = null | undefined | boolean;
 
 - `React.MutableRefObject` —— `useRef`创建的类型，可以修改
 
+
+
 > 内置事件类型
 
 - `React.MouseEventHandler<HEMLInputElement>`
 - `React.ChangeEventHandler<HTMLInputElement>`
 - `React.FocusEventHandler<HTMLInputElement>`
+
+
 
 > 无状态组件
 

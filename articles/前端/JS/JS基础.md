@@ -1041,6 +1041,10 @@ pageX = clientX + document.documentElement.scrollLeft;
 ![image-20220926152722447](assets/JS基础/image-20220926152722447.png) 
 
 
+## 参考
+
+[正则表达式-code花园](https://mp.weixin.qq.com/s/S27FTJyKoVJoY7tcEgLo8Q) 
+
 # 各种方法实现
 
 ## 实现 Array.reduce

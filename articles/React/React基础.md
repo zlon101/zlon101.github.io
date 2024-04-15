@@ -18,6 +18,24 @@ React 可以使用 Node 进行服务器渲染，或使用 React Native 开发原
 - 样式
 - 渲染机制、更新机制、**组件什么情况下 re-render**
 
+# 初始化项目
+
+[编辑器配置](https://react.dev/learn/editor-setup) 
+
+> 代码检查
+
+[Install ESLint with the recommended configuration for React](https://www.npmjs.com/package/eslint-config-react-app) 
+
+[Integrate ESLint in VSCode with the official extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+> 脚手架
+
+[viet](https://cn.vitejs.dev/guide/#scaffolding-your-first-vite-project)：`npm create vite@latest my-vue-app -- --template react-ts` 
+
+[create react app](https://create-react-app.dev/docs/getting-started) 
+
+[craco](https://craco.js.org/docs/getting-started/) ：自定义由 create react app cli 创建的项目中的 webpack 配置
+
 ## 开发规则
 
 1. React 组件必须以大写字母开头，而 HTML 标签则必须是小写字母，html 属性都在 React 中需要改为小驼峰形式。
@@ -42,11 +60,15 @@ React components are JavaScript functions.
 
 当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）转换为单个对象传递给组件（组件内部），这个对象被称之为**props**。
 
+
+
+> 响应式值
+
+响应式值包括 props、state，和所有在你组件内部直接声明的变量和函数，React 使用 [`Object.is`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 比较每一个依赖和它的之前的值。
+
 # 渲染机制
 
 React makes **UI trees** from your JSX. Then React DOM updates the browser DOM elements to match that UI tree. (React Native translates these trees into elements specific to mobile platforms.)
-
-React 根据你的 JSX 生成 UI 树。React DOM 根据 UI 树去更新浏览器的 DOM 元素。（React Native 则将这些 UI 树转译成移动平台上特有的元素。）
 
 ![image-20230405141230226](./assets/React基础/image-20230405141230226.png) 
 
@@ -58,8 +80,6 @@ React 根据你的 JSX 生成 UI 树。React DOM 根据 UI 树去更新浏览器
 1. **触发渲染**：初始渲染或组件、父组件状态更新时 re-render
 
 Updating your component’s state automatically queues a render. 
-
-修改组件 state 会把一次 `re-render` 加入队列
 
 2. **React 渲染组件**
 
@@ -89,6 +109,89 @@ Commit 阶段需要做哪些？
 
 - React sets `ref.current` during the commit. Before updating the DOM, React sets the affected `ref.current` values to `null`. After updating the DOM, React immediately sets them to the corresponding DOM nodes.
 
+## 批处理
+
+定义：在一个事件循环中执行多次状态更新，React 会将多个状态更新分组到一个单独的重渲染中，最终只会导致一次 re-render。
+
+React 18 通过默认做更多批量处理来增加开箱即用性能提升。批量处理指的是 React 为了提高性能将多个 state 更新分组到一个单独的重渲染。React 18 之前，我们只在 React 事件处理函数内部实现批量更新，而 promise、setTimeout、本地事件处理函数或者其他事件中更新状态，在 React 中默认是不进行批量处理的。（[参考](https://zh-hans.react.dev/blog/2022/03/08/react-18-upgrade-guide#automatic-batching)）
+
+从使用 createRoot 的 React 18 开始，无论来自于哪里，所有的更新都会自动批量处理。这意味着 timeout、promise、本地事件处理函数或者其他任何事件的更新都会和 React 事件内部的更新一样批量处理。
+
+[Automatic batching for fewer renders in React](https://github.com/reactwg/react-18/discussions/21) 
+
+## 更新机制
+
+状态变化后 React 将再次调用你的组件函数
+
+- 【异步更新】Setting state does not change the variable in the existing render, but it requests a new render。Promise 和定时器中执行 setState 也是一样异步、**批量处理**。
+
+- Setting a state variable will queue another render.
+
+- After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](https://react.dev/learn/keeping-components-pure)** and only *return* the result. Don’t try to set state from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
+
+```tsx
+export default function () {
+  const [state, setState] = useState(1);
+  log('render\n');
+  const handleClick = ev => {
+    // 传入 update function 而不是新的【状态值】
+    // React 会将 update function 加入一个队列中，在事件处理函数执行结束后处理
+    // During the next render, React goes through the queue and gives you the final updated state.
+    setState(oldState => oldState + 1);
+    setState(oldState => oldState + 1);
+  };
+  return (<button onClick={handleClick}>{state}</button>);
+}
+// state 会加2，但是 render 只会输出一次
+```
+
+- When you call `useState` during the next render, React goes through the queue. 
+- 旧的状态作为第一个更新函数的实参，第一个更新函数的返回值作为下一个更新函数的实参。最后将最终计算得到的新状态值作为 useState 的返回值。（The previous `number` state was `0`, so that’s what React passes to the first updater function as the `n` argument. Then React takes the return value of your previous updater function and passes it to the next updater as `n`, and so on:）
+- 在一个函数中更新组件内部 state，并且通过调用 props 传递的方法更新父组件 state，结果只会 render 一次
+
+> 批量更新
+
+在组件中调用setState不会立即导致重新渲染。相反，React将首先执行所有事件处理程序，然后触发一次重新渲染，将所有更新批处理在一起。
+
+```jsx
+function Parent() {
+  const [count, setCount] = useState(0);
+  const onChange = () => setCount(10);
+  const onClick = () => setCount(old => old + 5);
+  console.debug('render!');
+  return (
+    <div onClick={onClick}>
+      {count}
+      <Child onChange={onChange} />
+    </div>
+  );
+}
+
+function Child({onChange}) {
+  return (<button onClick={onChange}>onChange</button>);
+}
+```
+点击按钮后会执行父组件的 `onChange` 函数，并且事件冒泡后会触发父组件的 click 事件并执行 `onClick` 函数。页面 count 显示为 15，但是 Parent 组件只会渲染一次，‘render!’ 只会输出一次。
+
+
+> 组件 re-render 时状态变化
+
+**Q：组件 re-render 时组件内部哪些状态(state、局部变量、hook返回值)会变，哪些不会变**
+
+组件 re-render 时组件内部的 hook （内置hook 和自定义 hook）会重新执行。根据触发 render 的原因分为：
+
+- 父组件更新触发子组件 render：
+  - useState：
+  - useRef：
+  - useMemo
+  - useCallback
+
+- 组件内部状态变量A更新：
+  - useState：
+  - useRef：
+  - useMemo
+  - useCallback
+
 
 ## 渲染优化
 
@@ -109,6 +212,7 @@ When a component visually wraps other components, let it [accept JSX as children
 - memo 主要是缓存组件（替换已经废弃的 `PureComponent`）
 
 单独使用 useMemo、useCallback 没有意义，需要和 useEffect、memo 配合使用。
+
 
 # 组件
 
@@ -295,18 +399,17 @@ Treat all state in React as immutable.
 
 > 响应式数据
 
-什么是响应式数据：
-
-在组件主体中声明的所有变量都是响应式的，Props 和 state 并不是唯一的响应式值，从它们计算出的值也是响应式的。任何响应式值都可能在重新渲染时发生变化。
-
 Mutable values (including global variables) aren’t reactive. 因此不能作为 useEffect 的依赖。
 
-React 的响应式数据有以下几种：
+什么是响应式数据：
+
+All variables declared in the component body are reactive，在 rendering 时计算的值并且当数据更新时会触发 re-renders
+
+React中只有3种响应式数据
 
 1. props：read-only只读，单向数据流
 2. state：组件内更新数据用setState
 3. context
-4. 在组件主体中声明的局部变量
 
 > 状态的结构
 
@@ -315,8 +418,6 @@ React 的响应式数据有以下几种：
 ## useState
 
 state 存在 React 本身，在组件之外。无论 state 的值是 number、string 还是 object 都应该视为不可修改，只能用一个新的值替换旧值。
-
-一个 state 变量的值**永远不会在一次渲染的内部发生变化，** 即使其事件处理函数的代码是异步的。
 
 ```js
 const [state, setState] = useState(0);
@@ -431,8 +532,6 @@ function Message({ initialColor }) {
 > render 期间更新 state
 
 it’s better than updating state in an effect. When you call the set function during render, React will re-render that component immediately after your component exits with a return statement, and before rendering the children. This way, children don’t need to render twice. The rest of your component function will still execute (and the result will be thrown away). If your condition is below all the Hook calls, you may add an early return; to restart rendering earlier.
-
-React 只允许在渲染期间更新**同一**组件的状态，如果你在渲染期间更新另一个组件的状态，你会看到一条报错信息。
 
 如果 if 语句后面没有调用 hook ，可以提前 `return null`
 
@@ -570,123 +669,11 @@ export default function () {
 
 useState 可以当作 useRef 使用，第一个 onClick 会修改 count 的值并且会影响执行 setCount 时 count 的值，但是不会触发 re-renders。第二个 onClick 会触发 re-render。例如第一个 onClick 执行了 2 次，打印的值为 2，然后执行第二个 onClick 页面显示的是12
 
-## 更新机制
-
-设置 state 不会更改现有渲染中的变量，但会请求一次新的渲染。React 将再次调用你的组件函数。
-
-- 【异步更新】Setting state does not change the variable in the existing render, but it requests a new render。Promise 和定时器中执行 setState 也是一样异步、**批量处理**。
-
-- 修改组件 state 会把一次 `re-render` 加入队列（Setting a state variable will queue another render.）
-
-- After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](https://react.dev/learn/keeping-components-pure)** and only *return* the result. Don’t try to set state from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
-
-```tsx
-export default function () {
-  const [state, setState] = useState(1);
-  log('render\n');
-  const handleClick = ev => {
-    // 传入 update function 而不是新的【状态值】
-    // React 会将 update function 加入一个队列中，在事件处理函数执行结束后处理
-    // During the next render, React goes through the queue and gives you the final updated state.
-    setState(oldState => oldState + 1);
-    setState(oldState => oldState + 1);
-  };
-  return (<button onClick={handleClick}>{state}</button>);
-}
-// state 会加2，但是 render 只会输出一次
-```
-
-- When you call `useState` during the next render, React goes through the queue. 
-- 旧的状态作为第一个更新函数的实参，第一个更新函数的返回值作为下一个更新函数的实参。最后将最终计算得到的新状态值作为 useState 的返回值。（The previous `number` state was `0`, so that’s what React passes to the first updater function as the `n` argument. Then React takes the return value of your previous updater function and passes it to the next updater as `n`, and so on:）
-- 在一个函数中更新组件内部 state，并且通过调用 props 传递的方法更新父组件 state，结果只会 render 一次
-
-> 批量更新
-
-React 会在事件处理函数执行完成之后处理 state 更新，这被称为批处理。
-
-在组件中调用setState不会立即导致重新渲染。相反，React将首先执行所有事件处理程序，事件处理函数执行完成后触发一次重新渲染。在重新渲染期间，React 将处理队列。更新函数会在渲染期间执行，因此 **更新函数必须是 [纯函数](https://zh-hans.react.dev/learn/keeping-components-pure)** 并且只 **返回** 结果。
-
-```jsx
-function Parent() {
-  const [count, setCount] = useState(0);
-  const onChange = () => setCount(10);
-  const onClick = () => setCount(old => old + 5);
-  console.debug('render!');
-  return (
-    <div onClick={onClick}>
-      {count}
-      <Child onChange={onChange} />
-    </div>
-  );
-}
-
-function Child({onChange}) {
-  return (<button onClick={onChange}>onChange</button>);
-}
-```
-点击按钮后会执行父组件的 `onChange` 函数，并且事件冒泡后会触发父组件的 click 事件并执行 `onClick` 函数。页面 count 显示为 15，但是 Parent 组件只会渲染一次，‘render!’ 只会输出一次。
 
 
+## 状态重置
 
-**多次更新同一个状态值**
-
-下列代码中 num 初始值为 0 
-
-1. 使用更新函数，结果为 3
-```js
-setNumber(n => n + 1);
-setNumber(n => n + 1);
-setNumber(n => n + 1);
-```
-
-2. 结果为 6
-```js
-setNumber(number + 5);
-setNumber(n => n + 1);
-```
-
-3. 结果为 5
-```js
-setNumber(n => n + 1);
-setNumber(number + 5);
-```
-
-4. 结果为 42
-```js
-setNumber(number + 5);
-setNumber(n => n + 1);
-setNumber(42);
-```
-
-> 组件 re-render 时状态变化
-
-**Q：组件 re-render 时组件内部哪些状态(state、局部变量、hook返回值)会变，哪些不会变**
-
-组件 re-render 时组件内部的 hook （内置hook 和自定义 hook）会重新执行。根据触发 render 的原因分为：
-
-- 父组件更新触发子组件 render：
-  - useState：
-  - useRef：
-  - useMemo
-  - useCallback
-
-- 组件内部状态变量A更新：
-  - useState：
-  - useRef：
-  - useMemo
-  - useCallback
-
-## [更新队列](https://zh-hans.react.dev/learn/queueing-a-series-of-state-updates) 
-
-## 状态保留和重置
-
-组件的 state 被保存在 React 内部。根据组件在 UI 树中的位置，React 可以跟踪哪些 state 属于哪个组件，React 将它所持有的每个 state 与正确的组件关联起来。
-
-当 JSX 生成的 UI 树变化时，state 可能被重置，也可能保持。
-
-只有当你在UI树中相同的位置（不是JSX中的位置）渲染相同的组件时，React 才会一直保留着组件的 state。
-
-具体情况：
+当 JSX 生成的 UI 树变化时，state 可能被重置，也可能保持。具体情况：
 
 1. UI 树中同一个位置上渲染相同的组件，状态会保留
 
@@ -704,7 +691,16 @@ export default function App() {
       ) : (
         <Counter isFancy={false} /> 
       )}
-      <button>其他</button>
+      <label>
+        <input
+          type="checkbox"
+          checked={isFancy}
+          onChange={e => {
+            setIsFancy(e.target.checked)
+          }}
+        />
+        Use fancy styling
+      </label>
     </div>
   );
 }
@@ -741,17 +737,21 @@ when you render a different component in the same position, it resets the state 
   </section>
 )}
 
-// 这个视为不同位置，isPlayerA 为 false 时第一个位置为空，第二个位置是 Counter 组件
+// 这个视为不同位置
 return (
     <div>
-      { isPlayerA && <Counter person="Taylor" /> }
-      { !isPlayerA &&  <Counter person="Sarah" /> }
+      {isPlayerA &&
+        <Counter person="Taylor" />
+      }
+      {!isPlayerA &&
+        <Counter person="Sarah" />
+      }
     </div>
   );
 }
 ```
 
-如果你想在两次渲染间保留状态，两次渲染的 UI 树的结构应该保持一致。如果结构不同，状态就会被破坏，因为 React 在从树中移除组件时会破坏状态。这也是为什么不应该在函数组件内部定义组件，因为每次 re-renders 都会创建新的函数组件，然后生成不同的组件，导致嵌套定义的函数组件的状态被重置。
+如果你想在两次渲染间保留状态，两次渲染的 UI 树的结构应该保持一致。如果结构不同，状态就会被破坏，因为 React 在从树中移除组件时会破坏状态。这也是为什么不应该在函数组件内部定义组件，因为每次 re-renders 都会创建的函数组件，然后生成不同的组件，导致嵌套定义的函数组件的状态被重置。
 
 [原文](https://react.dev/learn/preserving-and-resetting-state#the-ui-tree) 
 
@@ -778,17 +778,18 @@ Specifying a `key` tells React to use the `key` itself as part of the position, 
 
 `const [state, dispatch] = useReducer(reducer, initialArg, init?)`
 
-功能：根据当前 state 和 action 计算新的 state
-
 **使用场景：**一个组件内的 state update 逻辑分散在多个事件处理函数中，用 reducer 封装 state update 逻辑，在事件处理函数中只需要通知 reducer 执行哪种类型的更新，简化事件处理函数。
 
-reducer 函数必须是 pure-function，不能包含网络请求、定时器等副作用。
+reducer 函数必须是 pure-function，接收 state 和 action 生成新的 state
 
 reducers run during rendering! (Actions are queued until the next render.) 
 
 - 将状态更新的逻辑统一保存在 reduce 中，在组件的事件处理函数中派发 dispatch action来修改状态。
+- reducer 的含义是叠加多个 action 的结果
 - reducer 可以将多个状态变量统一到一个对象中
-- 使用 [useImmerReducer](https://zh-hans.react.dev/learn/extracting-state-logic-into-a-reducer#writing-concise-reducers-with-immer) 简化对象、数组的修改 
+- reducer 函数必须是纯函数，和 render 函数一样
+- 使用 useImmerReducer 简化对象、数组的修改
+`import {useImmerReducer} from 'use-immer';`
 
 [useReducer 和 useState 区别](https://react.dev/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer)
 
@@ -802,9 +803,9 @@ Context lets you write components that “adapt to their surroundings” and dis
 
 > 使用 Context
 
-1. 创建：`const SomeContext = createContext(initialValue)`
+1. 创建：`createContext(initialValue)`
 2. 提供：`<SomeContext.Provider value={someValue}>`
-3. 读取：`useContext(SomeContext)`，useContext 返回 context 的值，To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
+3. 读取：`useContext(someCtx)`，useContext 返回 context 的值，To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
 
 > context 更新时哪些组件会 re-renders
 
@@ -824,7 +825,7 @@ React **automatically re-renders** all the children that use a particular contex
 
 # Ref
 
-在多次渲染之间让一个组件“记住”任意类型的值，但又不想让这些值触发新的渲染【非响应式数据】。
+当你想让一个组件“记住”一些信息，但又不想让这些信息触发新的渲染【非响应式数据】。
 
 - 与 useState 一样，refs 在重新渲染之间由 React 保留。但是更新 state 会重新渲染组件。更改 ref 不会！您可以通过该属性访问该 ref 的当前值ref.current。
 - 和 state 不同，在事件处理函数中修改 `ref.current` 的值后可以立即读取到修改后的值【同步更新】
@@ -845,35 +846,35 @@ function useRef(initialValue) {
 
 ref.current 的值不存在状态快照，修改 ref.current 可以立即读取到修改后的值
 
-> [ref 回调](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+> [ref callback](https://react.dev/reference/react-dom/components/common#ref-callback) 
 
-当渲染一个列表并想获取列表元素的DOM时，传递 ref callback 函数给列表元素的 ref 属性
+1. [渲染列表中使用ref](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)  
 
-ref 应用到 DOM 列表上
+2. 特殊回调用途
+```js
+import * as ReactDOMClient from 'react-dom/client';
 
-```jsx
-<ul>
-  {catList.map(cat => (
-    <li
-      key={cat.id}
-      ref={(node) => {
-        const map = getMap();
-        if (node) {
-          map.set(cat.id, node);
-        } else {
-          map.delete(cat.id);
-        }
-      }}
-    ></li>
-  ))}
-</ul>
+function App({ callback }) {
+  // Callback will be called when the div is first created.
+  return (
+    <div ref={callback}>
+      <h1>Hello World</h1>
+    </div>
+  );
+}
+
+const rootElement = document.getElementById("root");
+
+const root = ReactDOMClient.createRoot(rootElement);
+root.render(<App callback={() => console.log("renderered")} />);
 ```
+
 
 > 获取其他组件中的DOM引用
 
-默认情况下自定义函数组件上不能使用 ref，如果想使用需要用 `React.forwardRef()` 包装函数组件。forwardRef 的表示转发从父组件接收的 ref，并且可以多次转发。
+默认情况下函数组件上不能使用 ref，如果想使用需要用 `React.forwardRef()` 包装函数组件。forwardRef 的表示转发从父组件接收的 ref，并且可以多次转发。
 
-当一个组件获取到另一个组件中的DOM引用后可以对 DOM 进行任意操作，如果想限制组件只能进行某些操作时可以使用 `React.useImperativeHandle`
+当一个组件获取到另一个组件中的DOM引用后可以对 DOM 进行很多修改，如果想限制组件只能进行某些操作时可以使用 `React.useImperativeHandle`
 
 ```tsx
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -890,6 +891,8 @@ const MyInput = forwardRef(function MyInput(props, ref) {
   return <input {...props} ref={inputRef} />;
 });
 ```
+
+> [内部实现](https://zh-hans.react.dev/learn/referencing-values-with-refs#how-does-use-ref-work-inside) 
 
 # 列表渲染
 
@@ -968,7 +971,7 @@ Hook 就是 JavaScript 函数，但是使用它们会有两个额外的规则：
 
 Use Effects only for code that should run because the component was displayed to the user.
 
-当一段代码的执行不是由用户行为触发而是由渲染触发时可以考虑使用 Effect
+当一段代码的执行不是由用户行为触发，可以考虑使用 Effect
 
 - 定时器
 - 绑定事件监听器
@@ -996,7 +999,7 @@ useEffect(setup(){
 
 浏览器完成布局与绘制之后，传给 `useEffect` 的函数会延迟调用。这使得它适用于许多常见的副作用场景，比如设置订阅和事件处理等情况，因此不应在函数中执行阻塞浏览器更新屏幕的操作。
 
-非首次渲染时，执行的顺序依次是：**render--> clean 函数-->setup**。
+非首次渲染时，执行的顺序依次是:  render--> clean 函数-->useEffect。
 
 每个 Effect 都应该代表一个独立的过程，一个组件中有多个 Effect Hook 时 React 将按照 effect 声明的顺序依次调用组件中的 effect。
 
@@ -1046,7 +1049,7 @@ eslint 插件只检查直接使用 useEffect，不会检查自定义 hook 中的
 
 关闭 eslint 检查：eslint-ignore-next-line react-hooks/exhaustive-deps
 
-- 每次 re-render 时组件内部定义的对象和函数都会重新创建，局部函数作为 useEffect 的依赖时可能需要使用 useCallback 或 useEffectEvent 包裹函数
+- 每次 re-render 时组件内部定义的对象和函数都会重新创建，局部函数作为 useEffect 的依赖时可能需要使用 useCallback 包裹函数
 
 <b style="color:red">总结：尽量使用基础类型作为 useEffect 依赖</b>。Try to avoid object and function dependencies. Move them outside the component or inside the Effect.
 
@@ -1102,16 +1105,7 @@ Even if your Effect was caused by an interaction (like a click), **the browser m
 
 > [Effect Event](https://react.dev/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events) 
 
-[声明一个 Effect Event](https://zh-hans.react.dev/learn/separating-events-from-effects#declaring-an-effect-event) 
-
-**场景：**
-当代码中读取了某些响应式数据，但是当这些数据变化时不需要重新执行 effect（you’ll want to read the latest props and state from an Effect without “reacting” to them）。
-
-Effect Event 内部的逻辑不是响应式的，而且能一直访问最新的 props 和 state。
-
-**特点：**
-- 只在 Effect 内部调用他们。
-- 永远不要把他们传给其他的组件或者 Hook。
+场景：you’ll want to read the latest props and state from an Effect without “reacting” to them
 
 ## useMemo
 
@@ -1171,8 +1165,11 @@ function useCallback(fn, dependencies) {
 
 > 使用场景
 
+当某个函数作为其他响应式值的依赖项时：
+
 1. 当需要将一个函数传递给一个 memo 包裹的组件时
 2. 当一个函数作为其他 hook 的依赖时
+3. 如果你正在编写一个 [自定义 Hook](https://zh-hans.react.dev/learn/reusing-logic-with-custom-hooks)，建议将它返回的任何函数包裹在 `useCallback` 中
 
 > 总结
 
@@ -1189,7 +1186,8 @@ function useCallback(fn, dependencies) {
 
 更新 state 来切换组件显示时，如果渲染组件的时间很长会阻塞用户操作（点击其他地方），使用 useTransition 可以避免这种情况。
 
-- 立即执行
+立即执行
+
 ```
 console.log(1);
 startTransition(() => {
@@ -1201,7 +1199,8 @@ console.log(3);
 输出 1 2 3
 
 
-- useTransition 可以配合路由使用
+useTransition 可以配合路由使用
+
 ```js
 function navigate(url) {
   startTransition(() => {
@@ -1210,42 +1209,19 @@ function navigate(url) {
 }
 ```
 
-- [startTransition api](https://react.dev/reference/react/startTransition) 和 useTransition 效果类似
-
-> use-immer
-
-用 `useImmer` 代替 `useState`
-
-```js
-import { useImmer } from 'use-immer';
-export default function Form() {
-  const [person, updatePerson] = useImmer({
-    name: 'Niki de Saint Phalle',
-    artwork: {
-      title: 'Blue Nana',
-      city: 'Hamburg',
-    }
-  });
-
-  function handleTitleChange(e) {
-    updatePerson(draft => {
-      draft.artwork.title = e.target.value;
-    });
-  }
-// ....
-```
+[startTransition api](https://react.dev/reference/react/startTransition) 和 useTransition 效果类似
 
 ## 自定义HOOK
 
 自定义 Hook 更像是一种约定而不是功能。如果函数的名字以 `use` 开头并调用其他 Hook，我们就说这是一个自定义 Hook，自定义hook只是用自己写的函数包裹原生的hook， `useSomething` 的命名约定可以让我们的 linter 插件在使用 Hook 的代码中找到 bug。自定义 hook 的主要使用场景是替换 useEffect。
 
-**作用：**在组件之间复用逻辑，但是状态是独立的
+作用：在组件之间共用代码
 
 <p style="color:red">组件 re-render 时自定义 hook 也会重新执行，自定义 hook 必须是 pure-function。</p>
 
 Because custom Hooks re-render together with your component, they always receive the latest props and state.
 
-- 在两个组件中使用相同的 Hook 会共享 state 吗？
+在两个组件中使用相同的 Hook 会共享 state 吗？
 
 不会。自定义 Hook 是一种重用状态逻辑的机制(例如设置为订阅并存储当前值)，所以每次使用自定义 Hook 时，其中的所有 state 和副作用都是完全隔离的。
 
@@ -1495,49 +1471,13 @@ function App() {
 }
 ```
 
-**处理竞态条件：**
-
-```js
-function SearchResults({ query }) {
-  const [page, setPage] = useState(1);
-  const params = new URLSearchParams({ query, page });
-  const results = useData(`/api/search?${params}`);
-
-  function handleNextPageClick() {
-    setPage(page + 1);
-  }
-  // ...
-}
-
-function useData(url) {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    let ignore = false;
-    fetch(url)
-      .then(response => response.json())
-      .then(json => {
-        if (!ignore) {
-          setData(json);
-        }
-      });
-    return () => {
-      ignore = true;
-    };
-  }, [url]);
-  return data;
-}
-```
-
-**缺点**：
-
-不能在服务端使用、容易导致网络瀑布、可能出现 [race conditions](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect) ，这些缺点不是 React 独有。
+**缺点**：不能在服务端使用、容易导致网络瀑布、可能出现 [race conditions](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect) ，这些缺点不是 React 独有。
 
 **解决方法：**：
 1. 定义一个 boolean 标识 + clean-up function
 2.  AbortController + clean-up function
 
-> 参考
-
+**参考**：
 1. [fetch data 并处理条件竞争文件-react.18](https://react.dev/learn/you-might-not-need-an-effect#fetching-data)
 2. [loadding & error处理](https://www.robinwieruch.de/react-hooks-fetch-data#error-handling-with-react-hooks) 
 3. [将fetch data封装为自定义hook](https://www.robinwieruch.de/react-hooks-fetch-data#custom-data-fetching-hook) 
@@ -1552,8 +1492,6 @@ function useData(url) {
 > Suspense 
 
 > [其他数据请求的方式](https://react.dev/learn/synchronizing-with-effects#what-are-good-alternatives-to-data-fetching-in-effects) 
-
-**考虑使用或构建客户端缓存**。目前受欢迎的开源解决方案是 [React Query](https://tanstack.com/query/latest)、[useSWR](https://swr.vercel.app/) 和 [React Router v6.4+](https://beta.reactrouter.com/en/main/start/overview)。你也可以构建自己的解决方案，在这种情况下，你可以在幕后使用 Effect，但是请注意添加用于删除重复请求、缓存响应和避免网络瀑布（通过预加载数据或将数据需求提升到路由）的逻辑。
 
 # Diff
 

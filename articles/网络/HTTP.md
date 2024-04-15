@@ -291,9 +291,15 @@ CA 机构用自己的**私钥**对申请的公钥进行**数字签名**并颁发
 - 客户端浏览器通过双方协商一致的安全等级，生成**会话密钥**(随机数)，然后通过服务器的**公钥**来加密会话密钥(**非对称加密**)，并将会话密钥传送给服务端。
 - 服务器通过自己的私钥解密出会话密钥，之后客服端与服务器之间的数据传输都通过该会话密钥加密后传输(对称加密)。
 
-> 参考：[HTTPS的传输过程](https://mp.weixin.qq.com/s?__biz=MzIyMTQ4OTM3NQ==&mid=2247491009&idx=2&sn=dc0b5681a2c3c47d67d30b4cbef77413&chksm=e83aac71df4d2567f9ddb889ec9a18d16f3441132537735e18e5877f032c1de2794d5bd32c45&scene=0&xtrack=1&key=06b6f34db6d09e0101135d0e0f9471fcbe1d399270588f3ad15472f2c5038299378bdf793d0001442f9536eb18b1fc12e8da26baae99321b1d200be29c24dea273ac2354cb7533b61a9c59681526cf14&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=hiTxquONQPaTvJxKQrJMJK72ymiupUbRqLJ4%2BR9RU6XsgbR5F7RWrWrttNQHvORo) 
+## 参考：
+
+[HTTPS的传输过程](https://mp.weixin.qq.com/s?__biz=MzIyMTQ4OTM3NQ==&mid=2247491009&idx=2&sn=dc0b5681a2c3c47d67d30b4cbef77413&chksm=e83aac71df4d2567f9ddb889ec9a18d16f3441132537735e18e5877f032c1de2794d5bd32c45&scene=0&xtrack=1&key=06b6f34db6d09e0101135d0e0f9471fcbe1d399270588f3ad15472f2c5038299378bdf793d0001442f9536eb18b1fc12e8da26baae99321b1d200be29c24dea273ac2354cb7533b61a9c59681526cf14&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=hiTxquONQPaTvJxKQrJMJK72ymiupUbRqLJ4%2BR9RU6XsgbR5F7RWrWrttNQHvORo) 
+
+[SSL 握手](https://www.cloudflare.com/zh-cn/learning/ssl/what-happens-in-a-tls-handshake/) ：如何生成会话秘钥
 
 # 数字签名
+
+<img src="/Users/apple/workspace/TyporaNotes/网络/assets/HTTP/数字签名.png" alt="数字签名" style="zoom:50%;" /> 
 
 数字证书、数字签名、HTTPS加密解密
 

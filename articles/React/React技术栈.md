@@ -1,43 +1,8 @@
-[编辑器配置](https://react.dev/learn/editor-setup) 
-
-> 代码检查
-
-[eslint-config-react-app](https://www.npmjs.com/package/eslint-config-react-app) 
-
-[Integrate ESLint in VSCode with the official extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-
-# 创建项目
-
-- [创建 React Redux App](https://redux.js.org/introduction/getting-started#create-a-react-redux-app) 
-
-```shell
-# Vite with our Redux+TS template
-# (using the `degit` tool to clone and extract the template)
-npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
-
-# Next.js using the `with-redux` template
-npx create-next-app --example with-redux my-app
-```
-
-- 通过 [vite](https://vitejs.dev/guide/) 创建项目
-
-执行shell
-```shell
-npm create vite@latest
-```
-
-- 通过 [create-react-app](https://create-react-app.dev/docs/getting-started) 创建项目
-
-无需安装直接执行：
-```shell
-npx create-react-app my-app
-```
-
 # 概览
-
-1. [React Router](https://reactrouter.com/en/main) 
-2. [Redux](https://redux.js.org/)   [React-Redux](https://react-redux.js.org/) [redux中文](https://cn.redux.js.org/introduction/getting-started/)
-3. Flux
+1. React Router
+2. Redux
+3. Flux & Immutable （是什么?）
+4. React Native
 5. Middleware（中间件）
 6. reselect
 7. redux-thunk
@@ -50,32 +15,109 @@ Antd＋React＋Redux 开发项目，Roadhog 或者 Webpack 构建项目，Nextjs
 
 [redux-saga](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fredux-saga%2Fredux-saga) 用来处理异步请求，[reselect](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Freactjs%2Freselect) 缓存机制用来减少state改变带来的渲染压力,还有一些为了交互衍生出来的中间件 [react-redux](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Freactjs%2Freact-redux)、[react-router-redux](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FReactTraining%2Freact-router%2Ftree%2Fmaster%2Fpackages%2Freact-router-redux)、[react-router-dom](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FReactTraining%2Freact-router%2Ftree%2Fmaster%2Fpackages%2Freact-router-dom) ，预处理器[Sass](https://link.juejin.im?target=https%3A%2F%2Fwww.w3cplus.com%2Fsassguide%2Fsyntax.html)或[Less](https://link.juejin.im?target=https%3A%2F%2Fwww.w3cschool.cn%2Fless%2F) 尽量也掌握下。
 
-# [React Router](https://reactrouter.com/en/main) 
 
-Router的实现原理无非就是实现当URL变化的时候渲染的组件跟着变化。 要实现这个功能，就需要监听URL的变化，有两种方式可以实现，一是通过onhashchange监听#的变化，一是用history的新的API，包括pushState(), replaceState(), popstate等。
+# browserify是什么？
 
-> 默认路由
+```js
+// index.js
+const store = createStore(rootReducer)
 
-```vue
-  <IndexRoute component={Home}/>
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+
+// App,js
+const App = () => (
+  <div>
+    <AddTodo />
+    <VisibleTodoList />
+    <Footer />
+  </div>
+)
+
+// AddTodo
+const AddTodo = ({ dispatch }) => {
+  let input
+  return (
+      <form
+        onSubmit={e => {
+          dispatch(addTodo(input.value))// 派发action
+        }}
+      >
+      </form>
+  )
+}
+export default connect()(AddTodo) // 生成容器组件
+
+
+// VisibleTodoList
+const getVisibleTodos = (todos, filter) => {
+  switch (filter) {
+    case VisibilityFilters.SHOW_ALL:
+      return todos
+    case VisibilityFilters.SHOW_COMPLETED:
+      return todos.filter(t => t.completed)
+    case VisibilityFilters.SHOW_ACTIVE:
+      return todos.filter(t => !t.completed)
+    default:
+      throw new Error('Unknown filter: ' + filter)
+  }
+}
+const mapStateToProps = state => ({
+  todos: getVisibleTodos(state.todos, state.visibilityFilter)
+})
+const mapDispatchToProps = dispatch => ({
+  toggleTodo: id => dispatch(toggleTodo(id))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
+
+// TodoList.js
+const TodoList = ({ todos, toggleTodo }) => (
+  <ul>
+    {todos.map(todo => (
+      <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} />
+    ))}
+  </ul>
+)
+export default TodoList
+// Todo
+const Todo = ({ onClick, completed, text }) => (
+  <li onClick={onClick}> {text} </li>
+)
+export default Todo
+
+//------------------------------------------------------------------
+// Footer.js
+const Footer = () => (
+  <div>
+    <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+  </div>
+)
+export default Footer
+
+// FilterLink
+const mapStateToProps = (state, ownProps) => ({
+  active: ownProps.filter === state.visibilityFilter
+})
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onClick: () => dispatch(setVisibilityFilter(ownProps.filter))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Link)
+
+// Link
+const Link = ({ active, children, onClick }) => (
+  <button
+    onClick={onClick}
+    disabled={active}
+  >
+    {children}
+  </button>
+)
+export default Link
 ```
-
-> 默认Link
-
-```vue
-  <IndexLink to="/">Home</IndexLink>
-```
-
-## 路径
-
-如果一个路由使用了相对`路径`，那么完整的路径将由它的所有祖先节点的`路径`和自身指定的相对`路径`拼接而成。[使用绝对`路径`](https://react-guide.github.io/react-router-cn/docs/guides/basics/RouteConfiguration.html#decoupling-the-ui-from-the-url)可以使路由匹配行为忽略嵌套关系。
-
-- Link
-
-```jsx
-<Link to={`/user/${user.id}`}>{user.name}</Link>
-```
-
 
 # Redux
 
@@ -238,14 +280,13 @@ function thunkMiddleware(store){
 
 [Redux 入门教程（一）：基本用法 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html) 
 
-
 # React-Redux
 
 ## 容器组件
 
 UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
 
-[React入门教程-阮一峰](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html)
+参考：[React入门教程-阮一峰](<http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html>)
 
 # styled-components
 
@@ -303,6 +344,141 @@ Only plain objects and arrays are made mutable. All other objects are considered
 
 ## [用immer实现undo-redo](https://techinscribed.com/implementing-undo-redo-functionality-in-redux-using-immer/) 
 
+# Immutable.js
+
+对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象。Immutable 实现的原理是 **Persistent Data Structure**（持久化数据结构），也就是使用旧数据创建新数据时，要保证旧数据可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 **Structural Sharing**（结构共享），即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享。请看下面动画：
+
+fromJS toJS get  set  updataIn  setIn
+
+```js
+import { Map} from 'immutable';
+let a = Map({
+  select: 'users',
+  filter: Map({ name: 'Cam' })
+})
+let b = a.set('select', 'people');
+a.get('filter') === b.get('filter'); // true
+
+cursor = cursor.update('c', x => x + 1);
+
+getInitialState() {
+  return {
+    data: Map({ times: 0 })
+  }
+},
+  handleAdd() {
+    this.setState({ data: this.state.data.update('times', v => v + 1) });
+    // 这时的 times 并不会改变
+    console.log(this.state.data.get('times'));
+  }
+
+
+//---------------------------------------------------------
+//获取List索引的元素
+ImmutableData.get(0);
+// 获取Map对应key的value
+ImmutableData.get('a');
+// 获取嵌套数组中的数据
+ImmutableData.getIn([1, 2]);
+// 获取嵌套map的数据
+ImmutableData.getIn(['a', 'b']);
+
+const mapCopy = map; // Look, "copies" are free!
+
+
+//---------------------------------------------------------
+const MyDumbComponent = props => {
+   // ...
+   // props.objectProp is turned into a plain JavaScript object
+   // props.arrayProp is turn into a plain JavaScript array
+}
+ 
+MyDumbComponent.propTypes = {
+   objectProp: PropTypes.object,
+   arrayProp: PropTypes.array,
+}
+ 
+const mapStateToProps = state => ({
+   objectProp: mySelectorThatReturnsImmutableMap(state),
+   arrayProp: mySelectorThatReturnsImmutableList(state),
+})
+ 
+export default connect(mapStateToProps)(withImmutablePropsToJS(MyDumbComponent))
+```
+
+## Redux & Immutable 最佳实践
+
+1. Never mix plain JavaScript objects with Immutable.JS
+
+2. Make your entire Redux state tree an Immutable.JS object
+
+   - Create the tree using Immutable.JS’s `fromJS()` function.
+   - Use an Immutable.JS-aware version of the `combineReducers` function, such as the one in [redux-immutable](https://www.npmjs.com/package/redux-immutable), as Redux itself expects the state tree to be a plain JavaScript object.
+   - When adding JavaScript objects to an Immutable.JS Map or List using Immutable.JS’s `update`, `merge` or `set` methods, ensure that the object being added is first converted to an Immutable object using `fromJS()`.
+   - Example
+
+   ```js
+   // avoid
+   const newObj = { key: value }
+   const newState = state.setIn(['prop1'], newObj)
+   // newObj has been added as a plain JavaScript object, NOT as an Immutable.JS Map
+   
+   // recommended
+   const newObj = { key: value }
+   const newState = state.setIn(['prop1'], fromJS(newObj))
+   // newObj is now an Immutable.JS Map
+   ```
+
+3. Use Immutable.JS everywhere except your dumb components
+
+4. 避免使用toJS
+
+5. Never use toJS() in mapStateToProps
+
+6. 使用高阶组件(HOC)，Use a Higher Order Component to convert your Smart Component’s Immutable.JS props to your Dumb Component’s JavaScript props
+
+[最佳实践](https://redux.js.org/recipes/using-immutablejs-with-redux#is-using-immutablejs-worth-the-effort) 
+
+- `import withImmutablePropsToJS from 'with-immutable-props-to-js';` 
+
+## 参考
+
+[immutables详解及React中实践](https://github.com/camsong/blog/issues/3) 
+
+# React-Router
+
+Router的实现原理无非就是实现当URL变化的时候渲染的组件跟着变化。 要实现这个功能，就需要监听URL的变化，有两种方式可以实现，一是通过onhashchange监听#的变化，一是用history的新的API，包括pushState(), replaceState(), popstate等。具体实现细节我们暂时不讲。
+
+`Router`组件本身只是一个容器，真正的路由要通过`Route`组件定义
+
+```vue
+<Router history={hashHistory}>
+  <Route path="/" component={App}/>
+  <Route path="/repos" component={Repos}/>
+  <Route path="/about" component={About}/>
+</Router>
+```
+
+上面代码中，用户访问/repos（比如http://localhost:8080/#/repos）时，加载Repos组件；访问/about（http://localhost:8080/#/about）时，加载About组件。
+
+> 默认路由
+
+```vue
+  <IndexRoute component={Home}/>
+```
+
+> 默认Link
+
+```vue
+  <IndexLink to="/">Home</IndexLink>
+```
+
+## 路径
+
+如果一个路由使用了相对`路径`，那么完整的路径将由它的所有祖先节点的`路径`和自身指定的相对`路径`拼接而成。[使用绝对`路径`](https://react-guide.github.io/react-router-cn/docs/guides/basics/RouteConfiguration.html#decoupling-the-ui-from-the-url)可以使路由匹配行为忽略嵌套关系。
+
+- Link
+  `<Link to={`/user/${user.id}`}>{user.name}</Link>`
 
 # HTML to JSX
 
@@ -511,10 +687,6 @@ Next官方推荐使用now作为部署工具，只要在package.json文件中写�
 # [remix](https://remix.run/)
 
 Remix is a full-stack React framework with nested routing. It lets you break your app into nested parts that can load data in parallel and refresh in response to the user actions. To create a new Remix project, run:
-
-# [UmiJS](https://umijs.org/) 
-
-企业级前端开发框架
 
 # [expo](https://expo.dev/) 
 

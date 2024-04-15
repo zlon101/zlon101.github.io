@@ -7,7 +7,6 @@ Monorepo只是一个概念，它并不代表某项具体的技术，具体实现
 2. 包版本管理：Lerna、Changesets
 3. 包构建方案：Turborepo
 
-
 例如一个技术选型：
 pnpm：包依赖管理工具。
 changesets：包版本管理工具。
@@ -22,3 +21,9 @@ vitepress：文档服务工具。
 [大型前端项目管理模式实践](https://developer.aliyun.com/article/1067018#:~:text=Monorepo%20%E5%85%B6%E5%AE%9E%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E6%96%B0,%E6%89%80%E6%9C%89%E7%AE%A1%E7%90%86%E7%9A%84%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%9D%97%E3%80%82)
 
 [Monorepo—探秘源码管理新姿势](https://cloud.tencent.com/developer/article/1944358)
+
+[Turborepo、RushJS、Bit](https://mp.weixin.qq.com/s/W_PmDVhvLgX6Ml0t1JZ4yQ) 
+
+[微前端与 Monorepo 的架构设计](https://mp.weixin.qq.com/s/Ovrp7M-ZvK0V7xO-F3SNiw) 
+
+[基于 pnpm + changesets 的 monorepo 实践](https://juejin.cn/post/7181409989670961207) 

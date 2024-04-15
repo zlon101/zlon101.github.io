@@ -7,7 +7,7 @@
 - mdfind -name "name"
   mdfind命令就是Spotlight功能的终端界面
 
-# 其他
+# 文件
 
 - 查看当前环境shell
 
@@ -24,7 +24,7 @@
   - 上传/下载都在本机执行
 
 - 新建文件：`touch file.xx`
-- 修改权限: `chmod -R 777 /www/store` 
+- 修改权限: `chmod -R 777 /www/store`  [查看权限及修改](https://cloud.tencent.com/developer/article/1771795) 
 
 > zip
 

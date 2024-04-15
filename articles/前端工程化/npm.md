@@ -10,6 +10,26 @@
 >
 > [package.json中的main | module | browser](https://github.com/SunshowerC/blog/issues/8) 
 
+
+# nodejs 配置
+
+## 全局安装路径配置
+
+
+设置 npm config
+
+`npm config set prefix <全局安装路径>`
+
+`npm config set cache <全局缓存路径>`
+
+
+配置环境变量
+
+1. mac 环境
+
+将 `<全局安装路径>/bin` 加入到 `~/.bash_profile` 或 `~/.zshrc`，然后执行 `source ~/.zshrc`
+
+
 # [npm registry](https://docs.npmjs.com/cli/v8/using-npm/registry) 
 
 > scope
@@ -43,6 +63,10 @@ npm 官网注册账号
 - `~2.2.0`:  2.2.0 到  2.2.x  次版本号不变
 - `>2.2.0`:  2.2.0 到  最新版本
 
+[包版本查询](https://semver.npmjs.com/) 
+
+## 锁定 Node.js 版本和包管理器
+
 > 锁定node版本
 
 ```json
@@ -50,10 +74,16 @@ npm 官网注册账号
 "engines": {
   "node": "16.13.2 || 16.16.0"
 },
+```
 
-// .npmrc
+同时在项目根目录下新增 `.npmrc` 文件，并编辑
+
+```json
 engine-strict = true
 ```
+
+以上配置会在执行 `npm install` 时检查 nodejs 版本
+
 
 > 锁定包管理器
 
@@ -61,13 +91,19 @@ engine-strict = true
 
 ```shell
 npm install -D only-allow
-// package.json
-"scripts": {
-  "preinstall": "only-allow npm",
-}
 ```
 
-> [包版本查询](https://semver.npmjs.com/) 
+然后在 ` package.json` 中添加
+
+```json
+"scripts": {
+  "preinstall": "only-allow npm",
+  # 或
+  "preinstall": "only-allow pnpm",
+  # 或
+  "preinstall": "only-allow yarn",
+}
+```
 
 # npm 依赖
 
@@ -97,15 +133,45 @@ npm install -D only-allow
 # 常用命令
 
 - 查看全局包: npm list -g --depth 0sdps
+
 - 安装全局包: npm i -g xx
+
 - 删除全局包: npm uninstall -g vue
+
 - 创建软链接: [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link) [解读](https://juejin.cn/post/6844903960805900295) [npx link](https://www.npmjs.com/package/link) 
+
+## npx
+
+npx的作用非常多，但是比较常见的是使用它来调用项目中的某个模块的指令。npx 会到当前目录的node_modules/.bin目录下查找对应的命令
+
+## npm install
+
+> install 执行流程
+
+![npm-install流程](/Users/apple/workspace/TyporaNotes/前端工程化/assets/npm/npm-install流程.jpeg) 
+
+1. 没有 package-lock.json 文件，从 registry 仓库下载，走顶层逻辑
+  - 分析依赖关系，这是因为我们可能包会依赖其他的包，并且多个包之间会产生相同依赖的情况；
+  - 从registry仓库中下载压缩包（如果我们设置了镜像，那么会从镜像服务器下载压缩包）；
+  - 获取到压缩包后会对压缩包进行缓存（从npm5开始有的）；
+  - 将压缩包解压到项目的node_modules文件夹中（前面我们讲过，require的查找顺序会在该包下面查找）
+2. 有 lock 文件
+  - 检测lock中包的版本是否和package.json中一致（会按照semver版本规范检测）
+  - 一致的情况下，会去优先查找缓存，若查找到缓存会获取缓存中的压缩文件，并且将压缩文件解压到node_modules文件夹中，若没有查到缓存会从registry仓库下载，直接走顶层流程
+  - 不一致，那么会重新构建依赖关系，直接会走顶层的流程
+
+
+> npm install 失败
+
+```
+npm install --force --legacy-peer-deps --ignore-scripts
+npm i -g nrm open@8.4.2 --save
+```
 
 # 常用包
 
 - npm 源管理: nrm
 - n nvm nvm-windows: [一台电脑上管理多个node版本](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) 
-- 运行 npm 包二进制: npx
 
 # npm script
 
@@ -119,14 +185,6 @@ npm install -D only-allow
 
 `mklink /d <项目路径>\node_modules <公共node_modules路径>`
 
-> npm install
-
-npm install 失败
-
-```
-npm install --force --legacy-peer-deps --ignore-scripts
-npm i -g nrm open@8.4.2 --save
-```
 
 > npm package.json script
 
