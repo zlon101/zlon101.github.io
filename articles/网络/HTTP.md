@@ -299,7 +299,7 @@ CA 机构用自己的**私钥**对申请的公钥进行**数字签名**并颁发
 
 # 数字签名
 
-<img src="/Users/apple/workspace/TyporaNotes/网络/assets/HTTP/数字签名.png" alt="数字签名" style="zoom:50%;" /> 
+<img src="./assets/HTTP/数字签名.png" alt="数字签名" style="zoom:50%;" /> 
 
 数字证书、数字签名、HTTPS加密解密
 

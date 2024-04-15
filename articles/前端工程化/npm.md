@@ -148,7 +148,7 @@ npx的作用非常多，但是比较常见的是使用它来调用项目中的�
 
 > install 执行流程
 
-![npm-install流程](/Users/apple/workspace/TyporaNotes/前端工程化/assets/npm/npm-install流程.jpeg) 
+![npm-install流程](./assets/npm/npm-install流程.jpeg) 
 
 1. 没有 package-lock.json 文件，从 registry 仓库下载，走顶层逻辑
   - 分析依赖关系，这是因为我们可能包会依赖其他的包，并且多个包之间会产生相同依赖的情况；
