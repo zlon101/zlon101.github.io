@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-      - run: echo "🎉 The page_url is: ${{ steps.deployment.outputs.page_url }}"
+      - run: echo "🎉 The page_url is ${{ steps.deployment.outputs.page_url }}"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
