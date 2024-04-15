@@ -54,7 +54,7 @@ A：如果没有阻塞数据要求，Next.js 就会自动判断页面是静态�
 
 > 根据动态路由生成静态 HTML
 
-<img src="/Users/apple/workspace/TyporaNotes/React/assets/nextjs/how-to-dynamic-routes.png" alt="how-to-dynamic-routes" style="zoom:50%;" /> 
+<img src="./assets/nextjs/how-to-dynamic-routes.png" alt="how-to-dynamic-routes" style="zoom:50%;" /> 
 
 ## Client-side Rendering
 
