@@ -114,8 +114,8 @@ loader 处理项目中各种类型的依赖文件，webpack 默认可以处理 J
 ## loader 和 plugin的区别
 
 - webpakc中每个文件都视为一个模块，webpack 核心只能处理JS文件(模块)，所以需要loader对非JS文件进行转换，loader不影响构建流程；
-- 对于loader，它是一个转换器，将A文件进行编译形成B文件，这里操作的是文件，比如将A.scss转换为A.css，单纯的文件转换过程。【导出为函数的模块，对匹配的文件进行转换；】
-- plugin是一个扩展器，它丰富了webpack本身，针对是loader结束后。webpack打包的整个过程，它并不直接操作文件，而是基于事件机制工作，会监听webpack打包过程中的某些节点，执行广泛的任务，包括：打包优化，资源管理，注入环境变量。【带有apply方法的对象，apply方法被webpack的编译器调用；扩展webpack的功能，在构建过程中注入钩子函数实现；】
+- 对于loader，它是一个**转换器**，将A文件进行编译形成B文件，这里操作的是文件，比如将A.scss转换为A.css，单纯的文件转换过程。【导出为函数的模块，对匹配的文件进行转换；】
+- plugin是一个**扩展器**，它丰富了webpack本身，针对是loader结束后。webpack打包的整个过程，它并不直接操作文件，而是基于事件机制工作，会监听webpack打包过程中的某些节点，执行广泛的任务，包括：打包优化，资源管理，注入环境变量。【带有apply方法的对象，apply方法被webpack的编译器调用；扩展webpack的功能，在构建过程中注入钩子函数实现；】
 - [webpack 中 loader 和 plugin 的区别是什么](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/308)
 
 
@@ -131,12 +131,12 @@ loader 处理项目中各种类型的依赖文件，webpack 默认可以处理 J
 
 ## 自定义插件
 
-webpack 插件是一个具有 apply 方法的 JavaScript 对象。apply 方法会被 webpack compiler 调用，并且在 整个 编译生命周期都可以访问 compiler 对象。
+webpack 插件是一个具有 apply 方法的 JavaScript 对象。apply 方法会被 webpack compiler 调用，并且在整个编译生命周期都可以访问 compiler 对象。
 
 > 如何自定义webpack插件
 
 - JavaScript 命名函数
-- 在插件函数prototype 上定义一个apply 方法
+- 在插件函数 prototype 上定义一个apply 方法
 - 定义一个绑定到webpack 自身的hook
 - 处理webpack内部特定数据
 - 功能完成后调用webpack 提供的回调
@@ -199,6 +199,57 @@ requireComponent.keys().forEach(function (fileName) {
 2. 压缩svg
     svgo-loader
 3. 生成组件
+
+# 热更新
+
+Webpack的热更新（Hot Module Replacement，简称HMR）是一种在不完全刷新页面的情况下，更新运行时应用程序模块的技术。这在开发过程中非常有用，因为它可以保持应用程序的状态，减少开发时间，并提供更好的开发体验。
+
+Webpack 热更新通过监视文件变化、生成补丁、通知客户端并应用更新来实现模块的热替换，从而提升开发体验和效率。通过Webpack的配置和简单的代码修改，可以轻松实现HMR，减少开发过程中页面全刷新带来的不便。
+
+## Webpack 热更新的原理
+
+Webpack热更新的原理可以概括为以下几个步骤：
+
+1. **监视文件变化**：
+   - Webpack Dev Server 或者其他构建工具会监视项目中的文件变化。
+
+2. **编译更新的模块**：
+   - 当文件发生变化时，Webpack只重新编译受影响的模块，而不是整个项目。这生成了一个新的编译结果。
+
+3. **通知客户端**：
+   - Webpack Dev Server 使用 WebSocket 连接将变更通知客户端（浏览器）。
+
+4. **客户端接收更新**：
+   - 客户端通过 WebSocket 接收到更新的模块信息。
+
+5. **应用更新**：
+   - 客户端使用新的模块替换旧的模块，更新应用程序的状态。不同类型的模块（如JavaScript、CSS、HTML等）会有不同的处理方式。
+
+## 详细工作流程
+
+以下是Webpack热更新的详细工作流程：
+
+1. **启动 Webpack Dev Server**：
+   - 开发服务器启动时，会在后台运行 Webpack 编译器，并通过 WebSocket 与客户端（浏览器）保持连接。
+
+2. **文件变更检测**：
+   - Webpack 使用 `watch` 模式监视文件系统中的文件变化。当文件发生变化时，Webpack重新编译受影响的模块。
+
+3. **生成更新补丁**：
+   - Webpack 只编译变化的部分，并生成一个更新补丁（patch），包含变更模块的hash、名称等信息。
+
+4. **通过 WebSocket 通知客户端**：
+   - 开发服务器通过 WebSocket 向客户端发送消息，通知有新的模块可用。
+
+5. **客户端处理更新**：
+   - 客户端接收到消息后，通过 AJAX 或 WebSocket 请求新的模块代码。
+
+6. **模块替换**：
+   - 客户端使用新的模块代码替换旧的模块，更新应用的状态。对于不同类型的模块，Webpack 使用不同的处理策略：
+     - **JavaScript模块**：通常直接替换旧的模块，并调用模块的 `dispose` 和 `accept` 钩子函数进行清理和重新初始化。
+     - **CSS模块**：可以直接替换 `<style>` 标签内容，无需重新加载页面。
+     - **其他资源**：例如图片、HTML等，可能需要自定义的处理逻辑。
+
 
 # 问题
 

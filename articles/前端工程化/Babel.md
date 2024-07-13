@@ -11,3 +11,25 @@ Babel的配置文件是`.babelrc`，存放在项目的根目录下。使用Babel
 
 参考：[ES6](http://caibaojian.com/es6/)
 
+
+
+> Babel 别名配置
+
+`babel-plugin-module-resolver` 包
+
+```js
+module.exports = {
+  plugins: [
+    [
+      'module-resolver',
+      {
+        root: ['./'],
+        alias: {
+          '^@/(.+)': './src/\\1',
+        },
+      },
+    ],
+  ],
+};
+```
+

@@ -12,9 +12,9 @@
 
 - `$mount('#app')` 组件会替换 `#app`  元素本身（`outerHtml`）
 
-- 一个指令的功能/作用是在其表达式的值变化时响应式地更新 DOM
+- 一个指令的功能是在其表达式的值变化时响应式地更新 DOM
 
-- 使用了 `<script setup>` 的组件是默认私有的：一个父组件无法访问到一个使用了`<script setup>` 的子组件中的任何东西，除非子组件在其中通过 defineExpose 宏显式暴露
+- 使用了 `<script setup>` 的组件是默认私有的：一个父组件无法访问到一个使用了`<script setup>` 的子组件中的任何东西，除非子组件在其中通过 **defineExpose** 宏显式暴露
 
 - 如果你是直接在 DOM 中书写模板 (例如原生 `<template>` 元素的内容)，模板的编译需要遵从浏览器中 HTML 的解析行为。在这种情况下，你应该需要使用 kebab-case 形式并显式地关闭这些组件的标签
 
@@ -242,11 +242,11 @@ onVnodeUnmounted
 
 > 解释
 
-Vue3 基于 ES6 新增的Proxy对象实现数据代理并通过Reflect对源数据进行操作，解决了Vue2中无法追踪对象新增、删除属性的问题。另外，Proxy可以直接监听数组，无需像Vue2中那样重写数组方法进行拦截。
+Vue3 基于 ES6 新增的 Proxy 对象实现数据代理并通过 Reflect 对源数据进行操作，解决了Vue2中无法追踪对象新增、删除属性的问题。另外，Proxy可以直接监听数组，无需像Vue2中那样重写数组方法进行拦截。
 
 vue3采用【数据代理+数据劫持+发布订阅模式】的方法。在初始化vue实例时用Proxy对象来代理目标对象，对目标对象的所有属性的基本操作（get、set、del）进行拦截，并通过Reflect操作对象内部数据。
 
-当Proxy对象属性或Proxy数组元素发生变化时，会触发Proxy属性的setter方法，然后通过Reflect操作目标对象属性，同时触发它Dep实例的notify方法进行依赖分发，通知所有依赖的Watcher实例执行内部回调函数。
+当Proxy对象属性或Proxy数组元素发生变化时，会触发Proxy属性的setter方法，然后通过Reflect操作目标对象属性，同时触发它 Dep 实例的notify 方法进行依赖分发，通知所有依赖的Watcher实例执行内部回调函数。
 
 最后会触发renderWatcher回调，会重新执行render函数，重新对比新旧虚拟DOM，重新渲染页面。
 
@@ -299,6 +299,8 @@ Vue 提供了一个 [`ref()`](https://cn.vuejs.org/api/reactivity-core.html#ref)
 
 **reactive**
 创建一个 Proxy 实例，通过Proxy对目标对象中的所有属性动态地进行【数据劫持】，并通过Reflect操作对象内部数据来实现响应式，只能处理引用类型数据，会实现递归深度响应式
+
+
 
 
 > watch 和 watchEffect 的区别

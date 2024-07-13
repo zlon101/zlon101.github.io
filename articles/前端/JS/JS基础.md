@@ -115,13 +115,6 @@ NaN == NaN;		   // false , JS 中唯一的一个
 
 使用 [] 字面量创建数组比使用 new 效率更高。
 
-## 响应式更新
-
-数组有哪些方法支持响应式更新，如果不支持怎么办，底层原理如何实现？
-
-- 支持：push、pop、shift、unshift、splice、sort、reverse，这些方法会改变原数组。
-- 不支持：filter、concat、slice、forEach、map，这些方法不会改变原数组。可以修改整个数组实现响应式更新(将新的数组赋值给原来的数组)。
-- 原理同样是使用 Object.defineProperty 对数组方法(get、set)进行改写
 
 ## forEach 和 map 的区别
 
@@ -369,6 +362,10 @@ Child.prototype = create(Parent.prototype);
 [双重继承](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215832&idx=1&sn=7e48c9ef8bf7c4ccaa246907eb6579f5&chksm=befe15b989899caf8612620992acdb67783396f1b2bf981fae71cf761fac43c16b4b60457975&scene=0&key=06b6f34db6d09e01cbeea01642f35f6916e02c7d3cc0c4d1b777d666c2d8d94cacb1516bc3b5a608a6713416a69e553d88c1feba945dc494447e016071b279de4675b2ca438636285d10a796bdf5b3b2&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060739&lang=zh_CN&pass_ticket=ltTFzXuqdXnUtMsLWgFnt%2B8zWUV2F%2B3hSDDtrPIUYwtCjZ5qZr5AlYFajnxJ9w5P) 
 
 # 原型
+
+每个对象都有一个原型对象，这个原型对象本身也是一个对象，它包含了可被当前对象继承的属性和方法。当你尝试访问一个对象的属性或方法时，如果该对象本身没有这个属性或方法，JavaScript引擎会沿着原型链向上查找，直到找到该属性或方法或者到达原型链的末端。原型链的末端是 `Object.prototype` 对象，它是所有对象的最终原型，其原型为null.
+
+原型链的建立基于构造函数的 prototype 属性和对象的 `__proto__` 隐藏属性（非标准但被广泛支持）。构造函数的prototype属性指向一个对象，这个对象将成为由该构造函数创建的所有对象的原型。而每个对象的__proto__属性则指向其构造函数的prototype对象。通过这种方式，当一个对象被创建时，它不仅拥有自己的属性，还间接拥有原型对象上的属性和方法，形成了一个层次结构的属性查找路径.
 
 每个函数都有一个 `prototype` 属性，该属性是指针，指向一个对象，这个对象的用途是包含由这个函数实例化的所有实例**共享**的属性和方法。这个对象是通过调用构造函数而创建的对象实例的原型对象。
 
@@ -633,6 +630,7 @@ console.log(r1.n);
 r2.add();
 // 输出：1 2 0 1, 第三个为什么不是 2
 
+
 /* 情况2：如果 r1.n 是引用类型, 此时输出的值与前一个值相同 */
 function fn(){
   let obj = {};
@@ -670,11 +668,34 @@ setTimeout(()=>{
 }, 1000);
 ```
 
-- 定义一个函数时，会创建一个**作用域链**，包含了该函数可以访问的作用域对象(VO变量对象)， 作用域链以数组的形式赋值给该函数的 [[Scopes]] 属性，作用域链中至少包含一个全局作用域对象；例如当执行 fn() 时，会创建 add 函数，同时创建包含两个作用域对象的作用域链，([[Scopes]] 数组有两个元素，Scopes[0] 代表的是外层函数 fn 的作用域对象，该对象只有 obj 一个属性；Scopes[1] 代表全局作用域对象)；
+- 定义一个函数时，会创建一个**作用域链**，包含了该函数可以访问的作用域对象(VO变量对象)， 作用域链以数组的形式赋值给该函数的 [[Scopes]] 属性，作用域链中至少包含一个全局作用域对象；例如当执行 fn() 时，会创建 add 函数，同时创建包含两个**作用域对象**的作用域链，([[Scopes]] 数组有两个元素，Scopes[0] 代表的是外层函数 fn 的作用域对象，该对象只有 obj 一个属性；Scopes[1] 代表全局作用域对象)；
 
 - 调用函数 add 时，会为函数创建一个执行上下文，然后**复制** add 函数的 Scopes 属性值，构建当前执行环境的作用域链，再将当前 add 函数的作用域对象加入到所构建的作用域链的前端，组成 add 函数所能访问的全部作用域对象。 
 
 参考：JS 高阶程序设计 P179、P181
+
+
+- 测试2
+
+```js
+function sayHi(person) {
+  const name = person.name;
+  setTimeout(() => {
+    console.log('Hello, ' + name); // 改为console.log(person.name)
+  }, 3000);
+}
+
+let someone = {name: 'Dan'};
+sayHi(someone);
+
+someone = {name: 'Yuzhi'};  // someone.name = 'two'
+sayHi(someone);
+
+someone = {name: 'Dominic'}; //someone.name = 'three'
+sayHi(someone);
+
+// 输出是什么？
+```
 
 # 函数-函数式编程
 
@@ -708,67 +729,6 @@ var Thunk = function(fn) {
   };
 };
 ```
-
-
-
-## 节流 & 防抖
-
-对计算复杂度较高的函数，限制其在一定时间内的执行次数，如1秒内调用多次，但只执行一次；比如 `onresize` 事件。
-
-```js
-// 防抖
-function debounce(fn, wait) {
-  var timer = null;
-
-  return function() {
-    var context = this,
-      args = arguments;
-
-    if (timer) {
-      clearTimeout(timer);
-      timer = null;
-    }
-
-    timer = setTimeout(() => {
-      fn.apply(context, args);
-    }, wait);
-  };
-}
-
-// 节流:  降低执行的频率
-function throttle(fn, delay) {
-  var preTime = Date.now();
-
-  return function() {
-    var context = this,
-      args = arguments,
-      nowTime = Date.now();
-
-    // 如果两次时间间隔超过了指定时间，则执行函数。
-    if (nowTime - preTime >= delay) {
-      preTime = Date.now();
-      return fn.apply(context, args);
-    }
-  };
-}
-
-// 函数调用 N 次后才真正执行一次
-function throttleTimer(callFn, N){
-  let count = 0;
-  return function(...args){
-    if(count++ === N){
-      callFn.apply(this, args);
-      count = 0;
-    }
-  }
-}
-```
-
-## 组合 compose
-
-## 偏函数
-
-## 函数记忆
 
 # 事件
 
@@ -1036,6 +996,13 @@ pageX = clientX + document.documentElement.scrollLeft;
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
   }
   ```
+
+- 匹配文件后缀
+
+```js
+/\.(png|jpg|gif)$/i
+```
+
 > [字符串表达式和字符串方法](https://zh.javascript.info/regexp-methods) 
 
 ![image-20220926152722447](assets/JS基础/image-20220926152722447.png) 
@@ -1044,208 +1011,6 @@ pageX = clientX + document.documentElement.scrollLeft;
 ## 参考
 
 [正则表达式-code花园](https://mp.weixin.qq.com/s/S27FTJyKoVJoY7tcEgLo8Q) 
-
-# 各种方法实现
-
-## 实现 Array.reduce
-
-```js
-Object.defineProperty(Array.prototype, 'reduce', {
-  value: function (callback /*, initialValue*/) {
-    // this 指向数组
-    var arr = Object(this);
-    var len = arr.length >>> 0;
-    var ind = 0;
-    var initVal;
-    // 有初始值
-    if (arguments.length >= 2) {
-      initVal = arguments[1];
-    }
-    else {
-      // 稀疏矩阵, 无值 new Array(3)
-      while (ind < len && !(ind in arr)) {
-        ind++;
-      }
-      initVal = arr[ind++];
-    }
-    // 8. Repeat, while ind < len
-    while (ind < len) {
-      if (ind in arr) {
-        initVal = callback(initVal, arr[ind], ind, arr);
-      }
-      ind++;
-    }
-    return initVal;
-  }
-});
-```
-
-- 简写为
-
-  ```js
-  Array.prototype._reduce = function(cb){
-    let ind = 0;
-    let len = this.length;
-    let initVal = null;
-    if(arguments.length > 1)	initVal = arguments[1];
-    else{
-      while(ind < len && !this.hasOwnProperty(ind)){
-        ind++;
-      }
-      initVal = this[ind++];
-    }
-    
-    for(; ind < len; ind++){
-      initVal = cb(initVal, this[ind], ind, this);
-    }
-    return initVal;
-  }
-  ```
-
-## Object.create
-
-```js
-if(typeof Object.create !== 'function'){
-  Object.create = function (proto){
-    function _F(){};
-    _F.prototype = proto;
-    return new _F();
-  }
-}
-```
-
-## 多维数组平铺
-
-```js
-function selfFlat(depth = 1){
-  let arr = [].slice.call(this);
-  if(depth === 0)	return arr;
-  return arr.reduce((acc, cur) => {
-    if(Array.isArray(cur)){
-       // acc.concat(selfFlat.call(cur, depth-1));
-       return [...acc, ...selfFlat.call(cur, depth-1)]
-    }
-    else{
-      return acc = [...acc, cur];
-    }
-  }, []);
-}
-
-// 要求数组项不能包含逗号, 只能用逗号分隔
-arr.join().split(',').map(i => print(i));
-```
-
-## 快排
-
-```js
-//排序
-function fastSort(arr, start, end){
-  if(start==end) return;
-  var ind = part(arr, start, end);  
-  if(ind>start)  fastSort(arr, start, ind-1);
-  if(ind<end)  fastSort(arr, ind+1, end);
-}
-function part(arr, start, end){  
-  var ind = start, small=start-1;
-  var midInd = Math.floor((start + end) >> 1);
-  var target = arr[midInd];
-  swap(midInd, end);
-  
-  for(; ind < end; ind++){
-    if(arr[ind] < target){
-      swap(ind, ++small);
-    }
-  }
-  swap(++small, end);
-  
-  function swap(ind1, ind2){
-    var t=arr[ind1];
-    arr[ind1]=arr[ind2];
-    arr[ind2]=t;
-  }
-  return small;  
-}
-```
-
-## 数组排序并去重
-
-```js
-function sortRemoveDuplicate(oriArr){
-    if(oriArr.length > 1){
-        let middleInd = Math.floor(oriArr.length / 2);  // 数组中位数索引
-        let middleVal = oriArr.splice(middleInd, 1)[0]; // 提取数组中位数赋值给middleVal
-        // 相等时被过滤掉, 实现去重
-        let left = oriArr.filter( el => el < middleVal );
-        let right= oriArr.filter( el => el > middleVal );
-        let leftArr = sortRemoveDuplicate(left);
-        let rightArr = sortRemoveDuplicate(right);
-        // 为了消除函数执行过程中对函数名( sortRemoveDuplicate )的依赖, 可以使用下面的方式
-        // let leftArr = arguments.callee(left);
-        return leftArr.concat(middleVal, rightArr);
-    }else{
-        return oriArr;
-    }
-}
-```
-
-- 要点
-  1. 二分法
-  2. Array.splice
-  3. 尾递归
-
-## 函数柯里化
-
-```js
-function curry(fn) {
-  if (fn.length <= 1) return fn;
-  let gene = (...args) => {
-    if (args.length >= fn.length) {
-      return fn(...args);
-    } else {
-      return (...arg2) => gene(...args, ...arg2);
-    }
-  }
-  return gene;
-}
-// 使用
-function add(a, b, c, d) {
-  return a + b + c + d;
-}
-let curryed = curry(add);
-print( curryed(1,2)(3)(4) );
-```
-
-## 图像懒加载
-
-img 的 src 属性先不赋值，监听滚动事件或 `IntersectionObserver`，当图像出现在视野中时才给 src 赋值。
-
-```js
-<img src="./imgs/default.png" data="./imgs/1.png" alt="">
-  
-let imgs =  document.querySelectorAll('img')
-// 可视区高度
-let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-function lazyLoad () {
-  // 滚动卷去的高度
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-  for (let i = 0; i < imgs.length; i ++) {
-    // 得到图片顶部距离可视区顶部的距离
-    let x = clientHeight + scrollTop - imgs[i].offsetTop
-    // 图片在可视区内
-    if (x > 0 && x < clientHeight+imgs[i].height) {
-      imgs[i].src = imgs[i].getAttribute('data')
-    }
-  }
-}
-setInterval(lazyLoad, 1000)
-```
-
-
-## 参考
-
-- [一个合格的中级前端工程师要掌握的JavaScript 技巧](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247483958&idx=1&sn=66a115a5ea1707f2947de0a8decefe3b&chksm=c06683a0f7110ab64021c9613f9d88bd47ec645e5a241859e9548f10c25958d735f62d0d1749&mpshare=1&scene=1&srcid=&key=06b6f34db6d09e012be03b7bef14060e321a7fbb4d11935feaea803d3af4fd7a8c5711e8666856a63385bea5cbe185461629077415a1f5e3adcf452bc16ae83de5648bdf8c1e6a85edd20de4a1603fbf&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=xxDfG3UAWJ1CvPVMnUqmt%2FAQ83Ih6iim%2FeHMcWKLZk0MttltZwQ3Tf2IdlzE5BYs)
-
-- [JS 常用工具函数](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247484390&idx=1&sn=c0c844f18ddade5bc96fc99d11b06103&chksm=c0668270f7110b662815eab075b0b12c452a59454f80035ae7998e9bb5cd9a15977acad8ee76&mpshare=1&scene=1&srcid=&sharer_sharetime=1567989742920&sharer_shareid=c0fa4bb765d12545f4439ab827814978&key=3e754fdb358244861665075a257e0962a2c20f2945caa4684dc19a63c9756a01305c6b216a3dbbf0b80b2e74ffec18360d1fa41ae555af14d1deed4ed62bcb9312523cbe877d5d512922dad0f0465b9a&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=D8igzih7KnA8%2F5LHQdRG6th5IVXvvQD7ukUD5HSt%2FLcfZ7gOforYJWqBjo9rYF%2FC)
 
 
 # JS 小技巧

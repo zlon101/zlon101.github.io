@@ -1,8 +1,8 @@
 # 特点
 
-- HTTP 协议是无状态的，不保留通信状态
-- TCP\IP 协议族按层次分别为：应用层(HTTP、FTP和DNS)、传输(TCP和UDP协议)、网络(IP协议)、数据链路层；
-- http 传输的数据都是未加密的，也就是明文的，网景公司设置了SSL协议来对http协议传输的数据进行加密处理，简单来说https协议是由http和ssl协议构建的可进行加密传输和身份认证的网络协议，比http协议的安全性更高。
+- HTTP 协议是无状态的，不保留通信状态（所以需要cookie）
+- TCP/IP 协议族按层次分别为：应用层(HTTP、FTP和DNS)、传输(TCP和UDP协议)、网络(IP协议)、数据链路层；
+- HTTP 传输的数据都是未加密的，也就是明文的，网景公司设置了SSL协议来对http协议传输的数据进行加密处理，简单来说https协议是由http和ssl协议构建的可进行加密传输和身份认证的网络协议，比http协议的安全性更高。
 
 - HTTPS 的 SSL 加密是在**传输层**实现的；
 
@@ -74,7 +74,7 @@ GET 请求中带有 `If-Match\If-Modified-Since\If-None-Match\If-Range\If\UnModi
 
 实体字段：`Expires、Last-Modified`
 
-请求字段中有：`If-Match、If-Modified-Since、If-Range、If-*、`
+请求字段中有：`If-Match、If-Modified-Since、If-Range、If-*、` （条件式请求首部）
 
 响应字段中有：`Etag`
 
@@ -95,7 +95,7 @@ GET 请求中带有 `If-Match\If-Modified-Since\If-None-Match\If-Range\If\UnModi
 
 **协商缓存**
 
-- 发送请求到服务端，通过http响应头字段 **ETag** 或者 **Last-Modified** 等判断服务器上资源是否修改， 如果修改则从服务器重新获取，如果未修改则 **304** 指向浏览器缓存中进行获取；
+- 客户端发送一个带有`If-None-Match` 或 `If-Modified-Since`请求首部的请求到服务端，服务器判断请求的资源是否更新，如果更新返回最新的数据及 200 的响应状态码，如果未修改则 **304** 指向浏览器缓存中进行获取；
 - 协商缓存相关字段有Last-Modified/If-Modified-Since，Etag/If-None-Match
 
 
@@ -128,6 +128,15 @@ HTTP1.1
 | no-cache | 缓存前必须先确认其有效性   |
 | no-store | 不缓存请求或响应的任何资源 |
 
+
+以下 Cache-Control 值可帮助您微调无版本控制网址的缓存位置和方式：
+
+- no-cache 会告知浏览器每次都必须通过服务器重新验证，然后才能使用网址的缓存版本。
+- no-store 告知浏览器和其他中间缓存（如 CDN）永不存储文件的任何版本。
+- private：浏览器可以缓存文件，但中间缓存无法缓存。
+- public：任何缓存都可以存储响应。
+
+
 > no-cache 和 no-store 的区别
 
 - no-cache: 目的为了防止从缓存中返回过期资源
@@ -154,10 +163,12 @@ HTTP1.1
 > 参考
 
 - [浏览器缓存机制](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650215884&idx=1&sn=0c014d58bee5b5fa5f357e23d456d5ed&chksm=befe15ed89899cfbc92c261fc5eb654cb3a8a6c6fac129ca4828ff1f10e1d36536aeac46b96a&scene=0&key=7a9b0290e45b2078b8b6f5dbd382511d3f9fbb0dd4c5d04f2760b44efa7d5197bbbbfa4ed1e2628017bfb681e01ed2e1e1419e5468205f1a35ea9a00503b089a3ddd778817c87b7b5baf251d7f9e7774&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060720&lang=zh_CN&pass_ticket=ykZiUCMsNd2S9UoFxD9hRE9rxPn7dK3oVQwLBFu%2FDuD60Ikn%2Fg9Ot5qQ8Vlo%2Bq11)
-- [HTTP缓存-developers.google]([https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#%E2%80%9Cno-cache%E2%80%9D%E5%92%8C%E2%80%9Cno-store%E2%80%9D](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#"no-cache"和"no-store"))
 
+- [HTTP缓存-developers.google](https://web.dev/articles/http-cache?hl=zh-cn#%22no-cache%22%E5%92%8C%22no-store%22)
 
 # TCP
+
+TCP 一种面向连接的、可靠的、基于流的全双工传输方式
 
 > TCP的整体流程
 
@@ -207,7 +218,7 @@ Server   <=== ACK号 ===  Client
 Server   <=== FIN:1 ===  Client
 Server   === ACK号 ===>  Client
 
-> 参考：[握手挥手](https://mp.weixin.qq.com/s?__biz=MzIyMTQ4OTM3NQ==&mid=2247491009&idx=2&sn=dc0b5681a2c3c47d67d30b4cbef77413&chksm=e83aac71df4d2567f9ddb889ec9a18d16f3441132537735e18e5877f032c1de2794d5bd32c45&scene=0&xtrack=1&key=06b6f34db6d09e0101135d0e0f9471fcbe1d399270588f3ad15472f2c5038299378bdf793d0001442f9536eb18b1fc12e8da26baae99321b1d200be29c24dea273ac2354cb7533b61a9c59681526cf14&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=hiTxquONQPaTvJxKQrJMJK72ymiupUbRqLJ4%2BR9RU6XsgbR5F7RWrWrttNQHvORo) 
+![tcp握手挥手](/Users/apple/workspace/TyporaNotes/网络/assets/HTTP/tcp握手挥手.png)
 
 ## 持久化连接
 
@@ -216,12 +227,6 @@ HTTP 协议的初始版本中，每进行一次 HTTP 通信就要断开一次 TC
 为了解决上述问题，提出了持久化连接，持久化连接的特点是只要任意一端没有明确提出断开连接，则保持 TCP 连接状态。
 
 HTTP1.1 的默认连接时持久化连接，客户端会在持久化连接上连续发送请求。HTTP1.1 之前的默认连接都是非持久化连接，想要维持持久化连接需要指定 `Connection: Keep-Alive; Keep-Alive: timeout=10` 
-
-# HTTPS 的缺点
-
-1. 握手阶段更加耗时；
-2. 缓存不如 HTTP 高效；
-3. SSL 证书需要绑定 IP ，不能再同一个 IP 地址上绑定多个域名，更加对 IVP4 资源的消耗；
 
 # http1.0 & http1.1区别
 
@@ -258,8 +263,11 @@ HTTPS 不是应用层的一种新协议，只是 HTTP 通信接口部分用 SSL 
 > 两种加密方式：对称加密、公开密钥加密
 
 - **对称加密**(也叫共享密钥加密)：加密和解密使用相同的密钥。要解密就要密钥，怎么把密钥安全的发送给对方？
+
 - **公开密钥加密**(非对称加密)使用一对非对称的密钥，一把为公开密钥，另一个叫私钥，公钥是公开发布的，私钥是私人的不能让其他人知道。
-- 通信双方传输数据时，发送方使用**对方**的公开密钥对数据进行加密并发送，接收方收到加密后的数据后使用自己的私钥进行解密（<span style="color:red">公钥加密，私钥解密</span>）。
+
+  通信双方传输数据时，发送方使用**对方**的公开密钥对数据进行加密并发送，接收方收到加密后的数据后使用自己的私钥进行解密（<span style="color:red">公钥加密，私钥解密</span>）。
+
 - HTTPS 采用的**混合加密机制**，因为非对称加密更复杂，处理速度慢。因此先使用非对称加密【传输对称加密时使用的密钥】，再用对称加密的方式传输其他信息(报文)。
 
 > 证书的来源及使用
@@ -287,13 +295,18 @@ CA 机构用自己的**私钥**对申请的公钥进行**数字签名**并颁发
 
 - 客户使用 https url 访问服务器，则要求 web 服务器建立 ssl 链接。
 - web服务器接收到客户端的请求之后，会将携带了**公钥**的证书传输给客户端。
-- 客户端和 web 服务器端开始协商 SSL 链接的安全等级，也就是加密等级。
+- 客户端和 web 服务器端开始协商 SSL 连接的安全等级，也就是加密等级。
 - 客户端浏览器通过双方协商一致的安全等级，生成**会话密钥**(随机数)，然后通过服务器的**公钥**来加密会话密钥(**非对称加密**)，并将会话密钥传送给服务端。
 - 服务器通过自己的私钥解密出会话密钥，之后客服端与服务器之间的数据传输都通过该会话密钥加密后传输(对称加密)。
 
-## 参考：
+## HTTPS 的缺点
 
-[HTTPS的传输过程](https://mp.weixin.qq.com/s?__biz=MzIyMTQ4OTM3NQ==&mid=2247491009&idx=2&sn=dc0b5681a2c3c47d67d30b4cbef77413&chksm=e83aac71df4d2567f9ddb889ec9a18d16f3441132537735e18e5877f032c1de2794d5bd32c45&scene=0&xtrack=1&key=06b6f34db6d09e0101135d0e0f9471fcbe1d399270588f3ad15472f2c5038299378bdf793d0001442f9536eb18b1fc12e8da26baae99321b1d200be29c24dea273ac2354cb7533b61a9c59681526cf14&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=hiTxquONQPaTvJxKQrJMJK72ymiupUbRqLJ4%2BR9RU6XsgbR5F7RWrWrttNQHvORo) 
+1. 握手阶段更加耗时；
+2. 缓存不如 HTTP 高效；
+3. SSL 证书需要绑定 IP ，不能再同一个 IP 地址上绑定多个域名，更加对 IVP4 资源的消耗；
+
+
+## 参考
 
 [SSL 握手](https://www.cloudflare.com/zh-cn/learning/ssl/what-happens-in-a-tls-handshake/) ：如何生成会话秘钥
 
@@ -304,6 +317,8 @@ CA 机构用自己的**私钥**对申请的公钥进行**数字签名**并颁发
 数字证书、数字签名、HTTPS加密解密
 
 公钥 私钥 数字签名 证书 CA证书 自签证书
+
+数字证书是一个将公开的[加密密钥](https://developer.mozilla.org/zh-CN/docs/Glossary/Key)和一个组织绑定的数据文件。一个数字证书包含一个组织的信息，如公共名称（例如 mozilla.org），组织单元（例如 Mozilla Corporation）以及位置（例如 Mountain View）
 
 [数字签名是什么-阮一峰](http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html) 
 
@@ -317,6 +332,8 @@ CA 机构用自己的**私钥**对申请的公钥进行**数字签名**并颁发
 
 ```tex
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=US/ST=CA/O=MyOrg, Inc./CN=127.0.0.1" -keyout selfsigned.key -out selfsigned.crt
+
+openssl req -newkey rsa:2048 -passout pass:密码 -keyout key.pem -x509 -days 365 -out cert.pem
 ```
 
 [使用arcme.sh 生成免费证书](https://github.com/acmesh-official/acme.sh/wiki/%E8%AF%B4%E6%98%8E) 
@@ -351,7 +368,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=US/ST=CA/O=My
 
 # [Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) 
 
-> https://zh.javascript.info/cookie
+> [HTTP Cookie](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies)  [存储数据-javascript.info](https://zh.javascript.info/cookie) 
 
 因为 HTTP 是无状态协议，无法实现状态管理，之前已经认证成功（如登录成功）的用户状态无法通过协议层面保存下来。当该用户下一次继续访问时，服务端也无法将该用户与其他用户进行区分。所以使用 Cookie 管理回话（Session）。
 
@@ -432,75 +449,25 @@ cookie 和 token 都是由服务器生成，发送给浏览器
 
 ## 第三方Cookie
 
+> [第三方_cookie-MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies#%E8%B7%9F%E8%B8%AA%E5%92%8C%E9%9A%90%E7%A7%81) 
+
 如果一个 Cookie 的 Domain 属性值与用户访问的页面的协议+域名相同，该 Cookie 认为是 first-part cookie，否则视为第三方 cookie。
 或 cookie 是由用户所访问的页面的域以外的域放置的，则称其为第三方 cookie。
 
 第三方服务器可以根据同一浏览器在访问多个网站时发送给它的cookie创建用户浏览历史和习惯的配置文件。
-
-# 网络攻击
-
-从客户端接收到得 HTTP 请求的全部内容都可以在客户端任意篡改。
-
-在 HTTP 请求报文内容加载攻击代码就能发起对 Web 应用的攻击，通过 URL 查询字段、表单、HTTP 首部、Cookie 等途径把攻击代码传入，若 Web 应用存在安全漏洞则会被攻击者窃取内部信息或管理权限。
-
-> 攻击模式
-
-针对 Web 应用的攻击模式有两类
-
-- 主动攻击：直接针对服务器上的资源进行攻击，攻击者需要能访问服务器资源，代表有：
-  - SQL 注入：针对 Web 应用的数据库攻击
-  - OS 命令注入：通过 Web 应用执行非法的操作系统命令
-- 被动攻击：利用圈套策略执行攻击代码，攻击者在页面设置陷阱，用户触发陷阱并把含有攻击代码的 HTTP 请求发送给 Web 应用，执行攻击代码。代表有：
-  - 跨站脚本攻击
-  - 跨站点请求伪造
-
-> 跨站脚本攻击
-
-跨站脚本攻击(XSS, Cross Site Scripting)：网站(HTML 文档)被注入了非法恶意脚本(element.innerHTML 插入`<script>` 标签)；
-
-解决方法
-
-1:内容安全策略：`script-self`
-2:符号转义：\<>（尖括号）、”（引号）、 ‘（单引号）、%（百分比符号）、;(分号)、()（括号）、&（& 符号）、+（加号）等转义；
-
-> 跨站请求伪造CSRF
-
-解决方法：
-
-1：检查请求头部中的 referer 字段；
-2：添加校验Token；
-3：通过输入验证码校验合法请求；
-
-
-> 提高安全性
-
-输入验证、输出转义
-
-## 内容安全策略
-
-- `CSP` 的主要目的是防止跨站脚本攻击（XSS）。
-
-- 启用 CSP 的两种方法：
-  1. HTTP 头信息的 `Content-Security-Policy` 的字段；
-  2. HTML 文件的 `<meta>` 标签；
-
-- `script-src` 和 `object-src` 是必设的，除非设置了`default-src`。
-  因为攻击者只要能注入脚本，其他限制都可以规避。而`object-src`必设是因为 Flash 里面可以执行外部脚本；
-
-```json
-Content-Security-Policy: script-src 'self'; object-src 'none';
-style-src cdn.example.org third-party.org; child-src https:
-```
-
-参考：[Content Security Policy 入门教程-阮一峰](http://www.ruanyifeng.com/blog/2016/09/csp.html) 
 
 
 # HTTP 2.0
 
 1. 首部压缩（http头部压缩，减少体积）
 2. 二进制分帧：http1.X的解析是基于**文本**的；
+
 请求和响应会被分解成一一个的帧，并对他们采用二进制格式编码，每个帧都会在一个 TCP 链路中无序的传输，同一个请求的帧有相同的Stream Identifier，当帧到达服务端之后，就可以根据 Stream Identifier 来重新组合得到完整的请求。
 3. 允许多路复用：同一个连接中可以同时发送多个请求或响应，并且请求和响应不需要按顺序对应，避免了队头阻塞（一条 TCP 连接上可以处理多个 HTTP 请求）；
 4. 内容安全，因为http2.0是基于https
 
 ![http2的优点](assets/HTTP/http2的优点.png) 
+
+# 参考
+
+[前端必会网络知识点](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247484152&idx=1&sn=ba6fc3a8c71c69a2290f2284aad74fcb&chksm=c066836ef7110a786deee8825b7feb03c922f3a2e80175795cb842077d9afd5ad4d9e8e81734&mpshare=1&scene=1&srcid=&sharer_sharetime=1564099973422&sharer_shareid=c0fa4bb765d12545f4439ab827814978&key=2f4703df4564706aab6a2311fe3dcbfa37724a92258be67a521ba7ebfecd13f0ab49f64831237fdcc276a2bef62c0fb791001d71b32f3af2e89b21e2bde4ab7a1a108f93e3dd6fd5f0b39b085c73fe38&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=MsdxwVOouq48sGra7MKDbNIT4HYwgtTU9VYxH8AIri0E9OPJDT8A9%2FkQsPkJcono) 

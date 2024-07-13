@@ -27,3 +27,5 @@ vitepress：文档服务工具。
 [微前端与 Monorepo 的架构设计](https://mp.weixin.qq.com/s/Ovrp7M-ZvK0V7xO-F3SNiw) 
 
 [基于 pnpm + changesets 的 monorepo 实践](https://juejin.cn/post/7181409989670961207) 
+
+[pnpm + Micro-App](https://mp.weixin.qq.com/s/Ovrp7M-ZvK0V7xO-F3SNiw) 

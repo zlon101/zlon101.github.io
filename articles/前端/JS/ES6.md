@@ -70,7 +70,7 @@ function f() {
 
 const 声明复合类型的变量，变量名指向数据的地址，因此 const 只保证该地址不会改变，但地址中的数据可以被改变；
 
-使用 Object.freeze(obj) 冻结 obj 对象；
+使用 `Object.freeze(obj)` 冻结 obj 对象；
 
 # 全局对象 & 顶层对象
 
@@ -463,7 +463,7 @@ https://zh.javascript.info/private-protected-properties-methods
 
 # Proxy
 
-Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种**元编程**，即对编程语言进行编程。**Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写**。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。
+Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种元编程，即对编程语言进行编程。Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。
 
 1. get(target, propKey, receiver)
    拦截对象属性的读取；
@@ -552,7 +552,7 @@ function set(target, key, value, receiver) {
 
 - 有了`Promise`对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，`Promise`对象提供统一的接口，使得控制异步操作更加容易。Promise提供then方法加载回调函数，使用then方法以后，异步任务的两段执行看得更清楚了；
 
-- Promise就是为了解决回调地狱而提出的，它不是新的语法功能，而是一种**新的写法**，允许将回调函数的嵌套，改成链式调用；
+- Promise就是为了解决**回调地狱**而提出的，它不是新的语法功能，而是一种新的写法，允许将回调函数的嵌套，改成**链式调用**；
 
 - Promise 创建后会立即执行
 
@@ -566,7 +566,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-- `then` 方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。
+- `then` 方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的。这两个函数都接受Promise对象传出的值作为参数。
 
 ## Promise 读取文件
 
@@ -616,7 +616,7 @@ readFile('name2.txt')
 
 # Generator
 
-Generator函数是ES6提供的一种异步编程解决方案，执行Generator函数会返回一个**遍历器对象**，即 Generator 是迭代器生成函数。
+Generator函数是ES6提供的一种**异步**编程解决方案，执行Generator函数会返回一个**遍历器对象**，即 Generator 是迭代器生成函数。
 
 从语法上，首先可以把它理解成，Generator函数是一个状态机，封装了多个内部状态。
 
@@ -845,17 +845,3 @@ function spawn(genF) {
 ES6诞生以前，异步编程的方法，大概有下面四种：回调、事件监听、Promise对象
 
 [异步编程](http://caibaojian.com/es6/async.html) 
-
-# 模块
-
-- import 命令具有提升效果，import 是在编译阶段执行的，在代码运行之前。
-- `import`语句会执行所加载的模块
-- `import`语句是 Singleton 模式，多次import 同一个模块只会导入一次，也只会执行一次模块中的全局代码
-
-```js
-import {A} from 'mode'
-import {A} from 'mode'
-
-// 等价于 
-import {A, B} from 'mode'
-```

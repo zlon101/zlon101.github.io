@@ -1,29 +1,19 @@
-> - 什么是字符串模板：单文件中的template 和 实例化vue对象时的template 属性。
-> 
->- DOM 模板：在 html 文件中编写的html标签(包含自定义标签)，直接在DOM中使用组件。
-> - html 属性名和属性值
-
-
-
 - vue 实例属性：`data、computed、methods、props` 中的属性都挂载到 vue 实例的一级属性上。
 - `computed` 可以依赖多个vue 实例属性，并根据依赖进行缓存。
-
 - 指令：指令可以带参数和修饰符，指令绑定的表达式。指令的值是多少？
 
 
-
+- 什么是字符串模板：单文件中的template 和 实例化vue对象时的template 属性。
+- DOM 模板：在 html 文件中编写的html标签(包含自定义标签)，直接在DOM中使用组件。
+- html 属性名和属性值
 - Vue 推荐在绝大多数情况下使用**模板**来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力。这时你可以用**渲染函数**，它比模板更接近编译器。
 - Vue 的模板实际上被编译成了渲染函数
 
-
-
 # 组件
 
-> 组件是可复用的 Vue 实例
->
-> 根实例特有选项: el
+**组件是可复用的 Vue 实例，根实例特有选项: `el`**
 
-创建组件的方式有哪些？
+> 创建组件的方式有哪些？
 
 - 使用 Vue.component 或 Vue.extend 定义组件
 
@@ -35,10 +25,6 @@
   })
   ```
 
-  
-
-
-
 函数式组件和类组件：函数式组件只是函数，所以渲染开销也低很多
 
 vue-class-component 和 vue-property-decorator
@@ -46,8 +32,7 @@ vue-class-component 和 vue-property-decorator
 vm 表示实例，h 表示 createElement
 
 
-
-组件的选项对象
+> 组件的选项对象
 
 ```js
 var app = new Vue({
@@ -58,19 +43,13 @@ var app = new Vue({
 })
 ```
 
-
-
 为了能在模板中使用，这些组件必须先注册以便 Vue 能够识别。这里有两种组件的注册类型：全局注册和局部注册。
 
 // 定义一个名为 button-counter 的新组件
 
 // 全局注册：全局注册的行为必须在根 Vue 实例 (通过 new Vue) 创建之前发生
 
-
-
-html 的属性名不区分大小写，都是小写
-
-html 属性值只能是字符串？
+html 的属性名不区分大小写，都是小写，html 属性值只能是字符串？
 
 ```vue
 Vue.component('button-counter', {
@@ -92,7 +71,6 @@ data(){
 ```
 
 
-
 ## [动态组件](https://cn.vuejs.org/v2/guide/components.html#%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6)  
 
 ```html
@@ -101,16 +79,14 @@ data(){
 
 `tbody` 在渲染时被替换为`my-cmp` 组件
 
-
-
-$emit ==> $event
+`$emit ==> $event`
 
 自定义事件(非click)
 
 - $emit：触发一个事件
 - $event：
 
----
+---------------------------------------------------
 
 # vue组件三大核心概念
 
@@ -118,29 +94,25 @@ $emit ==> $event
 
 - 原生组件(也叫 HTML 元素)的构成：`<div id='app' style='width:70%'>内容</div>`，开始标签、内容、结束标签、属性(特性)、属性值；自定义组件也由这些部分构成。
 
-  ```html
-  <!--使用自定义组件-->
-  <my-component name='czl'>
-      <!-- 此处为组件内容，通过slot插槽传递 -->
-      <p></p>
-      <div></div>
-  </my-component>
-  ```
+```html
+<!--使用自定义组件-->
+<my-component name='czl'>
+    <!-- 此处为组件内容，通过slot插槽传递 -->
+    <p></p>
+    <div></div>
+</my-component>
+```
 
-
-
-> - 一个 Vue 应用由一个通过 new Vue 创建的**根 Vue 实例**，以及可选组件树组成；
-> - 在 Vue 里，一个组件本质上是一个拥有预定义选项的一个 **Vue 实例**，每个组件都会各自独立维护它的 data对象。因为你每用一次组件，就会有一个它的新**实例**被创建，所以data对象是通过函数返回；
-> - 在组件上使用**v-for**时，**key** 是必须提供的；
-> - **组件有自己独立的作用域，**数据不会传递到组件内 ，因此使用**props**向组件内部传递数据； 
-> - 不要在选项属性或回调上使用箭头函数；
-> - Vue 将模板编译成虚拟 DOM 渲染函数；
-
+- 一个 Vue 应用由一个通过 new Vue 创建的**根 Vue 实例**，以及可选组件树组成；
+- 在 Vue 里，一个组件本质上是一个拥有预定义选项的一个 **Vue 实例**，每个组件都会各自独立维护它的 data对象。因为你每用一次组件，就会有一个它的新**实例**被创建，所以data对象是通过函数返回；
+- **组件有自己独立的作用域，**数据不会传递到组件内 ，因此使用**props**向组件内部传递数据； 
+- 不要在选项属性或回调上使用箭头函数，箭头函数的 `this` 不是指向组件实例；
+- Vue 将模板编译成虚拟 DOM 渲染函数；
 
 
 Vue最核心的功能：数据的双向绑定，实时同步数据，数据驱动DOM。
 
-- Q:数据双向绑定是哪两方数据?    
+- Q:数据双向绑定是哪两方数据? 
   - A:HTML元素数据(表单元素)--Vue实例中的data将元素的属性与属性值分离，其值存放在Vue实例中；用v-model、v-bind将元素属性与其属性值相互绑定。
 
 - Vue创建的实例代理了data和method属性，所以可以直接通过实例（this.**）访问；
@@ -340,12 +312,11 @@ diff 算法包括几个步骤：
   })
   ```
 
-- 
-
-[Vue官网API](https://cn.vuejs.org/v2/api/#render)
+- [Vue官网API](https://cn.vuejs.org/v2/api/#render)
 
 - **createElement** 的返回值是什么?
-  createElement的返回的不是一个实际的  DOM 元素。它更准确的名字可能是 `createNodeDescription`，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的节点，包括及其子节点的描述信息。我们把这样的节点描述为“虚拟节点 (virtual node)”，也常简写它为“**VNode**”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。
+
+createElement的返回的不是一个实际的  DOM 元素。它更准确的名字可能是 `createNodeDescription`，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的节点，包括及其子节点的描述信息。我们把这样的节点描述为“虚拟节点 (virtual node)”，也常简写它为“**VNode**”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。
 
 [render 和 template 的关联](#)
 

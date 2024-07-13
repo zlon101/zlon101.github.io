@@ -1,3 +1,11 @@
+# [react 和 vue 的区别](https://febook.hzfe.org/awesome-interview/book4/frame-react-vs-vue) 
+
+1. 模版：template & jsx
+2. 状态管理：响应式数据 & 不可变数据
+
+react 和 vue 最大的区别在状态管理方式上，vue 是通过响应式，react 是通过 setState 的 api
+
+
 # [React哲学](https://zh-hans.reactjs.org/docs/thinking-in-react.html) 
 
 将渲染UI和添加交互分开编写，视图和逻辑功能分开。

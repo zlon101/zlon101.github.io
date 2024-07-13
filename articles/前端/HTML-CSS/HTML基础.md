@@ -65,3 +65,26 @@ li {
 - 相同:  页面渲染结果一致
 - `<b>` 是样式加粗，`<strong>` 是逻辑加粗，带有强调的含义，
 - 使用屏幕阅读器时 `<b>`  不会重读，`<strong>` 会重读，并且 `<strong>` 有利于SEO优化(更容易被搜索到)
+
+# 特殊链接
+
+1. 下载链接
+
+使用带有 `<a>` 元素的 download 属性来指定当用户单击链接时，应下载而不是导航到链接的资源
+
+```html
+<a href="document.pdf" download="document.pdf"> Download PDF </a>
+```
+
+2. 联系链接
+
+```html
+<!-- Email link -->
+<a href="mailto:name@example.com"> Send Email </a>
+
+<!-- Phone call link -->
+<a href="tel:+1234567890"> Call Us </a>
+
+<!-- SMS link -->
+<a href="sms:+1234567890"> Send SMS </a>
+```

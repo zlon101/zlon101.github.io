@@ -8,7 +8,7 @@ React 可以使用 Node 进行服务器渲染，或使用 React Native 开发原
 
 # 索引
 
-[英文官网](https://react.dev/) [中文官网1](https://react.docschina.org/) [中文官网2](https://zh-hans.react.dev/) 
+[英文官网](https://react.dev/)   [中文官网1](https://zh-hans.react.dev/)    [中文官网2](https://react.docschina.org/)
 
 **核心概念**
 
@@ -30,7 +30,7 @@ React 可以使用 Node 进行服务器渲染，或使用 React Native 开发原
 
 > 脚手架
 
-[viet](https://cn.vitejs.dev/guide/#scaffolding-your-first-vite-project)：`npm create vite@latest my-vue-app -- --template react-ts` 
+[vite](https://cn.vitejs.dev/guide/#scaffolding-your-first-vite-project)：`npm create vite@latest my-vue-app -- --template react-ts` 
 
 [create react app](https://create-react-app.dev/docs/getting-started) 
 
@@ -64,7 +64,7 @@ React components are JavaScript functions.
 
 > 响应式值
 
-响应式值包括 props、state，和所有在你组件内部直接声明的变量和函数，React 使用 [`Object.is`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 比较每一个依赖和它的之前的值。
+响应式值包括 props、state，和所有在组件内部直接声明的变量和函数，React 使用 [`Object.is`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 比较每一个依赖和它的之前的值。
 
 # 渲染机制
 
@@ -75,7 +75,7 @@ React makes **UI trees** from your JSX. Then React DOM updates the browser DOM e
 
 > DOM 显示到页面上的过程
 
-组件显示在屏幕上之前，它们必须由 React 进行渲染，分为以下三个步骤
+组件显示在屏幕上之前，它们必须由 React 进行渲染，分为以下三个步骤：
 
 1. **触发渲染**：初始渲染或组件、父组件状态更新时 re-render
 
@@ -105,7 +105,7 @@ React 把更改提交到 DOM 上，在渲染（调用）您的组件之后 React
 
 Commit 阶段需要做哪些？
 
-- Effects run at the end of a [commit](https://react.dev/learn/render-and-commit) after the screen updates.
+- Effects run at the end of a [commit](https://react.dev/learn/render-and-commit) after the screen updates.（页面更新后，commit 结束时运行）
 
 - React sets `ref.current` during the commit. Before updating the DOM, React sets the affected `ref.current` values to `null`. After updating the DOM, React immediately sets them to the corresponding DOM nodes.
 
@@ -127,7 +127,7 @@ React 18 通过默认做更多批量处理来增加开箱即用性能提升。�
 
 - Setting a state variable will queue another render.
 
-- After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](https://react.dev/learn/keeping-components-pure)** and only *return* the result. Don’t try to set state from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
+- After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](https://react.dev/learn/keeping-components-pure)** and only return the result. Don’t try to set state from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
 
 ```tsx
 export default function () {
@@ -238,7 +238,7 @@ const App = () => {
    - 函数名必须大写开头，没有实例
    - 必须有返回值，可以返回 JSX对象或 null，当返回 JSX时，只能有一个根元素
 
-2. class组件(有状态组件)<b style="color:red">废弃</b>，render--> return，返回 React 元素
+2. class 组件(有状态组件)<b style="color:red">废弃</b>，render--> return，返回 React 元素
    组件可以维护其内部的状态数据（通过 `this.state` 访问）。当组件的状态数据改变时，组件会再次调用 `render()` 方法重新渲染对应的标记。`render` 不负责组件的实际渲染工作，实际的渲染由 React 负责。
 
 > 组件定义需要遵守的规则
@@ -246,7 +246,7 @@ const App = () => {
 1. 组件名必须以大写开头，小写字母开头的被视为原生DOM标签
 2. 不能返回多个标签，必须用一个标签（或空标签`<>xxx</>`）包裹
 3. 必须闭合标签（`<img />`  或 `<div></div>`）
-4. 不要在组件内定义其他组件，会导致性能和未知bug
+4. 不要在组件内定义其他组件，会导致性能和未知 bug
 
 > 受控组件和非受控组件
 
@@ -257,6 +257,8 @@ const App = () => {
 > 组件什么时候 re-render？
 
 父组件 re-render、组件本身 state 更新
+
+当一个组件在视觉上包装其他组件时，让它 接受 JSX 作为子元素。随后，如果包装组件更新自己的 state，React 知道它的子组件不需要重新渲染。
 
 ## React 元素
 
@@ -341,7 +343,7 @@ JSX 最终编译为 JS 对象，这也是为什么组件不能返回多个标签
 
 JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. 
 
-JSX 仅仅只是  React.createElement(component, props, ...children) 函数的语法糖，Reacr.createElement函数返回一个对象(这类对象称为**React元素**)
+JSX 仅仅只是  React.createElement(component, props, ...children) 函数的语法糖，Reacr.createElement 函数返回一个对象(这类对象称为**React元素**)
 
 ```xml
 <MyButton color="blue" shadowSize={2}>
@@ -426,11 +428,11 @@ setState((curState, props)=>{});
 setState(updater,  [callback]])
 ```
 
-setState 第一个参数可以是值或"update function"
+setState 第一个参数可以是值或 "update function"
 
 得益于 setState() 的调用，React 能够知道 state 已经改变了，即使渲染的UI与该状态变量无关也会触发 re-render
 
-无论您在 React 事件处理程序中使用多少个setState（）调用了多少个组件，它们在事件结束时只会产生一次重新渲染。
+无论您在 React 事件处理程序中使用多少个 setState() 调用了多少个组件，它们在事件结束时只会产生一次重新渲染。
 
 
 > state 使用规则
@@ -508,11 +510,13 @@ Parent render
 1. 在一个事件循环中执行多次更新
 2. 在 useEffec、useCallbakc 中更新状态时，使用 update-function 可以省略依赖避免无效 re-renders
 
+![image-20200611113304252](/Users/apple/workspace/TyporaNotes/React/assets/React基础/image-20200611113304252.png) 
+
 ### render 期间更新 state
 
 > props & useState
 
-使用 props 作为 useState 的初始值。使用场景：
+使用 props 作为 useState 的初始值，使用场景：
 
 1. 当组件想忽略某个 props 属性的更新时
 2. 保存 previous renders 的数据
@@ -574,11 +578,11 @@ const Child = (props) => {
   `Parent render`
     `Child render`
 
-### 同步更新
+### 同步更新DOM
 
 默认状态 state 是【异步更新】，当需要强制 React 同步刷新DOM时可以使用 `react-dom.flushSync`
 
-This will instruct React to update the DOM synchronously.
+This will instruct React to update the DOM synchronously.【同步更新DOM】
 
 `flushSync` can significantly hurt performance, and may unexpectedly force pending Suspense boundaries to show their fallback state.
 
@@ -588,7 +592,6 @@ import R from 'react';
 
 function App() {
   const [txt, setTxt] = R.useState(0);
-
   const onChange = () => {
     log('flushSync 执行前 txt=', txt);
     flushSync(() => {
@@ -598,7 +601,6 @@ function App() {
   };
 
   log('App render, txt=', txt);
-
   return (
     <div>
       <p>{txt}</p>
@@ -609,7 +611,6 @@ function App() {
 
 const Parent = R.memo(({onChange}) => {
   log('Parent render');
-
   return (
     <div>
       <h2>Paren</h2>
@@ -933,7 +934,10 @@ ReactDOM.render(
 
 在同一组件的每次渲染中，Hooks 都依托于一个稳定的调用顺序。在 React 内部，为每个组件保存了一个数组，其中每一项都是一个 state 对。它维护当前 state 对的索引值，在渲染之前将其设置为 “0”。每次调用 useState 时，React 都会为你提供一个 state 对并增加索引值。
 
+- React 使用一个全局的索引变量来跟踪当前执行到的 Hook。每次调用 `useState` 时，这个索引会递增。
+- 在组件的每次渲染中，React 会重置索引，并按顺序处理每个 `useState` 调用，从而确保每个 Hook 调用总是访问相同的状态存储单元。
 
+> 特点
 
 - Hooks are special functions that are only available while React is [rendering](https://react.dev/learn/render-and-commit#step-1-trigger-a-render) 
 - Hook 就是 JavaScript 函数，Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性，如生命周期函数。
@@ -996,6 +1000,8 @@ useEffect(setup(){
 **描述：**首次渲染时，在组件挂载后执行传入 useEffect 的回调函数，在组件 re-render 并且依赖变化时，先根据旧的状态值执行 cleanup 函数，然后根据新的状态值执行回调函数。
 
 在**渲染后**（包括首次渲染和组件更新后）执行某些操作，React 会等待浏览器完成页面渲染之后（挂载后，可以获取DOM）才延迟调用 useEffect。可以把 `useEffect` Hook 看做 `componentDidMount`，`componentDidUpdate` 和 `componentWillUnmount` 这三个函数的组合。
+
+
 
 浏览器完成布局与绘制之后，传给 `useEffect` 的函数会延迟调用。这使得它适用于许多常见的副作用场景，比如设置订阅和事件处理等情况，因此不应在函数中执行阻塞浏览器更新屏幕的操作。
 
@@ -1145,7 +1151,7 @@ return (
 **结论**
 
 - 当依赖`props.data`不变时，main 的引用不变
-- useMemo类似于计算属性，useMemo返回的是一个记忆后的**值**，这个值由其他数据计算得到并且与页面渲染有关(需要在页面上显示)。
+- useMemo类似于计算属性，useMemo返回的是一个记忆后的值，这个值由其他数据计算得到并且与页面渲染有关(需要在页面上显示)。
 - 上述demo中如果没有使用useMemo，则点击事件导致count更新并触发页面渲染时`main`也要重新计算(每次点击都会输出console.debug中的内容)，虽然main没有改变。
 
 ## useCallback
@@ -1302,6 +1308,13 @@ createPortal api 可以将组件挂载在指定的DOM上，应用于 tooltip、m
 Your event handlers will receive a React event object. It is also sometimes known as a “synthetic event”.【合成事件】
 
 `e.nativeEvent` 可以读取浏览器原生的事件对象，`e.currentTarget` 和 `e.nativeEvent.currentTarget` 可能不一样。
+
+> React为什么要自定义合成事件
+
+1. 跨浏览器的一致性
+2. 性能优化，React 自定义合成事件通过事件委托（event delegation）来提高性能
+3. 统一的事件模型
+4. 批量更新：React 合成事件系统与 React 的更新机制紧密集成。React 可以在合成事件处理过程中进行批量更新，减少不必要的重新渲染，从而提高性能
 
 ## 事件传播
 
@@ -1513,6 +1526,16 @@ React组件的生命周期分为三个阶段：1. 挂载  2. 更新 3. 卸载。
 # 静态类型检查
 
 组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。你可以使用 [Flow](https://flow.org/) 或 [TypeScript](https://www.typescriptlang.org/) 等 JavaScript 扩展来对整个应用程序做类型检查。但即使你不使用这些扩展，React 也内置了一些类型检查的功能。
+
+## TS + React
+
+https://juejin.im/post/6844903612787720206  泛型组件
+
+https://www.zhihu.com/question/279911703  TypeScript 如何完美地书写 React 中的 HOC
+
+[React + TS 规范](https://libin1991.github.io/2019/06/03/React-TypeScript-50-%E6%9D%A1%E8%A7%84%E8%8C%83%E5%92%8C%E7%BB%8F%E9%AA%8C/) 
+
+[React 组件模式 + TS - 蚂蚁金服](https://juejin.cn/post/6844903612787720206) 
 
 ## PropTypes
 

@@ -9,11 +9,11 @@
 
 # 概况
 
-<img src="./assets/TS基础/image-20200820171028681.png" alt="image-20200820171028681" style="zoom: 80%;" />  
+<img src="./assets/TS基础/image-20200820171028681.png" alt="image-20200820171028681" style="zoom: 100%;" />  
 
 <img src="./assets/TS基础/image-20201114122155270.png" alt="image-20201114122155270" style="zoom:80%;" />  
 
-上面的是父级，下面是子级，子级类型可以赋值给父级。
+**上面的是父级（范围大），下面是子级（范围小），子级类型可以赋值给父级。<span style="color:red">类型约束强的可以赋值给约束弱的</span>**
 
 TS简单的说就是为JS中的变量指定了类型，JS中的变量本身是没有类型的。有了TS就可以为变量指定一个类型，这样在【编译阶段】就可以检查变量是否赋予了正确的类型，提前发现错误，配合编辑器的语法提示能有效提高开发效率。
 
@@ -30,6 +30,8 @@ TS简单的说就是为JS中的变量指定了类型，JS中的变量本身是�
 [TS入门教程-阮一峰](https://ts.xcatliu.com/) 
 [深入理解TS](https://jkchao.github.io/typescript-book-chinese/#why) 
 
+[playground](https://www.typescriptlang.org/play/) 
+
 
 # 类型声明
 
@@ -40,13 +42,21 @@ Boolean  有两个元素`false`和`true`的集合
 变量的类型有：基本数据类型、数组、对象、函数、枚举。
 
 基本数据类型除了 number、string 等还包括 TS 中 3 种特殊类型：`never`、`undefined`、`null`、`any`、`void`
-- undefined 、null、any 可以视为不进行类型检查
+
+
+- `any`：表示任意类型，可以赋值给 `never` 之外的其他类型，可以被任意类型赋值（接受任意类型）
+- `unknown`：表示不知道什么类型，只能赋值给 any 和自己，可以被任意类型赋值
 - void 表示函数没有返回值
 
-- `never` 表示永远不存在的值的类型，即这个类型没有对应的值，never 只能被 never 赋值
+- `never` 表示永远不存在的值的类型，即这个类型没有对应的值，never 可以赋值给任意类型，never 只能被 never 赋值。
+
 ```ts
 function fail(message: string): never {
   throw new Error(message);
+}
+
+function log() : void {
+  console.log();
 }
 ```
 
@@ -179,7 +189,7 @@ x = [1]; // error
 
 ## 与运算  交叉类型
 
-合并多个类型
+合并多个类型，合并后的类型将拥有所有成员类型的特性
 
 ```typescript
 type Parent1 = {
@@ -195,6 +205,17 @@ let my: Parent1 = {
   age: 2,
   name: ''
 }
+```
+
+> 合并联合类型
+
+交叉类型另外一个常见的使用场景就是合并联合类型。可以将多个联合类型合并为一个交叉类型，这个交叉类型需要同时满足不同的联合类型限制，也就是提取了所有联合类型的相同类型成员
+```ts
+type A = "blue" | "red" | 999;
+type B = 999 | 666;
+type C = A & B; // type C = 999;
+
+const c: C = 999;
 ```
 
 ## as  类型断言
@@ -232,7 +253,9 @@ type Z = typeof z; // let z: { readonly text: "hello"; }
 
 ## 类型保护
 
-缩小类型范围或更精确的指明变量的类型，具体实现方法有：instance、typeof、in
+类型保护是可执行运行时检查的一种表达式，用于确保该类型在一定的范围内。
+
+缩小类型范围或更精确的指明变量的类型，具体实现方法有：instance、typeof、in、自定义类型保护。使用 `typeof` 只会把 `number`、`string`、`boolean`和`symbol`四种类型比较识别为类型保护。
 
 ```ts
 function doSome(x: number | string) {
@@ -302,21 +325,24 @@ color = 'blue'; // ok
 color = 'anythingElse'; // Error
 ```
 
+
+
 从实现中推断类型
 
-```ts
+```typescript
 const initialState = {
   show: false,
 };
-type State = Readonly<typeof initialState>;
+
+// {
+//    readonly show: boolean;
+// }
+type State = Readonly<typeof initialState>; 
+
 type ToggleableComponentProps = {
   show: State['show'];
 };
-```
 
-xxx
-
-```ts
 type ToggleableComponentProps = {
   toggle: Toggleable['toggle'];
   // Toggleable 本来就是类型，不能是变量
@@ -346,7 +372,7 @@ const COLORS = {
 
 // 首先通过 typeof 操作符获取 Colors 变量的类型，然后通过keyof操作符获取该类型的所有键，
 // 即字符串字面量联合类型 'red' | 'blue'
-type Colors = keyof typeof COLORS
+type Colors = keyof(typeof COLORS)
 let color: Colors;
 color = 'red'// Ok
 color = 'blue'// Ok
@@ -355,7 +381,10 @@ color = 'blue'// Ok
 color = 'yellow'// Error
 ```
 
+
+
 定义一个获取对象属性值的函数
+
 ```ts
 function prop<T extends object, K extends keyof T>(obj: T, key: K) {
   return obj[key];
@@ -391,9 +420,30 @@ T extends U ? X : Y
 
 上述表达式为若 `T` 能够赋值给 `U`，那么类型是 `X`，否则为 `Y`
 
+
+
+剔除某些属性
+
+```ts
+type NonNullable<T> = T extends null | undefined ? never : T;
+```
+
 ## infer
 
-`infer` 声明一个类型变量并且对它进行使用
+`infer`关键字用来推断类型，`infer` 声明一个类型变量并且对它进行使用
+
+如：获取函数参数类型
+
+```ts
+type ParamType<T> = T extends (param: infer P) => any ? P : T;
+
+type FunctionType = (value: number) => boolean
+
+type Param = ParamType<FunctionType>;   // type Param = number
+
+type OtherParam = ParamType<symbol>;   // type Param = symbol
+```
+
 
 ## readonly
 
@@ -537,12 +587,12 @@ interface ApiError extends Error {
 
 https://ts.xcatliu.com/advanced/class-and-interfaces.html 
 
-## interface 和 type 的区别
+## [interface 和 type 的区别](https://mp.weixin.qq.com/s/B0zQwKCu634hTo_wQDcnNw) 
 
-1.  interface 可以用于 extends 和 implements，type 不能；
-2. `type` 可以声明联合、交叉类型，interface 不能； 
-3. `type` 可以与 `typeof ` 联用，从变量值推断类型；
-4. interface 存在声明合并的情况，可以用来重载函数，[详解](https://www.tslang.cn/docs/handbook/declaration-merging.html) 
+1.  `type` 可以声明类型别名、联合类型、交叉类型，interface 不能； 
+2.  `type` 可以与 `typeof ` 联用，从变量值推断类型；
+3.  interface 可以用于 extends 和 implements（被实现和继承），type 不能；
+4.  interface 可以重复声明，interface 存在声明合并的情况，可以用来重载函数，[详解](https://www.tslang.cn/docs/handbook/declaration-merging.html) 
 
 # 函数
 
@@ -555,8 +605,11 @@ type LongHand = {
 
 // 内联注释
 type ShortHand = (a: number) => number;
-const simple: (foo: number) => string = foo => foo.toString();
+const simple: (foo: number) => string
+  = foo => foo.toString();
 ```
+
+
 
 当你想使用【函数重载】时，只能用第一种方式:
 
@@ -566,6 +619,8 @@ type LongHandAllowsOverloadDeclarations = {
   (a: string): string;
 };
 ```
+
+
 
 更复杂的例子
 
@@ -697,6 +752,20 @@ async function test() {
 let fibonacci: Array<number> = [1, 1, 2, 3, 5];
 ```
 
+> 操作对象类型
+
+1. 获取对象 key 的联合类型
+
+```typescript
+keyof typeof obj
+```
+
+2. 获取对象属性值的联合类型
+
+```typescript
+type ValueOf<T> = T[keyof T];
+```
+
 ## 内置高级泛型
 
 内置高级类型泛型有： Partial、Required、Pick、Exclude、Omit
@@ -734,16 +803,6 @@ type Readonly<T> = {
 };
 ```
 
-### Extract
-
-Extract：从类型 T 中提取 U，类似于取交集
-```ts
-type Extract<T, U> = T extends U ? T : never;
-
-// 使用
-type T1 = Extract<string | number | (() => void), Function>; // () =>void
-```
-
 ### Pick
 
 Pick：从类型 T 中选中部分，得到选中的类型
@@ -764,17 +823,6 @@ const todo: TodoPreview = {
 };
 ```
 
-### Exclude
-
-Exclude：从类型 T 中剔除部分类型，得到剩余的类型
-```ts
-type Exclude<T, U> = T extends U ? never : T;
-
-// 使用
-type T2 = Exclude<string | number | (() => void),  Function>; // string | number
-```
-如果 T 能赋值给 U 类型的话，那么就会返回 never 类型，否则返回 T 类型。最终实现的效果就是将 T 中某些属于 U 的类型移除掉
-
 ### Omit
 
 用 T 类型中除了 K 类型的所有属性，来构造一个新的类型。
@@ -794,13 +842,10 @@ const todo: TodoPreview = {
 };
 ```
 
-> Omit 和 Exclude 的区别
-
-xxxxxxxxxxxxxxx
-
 ### Record
 
 `Record` :  `Record<K extends keyof any, T>` 的作用是将 `K` 中所有的属性的值转化为 `T` 类型。
+
 ```ts
 type Record<K extends keyof any, T> = {
     [P in K]: T;
@@ -817,6 +862,28 @@ const x: Record<Page, PageInfo> = {
   home: { title: "home" }
 };
 ```
+
+
+### Extract
+
+Extract：从类型 T 中提取 U，类似于取交集
+```ts
+type Extract<T, U> = T extends U ? T : never;
+
+// 使用
+type T1 = Extract<string | number | (() => void), Function>; // () =>void
+```
+
+### Exclude
+
+Exclude：从类型 T 中剔除部分类型，得到剩余的类型
+```ts
+type Exclude<T, U> = T extends U ? never : T;
+
+// 使用
+type T2 = Exclude<string | number | (() => void),  Function>; // string | number
+```
+如果 T 能赋值给 U 类型的话，那么就会返回 never 类型，否则返回 T 类型。最终实现的效果就是将 T 中某些属于 U 的类型移除掉
 
 ### RetureType
 
@@ -895,7 +962,7 @@ const GenericComponent = <P>(props: P) =>{
 }
 
 // 泛型必须使用extends关键字才能解析
-const GenericComponent = <P extends any>(props: P) =>{
+const GenericComponent = <P extends any>(props: P) => {
   const internalProp = useRef(props);
   return null;
 }
@@ -931,6 +998,7 @@ export declare enum ButtonsPopoverConfigIconType {
     AppStore = "AppStore",
     Setting = "Setting"
 }
+
 export interface ButtonsPopoverConfig {
     positionX: number;
     buttons: Array<{
@@ -972,8 +1040,8 @@ declare namespace jQuery {
 
 ```ts
 type Props = { 
- onClick(e: MouseEvent<HTMLElement>): void
- children?: ReactNode 
+  onClick(e: MouseEvent<HTMLElement>): void
+  children?: ReactNode 
 }
  
 type RenderCallback = (args: ToggleableComponentProps) => JSX.Element;

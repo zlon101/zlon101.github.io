@@ -153,7 +153,7 @@ p {
 # 视觉上清除一个元素
 
 - `opacity:0;`  `visibility: hidden;` `display:none;` `index: 99`
-  - `display` 影响布局，会导致回流，不会占据空间；`visibility` 和 `opacity` 会占据空间，不会导致回流。
+  - `display` 不会占据空间，影响布局，会导致回流；`visibility` 和 `opacity` 会占据空间，不会导致回流。
   - 只有 `opacity` 能触发点击事件。
   - 父元素设置 `display` 和 `opacity` ，子元素一定会隐藏；父元素设置 `visibility` ，子元素 `visibility: visible` 子元素可以显示。
 
@@ -162,7 +162,7 @@ p {
   - 在一般情况下，`opacity` 会触发重绘，即 `Recalculate style` => `Update Layer Tree`。不管你是否开启GPU提升为合成层与否。
     如果利用 `animation` 动画，对 `opacity` 做变化（`animation` 会默认触发GPU加速），则只会触发 GPU 层面的 composite，不会触发重绘。
 
-https://segmentfault.com/a/1190000015116392  
+[opacity、visibility、display 属性对比](https://segmentfault.com/a/1190000015116392) 
 
 # 元素垂直居中 
 
@@ -286,7 +286,7 @@ flex-item {
 - flex 属性简写
 
 1. `flex: auto`：1 1 auto
-2. `flex: 2`：2 1 0%
+2. `flex: 2`：2 1 0
 
 
 # [外边距塌陷（折叠）](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)  
@@ -303,7 +303,7 @@ flex-item {
 
 - [布局和包含块-MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block)  
 
-- 所有毗邻的两个或更多盒元素的margin将会合并为一个margin共享之。毗邻的定义为：同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。
+- 所有毗邻的两个或更多盒元素的 margin 将会合并为一个margin共享之。毗邻的定义为：同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。
 
 ![image-20200802202322310](assets/CSS基础/image-20200802202322310.png) 
 
