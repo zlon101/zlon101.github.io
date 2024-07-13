@@ -218,7 +218,7 @@ Server   <=== ACK号 ===  Client
 Server   <=== FIN:1 ===  Client
 Server   === ACK号 ===>  Client
 
-![tcp握手挥手](/Users/apple/workspace/TyporaNotes/网络/assets/HTTP/tcp握手挥手.png)
+<img src="./assets/HTTP/tcp握手挥手.png" alt="tcp握手挥手" style="zoom: 50%;" /> 
 
 ## 持久化连接
 

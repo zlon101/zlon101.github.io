@@ -510,7 +510,7 @@ Parent render
 1. 在一个事件循环中执行多次更新
 2. 在 useEffec、useCallbakc 中更新状态时，使用 update-function 可以省略依赖避免无效 re-renders
 
-![image-20200611113304252](/Users/apple/workspace/TyporaNotes/React/assets/React基础/image-20200611113304252.png) 
+![image-20200611113304252](./assets/React基础/image-20200611113304252.png) 
 
 ### render 期间更新 state
 
