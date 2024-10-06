@@ -6,9 +6,9 @@ serverless function？
 
 
 
-由Vercel开发的Next.js，长期以来都是**服务器端渲染(SSR)\**的不二之选。凭借强大的社区支持、与\**React**的紧密集成以及灵活的渲染选项，Next.js广受欢迎。
+由Vercel开发的Next.js，长期以来都是**服务器端渲染(SSR)**的不二之选。凭借强大的社区支持、与**React**的紧密集成以及灵活的渲染选项，Next.js广受欢迎。
 
-**Next.js**仍然是**SEO优先**的应用程序和SSR密集型应用程序的绝佳选择
+Next.js 仍然是**SEO优先**的应用程序和SSR密集型应用程序的绝佳选择
 
 **优点：**
 

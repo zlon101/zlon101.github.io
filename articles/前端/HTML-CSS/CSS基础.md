@@ -403,8 +403,6 @@ flex-item {
 
 - [布局和包含块-MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block)  
 
-<img src="assets/CSS基础/image-20200802202322310.png" alt="image-20200802202322310" style="zoom: 150%;" /> 
-
 ```css
 .parent{
   content: "",

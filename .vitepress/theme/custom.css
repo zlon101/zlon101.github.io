@@ -1,0 +1,38 @@
+.vp-doc ol,
+.vp-doc ul {
+  padding-left: 40px;
+}
+
+.vp-doc blockquote {
+  font-weight: bold;
+  font-size: large;
+  background-color: #d2effc;
+  position: relative;
+  margin: 1rem 0rem 1.25rem 0rem;
+  padding-left: 0.75rem;
+  font-family: "PT Serif", 'Times New Roman', Times, serif;
+}
+.vp-doc blockquote > p {
+  color: rgb(60, 112, 198) !important;
+  font-weight: bold;
+}
+.vp-doc blockquote::before {
+  content: "";
+  position: absolute;
+  left: 0rem;
+  height: 100%;
+  width: 0.25rem;
+  background: #b58900;
+}
+
+.vp-doc strong {
+  font-size: large;
+}
+
+.VPDoc {
+  padding-left: 12px !important;
+}
+.container .content {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
