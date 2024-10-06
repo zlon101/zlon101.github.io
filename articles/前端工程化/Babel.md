@@ -12,7 +12,6 @@ Babel的配置文件是`.babelrc`，存放在项目的根目录下。使用Babel
 参考：[ES6](http://caibaojian.com/es6/)
 
 
-
 > Babel 别名配置
 
 `babel-plugin-module-resolver` 包
@@ -33,3 +32,10 @@ module.exports = {
 };
 ```
 
+> babel-plugin-import
+
+如果你使用了 babel，那么可以使用 babel-plugin-import 来进行按需加载
+
+[babel-plugin-component](https://github.com/QingWei-Li/babel-plugin-component) 
+
+按需加载：unplugin-vue-components 和 unplugin-auto-import这两款插件

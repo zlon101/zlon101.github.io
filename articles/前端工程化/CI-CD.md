@@ -1,8 +1,10 @@
 # [Gitlab API](https://docs.gitlab.com/ee/api/rest/) 
 
+api 列表：`https://api.github.com/`
+
 使用 Gitlab api 查询仓库信息
-API 参考: https://docs.gitlab.com/ee/api/repositories.html
-获取参考文件目录: https://gitlab.com/api/v4/projects/{projectId}/repository/tree?recursive=true&ref=分支名
+API 参考: `https://docs.gitlab.com/ee/api/repositories.html`
+获取参考文件目录: `https://gitlab.com/api/v4/projects/{projectId}/repository/tree?recursive=true&ref=分支名`
 
 gitlab api url 中的 query 必须与文档上的一致，不能随意使用 encodeURIComponent
 

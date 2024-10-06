@@ -15,6 +15,8 @@ commitizen，commitlint：提交规范工具。
 husky，lint-staged：git hook相关工具。
 vitepress：文档服务工具。
 
+**Nx**  是一个强大的 Monorepo 管理工具，提供高效的构建系统优化和开发者工具
+
 
 > 资料
 

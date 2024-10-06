@@ -4,19 +4,35 @@
 
 > var 特点
 
-声明函数作用域或全局作用域变量
+- 声明函数作用域或全局作用域变量，没有块级作用域
+- 可以重复声明，如果只是声明没有赋值，相当于这条语句不存在，如果声明并且赋值，相当于给这个变量重新赋值，不会创建新的变量。
+- 存在声明提升，在条件语句或循环语句中声明时，变量会提升到块级语句的外面一层
 
-可以重复声明
+```js
+function setupHelp() {
+  var helpText = [
+    { id: "email", help: "Your e-mail address" },
+    { id: "name", help: "Your full name" },
+    { id: "age", help: "Your age (you must be over 16)" },
+  ];
 
-存在声明提升
+  for (var i = 0; i < helpText.length; i++) {
+    var item = helpText[i];
+    document.getElementById(item.id).onfocus = function () {
+      showHelp(item.help);
+    };
+  }
+}
+```
+
+赋值给 `onfocus` 的是闭包。这些闭包是由他们的函数定义和在 `setupHelp` 作用域中捕获的环境所组成的。这三个闭包在循环中被创建，但他们共享了同一个词法作用域，在这个作用域中存在一个变量 item。这是因为变量 `item` 使用 `var` 进行声明，由于变量提升，所以具有函数作用域。当 `onfocus` 的回调执行时，`item.help` 的值被决定。由于循环在事件触发之前早已执行完毕，变量对象 `item`（被三个闭包所共享）已经指向了 `helpText` 的最后一项。
 
 > [const let 特点](https://github.com/febobo/web-interview/issues/34) 
 
 1. const 和 let 都不存在变量提升，都存在暂时性死区
 
-**暂时性死区**：let 和 const 声明的变量从进入块级作用域就绑定了，不能在 let 或 const 声明语句之前使用 var 或者 没有 var 声明及使用该变量。因此在 let 和 const 声明语句之前(死区)不能以任何形式出现该变量，并且 typeof 也不是一定安全的操作(在没有 let 和 const 之前，typeof 一定不会产生错误)。
-
-总之，暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。
+   - **暂时性死区**：let 和 const 声明的变量从进入块级作用域就绑定了，不能在 let 或 const 声明语句之前使用 var 或者 没有 var 声明及使用该变量。因此在 let 和 const 声明语句之前(死区)不能以任何形式出现该变量，并且 typeof 也不是一定安全的操作(在没有 let 和 const 之前，typeof 一定不会产生错误)。
+   - 暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。
 
 2. 不能重复声明
 
@@ -68,9 +84,9 @@ function f() {
 
 4. const 声明复杂数据类型
 
-const 声明复合类型的变量，变量名指向数据的地址，因此 const 只保证该地址不会改变，但地址中的数据可以被改变；
+   - const 声明复合类型的变量，变量名指向数据的地址，因此 const 只保证该地址不会改变，但地址中的数据可以被改变；
 
-使用 `Object.freeze(obj)` 冻结 obj 对象；
+   - 使用 `Object.freeze(obj)` 冻结 obj 对象；
 
 # 全局对象 & 顶层对象
 
@@ -215,11 +231,14 @@ styled.dic`
 
 - 将类数组对象和可遍历对象转换为数组
 
-1. Array.from：可以转换类数组对象和可遍历对象；
+  1. Array.from：可以转换类数组对象和可遍历对象；
 
-2. **扩展运算符**：将数组转换为逗号分隔的列表，背后调用的是遍历器接口（`Symbol.iterator`），如果一个对象没有部署这个接口，就无法转换；`[...arguments]`，扩展运算符后面跟的一定是数组(或类数组)；
 
-3. 像 `{length: 2}` 这个对象就只能使用 `Array.from` 转换；
+  2. **扩展运算符**：将数组转换为逗号分隔的列表，背后调用的是遍历器接口（`Symbol.iterator`），如果一个对象没有部署这个接口，就无法转换；`[...arguments]`，扩展运算符后面跟的一定是数组(或类数组)；
+
+
+  3. 像 `{length: 2}` 这个对象就只能使用 `Array.from` 转换；
+
 
 - 得到初始化的数组
 
@@ -372,9 +391,15 @@ function Fibonacci2 (n , ac1 = 1 , ac2 = 1) {
 
 [函数扩展](http://caibaojian.com/es6/function.html)
 
-# Class
+# Map | Set
 
-> 例子
+> [区别](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map#objects_vs._maps) 
+
+遍历 Map 时，会按照插入的顺序遍历。
+
+Map 和 Set 实例对象在 JSON.stringfy 时结果为 `{}` 空对象。
+
+# Class
 
 ```js
 class Person{
@@ -397,7 +422,56 @@ class Person{
 */
 ```
 
-> constructor
+类声明（没有定义变量）具有与 let 和 const 相同的暂时性死区限制，并且表现得像是没有被提升一样
+
+可以从以下三个方面表述一个类元素的特征：
+
+<p style="margin-left:2em;">1. 种类：getter、setter、方法、字段</p>
+<p style="margin-left:2em;">2. 位置：静态的或位于实例上</p>
+<p style="margin-left:2em;">3. 可见性：公有或私有</p>
+
+&nbsp;       4. 静态初始化块：[静态初始化块](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks)使[静态属性](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes#静态方法和字段)可以灵活初始化，包括在初始化期间执行语句、授予外部对私有作用域的访问权等。
+<p style="margin-left:4em;">可以声明多个静态块，并且它们可以与静态字段和方法随意穿插（所有的静态项会按照声明顺序被执行或求值）。</p>
+
+&nbsp;       5. 类字段：如果实例属性的值不依赖构造函数的参数，那么你可以把它们定义为[类字段](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes#字段声明)。
+
+
+
+**类字段**
+
+```js
+class Rectangle {
+  // 公有类字段
+  height = 0;
+  width;
+  // 私有类字段
+  #privateAttr;
+  static staticFieldWithInitializer = "静态字段";
+  
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+```
+
+> 静态属性和静态方法
+
+父类中的静态属性和静态方法可以被子类继承
+
+> 私有属性
+
+私有字段只能在字段声明中预先声明，它们不像普通属性那样可以通过赋值创建。
+
+私有属性不能被继承，不能被删除
+
+私有属性名必须在类实例和类本身上是唯一标识
+
+[Private properties - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields) 
+
+[私有的和受保护的属性和方法 - javascript.info](https://zh.javascript.info/private-protected-properties-methods) 
+
+## constructor
 
 类必须有一个 constructor 方法，若没有显示定义，默认的 constructor 为 `constructor(){}`
 
@@ -417,7 +491,7 @@ class B extends A {
  }
 ```
 
-3. 作为对象时，super 指向父类的原型，ES6 规定通过 `super` 调用父类的方法时，`super` 会绑定子类的`this`。
+3. 作为对象时来调用父类的方法时，super 指向父类的原型，ES6 规定通过 `super` 调用父类的方法时，`super` 会绑定子类的`this`。
 ```js
 class A {
   p() {
@@ -437,22 +511,50 @@ class B extends A {
 }
 ```
 
-> 静态属性和静态方法
+## 继承
 
-父类中的静态属性和静态方法可以被子类继承
+基类可以从构造函数中返回任何内容，而派生类必须返回对象或 `undefined` ，否则将抛出 [`TypeError`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError)。
 
-> 私有属性
+`extends` 为 `ChildClass` 和 `ChildClass.prototype` 设置了原型。
 
-私有属性不能被继承
+|                                                              | `ChildClass` 的原型对象 | `ChildClass.prototype` 的原型对象 |
+| :----------------------------------------------------------- | :---------------------- | --------------------------------- |
+| 缺少 `extends`                                               | `Function.prototype`    | `Object.prototype`                |
+| [`extends null`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/extends#拓展_null) | `Function.prototype`    | `null`                            |
+| `extends ParentClass`                                        | `ParentClass`           | `ParentClass.prototype`           |
 
-私有属性名必须在类实例和类本身上是唯一标识
+> [返回重写对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/Private_properties) 
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields
+类的构造函数可以返回一个不同的对象，这个对象将被用作派生类的构造函数的 this。派生类可以在这个返回的对象上定义私有字段——这意味着可以将私有字段“附加”到不相关的对象上。
 
-https://zh.javascript.info/private-protected-properties-methods
+```js
+class Stamper extends class {
+  // 基类，其构造函数返回给定的对象
+  constructor(obj) {
+    return obj;
+  }
+} {
+  // 这个声明会将私有字段“附加”到基类构造函数返回的对象上
+  #stamp = 42;
+  static getStamp(obj) {
+    return obj.#stamp;
+  }
+}
+
+const obj = {};
+new Stamper(obj);
+// `Stamper` 调用返回 `obj` 的 `Base`，所以 `obj` 现在是 `this` 值。然后 `Stamper` 在 `obj` 上定义 `#stamp`
+
+console.log(obj); // 在一些开发工具中会显示：{#stamp: 42}
+console.log(Stamper.getStamp(obj)); // 42
+console.log(obj instanceof Stamper); // false
+
+// 你无法将私有属性附加到同一个对象两次
+new Stamper(obj); // Error: Initializing an object twice is an error with private fields
+```
 
 
-> ES6 中Class 与 ES5 的区别
+## ES6 中Class 与 ES5 的区别
 
 - 函数存在声明提升，Class 不会；
 - 类内部默认开启严格模式；
@@ -568,6 +670,20 @@ let promise = new Promise(function(resolve, reject) {
 
 - `then` 方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的。这两个函数都接受Promise对象传出的值作为参数。
 
+## Promise 并发
+
+Promise.all
+<p style="margin-left:2em;">在所有传入的 Promise 都被兑现时兑现；在任意一个 Promise 被拒绝时拒绝</p>
+
+Promise.any
+<p style="margin-left:2em;">在任意一个 Promise 被兑现时兑现；仅在所有的 Promise 都被拒绝时才会拒绝。</p>
+
+Promise.race
+<p style="margin-left:2em;">在任意一个 Promise 被敲定时敲定。第一个状态是成功那结果也是成功，第一个失败结果也是失败</p>
+
+Promise.allSettled
+<p style="margin-left:2em;">在所有的 Promise 都被敲定时【兑现】。返回一个数组，每个数组项有 status、value、reason 属性</p>
+
 ## Promise 读取文件
 
 ```javascript
@@ -613,44 +729,23 @@ readFile('name2.txt')
 - [Promse A+ 规范](https://malcolmyu.github.io/2015/06/12/Promises-A-Plus/#note-4) 
 - [Promise 实现原理-掘金](https://juejin.im/post/5b83cb5ae51d4538cc3ec354)
 
-
 # Generator
 
-Generator函数是ES6提供的一种**异步**编程解决方案，执行Generator函数会返回一个**遍历器对象**，即 Generator 是迭代器生成函数。
+- Generator 函数是ES6提供的一种**异步**编程解决方案，执行Generator函数会返回一个**遍历器对象**，即 Generator 是迭代器生成函数。
 
-从语法上，首先可以把它理解成，Generator函数是一个状态机，封装了多个内部状态。
+- 执行Generator函数会返回一个遍历器对象，返回的遍历器对象，可以依次遍历Generator函数内部的每一个状态。
 
-执行Generator函数会返回一个遍历器对象，也就是说，Generator函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历Generator函数内部的每一个状态。
+- 调用 `Generator` 函数并不会执行函数内部的代码，而是返回一个迭代器对象，通过调用这个对象的 `next()` 方法来执行函数的代码，并返回一个由 `yield` 表达式返回的值。
 
-Generator函数有多种理解角度：
+- `Generator` 函数在执行过程中，遇到 `yield` 表达式时会暂停函数的执行，并将这个表达式的值返回给调用者。当再次调用 `next()` 方法时，函数会从暂停的地方继续执行；我们可以在函数中 `return` 一个最终的返回值，这个值会被包装在一个包含 `value` 和 `done` 属性的对象中返回
 
-- Generator函数是一个状态机，封装了多个内部状态。
+**嵌套 generator** 
 
-- 形式上，Generator函数是一个普通函数，但是有两个特征。
+- `yield*` 许我们在 `Generator` 函数中调用另一个 `Generator` 函数或可迭代对象。
+- 当 `Generator` 函数执行到一个 `yield*` 表达式时，它会暂停执行，并且将执行权转移到另一个 `Generator` 函数或可迭代对象中。直到这个函数或对象迭代结束后，执行权才会返回到原 `Generator` 函数中。
 
-  1. `function` 关键字与函数名之间有一个星号；
-  2. 函数体内部使用 **yield** 语句，定义不同的内部状态（yield语句在英语里的意思就是“产出”）。
 
-- 例如
 
-```js
-function* foo(x) {
-  log('start');
-  var y = 2 * (yield (x + 1));
-  var z = yield (y);
-  return (x + y + z);
-}
-var hw = foo(1);  // 执行该行不会输出 start
-hw.next();   // { value: 2, done: false }
-hw.next(3);  // { value: 6, done: false }
-```
-
-> yield
-
-- 遇到 `yield` 语句，就暂停执行后面的操作，并将紧跟在 `yield` 后面的那个表达式的值，作为返回的对象的 `value` 属性值。
-- yield 表达式(如：yield(x+1)) 的返回值是 undefined，通过 hw.next(val)可以设置上次 yield 表达式的返回值；
-
-<p style="color:red;font-weight:bold">核心：yield 暂停执行，next 继续执行</p>
 
 > 返回值: iterator 遍历器对象
 
@@ -689,6 +784,16 @@ f.next();  // Object {value: 2, done: false}
 f.next();  // Object {value: 3, done: false}
 f.next();  // Object {value: undefined, done: true}
 ```
+
+> yield
+
+`yield` 运算符
+
+- 遇到 `yield` 关键字，就暂停执行后面的操作（直到调用 next 方法），并将紧跟在 `yield` 后面的那个表达式的值，作为返回的 IteratorResult 对象的 `value` 属性值。
+- yield 表达式(如：`yield(x+1)`) 的返回值是 undefined，通过 `hw.next(val)`可以设置上次 yield 表达式的返回值；
+- 如果将参数传递给生成器的 `next()` 方法，则该值将成为生成器当前 `yield` 操作返回的值。
+
+<p style="color:red;font-weight:bold">核心：yield 暂停执行，next 继续执行</p>
 
 > `yield*`
 

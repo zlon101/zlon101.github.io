@@ -1,15 +1,33 @@
-> [npm文档](https://docs.npmjs.com/) 
->
-> [github package](https://github.com/features/packages) [GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages) 
+# 概述
 
-> npm symbolic link
+![package属性](./assets/npm/package属性.webp) 
 
-> [private package](https://docs.npmjs.com/about-private-packages) 
+[npm文档](https://docs.npmjs.com/) 
 
-> package.json file 字段？
->
-> [package.json中的main | module | browser](https://github.com/SunshowerC/blog/issues/8) 
+[github package](https://github.com/features/packages)
 
+[GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages) 
+
+[private package](https://docs.npmjs.com/about-private-packages) 
+
+[package.json中的main | module | browser](https://github.com/SunshowerC/blog/issues/8) 
+
+package.json files 字段？
+
+- 发布 npm 包时需要对外发布的文件
+
+## 入口文件
+
+[package.json 入口文件等属性说明](https://mp.weixin.qq.com/s/gJjXWVESk9clqapNZk5Gjw) 
+
+main、module、browser 三个的入口入口文件相关的配置是有差别的，特别是在不同的使用场景下。
+
+- 在Web环境中，如果使用loader加载ESM（ES module），那么这三个配置的加载顺序是browser→module→main
+- 如果使用require加载CommonJS模块，则加载的顺序为main→module→browser。
+
+Webpack在进行项目构建时，有一个target选项，默认为Web，即构建Web应用。如果需要编译一些同构项目，如node项目，则只需将webpack.config.js的target选项设置为node进行构建即可。
+
+如果在Node环境中加载CommonJS模块，或者ESM，则只有main字段有效。
 
 # nodejs 配置
 
@@ -130,6 +148,18 @@ npm install -D only-allow
   - package.json 中指定为 >=1.0.0，安装后版本为 latest
   - package.json 中指定为 @2.2.0，安装后版本为 2.2.0
 
+# package-patch
+
+修复 npm 包中的问题：项目中使用了第三方 npm 包并且这个包出现了 bug，如何快速修改 bug？
+
+`patch-package`允许开发人员直接在`node_modules`中进行必要的修改，然后将这些更改保留为补丁，可以在安装期间自动应用。这意味着您可以修复依赖项中的bug，并立即与整个团队共享该修复，而无需分叉或等待上游更改。
+
+```shell
+npm install patch-package -D 
+```
+
+pnpm 自带了 [patching dependencies](https://pnpm.io/cli/patch) 功能，所以只有在使用 npm 或 yarn 时需要安装使用 `patch-package` 包
+
 # 常用命令
 
 - 查看全局包: npm list -g --depth 0sdps
@@ -151,14 +181,17 @@ npx的作用非常多，但是比较常见的是使用它来调用项目中的�
 ![npm-install流程](./assets/npm/npm-install流程.jpeg) 
 
 1. 没有 package-lock.json 文件，从 registry 仓库下载，走顶层逻辑
-  - 分析依赖关系，这是因为我们可能包会依赖其他的包，并且多个包之间会产生相同依赖的情况；
-  - 从registry仓库中下载压缩包（如果我们设置了镜像，那么会从镜像服务器下载压缩包）；
-  - 获取到压缩包后会对压缩包进行缓存（从npm5开始有的）；
-  - 将压缩包解压到项目的node_modules文件夹中（前面我们讲过，require的查找顺序会在该包下面查找）
+
+     - 分析依赖关系，这是因为我们可能包会依赖其他的包，并且多个包之间会产生相同依赖的情况；
+     - 从registry仓库中下载压缩包（如果我们设置了镜像，那么会从镜像服务器下载压缩包）；
+     - 获取到压缩包后会对压缩包进行缓存（从npm5开始有的）；
+     - 将压缩包解压到项目的node_modules文件夹中（前面我们讲过，require的查找顺序会在该包下面查找）
+
 2. 有 lock 文件
-  - 检测lock中包的版本是否和package.json中一致（会按照semver版本规范检测）
-  - 一致的情况下，会去优先查找缓存，若查找到缓存会获取缓存中的压缩文件，并且将压缩文件解压到node_modules文件夹中，若没有查到缓存会从registry仓库下载，直接走顶层流程
-  - 不一致，那么会重新构建依赖关系，直接会走顶层的流程
+
+     - 检测lock中包的版本是否和package.json中一致（会按照semver版本规范检测）
+     - 一致的情况下，会去优先查找缓存，若查找到缓存会获取缓存中的压缩文件，并且将压缩文件解压到node_modules文件夹中，若没有查到缓存会从registry仓库下载，直接走顶层流程
+     - 不一致，那么会重新【构建依赖】关系，直接会走顶层的流程
 
 
 > npm install 失败
@@ -170,8 +203,9 @@ npm i -g nrm open@8.4.2 --save
 
 # 常用包
 
-- npm 源管理: nrm
+- npm 源管理: nrm  `npm install -g nrm open@8.4.2 --save`
 - n nvm nvm-windows: [一台电脑上管理多个node版本](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) 
+- [qnm](https://mp.weixin.qq.com/s?__biz=Mzk0MDMwMzQyOA==&mid=2247494849&idx=1&sn=c76a70a8a99c6b71ee3416a09b7e29a6&chksm=c2e119eaf59690fc20307072e7e144c38270ee5b90843dfee1a3341f4c5a6faed4007e9591e0&cur_album_id=2160461465567166470&scene=189#wechat_redirect)：帮助我们快速梳理前端依赖信息，并且同时支持 npm 和 yarn
 
 # npm script
 
@@ -224,6 +258,7 @@ exec('npm config get registry', function(error, stdout, stderr) {
 - [google/zx](https://github.com/google/zx) : 用 JS 编写 Shell 脚本
 - cross-env: 环境变量
 
-----------------------------------------
 
->  `"src/**/*"`：`**` 表示一层目录或多层目录，`*` 表示任意文件名
+# 脚手架
+
+[构建前端CLI脚手架-交互式命令](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247501024&idx=1&sn=3a098b2838454c7575e17747b9d7430a&chksm=c0654576f712cc60e2c32412757201dba7f39be01057e95b515ec8578144f57d90b42e1d07c9&mpshare=1&scene=24&srcid=0821d8fkl0Ntxc2EvromlgMR&sharer_sharetime=1692585996849&sharer_shareid=e28b67c27c5f7912e475b507d990c42c#rd%E3%80%81) 

@@ -1,7 +1,8 @@
 # 查找文件
 
-- find /xx -iname "brew*"
-  https://www.jianshu.com/p/7a5851e1a900
+- `find /xx -iname "brew*"`
+  [find](https://www.jianshu.com/p/7a5851e1a900) 
+
 - which：查命令位置
 - whereis：查环境变量内文件位置
 - mdfind -name "name"
@@ -37,7 +38,7 @@ lsof -i:8080
 
 ps -ef | grep nginx
 
-ifconfig | grep "inet "
+`ifconfig | grep "inet "`
 
 # 查看进程号
 

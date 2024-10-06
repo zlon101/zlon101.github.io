@@ -18,12 +18,16 @@ Watcher
 
 # `new Vue`
 
-> [Vue 的初始化过程都做了什么？](https://github.com/Holybasil/Blog/issues/13)
+> Vue 的初始化过程都做了什么？
 
 - initMixin、stateMixin、eventsMixin、lifecycleMixin、renderMixin
 - 处理组件配置项，选项合并，初始化 Vue 属性（$parent、$root、$children）
+- 对 data、计算属性进行响应式处理
+- 模版编译生成虚拟 DOM
+- 根据虚拟 DOM 生成渲染函数
+- 挂载DOM
 
-> 实例化（new Vue(options)）
+
 
 # 响应式流程
 

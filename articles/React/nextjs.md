@@ -1,7 +1,26 @@
-> https://nextjs.org/
-
+# 概览
 
 serverless function？
+
+[官网](https://nextjs.org/)
+
+
+
+由Vercel开发的Next.js，长期以来都是**服务器端渲染(SSR)\**的不二之选。凭借强大的社区支持、与\**React**的紧密集成以及灵活的渲染选项，Next.js广受欢迎。
+
+**Next.js**仍然是**SEO优先**的应用程序和SSR密集型应用程序的绝佳选择
+
+**优点：**
+
+- **SSR和静态生成：** 通过直接从服务器提供静态HTML，非常适合**SEO**和快速初始加载。
+- **自动代码拆分：** 只加载当前页面所需的JavaScript代码，从而缩短加载时间。
+- **基于文件的路由：** 简单易用的路由系统，使用文件结构映射路由。
+
+**缺点：**
+
+- **构建时间：** 尤其是对于大型项目，使用Webpack会随着项目规模的增长而减缓开发速度。
+- **数据获取：** Next.js在服务器端数据获取方面表现良好，但在客户端密集型应用程序中可能会变得更加复杂。
+- **SSR开销：** 如果你不需要SSR，Next.js可能显得过于复杂，可能会增加不必要的复杂性。
 
 
 > 目录
@@ -20,21 +39,27 @@ serverless function？
 
 # 渲染方式
 
+水合（Hydration）过程
+
+- Next.js 在服务端渲染时，会先在服务器上生成包含页面内容的 HTML 结构。
+- 当这个 HTML 被发送到客户端浏览器后，React 对 HTML 文件进行解析，识别 HTML 中特点的标记和属性，然后与客户端的 React 组件进行关联激活
+- 然后，React 会将客户端的 JavaScript 逻辑和事件处理程序附加到相应的 HTML 元素上，使得页面具备交互能力，比如可以响应用户的点击、输入等操作
+
 ## Pre-rendering
 
 默认所有的页面都会被 pre-rendering，Next.js 有两种 pre-rendering 形式，他们的区别在于生成 HTML 的时机。
 
 Next.js has two forms of pre-rendering: [**Static Generation**](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended) and [**Server-side Rendering**](https://www.nextjs.cn/docs/basic-features/pages#server-side-rendering). 
 
-1. [**Static Generation**](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended) is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then *reused* on each request.
+一、 [**Static Generation**](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended) is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then *reused* on each request.
 
-在用户请求之前生成页面，不涉及动态数据，无法使用仅在请求期间可用的数据，例如查询参数或HTTP标头。
+- 在用户请求之前生成页面，不涉及动态数据，无法使用仅在请求期间可用的数据，例如查询参数或HTTP标头。
 
-**API**：getStaticProps，只在服务端执行
+- **API**：getStaticProps，只在服务端执行
 
-In development mode (when you run `npm run dev` or `yarn dev`), every page is [pre-rendered](https://www.nextjs.cn/docs/basic-features/pages#pre-rendering) on each request — even for pages that use [Static Generation](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended).
+- In development mode (when you run `npm run dev` or `yarn dev`), every page is [pre-rendered](https://www.nextjs.cn/docs/basic-features/pages#pre-rendering) on each request — even for pages that use [Static Generation](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended).
 
-[`getStaticProps`](https://www.nextjs.cn/docs/basic-features/data-fetching#getstaticprops-static-generation) runs **only on the server-side**. It will never run on the client-side. It won’t even be included in the JS bundle for the browser. 
+- [`getStaticProps`](https://www.nextjs.cn/docs/basic-features/data-fetching#getstaticprops-static-generation) runs **only on the server-side**. It will never run on the client-side. It won’t even be included in the JS bundle for the browser. 
 
 
 
@@ -45,19 +70,18 @@ In development mode (when you run `npm run dev` or `yarn dev`), every page is [p
 - `getInitialProps` **will be called on every client-side navigation**, if you'd like to only fetch data at build-time, switch to `getStaticProps`.
 - `getInitialProps` should fetch from an API and cannot use Node.js-specific libraries or the file system like `getStaticProps` can.
 
-2. [**Server-side Rendering**](https://www.nextjs.cn/docs/basic-features/pages#server-side-rendering) is the pre-rendering method that generates the HTML on **each request**.
-
-每次请求时，获取数据，然后生成 HTML 文件
-
-**API**：getServerSideProps，只在服务端执行
-
-Serve-Side Rendering 的 TTFB 比 Static Generation 慢
 
 
+二、 [**Server-side Rendering**](https://www.nextjs.cn/docs/basic-features/pages#server-side-rendering) is the pre-rendering method that generates the HTML on **each request**.
 
-Q：如何判断一个页面是静态生成的页面？
+- 每次请求时，获取数据，然后生成 HTML 文件
 
-A：如果没有阻塞数据要求，Next.js 就会自动判断页面是静态的。这意味着页面中没有 getServerSideProps 和 getInitialProps。
+- **API**：getServerSideProps，只在服务端执行
+
+- Serve-Side Rendering 的 TTFB 比 Static Generation 慢
+
+- Q：如何判断一个页面是静态生成的页面？
+  - A：如果没有阻塞数据要求，Next.js 就会自动判断页面是静态的。这意味着页面中没有 getServerSideProps 和 getInitialProps。
 
 
 

@@ -18,6 +18,10 @@ React 可以使用 Node 进行服务器渲染，或使用 React Native 开发原
 - 样式
 - 渲染机制、更新机制、**组件什么情况下 re-render**
 
+> 术语
+
+- react element：在`React`中，所有`JSX`在运行时的返回结果（即`React.createElement()`的返回值）都是`React Element`
+
 # 初始化项目
 
 [编辑器配置](https://react.dev/learn/editor-setup) 
@@ -1037,23 +1041,24 @@ export default function () {
 
 - 什么变量可以作为 useEffect 依赖
 
-props、state、context 响应式数据、组件内部定义的变量和函数、由响应式数据计算得到的组件局部变量
+  - props、state、context 响应式数据、组件内部定义的变量和函数、由响应式数据计算得到的组件局部变量
 
-- useEffect 使用 `Object.is ` 判断依赖是否变化
+  - useEffect 使用 `Object.is ` 判断依赖是否变化
+
 
 - 没有声明依赖数组和依赖数组为空数组的区别
 
-useEffect、useCallback 没有声明依赖时每次 re-renders 都会执行 useEffect 回调，依赖数组是空数组时只会在首次 mounted 时执行 useEffect。
+  - useEffect、useCallback 没有声明依赖时每次 re-renders 都会执行 useEffect 回调，依赖数组是空数组时只会在首次 mounted 时执行 useEffect。
 
-依赖数组为空时，useEffect 的回调函数只在在组件首次渲染和组件销毁时执行。并且当依赖数组为空时 effect 内部的 props 和 state 就会一直持有其初始值。
+  - 依赖数组为空时，useEffect 的回调函数只在在组件首次渲染和组件销毁时执行。并且当依赖数组为空时 effect 内部的 props 和 state 就会一直持有其初始值。
 
 - 如何验证依赖的正确性？没有遗漏依赖项
 
-[使用 eslint 插件](https://react.dev/learn/editor-setup#linting)，比如 eslint-plugin-react-hooks 或者 eslint-config-react-app
+  - [使用 eslint 插件](https://react.dev/learn/editor-setup#linting)，比如 eslint-plugin-react-hooks 或者 eslint-config-react-app
 
-eslint 插件只检查直接使用 useEffect，不会检查自定义 hook 中的 useEffect 调用
+  - eslint 插件只检查直接使用 useEffect，不会检查自定义 hook 中的 useEffect 调用
 
-关闭 eslint 检查：eslint-ignore-next-line react-hooks/exhaustive-deps
+  - 关闭 eslint 检查：eslint-ignore-next-line react-hooks/exhaustive-deps
 
 - 每次 re-render 时组件内部定义的对象和函数都会重新创建，局部函数作为 useEffect 的依赖时可能需要使用 useCallback 包裹函数
 

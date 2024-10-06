@@ -281,7 +281,7 @@ function thunkMiddleware(store){
 
 ## 参考
 
-[Redux 入门教程（一）：基本用法 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html) 
+[Redux 入门教程（一）：基本用法 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html) 
 
 # React-Redux
 
@@ -289,7 +289,7 @@ function thunkMiddleware(store){
 
 UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
 
-参考：[React入门教程-阮一峰](<http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html>)
+参考：[React入门教程-阮一峰](https://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html) 
 
 # styled-components
 
@@ -491,3 +491,17 @@ https://transform.tools/html-to-jsx
 # [remix](https://remix.run/)
 
 Remix is a full-stack React framework with nested routing. It lets you break your app into nested parts that can load data in parallel and refresh in response to the user actions. To create a new Remix project, run:
+
+
+
+**优点：**
+
+- **优化的客户端渲染：** 对于**客户端密集型应用程序**（如ChatGPT），大部分渲染发生在初始加载后的客户端，Remix是完美的选择。
+- **使用Loaders获取数据：** 在渲染路由之前提前获取所有数据，无需进行加载后的API调用，从而加速页面转换。
+- **Vite集成：** Remix与**Vite**完美兼容，实现极速构建和流畅的开发体验。
+
+**缺点：**
+
+- **较新的生态系统：** Remix是一个比较新的框架，这意味着与Next.js相比，社区资源和第三方插件较少。
+- **对SSR关注较少：** 虽然Remix可以进行SSR，但它真正的优势在于CSR，因此如果你正在运行一个对SEO要求很高的应用程序，你可能会发现Remix不如Next.js。
+- **学习曲线：** Remix对路由和数据加载的独特方法可能需要一些调整，特别是对于来自Next.js的开发者。

@@ -27,6 +27,7 @@
 - Teleport 内置组件
 - 性能优化：
   - 模板编译新增静态标记、静态提升
+    - 静态提升：对不参与更新的元素，会做静态提升，只会被创建一次，之后会在每次渲染时候被不停的复用
   - diff算法新增【更新类型标记】
   - 响应式原理：给响应式变量增加标记（旧依赖、新依赖）、只删除失效的依赖
 
@@ -34,12 +35,21 @@
 >  Vue3 性能提升体现在哪些方面
 
 - 代码层面性能优化主要体现在全新响应式API，基于Proxy实现，初始化时间和内存占用均大幅改进；
-- 编译层面做了更多编译优化处理，比如静态标记pachFlag（diff算法增加了一个静态标记，只对比有标记的dom元素）、事件增加缓存、静态提升（对不参与更新的元素，会做静态提升，只会被创建一次，之后会在每次渲染时候被不停的复用）等，可以有效跳过大量diff过程；
+- 编译层面做了更多编译优化处理，比如静态标记pachFlag（diff算法增加了一个静态标记，只对比有标记的dom元素）、事件增加缓存、静态提升等，可以有效跳过大量diff过程；
 
 [Vue3 速度快的原因](https://mp.weixin.qq.com/s/WKqVSuCsM5CvO0dAHWUYfA?poc_token=HOXIrGSjvnTk9zHUAGKjB9wdFox3MhJf2NGGBPSw) 
 
 - 打包时更好的支持tree-shaking，因此整体体积更小，加载更快
 - ssr渲染以字符串方式渲染
+
+
+
+vue2 和 vue3 在 diff 算法上有哪些区别？
+
+- 静态标记和静态提升：编译时 Vue 3 会给静态节点添加特定的标记，这样在实际的 diff 过程中可以跳过对这些静态节点的比较和更新。将不会变化的节点和属性提取出来，避免在每次渲染时都重新创建（静态提升）
+- patch flag：编译器在生成 VNode 时，会根据节点的动态性添加不同的 `patchFlag`。这些标志允许 Vue 在 diff 算法中跳过不需要更新的节点，只关注可能发生变化的动态节点，进一步提升了 diff 算法的性能。
+
+
 
 > Vue2 和 Vue3之间的一些区别
 
@@ -82,9 +92,6 @@
 `<script setup>` 形式书写的组件模板被编译为了一个内联函数，和 `<script setup>` 中的代码位于同一作用域。不像选项式 API 需要依赖 this 上下文对象访问属性，被编译的模板可以直接访问 `<script setup>` 中定义的变量，无需一个代码实例从中代理。这对代码压缩更友好，因为本地变量的名字可以被压缩，但对象的属性名则不能。
 
 - 仅调用 `setup()` 或 `<script setup>` 的代码一次。这使得代码更符合日常 JavaScript 的直觉，不需要担心闭包变量的问题。组合式 API 也并不限制调用顺序，还可以有条件地进行调用。
-
-- Vue 的响应性系统运行时会自动收集计算属性和侦听器的依赖，因此无需手动声明依赖。
-
 - 无需手动缓存回调函数来避免不必要的组件更新。Vue 细粒度的响应性系统能够确保在绝大部分情况下组件仅执行必要的更新。对 Vue 开发者来说几乎不怎么需要对子组件更新进行手动优化。
 
 ```js
@@ -312,6 +319,8 @@ Vue 提供了一个 [`ref()`](https://cn.vuejs.org/api/reactivity-core.html#ref)
 4、watch只能监听响应式数据，ref定义的属性和reactive定义的对象，如果直接监听reactive定义对象中的属性是不允许的，除非使用函数转换一下
 5、watchEffect如果监听reactive定义的对象是不起作用的，只能监听对象中的属性。
 
+默认情况下，侦听器将在组件渲染之前执行
+
 ## [响应式系统](https://cn.vuejs.org/guide/extras/reactivity-in-depth.html#how-reactivity-works-in-vue) 
 
 ```js
@@ -398,6 +407,14 @@ export const useUsers = defineStore('users', {
 Which dist file to use
 
 ## [jsx/tsx](https://mp.weixin.qq.com/s/5V7nm9diQHUVor31Jj0xwA) 
+
+插件 `@vitejs/plugin-vue-jsx`
+
+```vue
+<script setup lang="tsx">
+```
+
+
 
 ## 图标
 

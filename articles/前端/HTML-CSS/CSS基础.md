@@ -1,80 +1,45 @@
-# 移动端适配
-
-布局的基础+基本的PC端布局+移动端适配
-
-- [移动端适配-segmentFault](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650216321&idx=2&sn=58a93b8805c4a60379543ea53d21ca1b&chksm=befe17a089899eb6c4983fb990778feea3c3abe61f500481b71358b295c0190d94e72983845a&scene=0&xtrack=1&key=5344cfa6bb5e8fd1fa6ad4542d2e7a57a5b9cf6e3ee918bea6abe13f0d0a9816f13bc6e087cafd792eb37a8fa2e3d5391f7efd085edc27b5886da4aafa3dccab8a580f3ba70ad2fc825bb6854c5808af&ascene=1&uin=Mjc2NDI1NDU2NA%3D%3D&devicetype=Windows+7&version=62060833&lang=zh_CN&pass_ticket=7SxYUoJzta5TNU5RVI%2BjHbbnce3fxtDzNEpJeH1sJL9HgWwKpR7%2BkDY9DiLljFpv) 
-
-- [利用 vw 实现适配布局-凹凸实验室](https://aotu.io/notes/2017/04/28/2017-4-28-CSS-viewport-units/index.html) 
-
-
-> vue 项目使用 vw
-
-postcss-aspect-ratio-mini 
-
-postcss-px-to-viewport
-
-1. 安装插件
-
-```shell
-npm i –save 
-postcss-aspect-ratio-mini 
-postcss-px-to-viewport 
-postcss-write-svg 
-postcss-cssnext 
-postcss-viewport-units 
-cssnano 
-cssnano-preset-advanced 
-postcss-import 
-postcss-url
-```
-
-2. 配置 .postcssrc.js
-
-```javascript
-module.exports = {
-  "plugins": {
-    // to edit target browsers: use "browserlist" field in package.json
-    "autoprefixer": {},
-    "postcss-import": {}, 
-    "postcss-url": {}, 
-    "postcss-aspect-ratio-mini": {}, 
-    "postcss-write-svg": { 
-      utf8: false 
-    },
-    "postcss-cssnext": {}, 
-
-    "postcss-px-to-viewport": {
-      viewportWidth: 750,      // 视窗的宽度，对应的是我们设计稿的宽度，一般是750
-      viewportHeight: 1334,    // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
-      unitPrecision: 3,        // 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
-      viewportUnit: 'vw',      // 指定需要转换成的视窗单位，建议使用vw
-      selectorBlackList: ['.ignore', '.hairlines'],  // 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
-      minPixelValue: 1,       // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
-      mediaQuery: false       // 允许在媒体查询中转换`px`
-    }
-    
-    "postcss-viewport-units":{}, 
-    "cssnano": { 
-      preset: "advanced", 
-      autoprefixer: false, 
-      "postcss-zindex": false 
-    }
-  }
-}
-```
-
-如果需要某些元素不使用vw单位，可以设置配置文件中的selectorBlackList里面的类名，该属性可无限添加，随便自定义，不需要转换的单位需要写在该类名上才可生效；
-
 # 媒体查询
 
 - 媒体类型
 
-1. screen：彩色计算机
-2. print
-3. projection
-4. all：所有媒体(默认)
+  1. screen：彩色计算机
+  2. print
+  3. projection
+  4. all：所有媒体(默认)
 
 - 在`<link>`链接外部样式表时可以指定媒体类型，`<link media>`
+
+# css选择器
+
+> 属性选择器的中使用模式匹配
+
+```html
+<div>
+  <button class="ok-btn">确定</button>
+  <button class="re-try-btn">重试</button>
+  <button class="cancel-btn">取消</button>
+</div>
+
+<style>
+  button[class$="-btn"] {
+    min-width: 6em;
+  }
+</style>
+```
+
+上面的选择器为所有类名以 `-btn` 结尾的按钮元素添加样式。
+
+```css
+a[href*=".wikipedia.org"] {
+  color: darkcyan;
+}
+```
+
+它使用属性模式匹配为维基百科超链接添加不同的样式
+
+> 功能选择器
+
+`:has`、`:is、`、`:not`
 
 # `<a>` 伪类顺序
 
@@ -92,27 +57,30 @@ module.exports = {
 
 - CSS modules？
 
-**`<style module>`**
+  - `<style module>`
+
 
 - BEM策略：Block-Element-Modifier
 
-类命名策略：类名按  块-元素-修饰符 命名
+  类命名策略：类名按  块-元素-修饰符 命名
 
-```html
-<style>
-  .c-Button {
-    ...
-  }
-  .c-Button--close {
-    // ...
-  }
-</style>
-```
+  ```html
+  <style>
+    .c-Button {
+      ...
+    }
+    .c-Button--close {
+      // ...
+    }
+  </style>
+  ```
+
+  
 
 # em, rem
 
 - 2em：相对于当前元素的字体 大小，当前元素中小写字母M的宽度的2倍
-- rem：相对于根元素(html中的`<html>`，也可以用伪元素::root表示根元素 )
+- rem：相对于根元素(html中的`<html>`，也可以用伪元素 `::root` 表示根元素 )
 
 # 变量
 
@@ -131,7 +99,11 @@ p {
 }
 ```
 
-# @import
+# [At-rules](https://developer.mozilla.org/zh-CN/docs/Web/CSS/At-rule)
+
+
+
+## @import
 
 - @import导入的样式表A相当于被导入的样式表中的额样式规则出现在@import的位置
 
@@ -143,24 +115,47 @@ p {
 - 页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载；
 - 如果你想样式表并行载入，以使页面更快，请使用LINK 替代`@import`。
 
+## [@property](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@property) 
+
+自定义css属性
+
+## 自定义列表样式
+
+```css
+@counter-style custom-roman {
+  system: numeric;
+  symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+  prefix: "(";
+  suffix: "). ";
+}
+ul {
+  list-style-type: custom-roman
+}
+```
+
+
 
 # 清除浮动
 
 1. 浮动元素的后面一个元素设置 clear: both (也可以添加一个空元素用来添加该属性)；
 2. 给浮动元素的容器元素设置 overflow:hidden 或 auto；
-3. ::after 伪元素；
+3. `::after` 伪元素；
 
-# 视觉上清除一个元素
+# 视觉上隐藏一个元素
 
-- `opacity:0;`  `visibility: hidden;` `display:none;` `index: 99`
-  - `display` 不会占据空间，影响布局，会导致回流；`visibility` 和 `opacity` 会占据空间，不会导致回流。
-  - 只有 `opacity` 能触发点击事件。
-  - 父元素设置 `display` 和 `opacity` ，子元素一定会隐藏；父元素设置 `visibility` ，子元素 `visibility: visible` 子元素可以显示。
+`opacity:0;`  `visibility: hidden;` `display:none;` `index: 99`
 
-- 回流 & 重绘
-  - `display` 导致回流， `visibility` 导致重绘
-  - 在一般情况下，`opacity` 会触发重绘，即 `Recalculate style` => `Update Layer Tree`。不管你是否开启GPU提升为合成层与否。
-    如果利用 `animation` 动画，对 `opacity` 做变化（`animation` 会默认触发GPU加速），则只会触发 GPU 层面的 composite，不会触发重绘。
+- `display` 不会占据空间，影响布局，会导致回流；`visibility` 和 `opacity` 会占据空间，不会导致回流。
+- 只有 `opacity` 能触发点击事件。
+- 父元素设置 `display` 和 `opacity` ，子元素一定会隐藏；父元素设置 `visibility` ，子元素 `visibility: visible` 子元素可以显示。
+
+
+
+回流 & 重绘
+
+- `display` 导致回流， `visibility` 导致重绘
+- 在一般情况下，`opacity` 会触发重绘，即 `Recalculate style` => `Update Layer Tree`。不管你是否开启GPU提升为合成层与否。
+  - 如果利用 `animation` 动画，对 `opacity` 做变化（`animation` 会默认触发GPU加速），则只会触发 GPU 层面的 composite，不会触发重绘。
 
 [opacity、visibility、display 属性对比](https://segmentfault.com/a/1190000015116392) 
 
@@ -208,8 +203,6 @@ p {
 
 
 ## 未知宽高的水平垂直居中
-
-- demo
 
 ```css
 /* 1. 绝对定位 + translate */
@@ -285,13 +278,120 @@ flex-item {
 
 - flex 属性简写
 
-1. `flex: auto`：1 1 auto
-2. `flex: 2`：2 1 0
+  1. `flex: auto`：1 1 auto
+
+  2. `flex: 2`：2 1 0
 
 
-# [外边距塌陷（折叠）](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)  
+# [网格布局](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Grids#flexible_grids_with_the_fr_unit) 
 
-**上下相邻的两个块元素A,B，会合并共同的外边距**。A的**margin-botton**: 20px; B的**margin-top**: 10px; B的margin-top属性无效，较大的margin-botton才有效。两个垂直外边距接触到一起(没有边框的隔离)时会发生外边距折叠，即使一个元素嵌套另一个元素也不例外。
+[网格布局-阮一峰](https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html) 
+
+**网格：**显式网格是我们用 `grid-template-columns` 或 `grid-template-rows` 属性创建的。而隐式网格则是当有内容被放到网格外时才会生成的。
+
+
+
+**CSS 属性：**
+
+- grid-template-columns
+- grid-template-rows
+- grid-template-areas
+- grid-template
+
+
+
+- grid-auto-columns
+- grid-auto-rows
+- grid-auto-flow
+- grid
+- grid-row-start
+- grid-column-start
+- grid-row-end
+- grid-column-end
+- grid-row
+- grid-column
+- grid-area
+
+
+
+- grid-row-gap
+- grid-column-gap
+- grid-gap
+
+**容器属性：**多少行、多少列、每行的高度、每列的宽度、（行|列）之间的间隔
+
+`display: grid` 的声明只创建了一个只有一列的网格
+
+- 尺寸：grid-template-columns、grid-template-rows
+  - grid-template-columns 定义行高
+  
+  - 关键词
+  
+    ```css
+    .container {
+      display: grid;
+      grid-template-columns: 100px auto 100px;
+      grid-template-columns: repeat(auto-fill, 100px);
+      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr minmax(100px, 1fr);
+    }
+    ```
+  
+  - grid-auto-columns、grid-auto-rows
+  
+    - 一些项目的指定位置，在现有网格的外部。比如网格只有3列，但是某一个项目指定在第5行。这时，浏览器会自动生成多余的网格，以便放置项目
+    - 设置浏览器自动创建的多余网格（隐式网格）的列宽和行高
+  
+  - 简写：grid-template
+
+
+- 区域|位置：grid-template-areas
+
+
+  - ```css
+    .container {
+      display: grid;
+      grid-template-columns: 100px 100px 100px;
+      grid-template-rows: 100px 100px 100px;
+      grid-template-areas: 'a b c'
+                           'd e f'
+                           'g h i';
+    }
+    ```
+
+  - 放置顺序：grid-auto-flow，先行后列
+
+- 间隔：grid-row-gap、row-gap（新标准）、gap（简写）
+
+- 对齐属性：
+
+
+    - 设置单元格内容的位置：justify-items、align-items、place-items（简写）
+
+
+    - 整个内容区域在容器里面的位置：justify-content、align-content、place-content（简写）
+
+
+
+
+
+**子项目属性：**占用哪几行哪几列
+
+- 位置：grid-column-start、grid-column-end、grid-row-start、grid-row-end，简写为 grid-column、grid-row，指定项目的四个边框，分别定位在哪根网格线
+  - grid-area：配合 grid-template-areas 使用，指定子项目放置在哪个区域
+
+- 子项目对齐：justify-items、align-items、place-items（简写）
+  - 单元格内容对齐：justify-self、align-self、place-self（简写）
+
+
+
+# [外边距塌陷（折叠）](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing) 
+
+所有毗邻的两个或更多盒元素的 margin 将会合并为一个margin共享之。
+
+- 毗邻的定义为：同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。
+- 上下相邻的两个块元素A,B，会合并共同的外边距。A的**margin-botton**: 20px; B的**margin-top**: 10px; B的margin-top属性无效，较大的margin-botton才有效。
+- 两个垂直外边距接触到一起（没有边框的隔离）时会发生外边距折叠，即使一个元素嵌套另一个元素也不例外。
 
 浮动元素和绝对定位的元素不会发生边距折叠。
 
@@ -303,9 +403,7 @@ flex-item {
 
 - [布局和包含块-MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block)  
 
-- 所有毗邻的两个或更多盒元素的 margin 将会合并为一个margin共享之。毗邻的定义为：同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。
-
-![image-20200802202322310](assets/CSS基础/image-20200802202322310.png) 
+<img src="assets/CSS基础/image-20200802202322310.png" alt="image-20200802202322310" style="zoom: 150%;" /> 
 
 ```css
 .parent{
@@ -316,7 +414,7 @@ flex-item {
 
 # 视觉格式化模型
 
-- [视觉格式化模型](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Visual_formatting_model)  
+[视觉格式化模型-MDN](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Visual_formatting_model) 
 
 # HTML5新特性
 

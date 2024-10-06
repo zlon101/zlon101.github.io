@@ -42,43 +42,61 @@
 
 # 概念
 
-![image-20230322182600790](./assets/Webpack/image-20230322182600790.png) 
+<img src="./assets/Webpack/image-20230322182600790.png" alt="image-20230322182600790" style="zoom:50%;" /> 
+
 - module：源码、静态资源、less、ts、js 等
 - [chunk](https://webpack.js.org/concepts/under-the-hood/#chunks)：多模块合成，如 entry import() splitChunk
-modules are combined into chunks. Chunks combine into chunk groups and form a graph (ChunkGraph) interconnected through modules. When you describe an entry point - under the hood, you create a chunk group with one chunk.
-modules 组合成 chunks，chunks 组合成 chunks group 并且形成由 module 连接成的 ChunkGraph
+  - Module 被组合成 chunks，chunks 组合成 chunk groups，并通过 modules 相互连接形成一个图（块组图）。当你描述一个入口点时——在幕后，你通过一个 chunk 创建一个 chunk group。
 - bundle：最终输出的文件
 
-webpack 的应用场景主要是 SPA (单页面富应用)，而 SPA 的核心是前端路由，那怎么算是SPA？在前后端分离的基础上加一层前端路由。通俗的讲，路由就是网址。专业的讲就是：每次GET、POST在服务器端有一个专门的正则配置列表，然后匹配到具体的路径后，分发到不同的Controller，进行各种操作，最后将HTML或数据返回给前端，这就完成了一次IO。
+webpack 的应用场景主要是 SPA (单页面富应用)，而 SPA 的核心是前端路由，那怎么算是SPA？
 
-- 目前多数网站都是后端路由，也就是多页面，页面可以在服务端渲染好直接返回给浏览器，不用等待加载JS和CSS文件就能显示网页。缺点在于模本由后端维护或改写，前端开发需要安装整套的后端服务，必要时还需运用PHP、JAVA这类的非前端语言来改写HTML结构，所以HTML和数据、逻辑混为一谈。
+- 在前后端分离的基础上加一层前端路由。（路由就是网址）
+- 专业的讲就是：每次GET、POST在服务器端有一个专门的正则配置列表，然后匹配到具体的路径后，分发到不同的Controller，进行各种操作，最后将HTML或数据返回给前端，这就完成了一次IO。
 
-- 然后就有了前后端分离的开发模式，后端只提供API返回数据，前端通过Ajax获取数据后，再用一定的方式渲染页面，这样后端专注于数据，前端专注于交互和可视化。缺点在于首屏渲染需要时间加载JS和CSS文件，这种开发模式被多数公司认同，也出现了很多前端技术栈，比如JQuary+artTemplate+Seajs(requirejs)+gulp 为主的开发模式可谓是万金油。
+**web 开发模式**
 
-- 在Node出现后，这种现象得到了改善，即所谓的大前端，得益于Node和JavaScript的语言特性，HTML模本可以完全由前端控制，同步或异步渲染完全由前端自由决定，并由前端维护模板。
+- 后端路由（多页面）：页面可以在服务端渲染好直接返回给浏览器，不用等待加载JS和CSS文件就能显示网页。缺点在于模本由后端维护或改写，前端开发需要安装整套的后端服务，必要时还需运用PHP、JAVA这类的非前端语言来改写HTML结构，所以HTML和数据、逻辑混为一谈。
 
+- 前后端分离：后端只提供API返回数据，前端通过Ajax获取数据后，再用一定的方式渲染页面，这样后端专注于数据，前端专注于交互和可视化。缺点在于首屏渲染需要时间加载JS和CSS文件，这种开发模式被多数公司认同，也出现了很多前端技术栈，比如JQuary+artTemplate+Seajs(requirejs)+gulp 为主的开发模式可谓是万金油。
+
+- 大前端：得益于Node和JavaScript的语言特性，HTML模本可以完全由前端控制，同步或异步渲染完全由前端自由决定，并由前端维护模板。
+
+
+## webpack结构
+
+<img src="./assets/Webpack/webpack结构.jpeg" alt="webpack结构" style="zoom:55%;" />  
 
 - webpack 是用来处理模块间的依赖关系，并对他们进行打包。
 - webpack 基于node，在node环境下运行，可以使用ES6的模块加载方法;
 - npm 命令根据 package.json 配置文件执行，在该文件中设置webpack使用的命令及哪个配置文件；
 - `entry` 可以有多个，但`output` 只能有一个
 
-## webpack结构
-
-<img src="./assets/Webpack/webpack结构.jpeg" alt="webpack结构" style="zoom:55%;" />  
-
 
 ## 构建流程
 
 从启动webpack构建到输出结果经历了一系列过程，它们是：
 
-1. 解析webpack配置参数，合并从shell传入和`webpack.config.js`文件里配置的参数，生产最后的配置结果。
-2. 注册所有配置的插件，好让插件监听 webpack 构建生命周期的事件节点，以做出对应的反应。
-3. 从配置的 `entry` 入口文件开始解析文件构建 AST 语法树，找出每个文件所依赖的文件，递归下去。
-4. 在解析文件递归的过程中根据文件类型和 loader 配置找出合适的 loader 用来对文件进行转换。
-5. 递归完后得到每个文件的最终结果，根据 `entry` 配置生成代码块 `chunk`。
-6. 输出所有 `chunk` 到文件系统。
-7. 需要注意的是，在构建生命周期中有一系列插件在合适的时机做了合适的事情，比如 `UglifyJsPlugin` 会在 loader 转换递归完后对结果再使用 `UglifyJs` 压缩覆盖之前的结果。
+1. 合并配置：读取配置文件，合并从 shell 传入的参数，生成最后的配置结果。
+2. 注册插件：注册所有配置的插件，好让插件监听 webpack 构建生命周期的事件节点，以做出对应的反应。
+3. 模块解析：从 `entry` 入口文件开始解析文件，找出每个文件所依赖的文件，递归下去构建完整的【依赖图】。
+4. 模块编译：根据 loader 配置对不同类型的模块进行编译转换（ts转换为js，less转换为css等）。
+5. 模块打包：将编译后的模块组合成多个包含多个模块的 Chunk，再将 chunk 打包为一个或多个 bundle ，最后输出所有 bundle 到文件系统。
+   - 入口文件：每个入口文件会创建一个新的 chunk，多个入口文件，可能会产出多条打包路径，一条路径就会形成一个 chunk
+   - 异步模块：动态导入的模块会创建新的 chunk
+   - 代码拆分：代码分割也会产生 chunk，通过配置 optimization.splitChunks，可以将代码进行分割，把一些公共的模块或者符合特定条件的模块单独打包成一个 chunk
+   - 通常情况下一个 chunk 会生成一个 bundle，但是会根据【代码拆分】和【optimization】配置进行处理
+6. 需要注意的是，在构建生命周期中有一系列插件在合适的时机做了合适的事情，比如 `UglifyJsPlugin` 会在 loader 转换递归完后对结果再使用 `UglifyJs` 压缩覆盖之前的结果。
+
+在 Webpack 中，`chunk`（代码块）和`bundle`（打包后的文件）有以下区别：
+- **chunk**：
+  1. 是模块的集合，可以包含一个或多个模块。
+  2. 可以由多个源文件生成。
+  3. 可以是动态加载的模块。
+  
+- **bundle**：
+  1. 是最终输出的打包结果，通常是一个或多个文件。
+  2. 是由多个`chunk`组合而成的。
 
 
 # loader
@@ -108,6 +126,22 @@ loader 处理项目中各种类型的依赖文件，webpack 默认可以处理 J
 
 ## 自定义loader
 
+Loader 本质上是一个函数，它接受源文件作为参数，并返回转换后的结果
+
+```js
+/**
+ *
+ * @param {string|Buffer} content 源文件的内容
+ * @param {object} [map] 可以被 https://github.com/mozilla/source-map 使用的 SourceMap 数据
+ * @param {any} [meta] meta 数据，可以是任何内容
+ */
+function webpackLoader(content, map, meta) {
+  // 你的 webpack loader 代码
+}
+```
+
+
+
 [编写loader](https://webpack.js.org/contribute/writing-a-loader/)  
 
 
@@ -115,7 +149,9 @@ loader 处理项目中各种类型的依赖文件，webpack 默认可以处理 J
 
 - webpakc中每个文件都视为一个模块，webpack 核心只能处理JS文件(模块)，所以需要loader对非JS文件进行转换，loader不影响构建流程；
 - 对于loader，它是一个**转换器**，将A文件进行编译形成B文件，这里操作的是文件，比如将A.scss转换为A.css，单纯的文件转换过程。【导出为函数的模块，对匹配的文件进行转换；】
-- plugin是一个**扩展器**，它丰富了webpack本身，针对是loader结束后。webpack打包的整个过程，它并不直接操作文件，而是基于事件机制工作，会监听webpack打包过程中的某些节点，执行广泛的任务，包括：打包优化，资源管理，注入环境变量。【带有apply方法的对象，apply方法被webpack的编译器调用；扩展webpack的功能，在构建过程中注入钩子函数实现；】
+- plugin是一个**扩展器**，它丰富了webpack本身，针对是loader结束后。webpack打包的整个过程，它并不直接操作文件，而是基于事件机制工作，会监听webpack打包过程中的某些节点，执行广泛的任务，包括：打包优化，资源管理，注入环境变量。
+  - 带有apply方法的对象，apply方法被webpack的编译器调用；在构建过程中注入钩子函数来扩展 webpack 的功能；
+
 - [webpack 中 loader 和 plugin 的区别是什么](https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/308)
 
 
@@ -131,7 +167,7 @@ loader 处理项目中各种类型的依赖文件，webpack 默认可以处理 J
 
 ## 自定义插件
 
-webpack 插件是一个具有 apply 方法的 JavaScript 对象。apply 方法会被 webpack compiler 调用，并且在整个编译生命周期都可以访问 compiler 对象。
+webpack 插件是一个具有 apply 方法的【对象】。apply 方法会被 webpack compiler 调用，并且在整个编译生命周期都可以访问 compiler 对象。
 
 > 如何自定义webpack插件
 
@@ -147,6 +183,7 @@ const pluginName = 'ConsoleLogOnBuildWebpackPlugin';
 
 class ConsoleLogOnBuildWebpackPlugin {
   apply(compiler) {
+    // compiler.hooks.someHook.tap
     compiler.hooks.run.tap(pluginName, (compilation) => {
       console.log('webpack 构建正在启动！');
     });
@@ -155,7 +192,7 @@ class ConsoleLogOnBuildWebpackPlugin {
 module.exports = ConsoleLogOnBuildWebpackPlugin;
 ```
 
-https://www.webpackjs.com/contribute/writing-a-plugin/ 
+[writing-a-plugin](https://www.webpackjs.com/contribute/writing-a-plugin/ ) 
 
 # [code splitting](https://webpack.js.org/guides/code-splitting/)
 
@@ -202,9 +239,9 @@ requireComponent.keys().forEach(function (fileName) {
 
 # 热更新
 
-Webpack的热更新（Hot Module Replacement，简称HMR）是一种在不完全刷新页面的情况下，更新运行时应用程序模块的技术。这在开发过程中非常有用，因为它可以保持应用程序的状态，减少开发时间，并提供更好的开发体验。
+Webpack的热更新（Hot Module Replacement，简称HMR）是一种在不完全刷新页面的情况下，更新运行时应用程序模块的技术。这在开发过程中非常有用，因为它可以**保持应用程序的状态**，减少开发时间，并提供更好的开发体验。
 
-Webpack 热更新通过监视文件变化、生成补丁、通知客户端并应用更新来实现模块的热替换，从而提升开发体验和效率。通过Webpack的配置和简单的代码修改，可以轻松实现HMR，减少开发过程中页面全刷新带来的不便。
+Webpack 热更新通过监视文件变化、生成补丁、通知客户端并应用更新来实现模块的热替换。
 
 ## Webpack 热更新的原理
 
@@ -236,7 +273,7 @@ Webpack热更新的原理可以概括为以下几个步骤：
    - Webpack 使用 `watch` 模式监视文件系统中的文件变化。当文件发生变化时，Webpack重新编译受影响的模块。
 
 3. **生成更新补丁**：
-   - Webpack 只编译变化的部分，并生成一个更新补丁（patch），包含变更模块的hash、名称等信息。
+   - Webpack 只编译变化的部分，并生成一个【更新补丁（patch）】，包含变更模块的hash、名称等信息。
 
 4. **通过 WebSocket 通知客户端**：
    - 开发服务器通过 WebSocket 向客户端发送消息，通知有新的模块可用。

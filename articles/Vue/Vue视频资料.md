@@ -497,27 +497,4 @@ module.exports = {
 
 ```
 
-# RESTful
 
-
-## RESTful 规范
-
-一种软件的架构风格，设计风格，而不是标准，为客户端和服务端的交互提供一组设计原则和约束条件。
-
-## 一  面向资源编程
-
-每个URL代表一种资源，URL中尽量不要用动词，要用名词，往往名词跟数据库表格相对应。
-
-- 一般来说，数据库中的表都是同种记录的集合，所有API中的名词也应该使用复数。
-- 举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。
-
-```javascript
-https://api.example.com/v1/zoos
-https://api.example.com/v1/animals
-https://api.example.com/v1/employees
-```
-
-
-# HTTPS
-
-https://www.bootcss.com/v1/mycss

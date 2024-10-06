@@ -88,3 +88,26 @@ li {
 <!-- SMS link -->
 <a href="sms:+1234567890"> Send SMS </a>
 ```
+
+# 分组表单元素
+
+使用 `<fieldset>` 标签将表单中的相关元素分组，并使用 `<legend>` 标签与 `<fieldset>` 一起为 `<fieldset>` 标签定义标题。
+
+这对于创建更高效和更易访问的表单非常有用。
+
+```
+<form>
+   <fieldset>
+      <legend>个人信息</legend>
+      <label for="firstname">名字:</label>
+      <input type="text" id="firstname" name="firstname" />
+      <label for="email">电子邮件:</label>
+      <input type="email" id="email" name="email" />
+      <label for="contact">联系方式:</label>
+      <input type="text" id="contact" name="contact" />
+      <input type="button" value="提交" />
+   </fieldset>
+</form> 
+```
+
+![image-20240920114934215](./assets/HTML基础/image-20240920114934215.png) 
