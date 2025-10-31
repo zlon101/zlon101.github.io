@@ -1,14 +1,11 @@
 # 概览
 
-serverless function？
-
 [官网](https://nextjs.org/)
-
-
 
 由Vercel开发的Next.js，长期以来都是**服务器端渲染(SSR)**的不二之选。凭借强大的社区支持、与**React**的紧密集成以及灵活的渲染选项，Next.js广受欢迎。
 
 Next.js 仍然是**SEO优先**的应用程序和SSR密集型应用程序的绝佳选择
+
 
 **优点：**
 
@@ -22,6 +19,7 @@ Next.js 仍然是**SEO优先**的应用程序和SSR密集型应用程序的绝�
 - **数据获取：** Next.js在服务器端数据获取方面表现良好，但在客户端密集型应用程序中可能会变得更加复杂。
 - **SSR开销：** 如果你不需要SSR，Next.js可能显得过于复杂，可能会增加不必要的复杂性。
 
+serverless function？
 
 > 目录
 
@@ -51,13 +49,13 @@ Next.js 仍然是**SEO优先**的应用程序和SSR密集型应用程序的绝�
 
 Next.js has two forms of pre-rendering: [**Static Generation**](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended) and [**Server-side Rendering**](https://www.nextjs.cn/docs/basic-features/pages#server-side-rendering). 
 
-一、 [**Static Generation**](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended) is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then *reused* on each request.
+一、 [**Static Generation**](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended) is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then reused on each request.
 
 - 在用户请求之前生成页面，不涉及动态数据，无法使用仅在请求期间可用的数据，例如查询参数或HTTP标头。
 
 - **API**：getStaticProps，只在服务端执行
 
-- In development mode (when you run `npm run dev` or `yarn dev`), every page is [pre-rendered](https://www.nextjs.cn/docs/basic-features/pages#pre-rendering) on each request — even for pages that use [Static Generation](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended).
+- 开发模式下, every page is [pre-rendered](https://www.nextjs.cn/docs/basic-features/pages#pre-rendering) on each request — even for pages that use [Static Generation](https://www.nextjs.cn/docs/basic-features/pages#static-generation-recommended).
 
 - [`getStaticProps`](https://www.nextjs.cn/docs/basic-features/data-fetching#getstaticprops-static-generation) runs **only on the server-side**. It will never run on the client-side. It won’t even be included in the JS bundle for the browser. 
 
@@ -112,9 +110,6 @@ A custom server **cannot** be deployed on [Vercel](https://vercel.com/solutions/
 -------------------------------------------
 # [Next](https://nextjs.org/) 
 
-Next.js 是一个全栈式的 React 框架。它用途广泛，可以让你创建任意规模的 React 应用——可以是静态博客，也可以是复杂的动态应用。要创建一个新的 Next.js 项目，请在你的终端运行
-
-[教程](https://nextjs.org/learn/foundations/about-nextjs) 
 
 ## 介绍
 

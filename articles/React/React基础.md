@@ -60,9 +60,9 @@ React components are JavaScript functions.
 从概念上讲，React 分两个阶段工作：
 
 1. **渲染** 阶段会确定需要进行哪些更改，比如 DOM。在此阶段，React 调用 `render`，然后将结果与上次渲染的结果进行比较。
-2. **提交** 阶段发生在当 React 应用变化时。（对于 React DOM 来说，会发生在 React 插入、更新及删除 DOM 节点的时候。）在此阶段，React 还会调用 `componentDidMount` 和 `componentDidUpdate` 之类的生命周期方法。
+2. **提交** 阶段发生在当 React 应用变化时（对于 React DOM 来说，会发生在 React 插入、更新及删除 DOM 节点的时候）。在此阶段，React 还会调用 `componentDidMount` 和 `componentDidUpdate` 之类的生命周期方法。
 
-当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）转换为单个对象传递给组件（组件内部），这个对象被称之为**props**。
+当 React 元素是用户自定义组件时，它会将 JSX 所接收的属性（attributes）转换为单个对象传递给组件（组件内部），这个对象被称之为**props**。
 
 
 
@@ -81,11 +81,13 @@ React makes **UI trees** from your JSX. Then React DOM updates the browser DOM e
 
 组件显示在屏幕上之前，它们必须由 React 进行渲染，分为以下三个步骤：
 
-1. **触发渲染**：初始渲染或组件、父组件状态更新时 re-render
+**1. 触发渲染**
+
+初始渲染或组件、父组件状态更新时 re-render
 
 Updating your component’s state automatically queues a render. 
 
-2. **React 渲染组件**
+**2. React 渲染组件**
 
 触发渲染后 React 会调用您的组件来确定要在屏幕上显示的内容。渲染过程是递归的，如果某个更新的组件返回了其他组件，React 会渲染这些组件直到没有嵌套的组件。
 
@@ -99,7 +101,7 @@ re-render 时 React 会计算与上次渲染相比哪些属性发生变化。
 
 <p style="color:red">默认情况下，若一个父组件 re-render，父组件包含的子组件也会 re-render，即使子组件没有接收任何的 props 也没有访问任何数据。使用 memo 包裹子组件可以避免子组件无效渲染</p>
 
-3. **更新DOM**
+**3. 更新DOM**
 
 React 把更改提交到 DOM 上，在渲染（调用）您的组件之后 React 将会修改 DOM。
 - 对于初次渲染， React 会使用 appendChild() DOM API 将其创建的所有 DOM 节点放在屏幕上。
@@ -409,7 +411,7 @@ Mutable values (including global variables) aren’t reactive. 因此不能作�
 
 什么是响应式数据：
 
-All variables declared in the component body are reactive，在 rendering 时计算的值并且当数据更新时会触发 re-renders
+- All variables declared in the component body are reactive，在 rendering 时计算的值并且当数据更新时会触发 re-renders
 
 React中只有3种响应式数据
 
@@ -832,7 +834,7 @@ React **automatically re-renders** all the children that use a particular contex
 
 当你想让一个组件“记住”一些信息，但又不想让这些信息触发新的渲染【非响应式数据】。
 
-- 与 useState 一样，refs 在重新渲染之间由 React 保留。但是更新 state 会重新渲染组件。更改 ref 不会！您可以通过该属性访问该 ref 的当前值ref.current。
+- 与 useState 一样，refs 在重新渲染之间由 React 保留。但是更新 state 会重新渲染组件，更改 ref 不会！您可以通过该属性访问该 ref 的当前值ref.current。
 - 和 state 不同，在事件处理函数中修改 `ref.current` 的值后可以立即读取到修改后的值【同步更新】
 - 如果一个数据需要在 render 中使用，那这个数据应该用 state 管理，否则应该用 ref 管理
 - 若 ref 应用到原生 DOM 元素上，ref.current 指向真实的DOM
@@ -936,7 +938,7 @@ ReactDOM.render(
 
 [hook 内部实现介绍-英文](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e) 
 
-在同一组件的每次渲染中，Hooks 都依托于一个稳定的调用顺序。在 React 内部，为每个组件保存了一个数组，其中每一项都是一个 state 对。它维护当前 state 对的索引值，在渲染之前将其设置为 “0”。每次调用 useState 时，React 都会为你提供一个 state 对并增加索引值。
+在同一组件的每次渲染中，Hooks 都依托于一个稳定的调用顺序。React 内部为每个组件维护了一个数组，其中每一项都是一个 state 对。它维护当前 state 对的索引值，在渲染之前将其设置为 “0”。每次调用 useState 时，React 都会为你提供一个 state 对并增加索引值。
 
 - React 使用一个全局的索引变量来跟踪当前执行到的 Hook。每次调用 `useState` 时，这个索引会递增。
 - 在组件的每次渲染中，React 会重置索引，并按顺序处理每个 `useState` 调用，从而确保每个 Hook 调用总是访问相同的状态存储单元。
@@ -944,7 +946,7 @@ ReactDOM.render(
 > 特点
 
 - Hooks are special functions that are only available while React is [rendering](https://react.dev/learn/render-and-commit#step-1-trigger-a-render) 
-- Hook 就是 JavaScript 函数，Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性，如生命周期函数。
+- Hook 就是 JavaScript 函数。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性，如生命周期函数。
 - **All Hooks re-run every time your component re-renders.**
 - Hook 函数只能在组件top-level 或自定义 Hook 中使用，不能在条件、循环、嵌套函数中使用。
 - 我们推荐启用 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) 中的 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) 规则，此规则会在添加错误依赖时发出警告并给出修复建议。

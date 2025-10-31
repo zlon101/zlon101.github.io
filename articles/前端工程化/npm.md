@@ -170,6 +170,8 @@ pnpm 自带了 [patching dependencies](https://pnpm.io/cli/patch) 功能，所�
 
 - 创建软链接: [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link) [解读](https://juejin.cn/post/6844903960805900295) [npx link](https://www.npmjs.com/package/link) 
 
+- 项目A中使用本地package B：进入项目A的根目录执行 pnpm link /xxx/xx，/xxx/xx 代表 package B 的路径
+
 ## npx
 
 npx的作用非常多，但是比较常见的是使用它来调用项目中的某个模块的指令。npx 会到当前目录的node_modules/.bin目录下查找对应的命令
@@ -262,3 +264,5 @@ exec('npm config get registry', function(error, stdout, stderr) {
 # 脚手架
 
 [构建前端CLI脚手架-交互式命令](https://mp.weixin.qq.com/s?__biz=Mzg5ODA5NTM1Mw==&mid=2247501024&idx=1&sn=3a098b2838454c7575e17747b9d7430a&chksm=c0654576f712cc60e2c32412757201dba7f39be01057e95b515ec8578144f57d90b42e1d07c9&mpshare=1&scene=24&srcid=0821d8fkl0Ntxc2EvromlgMR&sharer_sharetime=1692585996849&sharer_shareid=e28b67c27c5f7912e475b507d990c42c#rd%E3%80%81) 
+
+# [pnpm](https://mp.weixin.qq.com/s/ABnLJlDpxRQSbiHaA-yTDg) 

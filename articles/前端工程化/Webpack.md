@@ -45,7 +45,7 @@
 <img src="./assets/Webpack/image-20230322182600790.png" alt="image-20230322182600790" style="zoom:50%;" /> 
 
 - module：源码、静态资源、less、ts、js 等
-- [chunk](https://webpack.js.org/concepts/under-the-hood/#chunks)：多模块合成，如 entry import() splitChunk
+- [chunk](https://webpack.js.org/concepts/under-the-hood/#chunks)：多模块合成，如 entry、import()、splitChunk
   - Module 被组合成 chunks，chunks 组合成 chunk groups，并通过 modules 相互连接形成一个图（块组图）。当你描述一个入口点时——在幕后，你通过一个 chunk 创建一个 chunk group。
 - bundle：最终输出的文件
 

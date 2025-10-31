@@ -379,7 +379,25 @@ export function deepClone(srcData, hash = new WeakMap()) {
 
 # this
 
+**结论**
+
+this的绑定规则有4条，优先级从高到低依次是：
+
+1. new
+2. 显式绑定
+   - bind、call、apply
+3. 隐式绑定
+   - 对象的方法调用
+4. 默认规则
+   - 严格模式下绑定到 undefined，否则绑定到全局对象
+
+注意：
+
+- 如果把 null 或 undefined 作为参数传递给 call、apply、bind，在函数执行时应用的是默认绑定规则
+
 > 定义：**运行时**函数的执行环境；
+
+函数中的`this` 在函数调用时被绑定，完全由函数的调用位置决定
 
 JS 中一切皆对象，运行环境也是对象，函数、对象方法都是运行在某个环境中(this)；
 
@@ -684,6 +702,8 @@ Child.prototype = create(Parent.prototype);
 
 
 # [闭包](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures) 
+
+**结论：**当函数可以记住并访问所在的词法作用域，即使函数是在当前作用域之外执行，这时就产生了闭包。
 
 词法作用域：变量的作用域，即变量能被访问的区域；每个函数都有一个与之关联的作用域链，**函数定义时创建作用域链**，调用函数时创建一个新的对象用来保存当前函数作用域；内嵌函数的作用域上至少有3个作用域对象(内嵌函数作用域、外部函数作用域、全局作用域)；
 

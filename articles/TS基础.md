@@ -36,11 +36,10 @@ Boolean  有两个元素`false`和`true`的集合
 基本数据类型除了 number、string 等还包括 TS 中 3 种特殊类型：`never`、`undefined`、`null`、`any`、`void`
 
 
+- `never` 表示永远不存在的值的类型，即这个类型没有对应的值，never 可以赋值给任意类型，never 只能被 never 赋值。
 - `any`：表示任意类型，可以赋值给 `never` 之外的其他类型，可以被任意类型赋值（接受任意类型）
 - `unknown`：表示不知道什么类型，只能赋值给 any 和自己，可以被任意类型赋值
 - void 表示函数没有返回值
-
-- `never` 表示永远不存在的值的类型，即这个类型没有对应的值，never 可以赋值给任意类型，never 只能被 never 赋值。
 
 ```ts
 function fail(message: string): never {
@@ -1005,6 +1004,15 @@ const bar = foo(); // bar 被推断为一个字符串。
 > demo.d.ts
 
 ```tsx
+declare global {
+  const log: typeof import('@/utils/log.ts')['log']
+  const logIcon: typeof import('@/utils/log.ts')['logIcon']
+  interface Window {
+    log: any
+    logIcon: any
+  }
+}
+
 declare let process: any;
 
 export declare enum ButtonsPopoverConfigIconType {

@@ -6,6 +6,8 @@
 
 [团队合作必备的 Git 操作](https://mp.weixin.qq.com/s/xQY5oFjwV7EAcWxT_7njfw)  
 
+[sourcebot](https://github.com/sourcebot-dev/sourcebot)： 开源的代码搜索工具，可以快速对代码建立索引。
+
 **git \<command> [options] [arguments]**
 
 - []: 可选
@@ -81,11 +83,13 @@ git config --global alias.last = cat-file commit HEAD
 git config --global core.editor "'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -n -w"
 ```
 
-
 # [多用户配置](https://www.cnblogs.com/anyefrozen/p/6379046.html) 
 
 
-## 配置key
+
+## 不同域名不同秘钥
+
+> 一个电脑上配置多个git 代码托管 Host 域名
 
 创建key，执行多次在 `.ssh` 目录下生成多个秘钥对
 
@@ -97,9 +101,10 @@ ssh-keygen -t ed25519 -C xxx@email -f /xxx/xx/id_ed25519_xx
 
 ```
 # company
-Host <git clone 时的域名>
-  HostName <git clone 时的域名>
-  IdentityFile ~/.ssh/id_rsa_xxx
+Host git.xxx.com
+  HostName git.xxx.com
+  Port xxx
+  IdentityFile ~/.ssh/id_ed25519_xxx
 
 # self
 # [通过 HTTPS 端口使用 SSH](https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port)
@@ -109,15 +114,34 @@ Host github.com
   User git
   IdentityFile ~/.ssh/id_ed25519_xxx
 
-Host *
+Host gitlab.com
+  Hostname gitlab.com
+  User git
   IdentityFile ~/.ssh/id_ed25519_xxx
+
+Host gitee.com
+  Hostname gitee.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_xxx
+
+# git@codeup.aliyun.com:68e757ca9add35de197aab53/wx-pwd.git
+Host codeup.aliyun.com
+  Hostname codeup.aliyun.com
+  User git
+  IdentityFile ~/.ssh/xxx
 ```
 
-**备注：**`Host` 对应的值不能随便填，这个值对应的在终端使用 `git` 命令时的域名，比如 `git@github.com:xxx/project-x.git` 中的 `github.com`，相当于将 `Host` 映射为 `HostName`。
+**备注：**
+
+- `Host` 对应的值不能随便填，这个值对应的在终端使用 `git` 命令时的域名，比如 `git@github.com:xxx/project-x.git` 中的 `github.com`，相当于将 `Host` 映射为 `HostName`。
+  - `Host` 可以自定义，Host 与终端输入的命令匹配
+
+- Port 不是必填
 
 将 `.ssh` 下的公钥添加加对于的 gitlab、github 项目中
 
 到此实现不同的 git 项目使用不同的秘钥对
+
 
 ## 配置多个 user.name
 
@@ -129,7 +153,7 @@ Host *
 ```
 [user]
 	name = erik
-	emial = czlong607@gmail.com
+	email = czlong607@gmail.com
 
 # somedir 目录下的 git 项目都会引入 /xxx/.git-config 并且会覆盖上面的配置
 [includeIf "gitdir:/xxx/xxx/somedir/"]
@@ -142,10 +166,25 @@ Host *
 ```
 [user]
 	name = erik
-	emial = czlong607@gmail.com
+	email = czlong607@gmail.com
 ```
 
 到此完成
+
+
+## 同一域名不同账户
+
+> 一个电脑上针对同一个域名配置不同的账号秘钥对
+
+1. 根据2.1中的内容，使用自定义 `Host` ，不同的账户使用不同的 Host
+2. 配置 `insteadOf` 自动将自定义的 Host 还原为真实的 Host
+
+
+```
+# See custom `Host github-plnx` in ~/.ssh/config
+[url "github-plnx:planet-express"]
+  insteadOf = git@github.com:planet-express
+```
 
 # 创建版本库
 
@@ -332,7 +371,7 @@ git checkout -b 本地分支名x origin/远程分支名x
 git checkout -b feature-branch origin/feature-branch
 
 // 手动关联
-git branch --set-upstream-to=<origin/branch_name> 本地分支
+git branch --set-upstream-to=<远程分支/branch_name> 本地分支
 ```
 
 - 本地分支push到远程分支
@@ -446,13 +485,33 @@ git merge origin/remote-branch
 - [Git远程操作-阮一峰](https://www.ruanyifeng.com/blog/2014/06/git_remote.html) 
 - [Git骚操作](https://mp.weixin.qq.com/s/1wFDbOm-FJ_NlBYvxN05Ng) 
 
+
+# Git Commit
+
+一次commit只对应一件事，需清晰明了，说明本次提交的目的。
+
+commit message格式为`$type: $description`。
+
+type用于说明commit的类型，只允许使用以下类型。
+
+```
+* feat：新功能（feature）
+* fix：修补bug
+* docs：文档（documentation）
+* style： 格式（不影响代码运行的变动）
+* refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+* test：增加测试
+* chore：构建过程或辅助工具的变动
+```
+
+比如：一个组件现在有2个bug，按照以前我们是把2个bug都改了，再commit。而现在需要，解决一个bug就提交一次，并在commit message中写上**fix: bug#1234**（bug号）。
+
+
 # 标签
 
 Tag 与commit 相关联，创建的Tag存储在本地，不会自动上传到远程库，
 
-- 查看Tag
-
-`git tag`
+- 查看Tag：`git tag`
 
 - 添加Tag
 
@@ -478,40 +537,34 @@ git tag -d TagName  % 删除本地Tag
 git push origin :refs/tags/v0.9 % 删除远程Tag
 ```
 
-# Git Commit
-
-**一次commit只对应一件事。**需清晰明了，说明本次提交的目的。
-
-commit message格式为`$type: $description`。
-
-type用于说明commit的类型，只允许使用以下类型。
-
-```
-* feat：新功能（feature）
-* fix：修补bug
-* docs：文档（documentation）
-* style： 格式（不影响代码运行的变动）
-* refactor：重构（即不是新增功能，也不是修改bug的代码变动）
-* test：增加测试
-* chore：构建过程或辅助工具的变动
-```
-
-比如：一个组件现在有2个bug，按照以前我们是把2个bug都改了，再commit。而现在需要，解决一个bug就提交一次，并在commit message中写上**fix: bug#1234**（bug号）。
 
 # Commitizen
 
 - [优雅的提交你的 Git Commit Message-掘金](https://juejin.im/post/5afc5242f265da0b7f44bee4) 
 - [看下大厂 Git 提交规范是怎么做的-腾讯云](https://cloud.tencent.com/developer/article/1580371) 
 
+
 # 理论
 
 `HEAD` 文件存放的是当前所在分支的引用。
 
+
+# 统计
+
+统计某次 commit 提交的代码量
+
+```sh
+git diff --stat commitid^1 commitid
+```
+
+
 # 其他
 
-- [Gitee](https://gitee.com/) 国内Git托管平台
+- [Gitee](https://gitee.com/) 国内Git托管平台，[api](https://api.gitee.com/api/v5/swagger#/getV5ReposOwnerRepoStargazers?ex=no) 
 
 - [Github 搜索](https://docs.github.com/en/search-github) 
+
+- [sourcegraph - 仓库搜索](https://sourcegraph.com/search?q=context:global+repo:github.com/ruanyf/weekly+%E5%AD%98%E5%82%A8&patternType=keyword&sm=0) 
 
 - [Commit message 和 Change log 编写指南](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html) 
 

@@ -1,7 +1,13 @@
 # 概览
 
 [vue2 源码](https://github.com/vuejs/vue) 
-[vue3](https://vuejs.org/guide/introduction.html) [源码](https://github.com/vuejs/core) 
+
+[vue3官网](https://vuejs.org/guide/introduction.html) 
+
+[源码](https://github.com/vuejs/core) 
+
+[Vue3源码](https://muyacode.github.io/FrontEndLearnNotes/Document/%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/Vue%E5%8F%8A%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/Vue3%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90) 
+
 [Vue3 响应式是如何实现的](https://mp.weixin.qq.com/s/Os-yxAcIrcC9rvfXyyvPHA) 
 
 **核心概念**：组件 | 组件通信 | 指令 | 插槽 | 生命周期 | 响应式状态 | API 
@@ -18,6 +24,14 @@
 
 - 如果你是直接在 DOM 中书写模板 (例如原生 `<template>` 元素的内容)，模板的编译需要遵从浏览器中 HTML 的解析行为。在这种情况下，你应该需要使用 kebab-case 形式并显式地关闭这些组件的标签
 
+
+
+> 应用开发步骤
+
+1. 调用 createApp 创建应用实例
+2. 设置应用级配置 `app.config.xxx`
+3. 挂载根组件 `app.mount()`：mount() 方法应该始终在整个应用配置和资源注册完成后被调用
+
 > 顶级作用域
 
 # 新特性
@@ -25,11 +39,13 @@
 - template 支持多个根标签
 - 组合式API、组合式函数
 - Teleport 内置组件
-- 性能优化：
-  - 模板编译新增静态标记、静态提升
-    - 静态提升：对不参与更新的元素，会做静态提升，只会被创建一次，之后会在每次渲染时候被不停的复用
-  - diff算法新增【更新类型标记】
-  - 响应式原理：给响应式变量增加标记（旧依赖、新依赖）、只删除失效的依赖
+- 模板编译新静态提升
+  - 静态提升：不参与更新的元素的静态节点被提取出来，只创建一次，后续的渲染中直接复用
+- diff算法新增【更新类型标记 patch flag】
+  - vue3为每个节点添加 patch flag 属性，用于标记节点的更新类型。
+  - 在 Diff 过程中，根据 `Patch Flag` 的标记，Vue 3 可以快速判断节点的变化类型，只对需要更新的部分进行操作，避免了对整个虚拟 DOM 树的深度遍历和比较，从而提高了 Diff 算法的效率。
+
+- 响应式原理：给响应式变量增加标记（旧依赖、新依赖）、只删除失效的依赖
 
 
 >  Vue3 性能提升体现在哪些方面
@@ -44,29 +60,29 @@
 
 
 
-vue2 和 vue3 在 diff 算法上有哪些区别？
+> vue2 和 vue3 在 diff 算法上有哪些区别？
 
 - 静态标记和静态提升：编译时 Vue 3 会给静态节点添加特定的标记，这样在实际的 diff 过程中可以跳过对这些静态节点的比较和更新。将不会变化的节点和属性提取出来，避免在每次渲染时都重新创建（静态提升）
 - patch flag：编译器在生成 VNode 时，会根据节点的动态性添加不同的 `patchFlag`。这些标志允许 Vue 在 diff 算法中跳过不需要更新的节点，只关注可能发生变化的动态节点，进一步提升了 diff 算法的性能。
 
-
+- 对剩余节点的处理方式。
+  - vue2 是通过对旧节点列表建立一个 `{ key, oldVnode }` 的映射表，然后遍历新节点列表的剩余节点，根据newVnode.key在旧映射表中寻找可复用的节点，然后打补丁并且移动到正确的位置。
+  - vue3 则是建立一个存储新节点数组中的剩余节点在旧节点数组上的索引的映射关系数组，建立完成这个数组后也即找到了可复用的节点，然后通过这个数组计算得到【最长递增子序列】，这个序列中的节点保持不动，然后将新节点数组中的剩余节点移动到正确的位置。
+    - 最长递增子序列：一个数组中最长连续上升的部分，vue3 中使用“贪心 + 二分”实现
+  - [参考](https://juejin.cn/post/7190726242042118200)   [参考](https://juejin.cn/post/7265995969689665595) 
 
 > Vue2 和 Vue3之间的一些区别
 
 - 性能：Vue.js 3采用了新的响应式引擎，它比Vue.js 2更快。在Vue.js 3中，许多内部实现都被优化，包括虚拟DOM的生成和更新、组件实例化和更新等等。
-
 - Tree Shaking 支持：Vue.js 3 支持tree shaking，可以更容易地剔除没有使用的代码，使得打包后的代码更小更快。
-
 - Composition API: Vue.js 3 引入了Composition API，它是一种新的API风格，可以让开发者更灵活的组织和重用组件逻辑。它允许将逻辑按照功能而不是选项分离，并且让开发者可以更好地重用逻辑。
 
 - 指令的钩子函数变化
-  created、beforeMount、mounted、beforeUpdate、updated、beforeUnmount、unmounted
+  - created、beforeMount、mounted、beforeUpdate、updated、beforeUnmount、unmounted
 
 - Teleport 组件：Vue.js 3 引入了Teleport组件，它允许组件在DOM树中的不同位置进行渲染。这使得开发者可以更轻松地实现模态框等功能。
-
 - TypeScript支持：Vue.js 3 对TypeScript的支持更好。Vue.js 3中的TypeScript类型定义更加精确，使得开发者更容易使用TypeScript编写Vue.js应用。
 
-总的来说，Vue.js 3是一个更快、更灵活、更易于维护的框架，它为开发者带来了许多新的功能和改进。
 
 ## 组件选项配置
 
@@ -77,13 +93,6 @@ vue2 和 vue3 在 diff 算法上有哪些区别？
 - 多根节点？
 - 用响应式API替换事件总线
 
-# Vue3 应用开发
-
-> 应用开发步骤
-
-1. 调用 createApp 创建应用实例
-2. 设置应用级配置 `app.config.xxx`
-3. 挂载根组件 `app.mount()`：mount() 方法应该始终在整个应用配置和资源注册完成后被调用
 
 # 组合式 API
 
@@ -109,12 +118,12 @@ export default {
 1. 导入的组件可以直接使用，无需局部注册
 2. 以`v` 为前缀驼峰形式声明的指令可以直接使用，无需注册
 3. 声明的顶层变量可以在 template 中直接使用
-4. 可以使用编译宏命令：defineProps、defineEmits 等
+4. 可以使用【编译宏命令】：defineProps、defineEmits 等
 
 
 
 > 同时使用选项式API 和 组合式API
-```js
+```vue
 <script>
 // 使用普通的 <script> 来声明选项
 export default {
@@ -165,7 +174,7 @@ console.log(proxy) // 和 this 的属性一样
 
 > 缓存路由视图
 
-缓存 `router-view`
+- 缓存 `router-view`
 
 ```vue
 <router-view v-slot="{ Component }">
@@ -176,12 +185,12 @@ console.log(proxy) // 和 this 的属性一样
 ```
 
 - 缓存的组件如何更新数据？
-1. 路由导航守卫 beforeRouteEnter
-2. 组件生命周期 activated
+
+  - 路由导航守卫 beforeRouteEnter
+  - 组件生命周期 activated
 
 - 如何清除缓存
-
-绑定 key 然后设置不同的属性值
+  - 绑定 key 然后设置不同的属性值
 
 # 生命周期
 
@@ -253,18 +262,17 @@ Vue3 基于 ES6 新增的 Proxy 对象实现数据代理并通过 Reflect 对源
 
 vue3采用【数据代理+数据劫持+发布订阅模式】的方法。在初始化vue实例时用Proxy对象来代理目标对象，对目标对象的所有属性的基本操作（get、set、del）进行拦截，并通过Reflect操作对象内部数据。
 
-当Proxy对象属性或Proxy数组元素发生变化时，会触发Proxy属性的setter方法，然后通过Reflect操作目标对象属性，同时触发它 Dep 实例的notify 方法进行依赖分发，通知所有依赖的Watcher实例执行内部回调函数。
+- 当Proxy对象属性或Proxy数组元素发生变化时，会触发Proxy属性的setter方法，然后通过Reflect操作目标对象属性，同时触发它 Dep 实例的notify 方法进行依赖分发，通知所有依赖的Watcher实例执行内部回调函数。
+  - 最后会触发renderWatcher回调，会重新执行render函数，重新对比新旧虚拟DOM，重新渲染页面。
 
-最后会触发renderWatcher回调，会重新执行render函数，重新对比新旧虚拟DOM，重新渲染页面。
-
-当读取Proxy对象属性时，会触发Proxy属性的getter方法，然后触发它Dep实例的depend方法进行依赖收集。
+- 当读取Proxy对象属性时，会触发Proxy属性的getter方法，然后触发它Dep实例的depend方法进行依赖收集。
 
 Proxy：拦截【对象】中任意属性的变化，包括：读写、新增、删除
 
 Reflect：对源对象的属性进行操作
 
 使用Proxy替换 Object.defineProperty 实现响应式的优劣：
-- 优点：直接劫持整个对象，不用递归对象、数组的属性；劫持数组；对象属性新增、删除等；
+- 优点：直接劫持整个对象，不用递归对象、数组的属性；劫持数组、对象属性新增、删除等；
 - 缺点：不兼容IE
 
 ## 用法
@@ -301,23 +309,32 @@ Vue 提供了一个 [`ref()`](https://cn.vuejs.org/api/reactivity-core.html#ref)
 
 **ref**
 
-1. 通过实例化一个 `RefImpl` 对象，该对象定义了 `value`、`dep` 属性和  `get`、`set` 方法，分别进行依赖收集和触发更新。一般用来处理基本数据类型，也能处理复杂数据类型，只不过内部会自动将对象转换为reactive的代理对象。
-2. 在 `<script>` 中要加.value，在模版中不需要。
+1. 通过实例化一个 `RefImpl` 对象，该对象定义了 `value`、`dep` 属性和  `get`、`set` 方法，分别进行依赖收集和触发更新。
+2. 一般用来处理基本数据类型，也能处理复杂数据类型，只不过内部会自动将对象转换为reactive的代理对象。
+3. 在 `<script>` 中要加 `.value`，在模版中不需要。
 
 **reactive**
-创建一个 Proxy 实例，通过Proxy对目标对象中的所有属性动态地进行【数据劫持】，并通过Reflect操作对象内部数据来实现响应式，只能处理引用类型数据，会实现递归深度响应式
 
-
+1. 创建一个 Proxy 实例，通过Proxy对目标对象中的所有属性动态地进行【数据劫持】，并通过Reflect操作对象内部数据来实现响应式
+1. 只能处理引用类型数据，会实现递归深度响应式
 
 
 > watch 和 watchEffect 的区别
 
 执行时机、监听数据源
-1、watch是惰性执行，也就是只有监听的值发生变化的时候才会执行，但是watchEffect不同，每次代码加载watchEffect都会执行(忽略watch第三个参数的配置，如果修改配置项也可以实现立即执行)
-2、watch 需要传递监听的对象，watchEffect不需要
-3、watch 可以访问旧状态值和当前最新状态值，watchEffect 不行
-4、watch只能监听响应式数据，ref定义的属性和reactive定义的对象，如果直接监听reactive定义对象中的属性是不允许的，除非使用函数转换一下
-5、watchEffect如果监听reactive定义的对象是不起作用的，只能监听对象中的属性。
+
+- 定义
+  - watch：侦听一个或多个响应式数据源，并在数据源变化时调用所给的回调函数
+  - watchEffect：立即运行一个函数，同时响应式地追踪其依赖，并在依赖更改时重新执行
+
+- 执行时机
+  - watch 默认是懒侦听的，即仅在侦听源发生变化时才执行回调函数，第三个参数设置为 `immediate:true` 也可以实现在侦听器创建时立即触发
+  - watchEffect 是立即执行，默认情况下侦听器将在组件渲染之前执行。设置 `flush: 'post'` 将会使侦听器延迟到组件渲染之后再执行
+
+- watch 需要传递监听的对象，watchEffect不需要
+- watch 可以访问旧状态值和当前最新状态值，watchEffect 不行
+- watch只能监听响应式数据，ref定义的属性和reactive定义的对象，如果直接监听reactive定义对象中的属性是不允许的，除非使用函数转换一下
+- watchEffect如果监听reactive定义的对象是不起作用的，只能监听对象中的属性。
 
 默认情况下，侦听器将在组件渲染之前执行
 
@@ -390,7 +407,7 @@ export const useUsers = defineStore('users', {
 - useUsers.$reset
 - useUsers.$patch
 - useUsers.$subscrib
-监听 store 变化，与 watch 相比区别：执行 $patch 更新多个 state 时 subscrib 只会触发一次
+- 监听 store 变化，与 watch 相比区别：执行 $patch 更新多个 state 时 subscrib 只会触发一次
 - someStore.$onAction：订阅action
 
 
