@@ -153,7 +153,7 @@ Host codeup.aliyun.com
 ```
 [user]
 	name = erik
-	email = czlong607@gmail.com
+	email = xxx@gmail.com
 
 # somedir 目录下的 git 项目都会引入 /xxx/.git-config 并且会覆盖上面的配置
 [includeIf "gitdir:/xxx/xxx/somedir/"]
@@ -166,7 +166,7 @@ Host codeup.aliyun.com
 ```
 [user]
 	name = erik
-	email = czlong607@gmail.com
+	email = xxx@gmail.com
 ```
 
 到此完成
